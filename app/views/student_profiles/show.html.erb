@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+<!-- <p id="notice"><%= notice %></p> don't need this, it will make double notice lines-->
 
 <div class="container-fluid">
   <div class="row">
@@ -7,6 +7,12 @@
     </div>
     <div class="col-md-8">
       <p>Email: <%= @student_profile.user.email %></p>
+
+      <p>
+        <strong>Title:</strong>
+        <%= @student_profile.title %>
+      </p>
+
       <p>
         <strong>First name:</strong>
         <%= @student_profile.first_name %>
@@ -18,13 +24,28 @@
       </p>
 
       <p>
+        <strong>Last name:</strong>
+        <%= @student_profile.last_name %>
+      </p>
+
+      <p>
+        <strong>Letters:</strong>
+        <%= @student_profile.letters %>
+      </p>
+
+      <p>
+        <strong>Post Nominal Titles:</strong>
+        <%= @student_profile.post_nominal_titles %>
+      </p>
+
+      <p>
         <strong>Bio:</strong>
         <%= @student_profile.bio %>
       </p>
-    </div> <!-- end of col-md-10 -->
+    </div> <!-- end of col-md-8 -->
   </div> <!-- end of row -->
 </div> <!-- end of container-fluid -->
 
-
+<br><br>
 <%= link_to 'Edit', edit_student_profile_path(@student_profile) %> |
 <%= link_to 'Back', student_profiles_path %>
