@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :student_profiles
   get 'admin', to: 'pages#admin'
   get 'contact', to: 'pages#contact'
   root 'pages#home'

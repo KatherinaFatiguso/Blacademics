@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-4">
+      <%= image_tag(@student_profile.profile_pic, size: "200") %>
+    </div>
+    <div class="col-md-8">
+      <p>Email: <%= @student_profile.user.email %></p>
+      <p>
+        <strong>First name:</strong>
+        <%= @student_profile.first_name %>
+      </p>
+
+      <p>
+        <strong>Last name:</strong>
+        <%= @student_profile.last_name %>
+      </p>
+
+      <p>
+        <strong>Bio:</strong>
+        <%= @student_profile.bio %>
+      </p>
+    </div> <!-- end of col-md-10 -->
+  </div> <!-- end of row -->
+</div> <!-- end of container-fluid -->
+
+
+<%= link_to 'Edit', edit_student_profile_path(@student_profile) %> |
+<%= link_to 'Back', student_profiles_path %>
