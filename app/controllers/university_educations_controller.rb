@@ -27,8 +27,8 @@ class UniversityEducationsController < ApplicationController
     @university_education = UniversityEducation.new(university_education_params)
     respond_to do |format|
       if @university_education.save
-        format.html { redirect_to @university_education, notice: 'University education was successfully created.' }
-        format.json { render :show, status: :created, location: @university_education }
+        format.html { redirect_to @university_education.student_profile, notice: 'University education was successfully created.' }
+        format.json { render :show, status: :created, location: @university_education.student_profile }
       else
         format.html { render :new }
         format.json { render json: @university_education.errors, status: :unprocessable_entity }
@@ -41,8 +41,8 @@ class UniversityEducationsController < ApplicationController
   def update
     respond_to do |format|
       if @university_education.update(university_education_params)
-        format.html { redirect_to @university_education, notice: 'University education was successfully updated.' }
-        format.json { render :show, status: :ok, location: @university_education }
+        format.html { redirect_to @university_education.student_profile, notice: 'University education was successfully updated.' }
+        format.json { render :show, status: :ok, location: @university_education.student_profile }
       else
         format.html { render :edit }
         format.json { render json: @university_education.errors, status: :unprocessable_entity }

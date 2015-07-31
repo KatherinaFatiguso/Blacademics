@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :awards
+  resources :scholarships
   resources :university_educations
   resources :student_profiles
   get 'admin', to: 'pages#admin'

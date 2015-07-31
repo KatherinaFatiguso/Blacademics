@@ -3,74 +3,84 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-4">
-      <%= image_tag(@student_profile.profile_pic, size: "200") %>
+      <%= image_tag(@student_profile.profile_pic, size: "300") %>
     </div>
     <div class="col-md-8">
-      <p>Email: <%= @student_profile.user.email %></p>
+      <% if current_user.has_role? :student %>
+        <p><strong>Email:</strong> <%= @student_profile.user.email %></p>
+      <% end %>
 
-      <p>
-        <strong>Title:</strong>
-        <%= @student_profile.title %>
-      </p>
+      <p><strong>Title: </strong><%= @student_profile.title %></p>
 
-      <p>
-        <strong>First name:</strong>
-        <%= @student_profile.first_name %>
-      </p>
+      <p><strong>First name: </strong><%= @student_profile.first_name %></p>
 
-      <p>
-        <strong>Last name:</strong>
-        <%= @student_profile.last_name %>
-      </p>
+      <p><strong>Last name: </strong><%= @student_profile.last_name %></p>
 
-      <p>
-        <strong>Letters:</strong>
-        <%= @student_profile.letters %>
-      </p>
+      <p><strong>Letters: </strong><%= @student_profile.letters %></p>
 
-      <p>
-        <strong>Post Nominal Titles:</strong>
-        <%= @student_profile.post_nominal_titles %>
-      </p>
+      <p><strong>Post Nominal Titles: </strong><%= @student_profile.post_nominal_titles %></p>
 
-      <p>
-        <strong>Bio:</strong>
-        <%= @student_profile.bio %>
+      <p><strong>Bio: </strong><%= @student_profile.bio %></p>
+
+      <p><%= link_to "Edit Profile", edit_student_profile_path(@student_profile) %></p>
+      <br>
+      <p><strong>Education:    </strong>
+        <%= link_to "Add Education", new_university_education_path(student_profile_id: @student_profile.id) %>
       </p>
+        <% @student_profile.university_educations.each do |student| %>
+          <table>
+            <tr>
+              <td>Degree: </td>
+              <td><%= student.degree %></td>
+            </tr>
+            <tr>
+              <td>Field of Study: </td>
+              <td><%= student.field_of_study %></td>
+            </tr>
+            <tr>
+              <td>University: </td>
+              <td><%= student.university %></td>
+            </tr>
+            <tr>
+              <td>School: </td>
+              <td><%= student.school %></td>
+            </tr>
+            <tr>
+              <td>Year Ended: </td>
+              <td><%= student.year_ended %></td>
+            </tr>
+            <br>
+          </table>
+          <%= link_to "Edit | ", edit_university_education_path(student) %>
+          <%= link_to "Delete", university_education_path(student), method: :delete, data: { confirm: 'Are you sure?'} %>
+          <br>
+        <% end %>
+        <br>
+
+      <p><strong>Scholarships:</strong>
+        <%= link_to "Add Scholarship", new_scholarship_path(student_profile_id: @student_profile.id) %>
+      </p>
+        <% @student_profile.scholarships.each do |scholar| %>
+          <table>
+            <tr>
+              <td>Title: </td>
+              <td><%= scholar.title %></td>
+            </tr>
+            <tr>
+              <td>Organisation: </td>
+              <td><%= scholar.organisation %></td>
+            </tr>
+            <tr>
+              <td>Year Received: </td>
+              <td><%= scholar.year_received %></td>
+            </tr>
+          </table>
+          <%= link_to "Edit | ", edit_scholarship_path(scholar) %>
+          <%= link_to "Delete", scholarship_path(scholar), method: :delete, data: { confirm: 'Are you sure?'} %>
+          <br>
+        <% end %>
+        <br>
+
     </div> <!-- end of col-md-8 -->
   </div> <!-- end of row -->
 </div> <!-- end of container-fluid -->
-
-<p>
-  <strong>Education:</strong>
-  <% @student_profile.university_educations.each do |student| %>
-    <table>
-      <tr>
-        <td>Degree:</td>
-        <td><%= student.degree %></td>
-      </tr>
-      <tr>
-        <td>Field of Study:</td>
-        <td><%= student.field_of_study %></td>
-      </tr>
-      <tr>
-        <td>University:</td>
-        <td><%= student.university %></td>
-      </tr>
-      <tr>
-        <td>School:</td>
-        <td><%= student.school %></td>
-      </tr>
-      <tr>
-        <td>Year Ended:</td>
-        <td><%= student.year_ended %></td>
-      </tr>
-      <br>
-    </table>
-    <%= link_to "Edit | ", edit_university_education_path(student) %>
-    <%= link_to "Delete", university_education_path(student), method: :delete, data: { confirm: 'Are you sure?'} %>
-
-  <% end %>
-  <br>
-  <%= link_to "Add Education", new_university_education_path(student_profile_id: @student_profile.id), class: "btn btn-primary btn-sm" %>
-</p>

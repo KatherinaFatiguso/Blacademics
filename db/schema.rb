@@ -11,10 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150729051026) do
+ActiveRecord::Schema.define(version: 20150731035622) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "awards", force: :cascade do |t|
+    t.string   "title"
+    t.string   "organisation"
+    t.string   "year_received"
+    t.integer  "student_profile_id"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
+  add_index "awards", ["student_profile_id"], name: "index_awards_on_student_profile_id", using: :btree
 
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string   "slug",                      null: false
@@ -39,6 +50,17 @@ ActiveRecord::Schema.define(version: 20150729051026) do
 
   add_index "roles", ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id", using: :btree
   add_index "roles", ["name"], name: "index_roles_on_name", using: :btree
+
+  create_table "scholarships", force: :cascade do |t|
+    t.string   "title"
+    t.string   "organisation"
+    t.string   "year_received"
+    t.integer  "student_profile_id"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
+  add_index "scholarships", ["student_profile_id"], name: "index_scholarships_on_student_profile_id", using: :btree
 
   create_table "student_profiles", force: :cascade do |t|
     t.string   "first_name"
@@ -95,6 +117,8 @@ ActiveRecord::Schema.define(version: 20150729051026) do
 
   add_index "users_roles", ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id", using: :btree
 
+  add_foreign_key "awards", "student_profiles"
+  add_foreign_key "scholarships", "student_profiles"
   add_foreign_key "student_profiles", "users"
   add_foreign_key "university_educations", "student_profiles"
 end

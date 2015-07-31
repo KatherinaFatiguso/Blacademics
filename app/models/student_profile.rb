@@ -5,4 +5,7 @@ class StudentProfile < ActiveRecord::Base
   # If true, destroys any members from the attributes hash with a _destroy key
   # and a value that evaluates to true (eg. 1, '1', true, or 'true').
   # This option is off by default.
+
+  has_many :scholarships
+  accepts_nested_attributes_for :scholarships
 end

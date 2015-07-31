@@ -1,0 +1,14 @@
+<%= simple_form_for(@award) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :title %>
+    <%= f.input :organisation %>
+    <%= f.input :year_received %>
+    <%= f.association :student_profile %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

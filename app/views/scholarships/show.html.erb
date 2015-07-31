@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @scholarship.title %>
+</p>
+
+<p>
+  <strong>Organisation:</strong>
+  <%= @scholarship.organisation %>
+</p>
+
+<p>
+  <strong>Year received:</strong>
+  <%= @scholarship.year_received %>
+</p>
+
+<p>
+  <strong>Student profile:</strong>
+  <%= @scholarship.student_profile %>
+</p>
+
+<%= link_to 'Edit', edit_scholarship_path(@scholarship) %> |
+<%= link_to 'Back', scholarships_path %>

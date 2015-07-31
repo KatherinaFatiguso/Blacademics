@@ -1,0 +1,26 @@
+<h1>Listing awards</h1>
+
+<table class="table">
+    <tr>
+      <th>Title</th>
+      <th>Organisation</th>
+      <th>Year_received</th>
+      <th>Student_profile</th>
+        <th colspan="3"></th>
+    </tr>
+
+  <%= content_tag_for(:tr, @awards) do |award| %>
+    <td><%= award.title %></td>
+    <td><%= award.organisation %></td>
+    <td><%= award.year_received %></td>
+    <td><%= award.student_profile %></td>
+      <td><%= link_to 'Show', award %></td>
+    <td><%= link_to 'Edit', edit_award_path(award), class: 'btn btn-edit' %></td>
+    <td><%= link_to 'Delete', award, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-destroy' %></td>
+  <% end %>
+</table>
+
+
+<div class="form-actions">
+  <%= link_to 'New Award', new_award_path, class: 'btn btn-success' %>
+</div>
