@@ -24,11 +24,6 @@
       </p>
 
       <p>
-        <strong>Last name:</strong>
-        <%= @student_profile.last_name %>
-      </p>
-
-      <p>
         <strong>Letters:</strong>
         <%= @student_profile.letters %>
       </p>
@@ -46,6 +41,36 @@
   </div> <!-- end of row -->
 </div> <!-- end of container-fluid -->
 
-<br><br>
-<%= link_to 'Edit', edit_student_profile_path(@student_profile) %> |
-<%= link_to 'Back', student_profiles_path %>
+<p>
+  <strong>Education:</strong>
+  <% @student_profile.university_educations.each do |student| %>
+    <table>
+      <tr>
+        <td>Degree:</td>
+        <td><%= student.degree %></td>
+      </tr>
+      <tr>
+        <td>Field of Study:</td>
+        <td><%= student.field_of_study %></td>
+      </tr>
+      <tr>
+        <td>University:</td>
+        <td><%= student.university %></td>
+      </tr>
+      <tr>
+        <td>School:</td>
+        <td><%= student.school %></td>
+      </tr>
+      <tr>
+        <td>Year Ended:</td>
+        <td><%= student.year_ended %></td>
+      </tr>
+      <br>
+    </table>
+    <%= link_to "Edit | ", edit_university_education_path(student) %>
+    <%= link_to "Delete", university_education_path(student), method: :delete, data: { confirm: 'Are you sure?'} %>
+
+  <% end %>
+  <br>
+  <%= link_to "Add Education", new_university_education_path(student_profile_id: @student_profile.id), class: "btn btn-primary btn-sm" %>
+</p>

@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Degree:</strong>
+  <%= @university_education.degree %>
+</p>
+
+<p>
+  <strong>Field of study:</strong>
+  <%= @university_education.field_of_study %>
+</p>
+
+<p>
+  <strong>University:</strong>
+  <%= @university_education.university %>
+</p>
+
+<p>
+  <strong>School:</strong>
+  <%= @university_education.school %>
+</p>
+
+<p>
+  <strong>Year started:</strong>
+  <%= @university_education.year_started %>
+</p>
+
+<p>
+  <strong>Year ended:</strong>
+  <%= @university_education.year_ended %>
+</p>
+
+<p>
+  <strong>Student profile:</strong>
+  <%= @university_education.student_profile %>
+</p>
+
+<%= link_to 'Edit', edit_university_education_path(@university_education.student_profile) %> |
+<%= link_to 'Back', student_profile_path(@university_education.student_profile) %>

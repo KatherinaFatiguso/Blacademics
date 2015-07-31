@@ -15,6 +15,7 @@ class StudentProfilesController < ApplicationController
   # GET /student_profiles/new
   def new
     @student_profile = StudentProfile.new
+    @student_profile.build_university_education
   end
 
   # GET /student_profiles/1/edit

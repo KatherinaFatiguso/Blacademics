@@ -14,7 +14,7 @@
     <td><%= student_profile.last_name %></td>
     <td><%= student_profile.profile_pic %></td>
     <td><%= student_profile.bio %></td>
-      <td><%= link_to 'Show', student_profile %></td>
+    <td><%= link_to 'Show', student_profile %></td>
     <td><%= link_to 'Edit', edit_student_profile_path(student_profile), class: 'btn btn-edit' %></td>
     <td><%= link_to 'Delete', student_profile, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-destroy' %></td>
   <% end %>

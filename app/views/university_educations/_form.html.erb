@@ -1,0 +1,20 @@
+<%= simple_form_for @university_education do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+
+      <%= f.input :degree, collection: ['Undergraduate', 'Postgraduate'] %>
+      <%= f.input :field_of_study %>
+      <%= f.input :university %>
+      <%= f.input :school %>
+      <%= f.input :year_ended %>
+      <% if params[:student_profile_id] %>
+        <%= f.input :student_profile_id, type: "hidden", input_html: { value: params[:student_profile_id]} %>
+        <!-- Use the :input_html option  to pass any html attribute (:student_profile_id) straight to the input -->
+      <% end %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

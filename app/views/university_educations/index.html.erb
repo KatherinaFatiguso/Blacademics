@@ -1,0 +1,32 @@
+<h1>Listing university_educations</h1>
+
+<table class="table">
+    <tr>
+      <th>Degree</th>
+      <th>Field_of_study</th>
+      <th>University</th>
+      <th>School</th>
+      <th>Year_started</th>
+      <th>Year_ended</th>
+      <th>Student_profile</th>
+        <th colspan="3"></th>
+    </tr>
+
+  <%= content_tag_for(:tr, @university_educations) do |university_education| %>
+    <td><%= university_education.degree %></td>
+    <td><%= university_education.field_of_study %></td>
+    <td><%= university_education.university %></td>
+    <td><%= university_education.school %></td>
+    <td><%= university_education.year_started %></td>
+    <td><%= university_education.year_ended %></td>
+    <td><%= university_education.student_profile %></td>
+      <td><%= link_to 'Show', university_education %></td>
+    <td><%= link_to 'Edit', edit_university_education_path(university_education), class: 'btn btn-edit' %></td>
+    <td><%= link_to 'Delete', university_education, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-destroy' %></td>
+  <% end %>
+</table>
+
+
+<div class="form-actions">
+  <%= link_to 'New University education', new_university_education_path, class: 'btn btn-success' %>
+</div>
