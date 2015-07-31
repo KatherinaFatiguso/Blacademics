@@ -28,8 +28,8 @@ class AwardsController < ApplicationController
 
     respond_to do |format|
       if @award.save
-        format.html { redirect_to @award, notice: 'Award was successfully created.' }
-        format.json { render :show, status: :created, location: @award }
+        format.html { redirect_to @award.student_profile, notice: 'Award was successfully created.' }
+        format.json { render :show, status: :created, location: @award.student_profile }
       else
         format.html { render :new }
         format.json { render json: @award.errors, status: :unprocessable_entity }
@@ -42,8 +42,8 @@ class AwardsController < ApplicationController
   def update
     respond_to do |format|
       if @award.update(award_params)
-        format.html { redirect_to @award, notice: 'Award was successfully updated.' }
-        format.json { render :show, status: :ok, location: @award }
+        format.html { redirect_to @award.student_profile, notice: 'Award was successfully updated.' }
+        format.json { render :show, status: :ok, location: @award.student_profile }
       else
         format.html { render :edit }
         format.json { render json: @award.errors, status: :unprocessable_entity }
@@ -56,7 +56,7 @@ class AwardsController < ApplicationController
   def destroy
     @award.destroy
     respond_to do |format|
-      format.html { redirect_to awards_url, notice: 'Award was successfully destroyed.' }
+      format.html { redirect_to @award.student_profile, notice: 'Award was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

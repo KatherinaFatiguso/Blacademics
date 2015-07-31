@@ -8,4 +8,11 @@ class StudentProfile < ActiveRecord::Base
 
   has_many :scholarships
   accepts_nested_attributes_for :scholarships
+
+  has_many :awards
+  accepts_nested_attributes_for :awards
+
+  has_many :internships
+  accepts_nested_attributes_for :internships
+
 end

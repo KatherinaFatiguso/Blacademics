@@ -81,6 +81,31 @@
         <% end %>
         <br>
 
+      <p><strong>Awards:</strong>
+        <%= link_to "Add Award", new_award_path(student_profile_id: @student_profile.id) %>
+      </p>
+        <% @student_profile.awards.each do |aw| %>
+          <table>
+            <tr>
+              <td>Title: </td>
+              <td><%= aw.title %></td>
+            </tr>
+            <tr>
+              <td>Organisation: </td>
+              <td><%= aw.organisation %></td>
+            </tr>
+            <tr>
+              <td>Year Received: </td>
+              <td><%= aw.year_received %></td>
+            </tr>
+          </table>
+          <%= link_to "Edit | ", edit_award_path(aw) %>
+          <%= link_to "Delete", award_path(aw), method: :delete, data: { confirm: 'Are you sure?'} %>
+          <br>
+        <% end %>
+        <br>
+
+
     </div> <!-- end of col-md-8 -->
   </div> <!-- end of row -->
 </div> <!-- end of container-fluid -->

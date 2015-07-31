@@ -1,0 +1,15 @@
+<%= simple_form_for(@internship) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :title %>
+    <%= f.input :organisation %>
+    <%= f.input :year_commenced %>
+    <%= f.input :year_ended %>
+    <%= f.association :student_profile %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

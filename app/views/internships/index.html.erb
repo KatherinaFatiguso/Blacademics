@@ -1,0 +1,28 @@
+<h1>Listing internships</h1>
+
+<table class="table">
+    <tr>
+      <th>Title</th>
+      <th>Organisation</th>
+      <th>Year_commenced</th>
+      <th>Year_ended</th>
+      <th>Student_profile</th>
+        <th colspan="3"></th>
+    </tr>
+
+  <%= content_tag_for(:tr, @internships) do |internship| %>
+    <td><%= internship.title %></td>
+    <td><%= internship.organisation %></td>
+    <td><%= internship.year_commenced %></td>
+    <td><%= internship.year_ended %></td>
+    <td><%= internship.student_profile %></td>
+      <td><%= link_to 'Show', internship %></td>
+    <td><%= link_to 'Edit', edit_internship_path(internship), class: 'btn btn-edit' %></td>
+    <td><%= link_to 'Delete', internship, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-destroy' %></td>
+  <% end %>
+</table>
+
+
+<div class="form-actions">
+  <%= link_to 'New Internship', new_internship_path, class: 'btn btn-success' %>
+</div>

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :internships
   resources :awards
   resources :scholarships
   resources :university_educations
