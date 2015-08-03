@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @cadetship.title %>
+</p>
+
+<p>
+  <strong>Organisation:</strong>
+  <%= @cadetship.organisation %>
+</p>
+
+<p>
+  <strong>Year commenced:</strong>
+  <%= @cadetship.year_commenced %>
+</p>
+
+<p>
+  <strong>Year ended:</strong>
+  <%= @cadetship.year_ended %>
+</p>
+
+<p>
+  <strong>Student profile:</strong>
+  <%= @cadetship.student_profile %>
+</p>
+
+<%= link_to 'Edit', edit_cadetship_path(@cadetship) %> |
+<%= link_to 'Back', cadetships_path %>

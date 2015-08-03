@@ -24,11 +24,9 @@
 
       <p><%= link_to "Edit Profile", edit_student_profile_path(@student_profile) %></p>
       <br>
-      <p><strong>Education:    </strong>
-        <%= link_to "Add Education", new_university_education_path(student_profile_id: @student_profile.id) %>
-      </p>
+      <p><strong>Education:</strong></p>
         <% @student_profile.university_educations.each do |student| %>
-          <table>
+          <table class="table">
             <tr>
               <td>Degree: </td>
               <td><%= student.degree %></td>
@@ -49,19 +47,22 @@
               <td>Year Ended: </td>
               <td><%= student.year_ended %></td>
             </tr>
-            <br>
+            </tr>
+              <td>
+                <%= link_to "Edit | ", edit_university_education_path(student) %>
+                <%= link_to "Delete", university_education_path(student), method: :delete, data: { confirm: 'Are you sure?'} %>
+              </td>
+              <td></td>
+            </tr>
           </table>
-          <%= link_to "Edit | ", edit_university_education_path(student) %>
-          <%= link_to "Delete", university_education_path(student), method: :delete, data: { confirm: 'Are you sure?'} %>
-          <br>
         <% end %>
+        <p><%= link_to "Add Education", new_university_education_path(student_profile_id: @student_profile.id) %><p>
         <br>
 
       <p><strong>Scholarships:</strong>
-        <%= link_to "Add Scholarship", new_scholarship_path(student_profile_id: @student_profile.id) %>
       </p>
         <% @student_profile.scholarships.each do |scholar| %>
-          <table>
+          <table class="table">
             <tr>
               <td>Title: </td>
               <td><%= scholar.title %></td>
@@ -74,18 +75,21 @@
               <td>Year Received: </td>
               <td><%= scholar.year_received %></td>
             </tr>
+            <tr>
+              <td>
+                <%= link_to "Edit | ", edit_scholarship_path(scholar) %>
+                <%= link_to "Delete", scholarship_path(scholar), method: :delete, data: { confirm: 'Are you sure?'} %>
+              </td>
+              <td></td>
+            </tr>
           </table>
-          <%= link_to "Edit | ", edit_scholarship_path(scholar) %>
-          <%= link_to "Delete", scholarship_path(scholar), method: :delete, data: { confirm: 'Are you sure?'} %>
-          <br>
         <% end %>
+        <p><%= link_to "Add Scholarship", new_scholarship_path(student_profile_id: @student_profile.id) %></p>
         <br>
 
-      <p><strong>Awards:</strong>
-        <%= link_to "Add Award", new_award_path(student_profile_id: @student_profile.id) %>
-      </p>
+      <p><strong>Awards:</strong></p>
         <% @student_profile.awards.each do |aw| %>
-          <table>
+          <table class="table">
             <tr>
               <td>Title: </td>
               <td><%= aw.title %></td>
@@ -98,13 +102,48 @@
               <td>Year Received: </td>
               <td><%= aw.year_received %></td>
             </tr>
+            <tr>
+              <td>
+                <%= link_to "Edit | ", edit_award_path(aw) %>
+                <%= link_to "Delete", award_path(aw), method: :delete, data: { confirm: 'Are you sure?'} %>
+              </td>
+              <td></td>
+            </tr>
           </table>
-          <%= link_to "Edit | ", edit_award_path(aw) %>
-          <%= link_to "Delete", award_path(aw), method: :delete, data: { confirm: 'Are you sure?'} %>
-          <br>
         <% end %>
+        <p><%= link_to "Add Award", new_award_path(student_profile_id: @student_profile.id) %></p>
         <br>
 
+      <p><strong>Internships:</strong></p>
+        <% @student_profile.internships.each do |intern| %>
+          <table class="table">
+            <tr>
+              <td>Title: </td>
+              <td><%= intern.title %></td>
+            </tr>
+            <tr>
+              <td>Organisation: </td>
+              <td><%= intern.organisation %></td>
+            </tr>
+            <tr>
+              <td>Year Commenced: </td>
+              <td><%= intern.year_commenced %></td>
+            </tr>
+            <tr>
+              <td>Year Ended: </td>
+              <td><%= intern.year_ended %></td>
+            </tr>
+            <tr>
+              <td>
+                <%= link_to "Edit | ", edit_internship_path(intern) %>
+                <%= link_to "Delete", internship_path(intern), method: :delete, data: { confirm: 'Are you sure?'} %>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        <% end %>
+        <p><%= link_to "Add Internship", new_internship_path(student_profile_id: @student_profile.id) %></p>
+        <br>
 
     </div> <!-- end of col-md-8 -->
   </div> <!-- end of row -->

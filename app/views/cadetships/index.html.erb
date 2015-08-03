@@ -1,0 +1,28 @@
+<h1>Listing cadetships</h1>
+
+<table class="table">
+    <tr>
+      <th>Title</th>
+      <th>Organisation</th>
+      <th>Year_commenced</th>
+      <th>Year_ended</th>
+      <th>Student_profile</th>
+        <th colspan="3"></th>
+    </tr>
+
+  <%= content_tag_for(:tr, @cadetships) do |cadetship| %>
+    <td><%= cadetship.title %></td>
+    <td><%= cadetship.organisation %></td>
+    <td><%= cadetship.year_commenced %></td>
+    <td><%= cadetship.year_ended %></td>
+    <td><%= cadetship.student_profile %></td>
+      <td><%= link_to 'Show', cadetship %></td>
+    <td><%= link_to 'Edit', edit_cadetship_path(cadetship), class: 'btn btn-edit' %></td>
+    <td><%= link_to 'Delete', cadetship, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-destroy' %></td>
+  <% end %>
+</table>
+
+
+<div class="form-actions">
+  <%= link_to 'New Cadetship', new_cadetship_path, class: 'btn btn-success' %>
+</div>

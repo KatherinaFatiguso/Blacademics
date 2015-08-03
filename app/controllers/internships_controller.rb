@@ -28,8 +28,8 @@ class InternshipsController < ApplicationController
 
     respond_to do |format|
       if @internship.save
-        format.html { redirect_to @internship, notice: 'Internship was successfully created.' }
-        format.json { render :show, status: :created, location: @internship }
+        format.html { redirect_to @internship.student_profile, notice: 'Internship was successfully created.' }
+        format.json { render :show, status: :created, location: @internship.student_profile }
       else
         format.html { render :new }
         format.json { render json: @internship.errors, status: :unprocessable_entity }
@@ -42,8 +42,8 @@ class InternshipsController < ApplicationController
   def update
     respond_to do |format|
       if @internship.update(internship_params)
-        format.html { redirect_to @internship, notice: 'Internship was successfully updated.' }
-        format.json { render :show, status: :ok, location: @internship }
+        format.html { redirect_to @internship.student_profile, notice: 'Internship was successfully updated.' }
+        format.json { render :show, status: :ok, location: @internship.student_profile }
       else
         format.html { render :edit }
         format.json { render json: @internship.errors, status: :unprocessable_entity }
@@ -56,7 +56,7 @@ class InternshipsController < ApplicationController
   def destroy
     @internship.destroy
     respond_to do |format|
-      format.html { redirect_to internships_url, notice: 'Internship was successfully destroyed.' }
+      format.html { redirect_to @internship.student_profile, notice: 'Internship was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

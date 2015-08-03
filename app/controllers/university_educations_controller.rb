@@ -56,7 +56,6 @@ class UniversityEducationsController < ApplicationController
     @university_education.destroy
     respond_to do |format|
       format.html { redirect_to @university_education.student_profile, notice: 'University education was successfully destroyed.' }
-      # format.html { redirect_to university_educations_url, notice: 'University education was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
