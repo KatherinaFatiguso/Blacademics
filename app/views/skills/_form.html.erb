@@ -1,0 +1,15 @@
+<%= simple_form_for(@skill) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :skill %>
+    <% if params[:student_profile_id] %>
+      <%= f.input :student_profile_id, :as => :hidden, input_html: { value: params[:student_profile_id]} %>
+      <!-- Use the :input_html option  to pass any html attribute (:student_profile_id) straight to the input -->
+    <% end %>
+    </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

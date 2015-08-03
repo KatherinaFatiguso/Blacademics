@@ -14,6 +14,7 @@
       <% end %>
 
       <p><strong>Biography: </strong><%= @student_profile.bio %></p>
+      <p><strong>Summary of Work History: </strong><%= @student_profile.work_history %></p>
 
       <p><%= link_to "Edit Profile", edit_student_profile_path(@student_profile) %></p>
       <br>
@@ -200,6 +201,16 @@
         <p><%= link_to "Add Employment", new_employment_path(student_profile_id: @student_profile.id) %></p>
         <br>
 
+      <p><strong>Skills:</strong> (up to 40 skills)</p>
+      <% count = 0 %>
+        <% @student_profile.skills.each do |s| %>
+            <%= count += 1 %>. <%= s.skill %><%= link_to "  Edit | ", edit_skill_path(s) %><%= link_to "Delete", skill_path(s), method: :delete, data: { confirm: 'Are you sure?'} %>
+            <br>
+        <% end %>
+        <% if count < 40 %><!-- max 40 skills -->
+          <%= link_to "Add Skill", new_skill_path(student_profile_id: @student_profile.id) %>
+        <% end %>
+        <br>
 
     </div> <!-- end of col-md-8 -->
   </div> <!-- end of row -->

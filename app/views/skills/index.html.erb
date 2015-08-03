@@ -1,0 +1,22 @@
+<h1>Listing skills</h1>
+
+<table class="table">
+    <tr>
+      <th>Skill</th>
+      <th>Student_profile</th>
+        <th colspan="3"></th>
+    </tr>
+
+  <%= content_tag_for(:tr, @skills) do |skill| %>
+    <td><%= skill.skill %></td>
+    <td><%= skill.student_profile %></td>
+      <td><%= link_to 'Show', skill %></td>
+    <td><%= link_to 'Edit', edit_skill_path(skill), class: 'btn btn-edit' %></td>
+    <td><%= link_to 'Delete', skill, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-destroy' %></td>
+  <% end %>
+</table>
+
+
+<div class="form-actions">
+  <%= link_to 'New Skill', new_skill_path, class: 'btn btn-success' %>
+</div>

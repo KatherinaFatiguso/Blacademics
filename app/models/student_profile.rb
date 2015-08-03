@@ -21,4 +21,7 @@ class StudentProfile < ActiveRecord::Base
   has_many :employments
   accepts_nested_attributes_for :employments, :allow_destroy => true
 
+  has_many :skills
+  accepts_nested_attributes_for :skills, :allow_destroy => true
+
 end
