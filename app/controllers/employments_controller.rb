@@ -28,8 +28,8 @@ class EmploymentsController < ApplicationController
 
     respond_to do |format|
       if @employment.save
-        format.html { redirect_to @employment, notice: 'Employment was successfully created.' }
-        format.json { render :show, status: :created, location: @employment }
+        format.html { redirect_to @employment.student_profile, notice: 'Employment was successfully created.' }
+        format.json { render :show, status: :created, location: @employment.student_profile }
       else
         format.html { render :new }
         format.json { render json: @employment.errors, status: :unprocessable_entity }
@@ -42,8 +42,8 @@ class EmploymentsController < ApplicationController
   def update
     respond_to do |format|
       if @employment.update(employment_params)
-        format.html { redirect_to @employment, notice: 'Employment was successfully updated.' }
-        format.json { render :show, status: :ok, location: @employment }
+        format.html { redirect_to @employment.student_profile, notice: 'Employment was successfully updated.' }
+        format.json { render :show, status: :ok, location: @employment.student_profile }
       else
         format.html { render :edit }
         format.json { render json: @employment.errors, status: :unprocessable_entity }
@@ -56,7 +56,7 @@ class EmploymentsController < ApplicationController
   def destroy
     @employment.destroy
     respond_to do |format|
-      format.html { redirect_to employments_url, notice: 'Employment was successfully destroyed.' }
+      format.html { redirect_to @employment.student_profile, notice: 'Employment was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

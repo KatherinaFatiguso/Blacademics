@@ -18,4 +18,7 @@ class StudentProfile < ActiveRecord::Base
   has_many :cadetships
   accepts_nested_attributes_for :cadetships, :allow_destroy => true
 
+  has_many :employments
+  accepts_nested_attributes_for :employments, :allow_destroy => true
+
 end

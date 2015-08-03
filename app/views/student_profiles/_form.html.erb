@@ -8,7 +8,8 @@
     <%= f.input :letters %>
     <%= f.input :post_nominal_titles %>
     <%= f.input :profile_pic %>
-    <%= f.input :bio %>
+    <%= f.input :bio, input_html: { maxlength: 1000 } %>
+    <!-- 500 words is about 1000 characters -->
   </div>
 
   <div class="form-actions">

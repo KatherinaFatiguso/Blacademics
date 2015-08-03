@@ -13,7 +13,7 @@
         <p><strong>Email:</strong> <%= @student_profile.user.email %></p>
       <% end %>
 
-      <p><strong>Bio: </strong><%= @student_profile.bio %></p>
+      <p><strong>Biography: </strong><%= @student_profile.bio %></p>
 
       <p><%= link_to "Edit Profile", edit_student_profile_path(@student_profile) %></p>
       <br>
@@ -168,6 +168,39 @@
         <% end %>
         <p><%= link_to "Add Cadetship", new_cadetship_path(student_profile_id: @student_profile.id) %></p>
         <br>
+
+      <p><strong>Employments:</strong></p>
+        <% @student_profile.employments.each do |empl| %>
+          <table class="table">
+            <tr>
+              <td>Title: </td>
+              <td><%= empl.title %></td>
+            </tr>
+            <tr>
+              <td>Organisation: </td>
+              <td><%= empl.organisation %></td>
+            </tr>
+            <tr>
+              <td>Year Commenced: </td>
+              <td><%= empl.year_commenced %></td>
+            </tr>
+            <tr>
+              <td>Year Ended: </td>
+              <td><%= empl.year_ended %></td>
+            </tr>
+            <tr>
+              <td>
+                <%= link_to "Edit | ", edit_employment_path(empl) %>
+                <%= link_to "Delete", employment_path(empl), method: :delete, data: { confirm: 'Are you sure?'} %>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        <% end %>
+        <p><%= link_to "Add Employment", new_employment_path(student_profile_id: @student_profile.id) %></p>
+        <br>
+
+
     </div> <!-- end of col-md-8 -->
   </div> <!-- end of row -->
 </div> <!-- end of container-fluid -->
