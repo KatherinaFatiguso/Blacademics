@@ -1,0 +1,28 @@
+<h1>Listing employments</h1>
+
+<table class="table">
+    <tr>
+      <th>Title</th>
+      <th>Organisation</th>
+      <th>Year_commenced</th>
+      <th>Year_ended</th>
+      <th>Student_profile</th>
+        <th colspan="3"></th>
+    </tr>
+
+  <%= content_tag_for(:tr, @employments) do |employment| %>
+    <td><%= employment.title %></td>
+    <td><%= employment.organisation %></td>
+    <td><%= employment.year_commenced %></td>
+    <td><%= employment.year_ended %></td>
+    <td><%= employment.student_profile %></td>
+      <td><%= link_to 'Show', employment %></td>
+    <td><%= link_to 'Edit', edit_employment_path(employment), class: 'btn btn-edit' %></td>
+    <td><%= link_to 'Delete', employment, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-destroy' %></td>
+  <% end %>
+</table>
+
+
+<div class="form-actions">
+  <%= link_to 'New Employment', new_employment_path, class: 'btn btn-success' %>
+</div>

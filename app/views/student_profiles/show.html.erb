@@ -6,19 +6,12 @@
       <%= image_tag(@student_profile.profile_pic, size: "300") %>
     </div>
     <div class="col-md-8">
+
+      <h3><strong><%= @student_profile.title%>. <%= @student_profile.first_name %> <%= @student_profile.last_name %> <%= @student_profile.letters %>. <%= @student_profile.post_nominal_titles %></strong></h3>
+
       <% if current_user.has_role? :student %>
         <p><strong>Email:</strong> <%= @student_profile.user.email %></p>
       <% end %>
-
-      <p><strong>Title: </strong><%= @student_profile.title %></p>
-
-      <p><strong>First name: </strong><%= @student_profile.first_name %></p>
-
-      <p><strong>Last name: </strong><%= @student_profile.last_name %></p>
-
-      <p><strong>Letters: </strong><%= @student_profile.letters %></p>
-
-      <p><strong>Post Nominal Titles: </strong><%= @student_profile.post_nominal_titles %></p>
 
       <p><strong>Bio: </strong><%= @student_profile.bio %></p>
 
@@ -145,6 +138,36 @@
         <p><%= link_to "Add Internship", new_internship_path(student_profile_id: @student_profile.id) %></p>
         <br>
 
+      <p><strong>Cadetships:</strong></p>
+        <% @student_profile.cadetships.each do |cad| %>
+          <table class="table">
+            <tr>
+              <td>Title: </td>
+              <td><%= cad.title %></td>
+            </tr>
+            <tr>
+              <td>Organisation: </td>
+              <td><%= cad.organisation %></td>
+            </tr>
+            <tr>
+              <td>Year Commenced: </td>
+              <td><%= cad.year_commenced %></td>
+            </tr>
+            <tr>
+              <td>Year Ended: </td>
+              <td><%= cad.year_ended %></td>
+            </tr>
+            <tr>
+              <td>
+                <%= link_to "Edit | ", edit_cadetship_path(cad) %>
+                <%= link_to "Delete", cadetship_path(cad), method: :delete, data: { confirm: 'Are you sure?'} %>
+              </td>
+              <td></td>
+            </tr>
+          </table>
+        <% end %>
+        <p><%= link_to "Add Cadetship", new_cadetship_path(student_profile_id: @student_profile.id) %></p>
+        <br>
     </div> <!-- end of col-md-8 -->
   </div> <!-- end of row -->
 </div> <!-- end of container-fluid -->

@@ -28,8 +28,8 @@ class CadetshipsController < ApplicationController
 
     respond_to do |format|
       if @cadetship.save
-        format.html { redirect_to @cadetship, notice: 'Cadetship was successfully created.' }
-        format.json { render :show, status: :created, location: @cadetship }
+        format.html { redirect_to @cadetship.student_profile, notice: 'Cadetship was successfully created.' }
+        format.json { render :show, status: :created, location: @cadetship.student_profile }
       else
         format.html { render :new }
         format.json { render json: @cadetship.errors, status: :unprocessable_entity }
@@ -42,8 +42,8 @@ class CadetshipsController < ApplicationController
   def update
     respond_to do |format|
       if @cadetship.update(cadetship_params)
-        format.html { redirect_to @cadetship, notice: 'Cadetship was successfully updated.' }
-        format.json { render :show, status: :ok, location: @cadetship }
+        format.html { redirect_to @cadetship.student_profile, notice: 'Cadetship was successfully updated.' }
+        format.json { render :show, status: :ok, location: @cadetship.student_profile }
       else
         format.html { render :edit }
         format.json { render json: @cadetship.errors, status: :unprocessable_entity }
@@ -56,7 +56,7 @@ class CadetshipsController < ApplicationController
   def destroy
     @cadetship.destroy
     respond_to do |format|
-      format.html { redirect_to cadetships_url, notice: 'Cadetship was successfully destroyed.' }
+      format.html { redirect_to @cadetship.student_profile, notice: 'Cadetship was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

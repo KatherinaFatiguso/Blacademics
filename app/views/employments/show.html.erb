@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @employment.title %>
+</p>
+
+<p>
+  <strong>Organisation:</strong>
+  <%= @employment.organisation %>
+</p>
+
+<p>
+  <strong>Year commenced:</strong>
+  <%= @employment.year_commenced %>
+</p>
+
+<p>
+  <strong>Year ended:</strong>
+  <%= @employment.year_ended %>
+</p>
+
+<p>
+  <strong>Student profile:</strong>
+  <%= @employment.student_profile %>
+</p>
+
+<%= link_to 'Edit', edit_employment_path(@employment) %> |
+<%= link_to 'Back', employments_path %>

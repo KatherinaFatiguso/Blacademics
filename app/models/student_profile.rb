@@ -7,12 +7,15 @@ class StudentProfile < ActiveRecord::Base
   # This option is off by default.
 
   has_many :scholarships
-  accepts_nested_attributes_for :scholarships
+  accepts_nested_attributes_for :scholarships, :allow_destroy => true
 
   has_many :awards
-  accepts_nested_attributes_for :awards
+  accepts_nested_attributes_for :awards, :allow_destroy => true
 
   has_many :internships
-  accepts_nested_attributes_for :internships
+  accepts_nested_attributes_for :internships, :allow_destroy => true
+
+  has_many :cadetships
+  accepts_nested_attributes_for :cadetships, :allow_destroy => true
 
 end
