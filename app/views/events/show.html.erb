@@ -1,0 +1,89 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @event.title %>
+</p>
+
+<p>
+  <strong>Tagline:</strong>
+  <%= @event.tagline %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @event.description %>
+</p>
+
+<p>
+  <strong>Contact number:</strong>
+  <%= @event.contact_number %>
+</p>
+
+<p>
+  <strong>Website:</strong>
+  <%= @event.website %>
+</p>
+
+<p>
+  <strong>Accessibility:</strong>
+  <%= @event.accessibility %>
+</p>
+
+<p>
+  <strong>Start time:</strong>
+  <%= @event.start_time %>
+</p>
+
+<p>
+  <strong>End time:</strong>
+  <%= @event.end_time %>
+</p>
+
+<p>
+  <strong>Occurrence:</strong>
+  <%= @event.occurrence %>
+</p>
+
+<p>
+  <strong>Location:</strong>
+  <%= @event.location %>
+</p>
+
+<p>
+  <strong>Ticket required:</strong>
+  <%= @event.ticket_required %>
+</p>
+
+<p>
+  <strong>Official hastag:</strong>
+  <%= @event.official_hastag %>
+</p>
+
+<p>
+  <strong>Facebook url:</strong>
+  <%= @event.facebook_url %>
+</p>
+
+<p>
+  <strong>Google plus url:</strong>
+  <%= @event.google_plus_url %>
+</p>
+
+<p>
+  <strong>Twitter username:</strong>
+  <%= @event.twitter_username %>
+</p>
+
+<p>
+  <strong>Instagram username:</strong>
+  <%= @event.instagram_username %>
+</p>
+
+<p>
+  <strong>Organisation:</strong>
+  <%= @event.organisation %>
+</p>
+
+<%= link_to 'Edit', edit_event_path(@event) %> |
+<%= link_to 'Back', events_path %>

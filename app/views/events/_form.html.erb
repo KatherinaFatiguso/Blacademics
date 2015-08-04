@@ -1,0 +1,27 @@
+<%= simple_form_for(@event) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :title %>
+    <%= f.input :tagline %>
+    <%= f.input :description %>
+    <%= f.input :contact_number %>
+    <%= f.input :website %>
+    <%= f.input :accessibility %>
+    <%= f.input :start_time %>
+    <%= f.input :end_time %>
+    <%= f.input :occurrence %>
+    <%= f.input :location %>
+    <%= f.input :ticket_required %>
+    <%= f.input :official_hastag %>
+    <%= f.input :facebook_url %>
+    <%= f.input :google_plus_url %>
+    <%= f.input :twitter_username %>
+    <%= f.input :instagram_username %>
+    <%= f.association :organisation %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

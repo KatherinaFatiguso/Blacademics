@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150804034226) do
+ActiveRecord::Schema.define(version: 20150804061325) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,6 +50,30 @@ ActiveRecord::Schema.define(version: 20150804034226) do
   end
 
   add_index "employments", ["student_profile_id"], name: "index_employments_on_student_profile_id", using: :btree
+
+  create_table "events", force: :cascade do |t|
+    t.string   "title"
+    t.text     "tagline"
+    t.text     "description"
+    t.string   "contact_number"
+    t.string   "website"
+    t.string   "accessibility"
+    t.string   "start_time"
+    t.string   "end_time"
+    t.string   "occurrence"
+    t.string   "location"
+    t.string   "ticket_required"
+    t.string   "official_hastag"
+    t.string   "facebook_url"
+    t.string   "google_plus_url"
+    t.string   "twitter_username"
+    t.string   "instagram_username"
+    t.integer  "organisation_id"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
+  add_index "events", ["organisation_id"], name: "index_events_on_organisation_id", using: :btree
 
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string   "slug",                      null: false
@@ -194,6 +218,7 @@ ActiveRecord::Schema.define(version: 20150804034226) do
   add_foreign_key "awards", "student_profiles"
   add_foreign_key "cadetships", "student_profiles"
   add_foreign_key "employments", "student_profiles"
+  add_foreign_key "events", "organisations"
   add_foreign_key "internships", "student_profiles"
   add_foreign_key "org_users", "organisations"
   add_foreign_key "org_users", "users"
