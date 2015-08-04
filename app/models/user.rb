@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
   has_one :student_profile
+  has_many :org_users
+  has_many :organisations, through: :org_users
 
   rolify
   # Include default devise modules. Others available are:

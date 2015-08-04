@@ -1,0 +1,22 @@
+<%= simple_form_for(@organisation) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :name %>
+    <%= f.input :university %>
+    <%= f.input :street_address_1 %>
+    <%= f.input :street_address_2 %>
+    <%= f.input :suburb %>
+    <%= f.input :state, collection: ['NSW', 'ACT', 'VIC', 'QLD', 'SA', 'NT', 'TAS'] %>
+    <%= f.input :postcode %>
+    <%= f.input :contact_name %>
+    <%= f.input :contact_email %>
+    <%= f.input :contact_phone %>
+    <%= f.input :website %>
+    <%= f.input :logo %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

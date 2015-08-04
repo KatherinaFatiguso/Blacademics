@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150803021932) do
+ActiveRecord::Schema.define(version: 20150804034226) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -76,6 +76,33 @@ ActiveRecord::Schema.define(version: 20150803021932) do
 
   add_index "internships", ["student_profile_id"], name: "index_internships_on_student_profile_id", using: :btree
 
+  create_table "org_users", force: :cascade do |t|
+    t.integer  "organisation_id"
+    t.integer  "user_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "org_users", ["organisation_id"], name: "index_org_users_on_organisation_id", using: :btree
+  add_index "org_users", ["user_id"], name: "index_org_users_on_user_id", using: :btree
+
+  create_table "organisations", force: :cascade do |t|
+    t.string   "name"
+    t.string   "university"
+    t.string   "street_address_1"
+    t.string   "street_address_2"
+    t.string   "suburb"
+    t.string   "state"
+    t.string   "postcode"
+    t.string   "contact_name"
+    t.string   "contact_email"
+    t.string   "contact_phone"
+    t.string   "website"
+    t.string   "logo"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
   create_table "roles", force: :cascade do |t|
     t.string   "name"
     t.integer  "resource_id"
@@ -119,6 +146,7 @@ ActiveRecord::Schema.define(version: 20150803021932) do
     t.string   "letters"
     t.string   "post_nominal_titles"
     t.text     "work_history"
+    t.string   "resume"
   end
 
   add_index "student_profiles", ["user_id"], name: "index_student_profiles_on_user_id", using: :btree
@@ -167,6 +195,8 @@ ActiveRecord::Schema.define(version: 20150803021932) do
   add_foreign_key "cadetships", "student_profiles"
   add_foreign_key "employments", "student_profiles"
   add_foreign_key "internships", "student_profiles"
+  add_foreign_key "org_users", "organisations"
+  add_foreign_key "org_users", "users"
   add_foreign_key "scholarships", "student_profiles"
   add_foreign_key "skills", "student_profiles"
   add_foreign_key "student_profiles", "users"

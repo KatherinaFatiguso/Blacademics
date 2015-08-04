@@ -8,9 +8,9 @@
     <%= f.input :letters %>
     <%= f.input :post_nominal_titles %>
     <%= f.input :profile_pic %>
-    <%= f.input :bio, input_html: { maxlength: 1000 }  %>
+    <%= f.input :bio, label: 'Biography (max 500 words)', input_html: { maxlength: 1000 }  %>
     <!-- 500 words is about 1000 characters -->
-    <%= f.input :work_history, input_html: { maxlength: 2000 }  %>
+    <%= f.input :work_history, label: 'Work History (max 1000 words)', input_html: { maxlength: 2000 }  %>
     <!-- 1000 words is about 2000 characters -->
   </div>
 

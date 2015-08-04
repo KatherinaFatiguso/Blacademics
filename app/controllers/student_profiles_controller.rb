@@ -15,7 +15,7 @@ class StudentProfilesController < ApplicationController
   # GET /student_profiles/new
   def new
     @student_profile = StudentProfile.new
-    @student_profile.build_university_education
+    # @student_profile.build_university_education ##this pre-generated line causes error, not sure why?
   end
 
   # GET /student_profiles/1/edit
@@ -71,6 +71,6 @@ class StudentProfilesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def student_profile_params
-      params.require(:student_profile).permit(:title, :first_name, :last_name, :letters, :profile_pic, :post_nominal_titles, :bio, :work_history)
+      params.require(:student_profile).permit(:title, :first_name, :last_name, :letters, :profile_pic, :post_nominal_titles, :bio, :work_history, :resume)
     end
 end

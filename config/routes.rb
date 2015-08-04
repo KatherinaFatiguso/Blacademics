@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :organisations
   resources :skills
   resources :employments
   resources :cadetships

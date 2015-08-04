@@ -6,8 +6,8 @@
       <%= image_tag(@student_profile.profile_pic, size: "300") %>
     </div>
     <div class="col-md-8">
-
-      <h3><strong><%= @student_profile.title%>. <%= @student_profile.first_name %> <%= @student_profile.last_name %> <%= @student_profile.letters %>. <%= @student_profile.post_nominal_titles %></strong></h3>
+      <div class="text-left">
+      <h3><strong><%= @student_profile.title%>. <%= @student_profile.first_name %> <%= @student_profile.last_name %> <%= @student_profile.letters %> <%= @student_profile.post_nominal_titles %></strong></h3>
 
       <% if current_user.has_role? :student %>
         <p><strong>Email:</strong> <%= @student_profile.user.email %></p>
@@ -210,8 +210,19 @@
         <% if count < 40 %><!-- max 40 skills -->
           <%= link_to "Add Skill", new_skill_path(student_profile_id: @student_profile.id) %>
         <% end %>
-        <br>
+        <br><br>
 
+        Resume name: <%= @student_profile.resume %>
+        <%= simple_form_for(@student_profile) do |f| %>
+          <%= f.error_notification %>
+          <div class="form-inputs">
+            <%= f.input :resume, label: 'Upload Resume: ', as: :file %>
+          </div>
+          <div class="form-actions">
+            <%= f.button :submit %>
+          </div>
+        <% end %>
+      </div>
     </div> <!-- end of col-md-8 -->
   </div> <!-- end of row -->
 </div> <!-- end of container-fluid -->
