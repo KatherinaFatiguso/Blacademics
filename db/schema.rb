@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150805015742) do
+ActiveRecord::Schema.define(version: 20150806023518) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,6 +59,40 @@ ActiveRecord::Schema.define(version: 20150805015742) do
   end
 
   add_index "cadetships", ["student_profile_id"], name: "index_cadetships_on_student_profile_id", using: :btree
+
+  create_table "categories", force: :cascade do |t|
+    t.boolean  "scschool_mentor"
+    t.boolean  "scschool_tutor"
+    t.boolean  "scschool_teen"
+    t.boolean  "scschool_leader"
+    t.boolean  "scschool_aspiration"
+    t.boolean  "scschool_enabling"
+    t.boolean  "scschool_events"
+    t.boolean  "uni_enabling"
+    t.boolean  "uni_aspiration"
+    t.boolean  "uni_undergrad"
+    t.boolean  "uni_postgrad"
+    t.boolean  "uni_uap"
+    t.boolean  "uni_tutor"
+    t.boolean  "uni_events"
+    t.boolean  "scholar_secondary"
+    t.boolean  "scholar_tertiary"
+    t.boolean  "scholar_bursaries"
+    t.boolean  "scholar_grants"
+    t.boolean  "scholar_events"
+    t.boolean  "empl_intern"
+    t.boolean  "empl_cadet"
+    t.boolean  "empl_trainee"
+    t.boolean  "empl_jobs"
+    t.boolean  "empl_events"
+    t.boolean  "sector_conferences"
+    t.boolean  "sector_events"
+    t.integer  "event_id"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+  end
+
+  add_index "categories", ["event_id"], name: "index_categories_on_event_id", using: :btree
 
   create_table "employments", force: :cascade do |t|
     t.string   "title"
@@ -239,6 +273,7 @@ ActiveRecord::Schema.define(version: 20150805015742) do
   add_foreign_key "audiences", "events"
   add_foreign_key "awards", "student_profiles"
   add_foreign_key "cadetships", "student_profiles"
+  add_foreign_key "categories", "events"
   add_foreign_key "employments", "student_profiles"
   add_foreign_key "events", "organisations"
   add_foreign_key "internships", "student_profiles"

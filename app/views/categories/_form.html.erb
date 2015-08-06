@@ -1,0 +1,49 @@
+<%= simple_form_for(@category) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <p><strong>Secondary School</strong></p>
+    <%= f.input :scschool_mentor, label: 'Mentoring Programs' %>
+    <%= f.input :scschool_tutor, label: 'Tutoring/Study Programs' %>
+    <%= f.input :scschool_teen, label: 'Teen Scholarships' %>
+    <%= f.input :scschool_leader, label: 'Leaderships Programs' %>
+    <%= f.input :scschool_aspiration, label: 'Aspirational Programs' %>
+    <%= f.input :scschool_enabling, label: 'Enabling Programs' %>
+    <%= f.input :scschool_events, label: 'Events' %>
+
+    <p><strong>University</strong></p>
+    <%= f.input :uni_enabling, label: 'Enabling Programs' %>
+    <%= f.input :uni_aspiration, label: 'Aspirational Programs' %>
+    <%= f.input :uni_undergrad, label: 'Undergraduate Programs' %>
+    <%= f.input :uni_postgrad, label: 'Postgraduate Programs' %>
+    <%= f.input :uni_uap, label: 'University Admissions Pathways' %>
+    <%= f.input :uni_tutor, label: 'Tutoring (ITAS)' %>
+    <%= f.input :uni_events, label: 'Events' %>
+
+    <p><strong>Scholarships</strong></p>
+    <%= f.input :scholar_secondary, label: 'Secondary Scholarships' %>
+    <%= f.input :scholar_tertiary, label: 'Tertiary Scholarships' %>
+    <%= f.input :scholar_bursaries, label: 'Bursaries' %>
+    <%= f.input :scholar_grants, label: 'Grants' %>
+    <%= f.input :scholar_events, label: 'Events' %>
+
+    <p><strong>Employment</strong></p>
+    <%= f.input :empl_intern, label: 'Internship' %>
+    <%= f.input :empl_cadet, label: 'Cadetship' %>
+    <%= f.input :empl_trainee, label: 'Traineeship' %>
+    <%= f.input :empl_jobs, label: 'Jobs' %>
+    <%= f.input :empl_events, label: 'Events' %>
+
+    <p><strong>Sector</strong></p>
+    <%= f.input :sector_conferences, label: 'Conferences' %>
+    <%= f.input :sector_events, label: 'Events' %>
+    <% if params[:event_id] %>
+      <%= f.input :event_id, :as => :hidden, input_html: { value: params[:event_id]} %>
+      <!-- Use the :input_html option  to pass any html attribute (:event_id) straight to the input -->
+    <% end %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

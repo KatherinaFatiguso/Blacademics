@@ -1,16 +1,11 @@
-<h1>Listing organisations</h1>
+<h1>Listing Organisations</h1>
 
 <table class="table">
     <tr>
       <th>Name</th>
       <th>University</th>
-      <th>Street_address_1</th>
-      <th>Street_address_2</th>
       <th>Suburb</th>
       <th>State</th>
-      <th>Postcode</th>
-      <th>Contact_name</th>
-      <th>Contact_email</th>
       <th>Contact_phone</th>
       <th>Website</th>
       <th>Logo</th>
@@ -20,17 +15,12 @@
   <%= content_tag_for(:tr, @organisations) do |organisation| %>
     <td><%= organisation.name %></td>
     <td><%= organisation.university %></td>
-    <td><%= organisation.street_address_1 %></td>
-    <td><%= organisation.street_address_2 %></td>
     <td><%= organisation.suburb %></td>
     <td><%= organisation.state %></td>
-    <td><%= organisation.postcode %></td>
-    <td><%= organisation.contact_name %></td>
-    <td><%= organisation.contact_email %></td>
     <td><%= organisation.contact_phone %></td>
     <td><%= organisation.website %></td>
     <td><%= organisation.logo %></td>
-      <td><%= link_to 'Show', organisation %></td>
+    <td><%= link_to 'Show', organisation %></td>
     <td><%= link_to 'Edit', edit_organisation_path(organisation), class: 'btn btn-edit' %></td>
     <td><%= link_to 'Delete', organisation, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-destroy' %></td>
   <% end %>

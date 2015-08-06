@@ -108,8 +108,139 @@
         <% end %>
       <% end %>
     <% end %>
+</p>
 
+<p>
+  <strong>Categories:</strong>
+    <% if @event.categories.none? %>
+      <p><%= link_to "Add Category", new_category_path(event_id: @event.id) %></p>
+    <% else %>
+      <% @event.categories.each do |category| %>
+        <% if category.event_id == @event.id %>
+          <% if category.scschool_mentor || category.scschool_tutor || category.scschool_teen || category.scschool_leader || category.scschool_aspiration || category.scschool_enabling || category.scschool_events %>
+            <ul>
+              <li>Secondary School</li>
+              <ul>
+                <% if category.scschool_mentor %>
+                  <li>Mentoring Programs</li>
+                <% end %>
+                <% if category.scschool_tutor %>
+                  <li>Tutoring/Study Programs</li>
+                <% end %>
+                <% if category.scschool_teen %>
+                  <li>Teen Scholarship</li>
+                <% end %>
+                <% if category.scschool_leader %>
+                  <li>Leaderships Programs</li>
+                <% end %>
+                <% if category.scschool_aspiration %>
+                  <li>Aspirational Programs</li>
+                <% end %>
+                <% if category.scschool_enabling %>
+                  <li>Enabling Programs</li>
+                <% end %>
+                <% if category.scschool_events %>
+                  <li>Events</li>
+                <% end %>
+              </ul>
+            </ul>
+          <% end %>
 
+          <% if category.uni_enabling || category.uni_aspiration || category.uni_undergrad || category.uni_postgrad || category.uni_uap || category.uni_tutor || category.uni_events %>
+            <ul>
+              <li>University</li>
+              <ul>
+                <% if category.uni_enabling %>
+                  <li>Enabling Programs</li>
+                <% end %>
+                <% if category.uni_aspiration %>
+                  <li>Aspirational Programs</li>
+                <% end %>
+                <% if category.uni_undergrad %>
+                  <li>Undergraduate Programs</li>
+                <% end %>
+                <% if category.uni_postgrad %>
+                  <li>Postgraduate Programs</li>
+                <% end %>
+                <% if category.uni_uap %>
+                  <li>University Admissions Pathways</li>
+                <% end %>
+                <% if category.uni_tutor %>
+                  <li>Tutoring (ITAS)</li>
+                <% end %>
+                <% if category.uni_events %>
+                  <li>Events</li>
+                <% end %>
+              </ul>
+            </ul>
+          <% end %>
+
+          <% if category.scholar_secondary || category.scholar_tertiary || category.scholar_bursaries || category.scholar_grants || category.scholar_events %>
+            <ul>
+              <li>Scholarship</li>
+              <ul>
+                <% if category.scholar_secondary %>
+                  <li>Secondary Scholarships</li>
+                <% end %>
+                <% if category.scholar_tertiary %>
+                  <li>Tertiary Scholarships</li>
+                <% end %>
+                <% if category.scholar_bursaries %>
+                  <li>Bursaries</li>
+                <% end %>
+                <% if category.scholar_grants %>
+                  <li>Grants</li>
+                <% end %>
+                <% if category.scholar_events %>
+                  <li>Events</li>
+                <% end %>
+              </ul>
+            </ul>
+          <% end %>
+
+          <% if category.empl_intern || category.empl_cadet || category.empl_trainee || category.empl_jobs || category.empl_events %>
+            <ul>
+              <li>Employment</li>
+              <ul>
+                <% if category.empl_intern %>
+                  <li>Internship</li>
+                <% end %>
+                <% if category.empl_cadet %>
+                  <li>Cadetship</li>
+                <% end %>
+                <% if category.empl_trainee %>
+                  <li>Traineeship</li>
+                <% end %>
+                <% if category.empl_jobs %>
+                  <li>Jobs</li>
+                <% end %>
+                <% if category.empl_events %>
+                  <li>Events</li>
+                <% end %>
+              </ul>
+            </ul>
+          <% end %>
+
+          <% if category.sector_conferences || category.sector_events %>
+            <ul>
+              <li>Sector</li>
+              <ul>
+                <% if category.sector_conferences %>
+                  <li>Conferences</li>
+                <% end %>
+                <% if category.sector_events %>
+                  <li>Events</li>
+                <% end %>
+              </ul>
+            </ul>
+          <% end %>
+
+          <%= link_to "Edit Category", edit_category_path(category) %>
+          <%= ' | '%>
+          <%= link_to "Delete Category", category_path(category), method: :delete, data: { confirm: 'Are you sure?'} %>
+        <% end %>
+      <% end %>
+    <% end %>
 </p>
 
 <p>
