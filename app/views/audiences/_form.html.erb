@@ -1,0 +1,35 @@
+<mark>Select Up To Two Categories</mark>
+<br><br>
+<%= simple_form_for(@audience) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <p><strong>Tertiary Preparation</strong></p>
+    <%= f.input :pre_tertiary, label: 'Pre-Tertiary Program' %>
+    <%= f.input :uni_prep, label: 'University Preparatory Program' %>
+
+    <p><strong>Undergraduate</strong></p>
+    <%= f.input :ugrad_direct_access_atar_op, label: 'Direct Access (ATAR or OP)' %>
+    <%= f.input :ugrad_indirect_access_pathway, label: 'Indirect Access Pathway Program' %>
+    <%= f.input :ugrad_indirect_access_enabling, label: 'Indirect Access Enabling Program' %>
+    <%= f.input :ugrad_indirect_access_indigenous, label: 'Indirect Access Indigenous Admissions' %>
+
+    <p><strong>Post Graduate</strong></p>
+    <%= f.input :masters, label: 'Masters' %>
+    <%= f.input :honours, label: 'Honours' %>
+    <%= f.input :phd, label: 'Phd' %>
+
+    <p><strong>Employment</strong></p>
+    <%= f.input :internship, label: 'Internship' %>
+    <%= f.input :cadetship, label: 'Cadetship' %>
+    <%= f.input :traineeship, label: 'Traineeship' %>
+    <%= f.input :job, label: 'Job' %>
+    <% if params[:event_id] %>
+      <%= f.input :event_id, :as => :hidden, input_html: { value: params[:event_id]} %>
+    <% end %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

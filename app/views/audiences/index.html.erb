@@ -1,0 +1,46 @@
+<h1>Listing audiences</h1>
+
+<table class="table">
+    <tr>
+      <th>Pre_tertiary</th>
+      <th>Uni_prep</th>
+      <th>Ugrad_direct_access_atar_op</th>
+      <th>Ugrad_indirect_access_pathway</th>
+      <th>Ugrad_indirect_access_enabling</th>
+      <th>Ugrad_indirect_access_indigenous</th>
+      <th>Masters</th>
+      <th>Honours</th>
+      <th>Phd</th>
+      <th>Internship</th>
+      <th>Cadetship</th>
+      <th>Traineeship</th>
+      <th>Job</th>
+      <th>Event</th>
+        <th colspan="3"></th>
+    </tr>
+
+  <%= content_tag_for(:tr, @audiences) do |audience| %>
+    <td><%= audience.pre_tertiary %></td>
+    <td><%= audience.uni_prep %></td>
+    <td><%= audience.ugrad_direct_access_atar_op %></td>
+    <td><%= audience.ugrad_indirect_access_pathway %></td>
+    <td><%= audience.ugrad_indirect_access_enabling %></td>
+    <td><%= audience.ugrad_indirect_access_indigenous %></td>
+    <td><%= audience.masters %></td>
+    <td><%= audience.honours %></td>
+    <td><%= audience.phd %></td>
+    <td><%= audience.internship %></td>
+    <td><%= audience.cadetship %></td>
+    <td><%= audience.traineeship %></td>
+    <td><%= audience.job %></td>
+    <td><%= audience.event %></td>
+      <td><%= link_to 'Show', audience %></td>
+    <td><%= link_to 'Edit', edit_audience_path(audience), class: 'btn btn-edit' %></td>
+    <td><%= link_to 'Delete', audience, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-destroy' %></td>
+  <% end %>
+</table>
+
+
+<div class="form-actions">
+  <%= link_to 'New Audience', new_audience_path, class: 'btn btn-success' %>
+</div>

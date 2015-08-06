@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+<!-- <p id="notice"><%= notice %></p> don't need this, it will make double notice lines-->
 
 <p>
   <strong>Title:</strong>
@@ -23,6 +23,93 @@
 <p>
   <strong>Website:</strong>
   <%= @event.website %>
+</p>
+
+<p>
+  <strong>Audiences:</strong>
+    <% if @event.audiences.none? %>
+      <p><%= link_to "Add Audience", new_audience_path(event_id: @event.id) %></p>
+    <% else %>
+      <% @event.audiences.each do |audience| %>
+        <% if audience.event_id == @event.id %>
+          <% if audience.pre_tertiary || audience.uni_prep %>
+            <ul>
+              <li>Tertiary Preparation</li>
+              <ul>
+                <% if audience.pre_tertiary %>
+                  <li>Pre-Tertiary Program</li>
+                <% end %>
+                <% if audience.uni_prep %>
+                  <li>University Preparatory Program</li>
+                <% end %>
+              </ul>
+            </ul>
+          <% end %>
+
+          <% if audience.ugrad_direct_access_atar_op || audience.ugrad_indirect_access_pathway || audience.ugrad_indirect_access_enabling || audience.ugrad_indirect_access_indigenous %>
+            <ul>
+              <li>Undergraduate</li>
+              <ul>
+                <% if audience.ugrad_direct_access_atar_op %>
+                  <li>Direct Access (ATAR or OP)</li>
+                <% end %>
+                <% if audience.ugrad_indirect_access_pathway %>
+                  <li>Indirect Access Pathway Program</li>
+                <% end %>
+                <% if audience.ugrad_indirect_access_enabling %>
+                  <li>Indirect Access Enabling Program</li>
+                <% end %>
+                <% if audience.ugrad_indirect_access_indigenous %>
+                  <li>Indirect Access Indigenous Program</li>
+                <% end %>
+              </ul>
+            </ul>
+          <% end %>
+
+          <% if audience.masters || audience.honours || audience.phd %>
+            <ul>
+              <li>Post Graduate</li>
+              <ul>
+                <% if audience.masters %>
+                  <li>Masters</li>
+                <% end %>
+                <% if audience.honours %>
+                  <li>Honours</li>
+                <% end %>
+                <% if audience.phd %>
+                  <li>PhD</li>
+                <% end %>
+              </ul>
+            </ul>
+          <% end %>
+
+          <% if audience.internship || audience.cadetship || audience.traineeship || audience.job %>
+            <ul>
+              <li>Employment</li>
+              <ul>
+                <% if audience.internship %>
+                  <li>Internship</li>
+                <% end %>
+                <% if audience.cadetship %>
+                  <li>Cadetship</li>
+                <% end %>
+                <% if audience.traineeship %>
+                  <li>Traineeship</li>
+                <% end %>
+                <% if audience.job %>
+                  <li>Job</li>
+                <% end %>
+              </ul>
+            </ul>
+          <% end %>
+
+          <%= link_to "Edit Audience | ", edit_audience_path(audience) %>
+          <%= link_to "Delete Audience", audience_path(audience), method: :delete, data: { confirm: 'Are you sure?'} %>
+        <% end %>
+      <% end %>
+    <% end %>
+
+
 </p>
 
 <p>
@@ -80,10 +167,6 @@
   <%= @event.instagram_username %>
 </p>
 
-<p>
-  <strong>Organisation:</strong>
-  <%= @event.organisation %>
-</p>
 
 <%= link_to 'Edit', edit_event_path(@event) %> |
-<%= link_to 'Back', events_path %>
+<%= link_to 'Back', organisation_path(@event.organisation) %>

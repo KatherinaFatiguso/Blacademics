@@ -11,10 +11,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150804061325) do
+ActiveRecord::Schema.define(version: 20150805015742) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "audiences", force: :cascade do |t|
+    t.boolean  "pre_tertiary"
+    t.boolean  "uni_prep"
+    t.boolean  "ugrad_direct_access_atar_op"
+    t.boolean  "ugrad_indirect_access_pathway"
+    t.boolean  "ugrad_indirect_access_enabling"
+    t.boolean  "ugrad_indirect_access_indigenous"
+    t.boolean  "masters"
+    t.boolean  "honours"
+    t.boolean  "phd"
+    t.boolean  "internship"
+    t.boolean  "cadetship"
+    t.boolean  "traineeship"
+    t.boolean  "job"
+    t.integer  "event_id"
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+  end
+
+  add_index "audiences", ["event_id"], name: "index_audiences_on_event_id", using: :btree
 
   create_table "awards", force: :cascade do |t|
     t.string   "title"
@@ -215,6 +236,7 @@ ActiveRecord::Schema.define(version: 20150804061325) do
 
   add_index "users_roles", ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id", using: :btree
 
+  add_foreign_key "audiences", "events"
   add_foreign_key "awards", "student_profiles"
   add_foreign_key "cadetships", "student_profiles"
   add_foreign_key "employments", "student_profiles"

@@ -1,0 +1,74 @@
+<!-- <p id="notice"><%= notice %></p> don't need this, it will make double notice lines-->
+
+<p>
+  <strong>Pre tertiary:</strong>
+  <%= @audience.pre_tertiary %>
+</p>
+
+<p>
+  <strong>Uni prep:</strong>
+  <%= @audience.uni_prep %>
+</p>
+
+<p>
+  <strong>Ugrad direct access atar op:</strong>
+  <%= @audience.ugrad_direct_access_atar_op %>
+</p>
+
+<p>
+  <strong>Ugrad indirect access pathway:</strong>
+  <%= @audience.ugrad_indirect_access_pathway %>
+</p>
+
+<p>
+  <strong>Ugrad indirect access enabling:</strong>
+  <%= @audience.ugrad_indirect_access_enabling %>
+</p>
+
+<p>
+  <strong>Ugrad indirect access indigenous:</strong>
+  <%= @audience.ugrad_indirect_access_indigenous %>
+</p>
+
+<p>
+  <strong>Masters:</strong>
+  <%= @audience.masters %>
+</p>
+
+<p>
+  <strong>Honours:</strong>
+  <%= @audience.honours %>
+</p>
+
+<p>
+  <strong>Phd:</strong>
+  <%= @audience.phd %>
+</p>
+
+<p>
+  <strong>Internship:</strong>
+  <%= @audience.internship %>
+</p>
+
+<p>
+  <strong>Cadetship:</strong>
+  <%= @audience.cadetship %>
+</p>
+
+<p>
+  <strong>Traineeship:</strong>
+  <%= @audience.traineeship %>
+</p>
+
+<p>
+  <strong>Job:</strong>
+  <%= @audience.job %>
+</p>
+
+<p>
+  <strong>Event:</strong>
+  <%= @audience.event %>
+</p>
+
+<%= link_to 'Edit', edit_audience_path(@audience) %> |
+<%= link_to 'Back', event_path(@audience.event) %>
