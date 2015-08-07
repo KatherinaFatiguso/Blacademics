@@ -1,0 +1,13 @@
+<ul id="slide-out" class="side-nav fixed">
+  <li><a href="#!">First Sidebar Link</a></li>
+  <li><i class="left medium material-icons">insert_chart</i> <a href="#!">Sidebar Link</a></li>
+  <% if current_user.has_role? :organisation %>
+  <li><a href="#org-profile">Organisation profile</a></li>
+  <li><a href="#programs">Progams</a></li>
+  <li><a href="#events">Events</a></li>
+  <li><a href="#jobs">Jobs</a></li>
+  <li><a href="#messages">Messages</a></li>
+  <li><a href="#users">Users (Organisation)</a></li>
+  <% end %>
+</ul>
+<a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>

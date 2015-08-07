@@ -1,5 +1,13 @@
 <h1>Pages#home</h1>
 <p>Find me in app/views/pages/home.html.erb</p>
 
-<p><%= link_to 'Sign up as a Student', new_user_registration_path(user_type: 'student'), class: 'btn btn-primary' %></p>
-<p><%= link_to 'Sign up as an Organisation', new_user_registration_path(user_type: 'organisation'), class: 'btn btn-primary' %></p>
+<% if user_signed_in? %>
+  <% if (current_user.has_role? :student) %>
+    I'm a student
+  <% elsif (current_user.has_role? :organisation) %>
+  I'm an org
+  <% end %>
+<% else %>
+  <p><%= link_to 'Sign up as a Student', new_user_registration_path(user_type: 'student'), class: 'btn btn-primary' %></p>
+  <p><%= link_to 'Sign up as an Organisation', new_user_registration_path(user_type: 'organisation'), class: 'btn btn-primary' %></p>
+<% end %>

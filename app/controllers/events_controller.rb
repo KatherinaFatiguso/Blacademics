@@ -4,7 +4,17 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    @events = Event.all
+    if current_user.has_role? :organisation
+      @orgs = current_user.organisations
+      @events = []
+      @orgs.each do |org|
+        org.events.each do |event|
+          @events << event
+        end
+      end
+    else
+      @events = Event.all
+    end
   end
 
   # GET /events/1

@@ -58,14 +58,15 @@ gem 'whenever', require: false
 gem 'sucker_punch', '~> 1.0'
 gem 'newrelic_rpm'
 gem 'nested_form'
+gem 'materialize-sass'
 group :development do
   gem 'better_errors'
   gem 'quiet_assets'
-  gem 'sqlite3'
+  # gem 'sqlite3'
 end
 
 group :production do
   gem 'rails_12factor'
   gem 'passenger'
-  gem 'pg'
+  # gem 'pg'
 end

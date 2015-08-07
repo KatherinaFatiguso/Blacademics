@@ -1,0 +1,14 @@
+
+  <div class="col s12 m6">
+    <div class="card blue darken-1">
+      <div class="card-content white-text">
+        <span class="card-title"><%= link_to event.title, event_path(event) %></span>
+      <p><%= event.tagline %></p>
+    </div>
+    <div class="card-action">
+      <p><%= link_to "Edit", edit_event_path(event) %>
+        <%= link_to "Delete", event_path(event), method: :delete, data: { confirm: 'Are you sure?'} %>
+      </p>
+    </div>
+  </div>
+</div>
