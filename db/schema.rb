@@ -11,28 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150806023518) do
+ActiveRecord::Schema.define(version: 20150810042134) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "audiences", force: :cascade do |t|
-    t.boolean  "pre_tertiary"
-    t.boolean  "uni_prep"
-    t.boolean  "ugrad_direct_access_atar_op"
-    t.boolean  "ugrad_indirect_access_pathway"
-    t.boolean  "ugrad_indirect_access_enabling"
-    t.boolean  "ugrad_indirect_access_indigenous"
-    t.boolean  "masters"
-    t.boolean  "honours"
-    t.boolean  "phd"
-    t.boolean  "internship"
-    t.boolean  "cadetship"
-    t.boolean  "traineeship"
-    t.boolean  "job"
+    t.boolean  "highschool"
+    t.boolean  "undergraduate"
+    t.boolean  "postgraduate"
+    t.boolean  "community"
     t.integer  "event_id"
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   add_index "audiences", ["event_id"], name: "index_audiences_on_event_id", using: :btree
@@ -61,35 +52,14 @@ ActiveRecord::Schema.define(version: 20150806023518) do
   add_index "cadetships", ["student_profile_id"], name: "index_cadetships_on_student_profile_id", using: :btree
 
   create_table "categories", force: :cascade do |t|
-    t.boolean  "scschool_mentor"
-    t.boolean  "scschool_tutor"
-    t.boolean  "scschool_teen"
-    t.boolean  "scschool_leader"
-    t.boolean  "scschool_aspiration"
-    t.boolean  "scschool_enabling"
-    t.boolean  "scschool_events"
-    t.boolean  "uni_enabling"
-    t.boolean  "uni_aspiration"
-    t.boolean  "uni_undergrad"
-    t.boolean  "uni_postgrad"
-    t.boolean  "uni_uap"
-    t.boolean  "uni_tutor"
-    t.boolean  "uni_events"
-    t.boolean  "scholar_secondary"
-    t.boolean  "scholar_tertiary"
-    t.boolean  "scholar_bursaries"
-    t.boolean  "scholar_grants"
-    t.boolean  "scholar_events"
-    t.boolean  "empl_intern"
-    t.boolean  "empl_cadet"
-    t.boolean  "empl_trainee"
-    t.boolean  "empl_jobs"
-    t.boolean  "empl_events"
-    t.boolean  "sector_conferences"
-    t.boolean  "sector_events"
+    t.boolean  "highschool"
+    t.boolean  "undergraduate"
+    t.boolean  "postgraduate"
+    t.boolean  "employment"
+    t.boolean  "community"
     t.integer  "event_id"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   add_index "categories", ["event_id"], name: "index_categories_on_event_id", using: :btree

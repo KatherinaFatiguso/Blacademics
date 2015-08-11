@@ -2,41 +2,21 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <p><strong>Secondary School</strong></p>
-    <%= f.input :scschool_mentor, label: 'Mentoring Programs' %>
-    <%= f.input :scschool_tutor, label: 'Tutoring/Study Programs' %>
-    <%= f.input :scschool_teen, label: 'Teen Scholarships' %>
-    <%= f.input :scschool_leader, label: 'Leaderships Programs' %>
-    <%= f.input :scschool_aspiration, label: 'Aspirational Programs' %>
-    <%= f.input :scschool_enabling, label: 'Enabling Programs' %>
-    <%= f.input :scschool_events, label: 'Events' %>
 
-    <p><strong>University</strong></p>
-    <%= f.input :uni_enabling, label: 'Enabling Programs' %>
-    <%= f.input :uni_aspiration, label: 'Aspirational Programs' %>
-    <%= f.input :uni_undergrad, label: 'Undergraduate Programs' %>
-    <%= f.input :uni_postgrad, label: 'Postgraduate Programs' %>
-    <%= f.input :uni_uap, label: 'University Admissions Pathways' %>
-    <%= f.input :uni_tutor, label: 'Tutoring (ITAS)' %>
-    <%= f.input :uni_events, label: 'Events' %>
+      <input class="boolean optional" type="checkbox" value="1" name="category[highschool]" id="category_highschool" /><label class="boolean optional checkbox" for="category_highschool">Highschool</label>
+      <div class="taglines">Mentoring, Development, Pre-Tertiary programs and Winter and Summer schools</div>
+    <p><strong>Undergraduate</strong></p>
+    <%= f.input :highschool, label: 'Direct Access: ATAR and OP, Indirect Access: Pathway, Enabling, Admissions, Preparatory and Bridging programs' %>
 
-    <p><strong>Scholarships</strong></p>
-    <%= f.input :scholar_secondary, label: 'Secondary Scholarships' %>
-    <%= f.input :scholar_tertiary, label: 'Tertiary Scholarships' %>
-    <%= f.input :scholar_bursaries, label: 'Bursaries' %>
-    <%= f.input :scholar_grants, label: 'Grants' %>
-    <%= f.input :scholar_events, label: 'Events' %>
+    <p><strong>Postgraduate</strong></p>
+    <%= f.input :postgraduate, label: 'Masters, Honours and PhD programs' %>
 
     <p><strong>Employment</strong></p>
-    <%= f.input :empl_intern, label: 'Internship' %>
-    <%= f.input :empl_cadet, label: 'Cadetship' %>
-    <%= f.input :empl_trainee, label: 'Traineeship' %>
-    <%= f.input :empl_jobs, label: 'Jobs' %>
-    <%= f.input :empl_events, label: 'Events' %>
+    <%= f.input :employment, label: 'Internships, Cadetships, Traineeships and Jobs ' %>
 
-    <p><strong>Sector</strong></p>
-    <%= f.input :sector_conferences, label: 'Conferences' %>
-    <%= f.input :sector_events, label: 'Events' %>
+    <p><strong>Community</strong></p>
+    <%= f.input :community, label: 'Aboriginal and Torres Strait Islander peoples and organisations' %>
+
     <% if params[:event_id] %>
       <%= f.input :event_id, :as => :hidden, input_html: { value: params[:event_id]} %>
       <!-- Use the :input_html option  to pass any html attribute (:event_id) straight to the input -->

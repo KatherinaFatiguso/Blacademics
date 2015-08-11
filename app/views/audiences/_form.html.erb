@@ -3,10 +3,14 @@
 <%= simple_form_for(@audience) do |f| %>
   <%= f.error_notification %>
 
-  <div class="form-inputs">
-    <p><strong>Tertiary Preparation</strong></p>
-    <%= f.input :pre_tertiary, label: 'Pre-Tertiary Program' %>
-    <%= f.input :uni_prep, label: 'University Preparatory Program' %>
+  <p><strong>Tertiary Preparation</strong></p>
+
+    <input class="boolean optional" type="checkbox" value="1" name="audience[pre_tertiary]" id="audience_pre_tertiary" />
+    <label class="boolean optional checkbox" for="audience_pre_tertiary">Pre-Tertiary Program</label>
+    <br>
+    <input class="boolean optional" type="checkbox" value="1" name="audience[uni_prep]" id="audience_uni_prep" />
+    <label>University Preparatory Program</label>
+
 
     <p><strong>Undergraduate</strong></p>
     <%= f.input :ugrad_direct_access_atar_op, label: 'Direct Access (ATAR or OP)' %>

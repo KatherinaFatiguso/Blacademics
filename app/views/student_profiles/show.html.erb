@@ -18,7 +18,10 @@
 
       <p><%= link_to "Edit Profile", edit_student_profile_path(@student_profile) %></p>
       <br>
-      <p><strong>Education:</strong></p>
+
+      <div class="border-top">
+        <p><strong>Education:</strong></p>
+      </div>
         <% @student_profile.university_educations.each do |student| %>
           <table class="table">
             <tr>
@@ -53,7 +56,9 @@
         <p><%= link_to "Add Education", new_university_education_path(student_profile_id: @student_profile.id) %><p>
         <br>
 
-      <p><strong>Scholarships:</strong>
+      <div class="border-top">
+        <p><strong>Scholarships:</strong>
+      </div>
       </p>
         <% @student_profile.scholarships.each do |scholar| %>
           <table class="table">
@@ -81,7 +86,9 @@
         <p><%= link_to "Add Scholarship", new_scholarship_path(student_profile_id: @student_profile.id) %></p>
         <br>
 
-      <p><strong>Awards:</strong></p>
+      <div class="border-top">
+        <p><strong>Awards:</strong></p>
+      </div>
         <% @student_profile.awards.each do |aw| %>
           <table class="table">
             <tr>
@@ -108,7 +115,9 @@
         <p><%= link_to "Add Award", new_award_path(student_profile_id: @student_profile.id) %></p>
         <br>
 
-      <p><strong>Internships:</strong></p>
+      <div class="border-top">
+        <p><strong>Internships:</strong></p>
+      </div>
         <% @student_profile.internships.each do |intern| %>
           <table class="table">
             <tr>
@@ -139,7 +148,9 @@
         <p><%= link_to "Add Internship", new_internship_path(student_profile_id: @student_profile.id) %></p>
         <br>
 
-      <p><strong>Cadetships:</strong></p>
+      <div class="border-top">
+        <p><strong>Cadetships:</strong></p>
+      </div>
         <% @student_profile.cadetships.each do |cad| %>
           <table class="table">
             <tr>
@@ -170,7 +181,9 @@
         <p><%= link_to "Add Cadetship", new_cadetship_path(student_profile_id: @student_profile.id) %></p>
         <br>
 
-      <p><strong>Employments:</strong></p>
+      <div class="border-top">
+        <p><strong>Employments:</strong></p>
+      </div>
         <% @student_profile.employments.each do |empl| %>
           <table class="table">
             <tr>
@@ -201,7 +214,9 @@
         <p><%= link_to "Add Employment", new_employment_path(student_profile_id: @student_profile.id) %></p>
         <br>
 
-      <p><strong>Skills:</strong> (up to 40 skills)</p>
+      <div class="border-top">
+        <p><strong>Skills:</strong> (up to 40 skills)</p>
+      </div>
       <% count = 0 %>
         <% @student_profile.skills.each do |s| %>
             <%= count += 1 %>. <%= s.skill %><%= link_to "  Edit | ", edit_skill_path(s) %><%= link_to "Delete", skill_path(s), method: :delete, data: { confirm: 'Are you sure?'} %>
@@ -212,16 +227,17 @@
         <% end %>
         <br><br>
 
-        Resume name: <%= @student_profile.resume %>
-        <%= simple_form_for(@student_profile) do |f| %>
-          <%= f.error_notification %>
-          <div class="form-inputs">
-            <%= f.input :resume, label: 'Upload Resume: ', as: :file %>
+        <form action="#">
+          <div class="file-field input-field">
+            <input class="file-path validate" type="text"/>
+            <div class="btn">
+              <span>Upload Resume</span>
+              <input type="file" />
+            </div>
           </div>
-          <div class="form-actions">
-            <%= f.button :submit %>
-          </div>
-        <% end %>
+        </form>
+
+
       </div>
     </div> <!-- end of col-md-8 -->
   </div> <!-- end of row -->

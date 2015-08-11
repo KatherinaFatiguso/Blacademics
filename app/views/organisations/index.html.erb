@@ -4,23 +4,17 @@
     <tr>
       <th>Name</th>
       <th>University</th>
-      <th>Suburb</th>
-      <th>State</th>
-      <th>Contact_phone</th>
+      <th>Phone</th>
       <th>Website</th>
-      <th>Logo</th>
         <th colspan="3"></th>
     </tr>
 
   <%= content_tag_for(:tr, @organisations) do |organisation| %>
-    <td><%= organisation.name %></td>
-    <td><%= organisation.university %></td>
-    <td><%= organisation.suburb %></td>
-    <td><%= organisation.state %></td>
+    <td><p><%= organisation.name %></p></td>
+    <td><p><%= organisation.university %></p></td>
     <td><%= organisation.contact_phone %></td>
     <td><%= organisation.website %></td>
-    <td><%= organisation.logo %></td>
-    <td><%= link_to 'Show', organisation %></td>
+    <td><%= link_to 'Show', organisation, class: 'btn btn-show' %></td>
     <td><%= link_to 'Edit', edit_organisation_path(organisation), class: 'btn btn-edit' %></td>
     <td><%= link_to 'Delete', organisation, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-destroy' %></td>
   <% end %>

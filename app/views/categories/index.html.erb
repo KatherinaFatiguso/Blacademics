@@ -2,65 +2,21 @@
 
 <table class="table">
     <tr>
-      <th>Scschool_mentor</th>
-      <th>Scschool_tutor</th>
-      <th>Scschool_teen</th>
-      <th>Scschool_leader</th>
-      <th>Scschool_aspiration</th>
-      <th>Scschool_enabling</th>
-      <th>Scschool_events</th>
-      <th>Uni_enabling</th>
-      <th>Uni_aspiration</th>
-      <th>Uni_undergrad</th>
-      <th>Uni_postgrad</th>
-      <th>Uni_uap</th>
-      <th>Uni_tutor</th>
-      <th>Uni_events</th>
-      <th>Scholar_secondary</th>
-      <th>Scholar_tertiary</th>
-      <th>Scholar_bursaries</th>
-      <th>Scholar_grants</th>
-      <th>Scholar_events</th>
-      <th>Empl_intern</th>
-      <th>Empl_cadet</th>
-      <th>Empl_trainee</th>
-      <th>Empl_jobs</th>
-      <th>Empl_events</th>
-      <th>Sector_conferences</th>
-      <th>Sector_events</th>
-      <th>Event</th>
-        <th colspan="3"></th>
+      <th>Highschool</th>
+      <th>Undergraduate</th>
+      <th>Postgraduate</th>
+      <th>Employment</th>
+      <th>Community</th>
+      <th colspan="3"></th>
     </tr>
 
   <%= content_tag_for(:tr, @categories) do |category| %>
-    <td><%= category.scschool_mentor %></td>
-    <td><%= category.scschool_tutor %></td>
-    <td><%= category.scschool_teen %></td>
-    <td><%= category.scschool_leader %></td>
-    <td><%= category.scschool_aspiration %></td>
-    <td><%= category.scschool_enabling %></td>
-    <td><%= category.scschool_events %></td>
-    <td><%= category.uni_enabling %></td>
-    <td><%= category.uni_aspiration %></td>
-    <td><%= category.uni_undergrad %></td>
-    <td><%= category.uni_postgrad %></td>
-    <td><%= category.uni_uap %></td>
-    <td><%= category.uni_tutor %></td>
-    <td><%= category.uni_events %></td>
-    <td><%= category.scholar_secondary %></td>
-    <td><%= category.scholar_tertiary %></td>
-    <td><%= category.scholar_bursaries %></td>
-    <td><%= category.scholar_grants %></td>
-    <td><%= category.scholar_events %></td>
-    <td><%= category.empl_intern %></td>
-    <td><%= category.empl_cadet %></td>
-    <td><%= category.empl_trainee %></td>
-    <td><%= category.empl_jobs %></td>
-    <td><%= category.empl_events %></td>
-    <td><%= category.sector_conferences %></td>
-    <td><%= category.sector_events %></td>
-    <td><%= category.event %></td>
-      <td><%= link_to 'Show', category %></td>
+    <td><%= category.highschool %></td>
+    <td><%= category.undergraduate %></td>
+    <td><%= category.postgraduate %></td>
+    <td><%= category.employment %></td>
+    <td><%= category.community %></td>
+    <td><%= link_to 'Show', category %></td>
     <td><%= link_to 'Edit', edit_category_path(category), class: 'btn btn-edit' %></td>
     <td><%= link_to 'Delete', category, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-destroy' %></td>
   <% end %>
