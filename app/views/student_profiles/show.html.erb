@@ -3,7 +3,7 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-4">
-      <%= image_tag(@student_profile.profile_pic, size: "300") %>
+      <%= image_tag(@student_profile.profile_pic_url, size: "300") %>
     </div>
     <div class="col-md-8">
       <div class="text-left">
@@ -15,7 +15,7 @@
 
       <p><strong>Biography: </strong><%= @student_profile.bio %></p>
       <p><strong>Summary of Work History: </strong><%= @student_profile.work_history %></p>
-
+      <p><%= link_to 'Download Resume', @student_profile.resume_url %>
       <p><%= link_to "Edit Profile", edit_student_profile_path(@student_profile) %></p>
       <br>
 
@@ -226,16 +226,6 @@
           <%= link_to "Add Skill", new_skill_path(student_profile_id: @student_profile.id) %>
         <% end %>
         <br><br>
-
-        <form action="#">
-          <div class="file-field input-field">
-            <input class="file-path validate" type="text"/>
-            <div class="btn">
-              <span>Upload Resume</span>
-              <input type="file" />
-            </div>
-          </div>
-        </form>
 
 
       </div>

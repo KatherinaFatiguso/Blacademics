@@ -6,6 +6,10 @@ class StudentProfile < ActiveRecord::Base
   # and a value that evaluates to true (eg. 1, '1', true, or 'true').
   # This option is off by default.
 
+  mount_uploader :resume, ResumeUploader
+  mount_uploader :profile_pic, ProfilePicUploader
+
+
   has_many :scholarships
   accepts_nested_attributes_for :scholarships, :allow_destroy => true
 

@@ -1,0 +1,18 @@
+<%= simple_form_for(@job) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :title %>
+    <%= f.input :subtitle %>
+    <%= f.input :description %>
+    <%= f.input :category, collection: ['NSW', 'ACT', 'VIC', 'QLD', 'SA', 'NT', 'TAS'] %>
+    <%= f.input :location %>
+    <%= f.input :work_type %>
+    <%= f.input :salary %>
+    <%= f.association :organisation %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

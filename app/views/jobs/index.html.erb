@@ -1,0 +1,34 @@
+<h1>Listing jobs</h1>
+
+<table class="table">
+    <tr>
+      <th>Title</th>
+      <th>Subtitle</th>
+      <th>Description</th>
+      <th>Category</th>
+      <th>Location</th>
+      <th>Work_type</th>
+      <th>Salary</th>
+      <th>Organisation</th>
+        <th colspan="3"></th>
+    </tr>
+
+  <%= content_tag_for(:tr, @jobs) do |job| %>
+    <td><%= job.title %></td>
+    <td><%= job.subtitle %></td>
+    <td><%= job.description %></td>
+    <td><%= job.category %></td>
+    <td><%= job.location %></td>
+    <td><%= job.work_type %></td>
+    <td><%= job.salary %></td>
+    <td><%= job.organisation %></td>
+      <td><%= link_to 'Show', job %></td>
+    <td><%= link_to 'Edit', edit_job_path(job), class: 'btn btn-edit' %></td>
+    <td><%= link_to 'Delete', job, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-destroy' %></td>
+  <% end %>
+</table>
+
+
+<div class="form-actions">
+  <%= link_to 'New Job', new_job_path, class: 'btn btn-success' %>
+</div>

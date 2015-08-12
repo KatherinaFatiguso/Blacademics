@@ -7,11 +7,19 @@
     <%= f.input :last_name %>
     <%= f.input :letters %>
     <%= f.input :post_nominal_titles %>
+    <% unless @student_profile.profile_pic.nil? %>
+      <%= image_tag(@student_profile.profile_pic_url, width:100) %>
+    <% end %>
     <%= f.input :profile_pic %>
     <%= f.input :bio, label: 'Biography (max 500 words)', input_html: { maxlength: 1000 }  %>
     <!-- 500 words is about 1000 characters -->
     <%= f.input :work_history, label: 'Work History (max 1000 words)', input_html: { maxlength: 2000 }  %>
     <!-- 1000 words is about 2000 characters -->
+    <br>
+    <% unless @student_profile.resume_url.nil? %>
+      <%= image_tag(@student_profile.resume_url, width: 100) %>
+      <% end %>
+    <%= f.input :resume %>
   </div>
 
   <div class="form-actions">

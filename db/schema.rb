@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150812022454) do
+ActiveRecord::Schema.define(version: 20150812041731) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -124,6 +124,21 @@ ActiveRecord::Schema.define(version: 20150812022454) do
   end
 
   add_index "internships", ["student_profile_id"], name: "index_internships_on_student_profile_id", using: :btree
+
+  create_table "jobs", force: :cascade do |t|
+    t.string   "title"
+    t.string   "subtitle"
+    t.string   "description"
+    t.string   "category"
+    t.string   "location"
+    t.string   "work_type"
+    t.float    "salary"
+    t.integer  "organisation_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "jobs", ["organisation_id"], name: "index_jobs_on_organisation_id", using: :btree
 
   create_table "org_users", force: :cascade do |t|
     t.integer  "organisation_id"
@@ -247,6 +262,7 @@ ActiveRecord::Schema.define(version: 20150812022454) do
   add_foreign_key "employments", "student_profiles"
   add_foreign_key "events", "organisations"
   add_foreign_key "internships", "student_profiles"
+  add_foreign_key "jobs", "organisations"
   add_foreign_key "org_users", "organisations"
   add_foreign_key "org_users", "users"
   add_foreign_key "scholarships", "student_profiles"
