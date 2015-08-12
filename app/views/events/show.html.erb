@@ -32,79 +32,28 @@
     <% else %>
       <% @event.audiences.each do |audience| %>
         <% if audience.event_id == @event.id %>
-          <% if audience.pre_tertiary || audience.uni_prep %>
-            <ul>
-              <li>Tertiary Preparation</li>
-              <ul>
-                <% if audience.pre_tertiary %>
-                  <li>Pre-Tertiary Program</li>
-                <% end %>
-                <% if audience.uni_prep %>
-                  <li>University Preparatory Program</li>
-                <% end %>
-              </ul>
-            </ul>
-          <% end %>
+          <ul class="collection">
+            <% if audience.highschool %>
+                <li class="collection-item">Highschool</li>
+            <% end %>
 
-          <% if audience.ugrad_direct_access_atar_op || audience.ugrad_indirect_access_pathway || audience.ugrad_indirect_access_enabling || audience.ugrad_indirect_access_indigenous %>
-            <ul>
-              <li>Undergraduate</li>
-              <ul>
-                <% if audience.ugrad_direct_access_atar_op %>
-                  <li>Direct Access (ATAR or OP)</li>
-                <% end %>
-                <% if audience.ugrad_indirect_access_pathway %>
-                  <li>Indirect Access Pathway Program</li>
-                <% end %>
-                <% if audience.ugrad_indirect_access_enabling %>
-                  <li>Indirect Access Enabling Program</li>
-                <% end %>
-                <% if audience.ugrad_indirect_access_indigenous %>
-                  <li>Indirect Access Indigenous Program</li>
-                <% end %>
-              </ul>
-            </ul>
-          <% end %>
+            <% if audience.undergraduate %>
+                <li class="collection-item">Undergraduate</li>
+            <% end %>
 
-          <% if audience.masters || audience.honours || audience.phd %>
-            <ul>
-              <li>Post Graduate</li>
-              <ul>
-                <% if audience.masters %>
-                  <li>Masters</li>
-                <% end %>
-                <% if audience.honours %>
-                  <li>Honours</li>
-                <% end %>
-                <% if audience.phd %>
-                  <li>PhD</li>
-                <% end %>
-              </ul>
-            </ul>
-          <% end %>
+            <% if audience.postgraduate %>
+                <li class="collection-item">Post Graduate</li>
+            <% end %>
 
-          <% if audience.internship || audience.cadetship || audience.traineeship || audience.job %>
-            <ul>
-              <li>Employment</li>
-              <ul>
-                <% if audience.internship %>
-                  <li>Internship</li>
-                <% end %>
-                <% if audience.cadetship %>
-                  <li>Cadetship</li>
-                <% end %>
-                <% if audience.traineeship %>
-                  <li>Traineeship</li>
-                <% end %>
-                <% if audience.job %>
-                  <li>Job</li>
-                <% end %>
-              </ul>
-            </ul>
-          <% end %>
+            <% if audience.community %>
+                <li class="collection-item">Community</li>
+            <% end %>
 
-          <%= link_to "Edit Audience | ", edit_audience_path(audience) %>
-          <%= link_to "Delete Audience", audience_path(audience), method: :delete, data: { confirm: 'Are you sure?'} %>
+            <li class="collection-item">
+              <%= link_to "Edit Audience | ", edit_audience_path(audience) %>
+              <%= link_to "Delete Audience", audience_path(audience), method: :delete, data: { confirm: 'Are you sure?'} %>
+            </li>
+          </ul>
         <% end %>
       <% end %>
     <% end %>
@@ -117,129 +66,34 @@
     <% else %>
       <% @event.categories.each do |category| %>
         <% if category.event_id == @event.id %>
-          <% if category.scschool_mentor || category.scschool_tutor || category.scschool_teen || category.scschool_leader || category.scschool_aspiration || category.scschool_enabling || category.scschool_events %>
-            <ul>
-              <li>Secondary School</li>
-              <ul>
-                <% if category.scschool_mentor %>
-                  <li>Mentoring Programs</li>
-                <% end %>
-                <% if category.scschool_tutor %>
-                  <li>Tutoring/Study Programs</li>
-                <% end %>
-                <% if category.scschool_teen %>
-                  <li>Teen Scholarship</li>
-                <% end %>
-                <% if category.scschool_leader %>
-                  <li>Leaderships Programs</li>
-                <% end %>
-                <% if category.scschool_aspiration %>
-                  <li>Aspirational Programs</li>
-                <% end %>
-                <% if category.scschool_enabling %>
-                  <li>Enabling Programs</li>
-                <% end %>
-                <% if category.scschool_events %>
-                  <li>Events</li>
-                <% end %>
-              </ul>
-            </ul>
-          <% end %>
+          <ul class="collection">
+            <% if category.highschool %>
+              <li class="collection-item">Highschool</li>
+            <% end %>
 
-          <% if category.uni_enabling || category.uni_aspiration || category.uni_undergrad || category.uni_postgrad || category.uni_uap || category.uni_tutor || category.uni_events %>
-            <ul>
-              <li>University</li>
-              <ul>
-                <% if category.uni_enabling %>
-                  <li>Enabling Programs</li>
-                <% end %>
-                <% if category.uni_aspiration %>
-                  <li>Aspirational Programs</li>
-                <% end %>
-                <% if category.uni_undergrad %>
-                  <li>Undergraduate Programs</li>
-                <% end %>
-                <% if category.uni_postgrad %>
-                  <li>Postgraduate Programs</li>
-                <% end %>
-                <% if category.uni_uap %>
-                  <li>University Admissions Pathways</li>
-                <% end %>
-                <% if category.uni_tutor %>
-                  <li>Tutoring (ITAS)</li>
-                <% end %>
-                <% if category.uni_events %>
-                  <li>Events</li>
-                <% end %>
-              </ul>
-            </ul>
-          <% end %>
+            <% if category.undergraduate %>
+              <li class="collection-item">Undergraduate</li>
+            <% end %>
 
-          <% if category.scholar_secondary || category.scholar_tertiary || category.scholar_bursaries || category.scholar_grants || category.scholar_events %>
-            <ul>
-              <li>Scholarship</li>
-              <ul>
-                <% if category.scholar_secondary %>
-                  <li>Secondary Scholarships</li>
-                <% end %>
-                <% if category.scholar_tertiary %>
-                  <li>Tertiary Scholarships</li>
-                <% end %>
-                <% if category.scholar_bursaries %>
-                  <li>Bursaries</li>
-                <% end %>
-                <% if category.scholar_grants %>
-                  <li>Grants</li>
-                <% end %>
-                <% if category.scholar_events %>
-                  <li>Events</li>
-                <% end %>
-              </ul>
-            </ul>
-          <% end %>
+            <% if category.postgraduate %>
+              <li class="collection-item">Postgraduate</li>
+            <% end %>
 
-          <% if category.empl_intern || category.empl_cadet || category.empl_trainee || category.empl_jobs || category.empl_events %>
-            <ul>
-              <li>Employment</li>
-              <ul>
-                <% if category.empl_intern %>
-                  <li>Internship</li>
-                <% end %>
-                <% if category.empl_cadet %>
-                  <li>Cadetship</li>
-                <% end %>
-                <% if category.empl_trainee %>
-                  <li>Traineeship</li>
-                <% end %>
-                <% if category.empl_jobs %>
-                  <li>Jobs</li>
-                <% end %>
-                <% if category.empl_events %>
-                  <li>Events</li>
-                <% end %>
-              </ul>
-            </ul>
-          <% end %>
+            <% if category.employment %>
+              <li class="collection-item">Employment</li>
+            <% end %>
 
-          <% if category.sector_conferences || category.sector_events %>
-            <ul>
-              <li>Sector</li>
-              <ul>
-                <% if category.sector_conferences %>
-                  <li>Conferences</li>
-                <% end %>
-                <% if category.sector_events %>
-                  <li>Events</li>
-                <% end %>
-              </ul>
-            </ul>
-          <% end %>
+            <% if category.community %>
+              <li class="collection-item">Community</li>
+            <% end %>
 
-          <%= link_to "Edit Category", edit_category_path(category) %>
-          <%= ' | '%>
-          <%= link_to "Delete Category", category_path(category), method: :delete, data: { confirm: 'Are you sure?'} %>
+            <li class="collection-item">
+              <%= link_to "Edit Category", edit_category_path(category) %><%= ' | '%>
+              <%= link_to "Delete Category", category_path(category), method: :delete, data: { confirm: 'Are you sure?'} %>
+            </li>
+          </ul>
         <% end %>
-      <% end %>
+      <% end %> <!-- end of loop -->
     <% end %>
 </p>
 

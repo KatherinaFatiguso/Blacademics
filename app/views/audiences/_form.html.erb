@@ -2,32 +2,24 @@
 <br><br>
 <%= simple_form_for(@audience) do |f| %>
   <%= f.error_notification %>
-
   <p><strong>Tertiary Preparation</strong></p>
-
-    <input class="boolean optional" type="checkbox" value="1" name="audience[pre_tertiary]" id="audience_pre_tertiary" />
-    <label class="boolean optional checkbox" for="audience_pre_tertiary">Pre-Tertiary Program</label>
+    <% if !(@audience.highschool) %><!-- if false then it's not ticked/checed -->
+      <input class="boolean optional" type="checkbox" value="1" name="audience[highschool]" id="audience_highschool" />
+      <label class="boolean optional checkbox" for="audience_highschool">Highschool</label>
+    <% else %> <!-- if true then it's ticked/checked -->
+      <input class="boolean optional" type="checkbox" value="2" name="audience[highschool]" id="audience_highschool" checked="checked" />
+      <label class="boolean optional checkbox" for="audience_highschool">Highschool</label>
+    <% end %>
     <br>
-    <input class="boolean optional" type="checkbox" value="1" name="audience[uni_prep]" id="audience_uni_prep" />
-    <label>University Preparatory Program</label>
+    <input class="boolean optional" type="checkbox" value="1" name="audience[undergraduate]" id="audience_undergraduate" />
+    <label class="boolean optional checkbox" for="audience_undergraduate">Undergraduate</label>
+    <br>
+    <input class="boolean optional" type="checkbox" value="1" name="audience[postgraduate]" id="audience_postgraduate" />
+    <label class="boolean optional checkbox" for="audience_postgraduate">Postgraduate</label>
+    <br>
+    <input class="boolean optional" type="checkbox" value="1" name="audience[community]" id="audience_community" />
+    <label class="boolean optional checkbox" for="audience_community">Community</label>
 
-
-    <p><strong>Undergraduate</strong></p>
-    <%= f.input :ugrad_direct_access_atar_op, label: 'Direct Access (ATAR or OP)' %>
-    <%= f.input :ugrad_indirect_access_pathway, label: 'Indirect Access Pathway Program' %>
-    <%= f.input :ugrad_indirect_access_enabling, label: 'Indirect Access Enabling Program' %>
-    <%= f.input :ugrad_indirect_access_indigenous, label: 'Indirect Access Indigenous Admissions' %>
-
-    <p><strong>Post Graduate</strong></p>
-    <%= f.input :masters, label: 'Masters' %>
-    <%= f.input :honours, label: 'Honours' %>
-    <%= f.input :phd, label: 'Phd' %>
-
-    <p><strong>Employment</strong></p>
-    <%= f.input :internship, label: 'Internship' %>
-    <%= f.input :cadetship, label: 'Cadetship' %>
-    <%= f.input :traineeship, label: 'Traineeship' %>
-    <%= f.input :job, label: 'Job' %>
     <% if params[:event_id] %>
       <%= f.input :event_id, :as => :hidden, input_html: { value: params[:event_id]} %>
     <% end %>

@@ -69,6 +69,6 @@ class AudiencesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def audience_params
-      params.require(:audience).permit(:pre_tertiary, :uni_prep, :ugrad_direct_access_atar_op, :ugrad_indirect_access_pathway, :ugrad_indirect_access_enabling, :ugrad_indirect_access_indigenous, :masters, :honours, :phd, :internship, :cadetship, :traineeship, :job, :event_id)
+      params.require(:audience).permit(:highschool, :undergraduate, :postgraduate, :community, :event_id)
     end
 end

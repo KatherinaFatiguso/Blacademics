@@ -69,6 +69,6 @@ class CategoriesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def category_params
-      params.require(:category).permit(:scschool_mentor, :scschool_tutor, :scschool_teen, :scschool_leader, :scschool_aspiration, :scschool_enabling, :scschool_events, :uni_enabling, :uni_aspiration, :uni_undergrad, :uni_postgrad, :uni_uap, :uni_tutor, :uni_events, :scholar_secondary, :scholar_tertiary, :scholar_bursaries, :scholar_grants, :scholar_events, :empl_intern, :empl_cadet, :empl_trainee, :empl_jobs, :empl_events, :sector_conferences, :sector_events, :event_id)
+      params.require(:category).permit(:highschool, :undergraduate, :postgraduate, :employment, :community, :event_id)
     end
 end

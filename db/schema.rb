@@ -11,19 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150810042134) do
+ActiveRecord::Schema.define(version: 20150812022454) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "audiences", force: :cascade do |t|
-    t.boolean  "highschool"
-    t.boolean  "undergraduate"
-    t.boolean  "postgraduate"
-    t.boolean  "community"
+    t.boolean  "highschool",    default: false
+    t.boolean  "undergraduate", default: false
+    t.boolean  "postgraduate",  default: false
+    t.boolean  "community",     default: false
     t.integer  "event_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
   end
 
   add_index "audiences", ["event_id"], name: "index_audiences_on_event_id", using: :btree
@@ -52,14 +52,14 @@ ActiveRecord::Schema.define(version: 20150810042134) do
   add_index "cadetships", ["student_profile_id"], name: "index_cadetships_on_student_profile_id", using: :btree
 
   create_table "categories", force: :cascade do |t|
-    t.boolean  "highschool"
-    t.boolean  "undergraduate"
-    t.boolean  "postgraduate"
-    t.boolean  "employment"
-    t.boolean  "community"
+    t.boolean  "highschool",    default: false
+    t.boolean  "undergraduate", default: false
+    t.boolean  "postgraduate",  default: false
+    t.boolean  "employment",    default: false
+    t.boolean  "community",     default: false
     t.integer  "event_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
   end
 
   add_index "categories", ["event_id"], name: "index_categories_on_event_id", using: :btree
