@@ -27,36 +27,15 @@
 
 <p>
   <strong>Audiences:</strong>
-    <% if @event.audiences.none? %>
-      <p><%= link_to "Add Audience", new_audience_path(event_id: @event.id) %></p>
-    <% else %>
-      <% @event.audiences.each do |audience| %>
-        <% if audience.event_id == @event.id %>
-          <ul class="collection">
-            <% if audience.highschool %>
-                <li class="collection-item">Highschool</li>
-            <% end %>
+<br>
+<% Audience.all.each do |audience| %>
+  <% if @event.audiences.include?(audience) %>
+  	<%= link_to audience.name, remove_audience_from_event_path(audience: audience.id), class: 'waves-effect waves-light btn-large' %>
+  <% else %>
+  	<%= link_to audience.name, add_audience_to_event_path(audience: audience.id), class: 'waves-effect waves-light btn-large grey' %>
+  <% end %>
+<% end %>
 
-            <% if audience.undergraduate %>
-                <li class="collection-item">Undergraduate</li>
-            <% end %>
-
-            <% if audience.postgraduate %>
-                <li class="collection-item">Post Graduate</li>
-            <% end %>
-
-            <% if audience.community %>
-                <li class="collection-item">Community</li>
-            <% end %>
-
-            <li class="collection-item">
-              <%= link_to "Edit Audience | ", edit_audience_path(audience) %>
-              <%= link_to "Delete Audience", audience_path(audience), method: :delete, data: { confirm: 'Are you sure?'} %>
-            </li>
-          </ul>
-        <% end %>
-      <% end %>
-    <% end %>
 </p>
 
 <p>
@@ -153,5 +132,4 @@
 </p>
 
 
-<%= link_to 'Edit', edit_event_path(@event) %> |
-<%= link_to 'Back', organisation_path(@event.organisation) %>
+<%= link_to 'Edit', edit_event_path(@event) %>

@@ -1,6 +1,8 @@
 class AudiencesController < ApplicationController
   before_action :set_audience, only: [:show, :edit, :update, :destroy]
 
+
+  
   # GET /audiences
   # GET /audiences.json
   def index
@@ -28,7 +30,7 @@ class AudiencesController < ApplicationController
 
     respond_to do |format|
       if @audience.save
-        format.html { redirect_to @audience.event, notice: 'Audience was successfully created.' }
+        format.html { redirect_to audiences_path, notice: 'Audience was successfully created.' }
         format.json { render :show, status: :created, location: @audience.event }
       else
         format.html { render :new }
@@ -42,7 +44,7 @@ class AudiencesController < ApplicationController
   def update
     respond_to do |format|
       if @audience.update(audience_params)
-        format.html { redirect_to @audience.event, notice: 'Audience was successfully updated.' }
+        format.html { redirect_to audiences_path, notice: 'Audience was successfully updated.' }
         format.json { render :show, status: :ok, location: @audience.event }
       else
         format.html { render :edit }
@@ -56,7 +58,7 @@ class AudiencesController < ApplicationController
   def destroy
     @audience.destroy
     respond_to do |format|
-      format.html { redirect_to @audience.event, notice: 'Audience was successfully destroyed.' }
+      format.html { redirect_to audiences_path, notice: 'Audience was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -69,6 +71,7 @@ class AudiencesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def audience_params
-      params.require(:audience).permit(:highschool, :undergraduate, :postgraduate, :community, :event_id)
+      params.require(:audience).permit(:name)
     end
+
 end

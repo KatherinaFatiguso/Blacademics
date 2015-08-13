@@ -15,7 +15,10 @@
 
       <p><strong>Biography: </strong><%= @student_profile.bio %></p>
       <p><strong>Summary of Work History: </strong><%= @student_profile.work_history %></p>
-      <p><%= link_to 'Download Resume', @student_profile.resume_url %>
+      <% unless @student_profile.resume_url.nil? %>
+        <p>Resume name:  <%= @student_profile.resume_url %></p>
+        <p><%= link_to 'Download Resume', @student_profile.resume_url %>
+      <% end %>
       <p><%= link_to "Edit Profile", edit_student_profile_path(@student_profile) %></p>
       <br>
 

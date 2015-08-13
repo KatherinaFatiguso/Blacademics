@@ -7,4 +7,6 @@ class Organisation < ActiveRecord::Base
   has_many :events
   accepts_nested_attributes_for :events, :allow_destroy => true
 
+  has_many :jobs
+  accepts_nested_attributes_for :jobs, :allow_destroy => true
 end

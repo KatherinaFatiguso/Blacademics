@@ -3,44 +3,7 @@
 <%= simple_form_for(@audience) do |f| %>
   <%= f.error_notification %>
 
-    <% if !(@audience.highschool) %><!-- if false then it's not ticked/checked -->
-      <input class="boolean optional" type="checkbox" value="0" name="audience[highschool]" id="audience_highschool" />
-      <label class="boolean optional checkbox" for="audience_highschool">Highschool</label>
-    <% else %> <!-- if true then it was ticked/checked -->
-      <input class="boolean optional" type="checkbox" value="1" name="audience[highschool]" id="audience_highschool" checked="checked" />
-      <label class="boolean optional checkbox" for="audience_highschool">Highschool</label>
-    <% end %>
-    <br>
-
-    <% if !(@audience.undergraduate) %><!-- if false then it's not ticked/checked -->
-      <input class="boolean optional" type="checkbox" value="1" name="audience[undergraduate]" id="audience_undergraduate" />
-      <label class="boolean optional checkbox" for="audience_undergraduate">Undergraduate</label>
-    <% else %>
-      <input class="boolean optional" type="checkbox" value="1" name="audience[undergraduate]" id="audience_undergraduate" checked="checked" />
-      <label class="boolean optional checkbox" for="audience_undergraduate">Undergraduate</label>
-    <% end %>
-    <br>
-
-    <% if !(@audience.postgraduate) %>
-      <input class="boolean optional" type="checkbox" value="1" name="audience[postgraduate]" id="audience_postgraduate" />
-      <label class="boolean optional checkbox" for="audience_postgraduate">Postgraduate</label>
-    <% else %>
-    <input class="boolean optional" type="checkbox" value="1" name="audience[postgraduate]" id="audience_postgraduate" checked="checked" />
-    <label class="boolean optional checkbox" for="audience_postgraduate">Postgraduate</label>
-    <% end %>
-    <br>
-
-    <% if !(@audience.postgraduate) %>
-      <input class="boolean optional" type="checkbox" value="1" name="audience[community]" id="audience_community" />
-      <label class="boolean optional checkbox" for="audience_community">Community</label>
-    <% else %>
-      <input class="boolean optional" type="checkbox" value="1" name="audience[community]" id="audience_community" checked="checked" />
-      <label class="boolean optional checkbox" for="audience_community">Community</label>
-    <% end %>
-    <% if params[:event_id] %>
-      <%= f.input :event_id, :as => :hidden, input_html: { value: params[:event_id]} %>
-    <% end %>
-  </div>
+  <%= f.input :name %>
 
   <div class="form-actions">
     <%= f.button :submit %>

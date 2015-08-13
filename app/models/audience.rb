@@ -1,4 +1,5 @@
 class Audience < ActiveRecord::Base
-  belongs_to :event
+  has_many :event_audiences
+  has_many :events, through: :event_audiences
 
 end

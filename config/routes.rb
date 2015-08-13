@@ -22,6 +22,13 @@ Rails.application.routes.draw do
   get 'pages/contact'
 
   devise_for :users
+
+  resources :events do
+  	member do
+  		get :remove_audience_from
+  		get :add_audience_to
+  	end
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

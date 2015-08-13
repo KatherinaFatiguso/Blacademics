@@ -11,19 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150812041731) do
+ActiveRecord::Schema.define(version: 20150813045849) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "audiences", force: :cascade do |t|
-    t.boolean  "highschool",    default: false
-    t.boolean  "undergraduate", default: false
-    t.boolean  "postgraduate",  default: false
-    t.boolean  "community",     default: false
+    t.string   "name",       default: "false"
     t.integer  "event_id"
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
   end
 
   add_index "audiences", ["event_id"], name: "index_audiences_on_event_id", using: :btree
@@ -75,6 +72,16 @@ ActiveRecord::Schema.define(version: 20150812041731) do
   end
 
   add_index "employments", ["student_profile_id"], name: "index_employments_on_student_profile_id", using: :btree
+
+  create_table "event_audiences", force: :cascade do |t|
+    t.integer  "event_id"
+    t.integer  "audience_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "event_audiences", ["audience_id"], name: "index_event_audiences_on_audience_id", using: :btree
+  add_index "event_audiences", ["event_id"], name: "index_event_audiences_on_event_id", using: :btree
 
   create_table "events", force: :cascade do |t|
     t.string   "title"
@@ -260,6 +267,8 @@ ActiveRecord::Schema.define(version: 20150812041731) do
   add_foreign_key "cadetships", "student_profiles"
   add_foreign_key "categories", "events"
   add_foreign_key "employments", "student_profiles"
+  add_foreign_key "event_audiences", "audiences"
+  add_foreign_key "event_audiences", "events"
   add_foreign_key "events", "organisations"
   add_foreign_key "internships", "student_profiles"
   add_foreign_key "jobs", "organisations"

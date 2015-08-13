@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_action :set_event, only: [:show, :edit, :update, :destroy]
+  before_action :set_event, only: [:add_audience_to, :remove_audience_from, :show, :edit, :update, :destroy]
 
   # GET /events
   # GET /events.json
@@ -70,6 +70,19 @@ class EventsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def remove_audience_from
+    @audience = Audience.find(params[:audience])
+    @event.audiences.delete(@audience)
+    redirect_to :back
+  end
+
+  def add_audience_to
+    @audience = Audience.find(params[:audience])
+    @event.audiences << @audience
+    redirect_to :back
+  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
