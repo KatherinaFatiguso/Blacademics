@@ -1,0 +1,62 @@
+<h1>Listing listings</h1>
+
+<table class="table">
+    <tr>
+      <th>Type</th>
+      <th>Title</th>
+      <th>Subtitle</th>
+      <th>Description</th>
+      <th>Contact_name</th>
+      <th>Contact_email</th>
+      <th>Contact_phone</th>
+      <th>Website</th>
+      <th>Start_time</th>
+      <th>End_time</th>
+      <th>Occurrence</th>
+      <th>Location</th>
+      <th>Ticket_required</th>
+      <th>Official_hastag</th>
+      <th>Facebook_url</th>
+      <th>Google_plus_url</th>
+      <th>Twitter_username</th>
+      <th>Instagram_username</th>
+      <th>Job_category</th>
+      <th>Job_type</th>
+      <th>Salary</th>
+      <th>Organisation</th>
+        <th colspan="3"></th>
+    </tr>
+
+  <%= content_tag_for(:tr, @listings) do |listing| %>
+    <td><%= listing.listing_type %></td>
+    <td><%= listing.title %></td>
+    <td><%= listing.subtitle %></td>
+    <td><%= listing.description %></td>
+    <td><%= listing.contact_name %></td>
+    <td><%= listing.contact_email %></td>
+    <td><%= listing.contact_phone %></td>
+    <td><%= listing.website %></td>
+    <td><%= listing.start_time %></td>
+    <td><%= listing.end_time %></td>
+    <td><%= listing.occurrence %></td>
+    <td><%= listing.location %></td>
+    <td><%= listing.ticket_required %></td>
+    <td><%= listing.official_hastag %></td>
+    <td><%= listing.facebook_url %></td>
+    <td><%= listing.google_plus_url %></td>
+    <td><%= listing.twitter_username %></td>
+    <td><%= listing.instagram_username %></td>
+    <td><%= listing.job_category %></td>
+    <td><%= listing.job_type %></td>
+    <td><%= listing.salary %></td>
+    <td><%= listing.organisation %></td>
+      <td><%= link_to 'Show', listing %></td>
+    <td><%= link_to 'Edit', edit_listing_path(listing), class: 'btn btn-edit' %></td>
+    <td><%= link_to 'Delete', listing, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-destroy' %></td>
+  <% end %>
+</table>
+
+
+<div class="form-actions">
+  <%= link_to 'New Listing', new_listing_path, class: 'btn btn-success' %>
+</div>

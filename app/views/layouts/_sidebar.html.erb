@@ -3,7 +3,7 @@
   <% if current_user.has_role? :organisation %>
     </li><a href="/organisations"><i class="left medium material-icons">domain</i>Org Profiles</a></li>
     </li><a href="/#"><i class="left medium material-icons">view_module</i>Programs</a></li>
-    </li><a href="/events"><i class="left medium material-icons">event_note</i>Events</a></li>
+  </li><a href="/listings"><i class="left medium material-icons">event_note</i>Listings</a></li>
     </li><a href="/jobs"><i class="left medium material-icons">work</i>Jobs</a></li>
   <% elsif current_user.has_role? :student %>
 </li><a href="/student_profiles/<%=current_user.id%>"><i class="left medium material-icons">face</i>Student Profiles</a></li>

@@ -11,19 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150813045849) do
+ActiveRecord::Schema.define(version: 20150817054934) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "audiences", force: :cascade do |t|
-    t.string   "name",       default: "false"
-    t.integer  "event_id"
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
-  end
-
-  add_index "audiences", ["event_id"], name: "index_audiences_on_event_id", using: :btree
 
   create_table "awards", force: :cascade do |t|
     t.string   "title"
@@ -48,19 +39,6 @@ ActiveRecord::Schema.define(version: 20150813045849) do
 
   add_index "cadetships", ["student_profile_id"], name: "index_cadetships_on_student_profile_id", using: :btree
 
-  create_table "categories", force: :cascade do |t|
-    t.boolean  "highschool",    default: false
-    t.boolean  "undergraduate", default: false
-    t.boolean  "postgraduate",  default: false
-    t.boolean  "employment",    default: false
-    t.boolean  "community",     default: false
-    t.integer  "event_id"
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
-  end
-
-  add_index "categories", ["event_id"], name: "index_categories_on_event_id", using: :btree
-
   create_table "employments", force: :cascade do |t|
     t.string   "title"
     t.string   "organisation"
@@ -72,40 +50,6 @@ ActiveRecord::Schema.define(version: 20150813045849) do
   end
 
   add_index "employments", ["student_profile_id"], name: "index_employments_on_student_profile_id", using: :btree
-
-  create_table "event_audiences", force: :cascade do |t|
-    t.integer  "event_id"
-    t.integer  "audience_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
-
-  add_index "event_audiences", ["audience_id"], name: "index_event_audiences_on_audience_id", using: :btree
-  add_index "event_audiences", ["event_id"], name: "index_event_audiences_on_event_id", using: :btree
-
-  create_table "events", force: :cascade do |t|
-    t.string   "title"
-    t.text     "tagline"
-    t.text     "description"
-    t.string   "contact_number"
-    t.string   "website"
-    t.string   "accessibility"
-    t.string   "start_time"
-    t.string   "end_time"
-    t.string   "occurrence"
-    t.string   "location"
-    t.string   "ticket_required"
-    t.string   "official_hastag"
-    t.string   "facebook_url"
-    t.string   "google_plus_url"
-    t.string   "twitter_username"
-    t.string   "instagram_username"
-    t.integer  "organisation_id"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
-  end
-
-  add_index "events", ["organisation_id"], name: "index_events_on_organisation_id", using: :btree
 
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string   "slug",                      null: false
@@ -147,15 +91,34 @@ ActiveRecord::Schema.define(version: 20150813045849) do
 
   add_index "jobs", ["organisation_id"], name: "index_jobs_on_organisation_id", using: :btree
 
-  create_table "org_users", force: :cascade do |t|
+  create_table "listings", force: :cascade do |t|
+    t.string   "listing_type"
+    t.string   "title"
+    t.text     "subtitle"
+    t.text     "description"
+    t.string   "contact_name"
+    t.string   "contact_email"
+    t.string   "contact_phone"
+    t.string   "website"
+    t.string   "occurrence"
+    t.string   "location"
+    t.string   "ticket_required"
+    t.string   "official_hastag"
+    t.string   "facebook_url"
+    t.string   "google_plus_url"
+    t.string   "twitter_username"
+    t.string   "instagram_username"
+    t.string   "job_category"
+    t.string   "job_type"
+    t.string   "salary"
     t.integer  "organisation_id"
-    t.integer  "user_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.datetime "start_time"
+    t.datetime "end_time"
   end
 
-  add_index "org_users", ["organisation_id"], name: "index_org_users_on_organisation_id", using: :btree
-  add_index "org_users", ["user_id"], name: "index_org_users_on_user_id", using: :btree
+  add_index "listings", ["organisation_id"], name: "index_listings_on_organisation_id", using: :btree
 
   create_table "organisations", force: :cascade do |t|
     t.string   "name"
@@ -172,7 +135,10 @@ ActiveRecord::Schema.define(version: 20150813045849) do
     t.string   "logo"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
+    t.integer  "user_id"
   end
+
+  add_index "organisations", ["user_id"], name: "index_organisations_on_user_id", using: :btree
 
   create_table "roles", force: :cascade do |t|
     t.string   "name"
@@ -262,18 +228,13 @@ ActiveRecord::Schema.define(version: 20150813045849) do
 
   add_index "users_roles", ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id", using: :btree
 
-  add_foreign_key "audiences", "events"
   add_foreign_key "awards", "student_profiles"
   add_foreign_key "cadetships", "student_profiles"
-  add_foreign_key "categories", "events"
   add_foreign_key "employments", "student_profiles"
-  add_foreign_key "event_audiences", "audiences"
-  add_foreign_key "event_audiences", "events"
-  add_foreign_key "events", "organisations"
   add_foreign_key "internships", "student_profiles"
   add_foreign_key "jobs", "organisations"
-  add_foreign_key "org_users", "organisations"
-  add_foreign_key "org_users", "users"
+  add_foreign_key "listings", "organisations"
+  add_foreign_key "organisations", "users"
   add_foreign_key "scholarships", "student_profiles"
   add_foreign_key "skills", "student_profiles"
   add_foreign_key "student_profiles", "users"

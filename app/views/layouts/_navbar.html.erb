@@ -26,12 +26,10 @@
           <li><%= link_to 'Create Your Own Profile', new_student_profile_path %></li>
         <% end %>
       <% elsif current_user.has_role? :organisation %>
-        <% if current_user.organisations.any? %>
-          <% current_user.organisations.each do |organisation| %>
-            <li><%= link_to organisation.name, organisation_path(organisation) %></li>
-          <% end %>
-        <% else %>
+        <% if current_user.organisation.nil? %>
           <li><%= link_to 'Create Your Organisation', new_organisation_path %></li>
+        <% else %>
+          <li><%= link_to current_user.organisation.name, organisation_path(current_user.organisation) %></li>
         <% end %>
       <% end %>
         <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>

@@ -25,8 +25,7 @@ class OrganisationsController < ApplicationController
   # POST /organisations.json
   def create
     @organisation = Organisation.new(organisation_params)
-    @organisation.users << current_user
-
+    @organisation.user = current_user #this will add the user_id into this organisation detail in the table
     respond_to do |format|
       if @organisation.save
         format.html { redirect_to @organisation, notice: 'Organisation was successfully created.' }

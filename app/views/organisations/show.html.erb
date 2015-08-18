@@ -1,8 +1,8 @@
 <!-- <p id="notice"><%= notice %></p> don't need this, it will make double notice lines-->
 
-<%= link_to 'Add Job', new_job_path(org: @organisation.id), class: 'btn btn-success' %>
-
-<%= link_to 'Add Event', new_event_path(org: @organisation.id), class: 'btn btn-success' %>
+<%= link_to 'Add Job', new_listing_path(org: @organisation.id, listing_type: 'job'), class: 'btn btn-success' %>
+<%= link_to 'Add Event', new_listing_path(org: @organisation.id, listing_type: 'event'), class: 'btn btn-success' %>
+<%= link_to 'Add Program', new_listing_path(org: @organisation.id, listing_type: 'program'), class: 'btn btn-success' %>
 
 <div class="container-fluid">
   <div class="row">
@@ -12,7 +12,6 @@
         <%= @organisation.logo %>
       </div>
     </p>
-
     <p>
       <strong>Name:</strong>
       <%= @organisation.name %>

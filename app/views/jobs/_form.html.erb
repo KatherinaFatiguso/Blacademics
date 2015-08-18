@@ -10,11 +10,7 @@
     <%= f.input :work_type, collection: ['full time', 'part time', 'casual', 'contract'] %>
     <%= f.input :salary %>
     <%= f.input :organisation_id, as: :hidden, input_html: { value: params[:org]} %>
-      <!-- <ul class="collection">
-        <% current_user.organisations.each do |organisation| %>
-           <li class="collection-item"><%= organisation.id %></li>
-        <% end %>
-      </ul> -->
+
   </div>
 
   <div class="form-actions">

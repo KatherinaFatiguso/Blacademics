@@ -10,17 +10,22 @@
     </tr>
 
   <%= content_tag_for(:tr, @organisations) do |organisation| %>
+  <tr>
     <td><p><%= organisation.name %></p></td>
     <td><p><%= organisation.university %></p></td>
     <td><%= organisation.contact_phone %></td>
     <td><%= organisation.website %></td>
-    <td><%= link_to 'Show', organisation, class: 'btn btn-show' %></td>
-    <td><%= link_to 'Edit', edit_organisation_path(organisation), class: 'btn btn-edit' %></td>
-    <td><%= link_to 'Delete', organisation, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-destroy' %></td>
-  <% end %>
+  </tr>
 </table>
+    <%= link_to 'Show', organisation, class: 'btn btn-show' %>
+    <%= link_to 'Edit', edit_organisation_path(organisation), class: 'btn btn-edit' %>
+    <%= link_to 'Delete', organisation, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-destroy' %>
+
+  <% end %>
 
 
-<div class="form-actions">
-  <%= link_to 'New Organisation', new_organisation_path, class: 'btn btn-success' %>
-</div>
+<% if current_user.organisation.nil? %>
+  <div class="form-actions">
+    <%= link_to 'New Organisation', new_organisation_path, class: 'btn btn-success' %>
+  </div>
+<% end %>

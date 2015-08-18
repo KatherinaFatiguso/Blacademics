@@ -1,0 +1,65 @@
+<%= simple_form_for(@listing) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :listing_type, as: :hidden, input_html: { value: params[:listing_type]}  %>
+    <%= f.input :title %>
+    <%= f.input :subtitle %>
+    <%= f.input :description %>
+    <%= f.input :contact_name %>
+    <%= f.input :contact_email %>
+    <%= f.input :contact_phone %>
+    <%= f.input :website %>
+    <% unless params[:listing_type] == 'job' %>
+      <%= f.input :start_time %>
+      <%= f.input :end_time %>
+      <%= f.input :occurrence %>
+      <%= f.input :location %>
+      <%= f.input :ticket_required, collection: ['yes', 'no'] %>
+      <%= f.input :official_hastag %>
+      <%= f.input :facebook_url %>
+      <%= f.input :google_plus_url %>
+      <%= f.input :twitter_username %>
+      <%= f.input :instagram_username %>
+    <% end %>
+    <% if params[:listing_type] == 'job' %>
+      <%= f.input :job_category, collection: [ 'Accounting',
+'Administration Office Support',
+'Advertising, Arts & Media',
+'Banking & financial services',
+'Call Centre & Customer Service',
+'CEO & General Management',
+'Community Services & Development',
+'Construction',
+'Consulting & Strategy',
+'Design & Architecture',
+'Education & Training',
+'Engineering',
+'Farming, Animals & Conservation',
+'Government & Defence',
+'Healthcare & Medical',
+'Hospitality & Tourism',
+'Human Resources & Recruitment',
+'Information and Communication Technology',
+'Insurance & Superannuation',
+'Legal, Law Enforcement, Correctional Services',
+'Manufacturing, Transport & Logistics',
+'Marketing & Communications',
+'Mining, Resources & Energy',
+'Real Estate & Property',
+'Retail & Consumer Products',
+'Sales',
+'Science & Technology',
+'Self-Employment',
+'Sport & Recreation',
+'Trades and Services' ] %>
+    <%= f.input :job_type, collection: ['full time', 'part time', 'casual'] %>
+    <%= f.input :salary, collection: ['up to $30K', '$30K - $40K', '$40K - $50K', '$50K - $60K', '$60K - $70K', '$70K - $80K', '$80K - $90K', '$90K - $100K', '$100K - $120K', '$120K - $150K', '$150K - $200K', 'Hourly rates'] %>
+  <% end %>
+
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
