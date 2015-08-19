@@ -42,12 +42,16 @@
 
 <p>
   <strong>Start time:</strong>
-  <%= @listing.start_time %>
+  <% if @listing.start_time %>
+    <%= @listing.start_time.localtime.strftime("%d %B %Y %Z") %>
+  <% end %>
 </p>
 
 <p>
   <strong>End time:</strong>
-  <%= @listing.end_time %>
+  <% if @listing.start_time %>
+    <%= @listing.end_time.localtime.strftime("%d %B %Y %Z") %>
+    <% end %>
 </p>
 
 <p>

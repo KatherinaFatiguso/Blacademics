@@ -2,20 +2,27 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.input :listing_type, as: :hidden, input_html: { value: params[:listing_type]}  %>
+    <% if params[:listing_type] %>
+      <%= f.input :listing_type, as: :hidden, input_html: { value: params[:listing_type]}  %>
+    <% end %>
     <%= f.input :title %>
-    <%= f.input :subtitle %>
-    <%= f.input :description %>
+    <%= f.input :subtitle, input_html: { maxlength: 200 } %>
+    <%= f.input :description, input_html: { maxlength: 1000 } %>
     <%= f.input :contact_name %>
     <%= f.input :contact_email %>
     <%= f.input :contact_phone %>
     <%= f.input :website %>
     <% unless params[:listing_type] == 'job' %>
-      <%= f.input :start_time %>
-      <%= f.input :end_time %>
+      <!-- <%= f.input :start_time %>
+      <%= f.input :end_time %> -->
+      <label for="listing_start_time">Start Time</label>
+      <input id="listing_start_time" type="text" class="datepicker" name="listing[start_time]">
+      <label for="listing_end_time">End Time</label>
+      <input id="listing_end_time" type="text" class="datepicker" name="listing[end_time]">
+
       <%= f.input :occurrence %>
       <%= f.input :location %>
-      <%= f.input :ticket_required, collection: ['yes', 'no'] %>
+      <%= f.input :ticket_required, label: 'Ticket Required?', collection: ['yes', 'no'] %>
       <%= f.input :official_hastag %>
       <%= f.input :facebook_url %>
       <%= f.input :google_plus_url %>

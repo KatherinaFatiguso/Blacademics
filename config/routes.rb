@@ -1,9 +1,6 @@
 Rails.application.routes.draw do
   resources :listings
   resources :jobs
-  resources :categories
-  resources :audiences
-  resources :events
   resources :organisations
   resources :skills
   resources :employments
@@ -24,7 +21,7 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  resources :events do
+  resources :listings do
   	member do
   		get :remove_audience_from
   		get :add_audience_to

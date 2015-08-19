@@ -3,6 +3,6 @@ class Organisation < ActiveRecord::Base
 
   belongs_to :user
 
-  has_many :jobs
-  accepts_nested_attributes_for :jobs, :allow_destroy => true
+  has_many :listings
+  accepts_nested_attributes_for :listings, :allow_destroy => true
 end

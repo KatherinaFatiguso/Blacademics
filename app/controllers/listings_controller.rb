@@ -4,7 +4,10 @@ class ListingsController < ApplicationController
   # GET /listings
   # GET /listings.json
   def index
-    @listings = Listing.all
+    @listings = current_user.organisation.listings
+    @events = @listings.event_type
+    @jobs = @listings.job_type
+    @programs = @listings.program_type
   end
 
   # GET /listings/1
@@ -14,7 +17,12 @@ class ListingsController < ApplicationController
 
   # GET /listings/new
   def new
-    @listing = Listing.new
+    if params[:listing_type] && params[:org]
+      @listing = Listing.new
+    else
+      redirect_to organisation_path(current_user.organisation)
+    end
+
   end
 
   # GET /listings/1/edit
@@ -25,7 +33,7 @@ class ListingsController < ApplicationController
   # POST /listings.json
   def create
     @listing = Listing.new(listing_params)
-    @listing.organisation == current_user.organisation
+    @listing.organisation_id = current_user.organisation.id
     respond_to do |format|
       if @listing.save
         format.html { redirect_to @listing, notice: 'Listing was successfully created.' }
@@ -60,6 +68,7 @@ class ListingsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

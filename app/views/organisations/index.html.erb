@@ -1,4 +1,4 @@
-<h1>Listing Organisations</h1>
+<h1>Listing Organisation</h1>
 
 <table class="table">
     <tr>
@@ -19,8 +19,11 @@
 </table>
     <%= link_to 'Show', organisation, class: 'btn btn-show' %>
     <%= link_to 'Edit', edit_organisation_path(organisation), class: 'btn btn-edit' %>
-    <%= link_to 'Delete', organisation, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-destroy' %>
-
+    <% if organisation.listings.any? %>
+      <div class="taglines"><p>Can not delete Organisation Profile if it has a listing associated with it.</p></div>
+    <% else %>
+      <%= link_to 'Delete', organisation, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-destroy' %>
+    <% end %>
   <% end %>
 
 
