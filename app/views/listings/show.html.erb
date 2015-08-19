@@ -21,6 +21,15 @@
 </p>
 
 <p>
+  <strong>Audiences:</strong>
+
+  <% @listing.audiences.each do |audience| %>
+  <a class="btn-flat btn-disabled"><%= audience.name %></a> 
+  <% end %>
+
+</p>
+
+<p>
   <strong>Contact name:</strong>
   <%= @listing.contact_name %>
 </p>

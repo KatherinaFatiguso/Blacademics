@@ -11,10 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150817054934) do
+ActiveRecord::Schema.define(version: 20150819031334) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "audiences", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "awards", force: :cascade do |t|
     t.string   "title"
@@ -90,6 +96,16 @@ ActiveRecord::Schema.define(version: 20150817054934) do
   end
 
   add_index "jobs", ["organisation_id"], name: "index_jobs_on_organisation_id", using: :btree
+
+  create_table "listing_audiences", force: :cascade do |t|
+    t.integer  "listing_id"
+    t.integer  "audience_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "listing_audiences", ["audience_id"], name: "index_listing_audiences_on_audience_id", using: :btree
+  add_index "listing_audiences", ["listing_id"], name: "index_listing_audiences_on_listing_id", using: :btree
 
   create_table "listings", force: :cascade do |t|
     t.string   "listing_type"
@@ -233,6 +249,8 @@ ActiveRecord::Schema.define(version: 20150817054934) do
   add_foreign_key "employments", "student_profiles"
   add_foreign_key "internships", "student_profiles"
   add_foreign_key "jobs", "organisations"
+  add_foreign_key "listing_audiences", "audiences"
+  add_foreign_key "listing_audiences", "listings"
   add_foreign_key "listings", "organisations"
   add_foreign_key "organisations", "users"
   add_foreign_key "scholarships", "student_profiles"

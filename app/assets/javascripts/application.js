@@ -16,3 +16,4 @@
 //= require materialize-sprockets
 //= require jquery_nested_form
 //= require_tree .
+//= require datetimepicker

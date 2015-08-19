@@ -59,6 +59,11 @@ gem 'sucker_punch', '~> 1.0'
 gem 'newrelic_rpm'
 gem 'nested_form'
 gem 'materialize-sass'
+
+source 'https://rails-assets.org' do
+  gem 'rails-assets-datetimepicker'
+end
+
 group :development do
   gem 'better_errors'
   gem 'quiet_assets'

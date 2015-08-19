@@ -1,1 +1,0 @@
-json.extract! @event, :id, :title, :tagline, :description, :contact_number, :website, :accessibility, :start_time, :end_time, :occurrence, :location, :ticket_required, :official_hastag, :facebook_url, :google_plus_url, :twitter_username, :instagram_username, :organisation_id, :created_at, :updated_at

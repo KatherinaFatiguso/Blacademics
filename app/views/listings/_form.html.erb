@@ -12,13 +12,59 @@
     <%= f.input :contact_email %>
     <%= f.input :contact_phone %>
     <%= f.input :website %>
-    <% unless params[:listing_type] == 'job' %>
-      <!-- <%= f.input :start_time %>
-      <%= f.input :end_time %> -->
+
+      <% if @listing.listing_type == 'job' ||  params[:listing_type] == 'job' %>
+      <!-- testing value for a new job or for editing a job -->
+
+        <%= f.input :job_category, collection: [ 'Accounting',
+  'Administration Office Support',
+  'Advertising, Arts & Media',
+  'Banking & financial services',
+  'Call Centre & Customer Service',
+  'CEO & General Management',
+  'Community Services & Development',
+  'Construction',
+  'Consulting & Strategy',
+  'Design & Architecture',
+  'Education & Training',
+  'Engineering',
+  'Farming, Animals & Conservation',
+  'Government & Defence',
+  'Healthcare & Medical',
+  'Hospitality & Tourism',
+  'Human Resources & Recruitment',
+  'Information and Communication Technology',
+  'Insurance & Superannuation',
+  'Legal, Law Enforcement, Correctional Services',
+  'Manufacturing, Transport & Logistics',
+  'Marketing & Communications',
+  'Mining, Resources & Energy',
+  'Real Estate & Property',
+  'Retail & Consumer Products',
+  'Sales',
+  'Science & Technology',
+  'Self-Employment',
+  'Sport & Recreation',
+  'Trades and Services' ] %>
+      <%= f.input :job_type, collection: ['full time', 'part time', 'casual'] %>
+      <%= f.input :salary, collection: ['up to $30K', '$30K - $40K', '$40K - $50K', '$50K - $60K', '$60K - $70K', '$70K - $80K', '$80K - $90K', '$90K - $100K', '$100K - $120K', '$120K - $150K', '$150K - $200K', 'Hourly rates'] %>
+    <% else %>
+      <p>Choose Audiences:</p>
+      <% @audiences.each do |audience| %>
+        <input class="" type="checkbox" value="<%= audience.id %>" name="listing[audience_ids][]" id="listing_audience_ids_<%= audience.id %>" <%= @listing.audiences.include?(audience) ? 'checked' : '' %> />
+        <label for="listing_audience_ids_<%= audience.id %>"><%= audience.name %></label>
+        <br>
+      <% end %>
+      <input type="hidden" name="listing[audience_ids][]" value="" />
+
       <label for="listing_start_time">Start Time</label>
       <input id="listing_start_time" type="text" class="datepicker" name="listing[start_time]">
       <label for="listing_end_time">End Time</label>
       <input id="listing_end_time" type="text" class="datepicker" name="listing[end_time]">
+
+
+
+
 
       <%= f.input :occurrence %>
       <%= f.input :location %>
@@ -29,41 +75,6 @@
       <%= f.input :twitter_username %>
       <%= f.input :instagram_username %>
     <% end %>
-    <% if params[:listing_type] == 'job' %>
-      <%= f.input :job_category, collection: [ 'Accounting',
-'Administration Office Support',
-'Advertising, Arts & Media',
-'Banking & financial services',
-'Call Centre & Customer Service',
-'CEO & General Management',
-'Community Services & Development',
-'Construction',
-'Consulting & Strategy',
-'Design & Architecture',
-'Education & Training',
-'Engineering',
-'Farming, Animals & Conservation',
-'Government & Defence',
-'Healthcare & Medical',
-'Hospitality & Tourism',
-'Human Resources & Recruitment',
-'Information and Communication Technology',
-'Insurance & Superannuation',
-'Legal, Law Enforcement, Correctional Services',
-'Manufacturing, Transport & Logistics',
-'Marketing & Communications',
-'Mining, Resources & Energy',
-'Real Estate & Property',
-'Retail & Consumer Products',
-'Sales',
-'Science & Technology',
-'Self-Employment',
-'Sport & Recreation',
-'Trades and Services' ] %>
-    <%= f.input :job_type, collection: ['full time', 'part time', 'casual'] %>
-    <%= f.input :salary, collection: ['up to $30K', '$30K - $40K', '$40K - $50K', '$50K - $60K', '$60K - $70K', '$70K - $80K', '$80K - $90K', '$90K - $100K', '$100K - $120K', '$120K - $150K', '$150K - $200K', 'Hourly rates'] %>
-  <% end %>
-
   </div>
 
   <div class="form-actions">

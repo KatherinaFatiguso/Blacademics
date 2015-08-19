@@ -1,5 +1,5 @@
 class ListingsController < ApplicationController
-  before_action :set_listing, only: [:show, :edit, :update, :destroy]
+  before_action :set_listing, only: [:add_audience_to, :remove_audience_from, :show, :edit, :update, :destroy]
 
   # GET /listings
   # GET /listings.json
@@ -22,11 +22,12 @@ class ListingsController < ApplicationController
     else
       redirect_to organisation_path(current_user.organisation)
     end
-
+    @audiences = Audience.all
   end
 
   # GET /listings/1/edit
   def edit
+    @audiences = Audience.all
   end
 
   # POST /listings
@@ -69,6 +70,18 @@ class ListingsController < ApplicationController
     end
   end
 
+  def add_audience_to
+  	@audience = Audience.find(params[:audience])
+  	@listing.audiences << @audience
+  	redirect_to :back
+  end
+
+  def remove_audience_from
+  	@audience = Audience.find(params[:audience])
+  	@listing.audiences.delete(@audience)
+  	redirect_to :back
+  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -78,6 +91,6 @@ class ListingsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def listing_params
-      params.require(:listing).permit(:listing_type, :title, :subtitle, :description, :contact_name, :contact_email, :contact_phone, :website, :start_time, :end_time, :occurrence, :location, :ticket_required, :official_hastag, :facebook_url, :google_plus_url, :twitter_username, :instagram_username, :job_category, :job_type, :salary, :organisation_id)
+      params.require(:listing).permit(:listing_type, :title, :subtitle, :description, :contact_name, :contact_email, :contact_phone, :website, :start_time, :end_time, :occurrence, :location, :ticket_required, :official_hastag, :facebook_url, :google_plus_url, :twitter_username, :instagram_username, :job_category, :job_type, :salary, :organisation_id, :audience_ids => [])
     end
 end

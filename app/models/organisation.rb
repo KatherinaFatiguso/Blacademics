@@ -5,4 +5,7 @@ class Organisation < ActiveRecord::Base
 
   has_many :listings
   accepts_nested_attributes_for :listings, :allow_destroy => true
+
+  mount_uploader :logo, ProfilePicUploader
+
 end

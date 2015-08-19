@@ -5,13 +5,10 @@
 <div class="row">
   <div class="col s6">
     <div class="card">
+      <div class="card-image">
+        <%= image_tag(@organisation.logo_url) %>
+      </div>
       <div class="card-content">
-        <p>
-          <strong>Logo:</strong>
-          <div id="logo">
-            <%= @organisation.logo %>
-          </div>
-        </p>
         <p>
           <strong>Name:</strong>
           <%= @organisation.name %>
@@ -68,7 +65,7 @@
 
         <h5>Events</h5>
           <% if @events %>
-            <%= render @events %>
+            <%= render @events %> <!-- this will call the _listing.html.erb from listings view -->
           <% else %>
             <p>Currently no jobs listed</p>
           <% end %>
