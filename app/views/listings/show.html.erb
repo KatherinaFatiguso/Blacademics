@@ -4,124 +4,114 @@
   <strong>Listing Type:</strong>
   <%= @listing.listing_type %>
 </p>
-
 <p>
   <strong>Title:</strong>
   <%= @listing.title %>
 </p>
-
 <p>
   <strong>Subtitle:</strong>
   <%= @listing.subtitle %>
 </p>
-
 <p>
   <strong>Description:</strong>
   <%= @listing.description %>
 </p>
-
 <p>
   <strong>Audiences:</strong>
-
   <% @listing.audiences.each do |audience| %>
-  <a class="btn-flat btn-disabled"><%= audience.name %></a> 
+  <a class="btn-flat btn-disabled"><%= audience.name %></a>
   <% end %>
-
 </p>
-
 <p>
   <strong>Contact name:</strong>
   <%= @listing.contact_name %>
 </p>
-
 <p>
   <strong>Contact email:</strong>
   <%= @listing.contact_email %>
 </p>
-
 <p>
   <strong>Contact phone:</strong>
   <%= @listing.contact_phone %>
 </p>
-
 <p>
   <strong>Website:</strong>
   <%= @listing.website %>
 </p>
-
+<% if @listing.listing_type == 'event' || @listing.listing_type == 'program' %>
+  <p>
+    <strong>Start time:</strong>
+    <% if @listing.start_time %>
+      <%= @listing.start_time.localtime.localtime.strftime("%A, %d %b %Y %l:%M %p %Z") %>
+    <% end %>
+  </p>
+  <p>
+    <strong>End time:</strong>
+    <% if @listing.end_time %>
+      <%= @listing.end_time.localtime.localtime.strftime("%A, %d %b %Y %l:%M %p %Z") %>
+      <% end %>
+  </p>
+  <p>
+    <strong>Occurrence:</strong>
+    <%= @listing.occurrence %>
+  </p>
+  <p>
+    <strong>Location:</strong>
+    <%= @listing.location %>
+  </p>
+  <p>
+    <strong>Ticket required:</strong>
+    <%= @listing.ticket_required %>
+  </p>
+  <p>
+    <strong>Official hastag:</strong>
+    <%= @listing.official_hastag %>
+  </p>
+  <p>
+    <strong>Facebook url:</strong>
+    <%= @listing.facebook_url %>
+  </p>
+  <p>
+    <strong>Google plus url:</strong>
+    <%= @listing.google_plus_url %>
+  </p>
+  <p>
+    <strong>Twitter username:</strong>
+    <%= @listing.twitter_username %>
+  </p>
+  <p>
+    <strong>Instagram username:</strong>
+    <%= @listing.instagram_username %>
+  </p>
+<% else %>
 <p>
-  <strong>Start time:</strong>
-  <% if @listing.start_time %>
-    <%= @listing.start_time.localtime.strftime("%d %B %Y %Z") %>
+  <strong>Date:</strong>
+  <% if Date.today < (@listing.end_time) %>
+    <p><%= Date.today %></p>
   <% end %>
 </p>
-
-<p>
-  <strong>End time:</strong>
-  <% if @listing.start_time %>
-    <%= @listing.end_time.localtime.strftime("%d %B %Y %Z") %>
-    <% end %>
-</p>
-
-<p>
-  <strong>Occurrence:</strong>
-  <%= @listing.occurrence %>
-</p>
-
 <p>
   <strong>Location:</strong>
   <%= @listing.location %>
 </p>
-
-<p>
-  <strong>Ticket required:</strong>
-  <%= @listing.ticket_required %>
-</p>
-<% unless @listing.listing_type == 'job' %>
-<p>
-  <strong>Official hastag:</strong>
-  <%= @listing.official_hastag %>
-</p>
-
-<p>
-  <strong>Facebook url:</strong>
-  <%= @listing.facebook_url %>
-</p>
-
-<p>
-  <strong>Google plus url:</strong>
-  <%= @listing.google_plus_url %>
-</p>
-
-<p>
-  <strong>Twitter username:</strong>
-  <%= @listing.twitter_username %>
-</p>
-
-<p>
-  <strong>Instagram username:</strong>
-  <%= @listing.instagram_username %>
-</p>
-<% end %>
 <p>
   <strong>Job category:</strong>
   <%= @listing.job_category %>
 </p>
-
 <p>
   <strong>Job type:</strong>
   <%= @listing.job_type %>
 </p>
-
 <p>
   <strong>Salary:</strong>
   <%= @listing.salary %>
 </p>
-
 <p>
   <strong>Organisation:</strong>
   <%= @listing.organisation.name %>
 </p>
+<% end %> <!-- end of unless if it's a job type -->
+
 
 <%= link_to 'Edit', edit_listing_path(@listing) %> |
 <%= link_to 'Back', listings_path %>

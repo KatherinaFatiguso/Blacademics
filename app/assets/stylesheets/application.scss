@@ -1,6 +1,7 @@
 @import "materialize/components/color";
 $primary-color: color("blue", "lighten-2") !default;
 @import 'materialize';
+@import 'datetimepicker';
 #logo{
   width: 100px;
   height: 100px;
@@ -24,6 +25,11 @@ header, main, footer {
 .taglines{
   font-style: italic;
   color: #d1d1d1;
+}
+
+.errormsg{
+  font-style: italic;
+  color: #ed0e0e;
 }
 .material-icons {
   font-family: 'Material Icons';
@@ -49,5 +55,3 @@ header, main, footer {
   /* Support for IE. */
   font-feature-settings: 'liga';
 }
-
-*= require datetimepicker

@@ -4,6 +4,10 @@
 </div>
 <div class="card-action">
   <%= link_to 'Edit', edit_listing_path(listing), class: 'btn' %>
-  <%= link_to 'Delete', listing_path(listing), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-destroy' %>
+  <% if listing.audiences.any? %>
+    <div class="taglines"><p>Can't delete this listing if an audience is still attached to it.</p></div>
+  <% else %>
+    <%= link_to 'Delete', listing_path(listing), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-destroy' %>
+  <% end %>
 </div>
 </div>
