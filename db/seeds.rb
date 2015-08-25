@@ -139,3 +139,4 @@ skill: "Tutoring university students",
 student_profile_id: student1.id
 )
 =end
+User.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password')AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password')
