@@ -8,16 +8,20 @@
     <div class="col s4">
       <div class="text-center"><h5>Events</h5></div>
         <div class="col s12">
+          <% count_event = 0 %>
           <% Listing.event_type.each do |event|%>
-          <div class="card blue-grey darken-1">
-            <div class="card-content white-text">
-              <span class="card-title"><%=event.title%></span>
-              <p><%=event.short_description%></p>
-            </div>
-            <div class="card-action">
-              <a href="/listings/<%=event.id%>">Show </a>
-            </div>
-          </div>
+            <% if count_event <= 3 %>
+              <div class="card">
+                <div class="card-content blue-grey-text">
+                  <span class="card-title blue-grey-text text-darken-2"><%=event.title%></span>
+                  <p><%=event.short_description%></p>
+                </div>
+                <div class="card-action">
+                  <a href="/listings/<%=event.id%>">Show </a>
+                </div>
+              </div>
+              <% count_event += 1 %>
+              <% end %>
           <% end %>
         </div>
     </div>
@@ -25,9 +29,9 @@
       <div class="text-center"><h5>Programs</h5></div>
         <div class="col s12">
           <% Listing.program_type.each do |program|%>
-          <div class="card blue-grey darken-1">
-            <div class="card-content white-text">
-              <span class="card-title"><%=program.title%></span>
+          <div class="card">
+            <div class="card-content blue-grey-text">
+              <span class="card-title blue-grey-text text-darken-2"><%=program.title%></span>
               <p><%=program.short_description%></p>
             </div>
             <div class="card-action">
@@ -41,10 +45,11 @@
       <div class="text-center"><h5>Jobs</h5></div>
         <div class="col s12">
           <% Listing.job_type.each do |job|%>
-          <div class="card blue-grey darken-1">
-            <div class="card-content white-text">
-              <span class="card-title"><%=job.title%></span>
+          <div class="card">
+            <div class="card-content blue-grey-text">
+              <span class="card-title blue-grey-text text-darken-2"><%=job.title%></span>
               <p><%=job.short_description%></p>
+            </div>
             <div class="card-action">
               <a href="/listings/<%=job.id%>">Show </a>
             </div>
@@ -55,14 +60,3 @@
   </div><!-- end of row -->
 
 </div>
-
-<!-- <% if user_signed_in? %>
-  <% if (current_user.has_role? :student) %>
-    I'm a student
-  <% elsif (current_user.has_role? :organisation) %>
-  I'm an org
-  <% end %>
-<% else %>
-  <p><%= link_to 'Sign up as a Student', new_user_registration_path(user_type: 'student'), class: 'btn btn-primary' %></p>
-  <p><%= link_to 'Sign up as an Organisation', new_user_registration_path(user_type: 'organisation'), class: 'btn btn-primary' %></p>
-<% end %> -->

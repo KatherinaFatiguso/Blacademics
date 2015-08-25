@@ -1,5 +1,9 @@
 <h1>New Organisation</h1>
 
-<%= render 'form' %>
-
-<%= link_to 'Back', organisations_path %>
+<% if user_signed_in? %>
+  <% if @organisation.user == current_user %>
+    <%= render 'form' %>
+  <% else %>
+    <%= render 'forbidden' %>
+  <% end %>
+<% end %>

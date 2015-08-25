@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
+  devise_for :users, controllers: { registrations: 'users/registrations', passwords: 'users/passwords' }
+
   # devise_for :users, ActiveAdmin::Devise.config
   # ActiveAdmin.routes(self)
   resources :audiences
@@ -15,7 +17,7 @@ Rails.application.routes.draw do
   resources :university_educations
   resources :student_profiles
   get 'admin', to: 'pages#admin'
-  # get 'contact', to: 'pages#contact'
+  get 'contact', to: 'pages#contact'
   get 'admin' => 'pages#admin'
   get 'contact' => 'pages#contact'
   root 'pages#home'
@@ -25,8 +27,8 @@ Rails.application.routes.draw do
 
   get 'pages/contact'
 
-  devise_for :users, ActiveAdmin::Devise.config
-  ActiveAdmin.routes(self)
+  # devise_for :users, ActiveAdmin::Devise.config
+  # ActiveAdmin.routes(self)
 
   resources :listings do
   	member do

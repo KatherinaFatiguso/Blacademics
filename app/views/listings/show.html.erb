@@ -1,8 +1,11 @@
 <p id="notice"><%= notice %></p>
-<p>View = <%= @listing.impressionist_count(:filter=>:session_hash)%></p>
 <p>
   <strong>Listing Type:</strong>
   <%= @listing.listing_type %>
+</p>
+<p>
+  <strong>Organiser:</strong>
+  <%= @listing.organisation.name %>
 </p>
 <p>
   <strong>Title:</strong>
@@ -116,6 +119,7 @@
 
 <% if user_signed_in? %>
   <% if @listing.organisation.user == current_user %>
-  <%= link_to 'Edit', edit_listing_path(@listing) %>
+    <p><strong>Number of Views: </strong><%= @listing.impressionist_count(:filter=>:session_hash)%></p>
+    <%= link_to 'Edit', edit_listing_path(@listing) %>
   <% end %>
 <% end %>
