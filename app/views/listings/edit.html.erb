@@ -1,7 +1,9 @@
-<h1>Editing <%= @listing.listing_type %></h1>
+<%=@user%>
 
 <% if user_signed_in? %>
-  <% if @organisation.user == current_user %>
+<%=@user%>
+  <% if @listing.organisation.user == current_user %>
+    <h1>Editing <%= @listing.listing_type %></h1>
     <%= render 'form' %>
     <%= link_to 'Show', @listing %> |
     <%= link_to 'Back', listings_path %>

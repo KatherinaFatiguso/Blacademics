@@ -61,13 +61,13 @@
   <p>
     <strong>Start Time:</strong>
     <% if @listing.start_time %>
-      <%= @listing.start_time.localtime.strftime("%A, %d %b %Y %l:%M %p %Z") %>
+      <%= @listing.start_time.strftime("%A, %d %b %Y %l:%M %p") %>
     <% end %>
   </p>
   <p>
     <strong>End Time:</strong>
     <% if @listing.end_time %>
-      <%= @listing.end_time.localtime.strftime("%A, %d %b %Y %l:%M %p %Z") %>
+      <%= @listing.end_time.strftime("%A, %d %b %Y %l:%M %p") %>
       <% end %>
   </p>
   <p>
