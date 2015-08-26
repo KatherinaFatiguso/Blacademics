@@ -26,7 +26,7 @@
     <%= f.input :website %>
     <%= f.input :street_address %>
     <%= f.input :suburb %>
-    <%= f.input :state %>
+    <%= f.input :state, collection: ['NSW', 'ACT', 'VIC', 'QLD', 'SA', 'NT', 'TAS'] %>
     <%= f.input :postcode %>
 
 
@@ -68,7 +68,8 @@
       <%= f.input :salary, label: 'Salary Range', collection: ['up to $30K', '$30K - $40K', '$40K - $50K', '$50K - $60K', '$60K - $70K', '$70K - $80K', '$80K - $90K', '$90K - $100K', '$100K - $120K', '$120K - $150K', '$150K - $200K', 'Hourly rates'] %>
 
     <% else %> <!-- else if it's an event or a program -->
-    <%= f.input :start_time, as: :string, input_html: { class: 'datetimepicker'} %>
+
+    <%= f.input :start_time, as: :string, input_html: { class: 'datetimepicker', value: localize(f.object.start_time, :format => "%d/%m/%Y")} %>
     <%= f.input :end_time, as: :string, input_html: { class: 'datetimepicker'} %>
 
       <p>Choose Audiences:</p>
@@ -100,7 +101,11 @@
         <input type="hidden" name="listing[audience_ids][]" value="" /><!-- this is for when a box is unchecked, it will leave value '' (empty) must have this -->
       <% end %>
 
-      <%= f.input :ticket_required, label: 'Ticket Required?', collection: ['yes', 'no'] %>
+      <% if @listing.listing_type == 'event' ||  params[:listing_type] == 'event' %><!-- testing value for editing a job or for a new job  -->
+        <%= f.input :ticket_required, label: 'Ticket Required?', collection: ['Tickets Essential', 'Bookings Essential', 'No Booking Required'] %>
+      <% elsif @listing.listing_type == 'program' ||  params[:listing_type] == 'program' %>
+        <%= f.input :ticket_required, label: 'Ticket Required?', collection: ['Tickets Essential', 'Bookings Essential', 'No Booking Required', 'Applications Open', 'Applications Closing Soon'] %>
+      <% end %>
       <%= f.input :official_hastag %>
       <%= f.input :facebook_url %>
       <%= f.input :twitter_handle %>
