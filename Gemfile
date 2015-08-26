@@ -59,8 +59,6 @@ gem 'sucker_punch', '~> 1.0'
 gem 'newrelic_rpm'
 gem 'nested_form'
 gem 'materialize-sass'
-gem 'impressionist'
-gem 'activeadmin', github: 'activeadmin'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-datetimepicker'

@@ -1,7 +1,6 @@
 class ListingsController < ApplicationController
-  skip_before_action :authenticate_user!, only: :show
   before_action :set_listing, only: [:add_audience_to, :remove_audience_from, :show, :edit, :update, :destroy]
-  impressionist :actions=>[:show]
+
   # GET /listings
   # GET /listings.json
   def index
@@ -28,9 +27,6 @@ class ListingsController < ApplicationController
 
   # GET /listings/1/edit
   def edit
-    unless @listing.organisation.user == current_user
-      redirect_to organisation_path(current_user.organisation)
-    end
     @audiences = Audience.all
   end
 
@@ -39,8 +35,6 @@ class ListingsController < ApplicationController
   def create
     @listing = Listing.new(listing_params)
     @listing.organisation_id = current_user.organisation.id
-    @audiences = Audience.all
-
     respond_to do |format|
       if @listing.save
         format.html { redirect_to @listing, notice: 'Listing was successfully created.' }
@@ -55,9 +49,8 @@ class ListingsController < ApplicationController
   # PATCH/PUT /listings/1
   # PATCH/PUT /listings/1.json
   def update
-    @audiences = Audience.all
     respond_to do |format|
-      if @listing.update(listing_params)# && @listing.audiences.count > 0
+      if @listing.update(listing_params)
         format.html { redirect_to @listing, notice: 'Listing was successfully updated.' }
         format.json { render :show, status: :ok, location: @listing }
       else
@@ -89,18 +82,6 @@ class ListingsController < ApplicationController
   	redirect_to :back
   end
 
-  # def add_number_of_click_to
-  #   @listing.listing_clicks += 1;
-  #   redirect_to @listing
-  # end
-
-  def change_status_of
-    if @listing.listing_status == 'draft'
-      @listing.listing_status = 'approved'
-      redirect_to @listing
-    end
-  end
-
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -110,7 +91,6 @@ class ListingsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def listing_params
-      params.require(:listing).permit(:listing_type, :title, :short_description, :long_description, :contact_name, :contact_email, :contact_phone, :website, :start_time, :end_time, :ticket_required, :official_hastag, :facebook_url, :twitter_handle, :instagram_handle, :job_category, :job_type, :salary, :organisation_id, :street_address, :suburb, :state, :postcode, :status, :impressions_count, :audience_ids => [])
+      params.require(:listing).permit(:listing_type, :title, :subtitle, :description, :contact_name, :contact_email, :contact_phone, :website, :start_time, :end_time, :occurrence, :location, :ticket_required, :official_hastag, :facebook_url, :google_plus_url, :twitter_username, :instagram_username, :job_category, :job_type, :salary, :organisation_id, :audience_ids => [])
     end
-
 end

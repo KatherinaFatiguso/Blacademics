@@ -1,23 +1,20 @@
 <p id="notice"><%= notice %></p>
+
 <p>
   <strong>Listing Type:</strong>
   <%= @listing.listing_type %>
-</p>
-<p>
-  <strong>Organiser:</strong>
-  <%= @listing.organisation.name %>
 </p>
 <p>
   <strong>Title:</strong>
   <%= @listing.title %>
 </p>
 <p>
-  <strong>Short Description:</strong>
-  <%= @listing.short_description %>
+  <strong>Subtitle:</strong>
+  <%= @listing.subtitle %>
 </p>
 <p>
-  <strong>Long Description:</strong>
-  <%= @listing.long_description %>
+  <strong>Description:</strong>
+  <%= @listing.description %>
 </p>
 <p>
   <strong>Audiences:</strong>
@@ -26,78 +23,76 @@
   <% end %>
 </p>
 <p>
-  <strong>Contact Name:</strong>
+  <strong>Contact name:</strong>
   <%= @listing.contact_name %>
 </p>
 <p>
-  <strong>Contact Email:</strong>
+  <strong>Contact email:</strong>
   <%= @listing.contact_email %>
 </p>
 <p>
-  <strong>Contact Phone:</strong>
+  <strong>Contact phone:</strong>
   <%= @listing.contact_phone %>
 </p>
 <p>
   <strong>Website:</strong>
   <%= @listing.website %>
 </p>
-<p>
-  <strong>Street Address:</strong>
-  <%= @listing.street_address %>
-</p>
-<p>
-  <strong>Suburb:</strong>
-  <%= @listing.suburb %>
-</p>
-<p>
-  <strong>State:</strong>
-  <%= @listing.state %>
-</p>
-<p>
-  <strong>Postcode:</strong>
-  <%= @listing.postcode %>
-</p>
 <% if @listing.listing_type == 'event' || @listing.listing_type == 'program' %>
   <p>
-    <strong>Start Time:</strong>
+    <strong>Start time:</strong>
     <% if @listing.start_time %>
-      <%= @listing.start_time.strftime("%A, %d %b %Y %l:%M %p") %>
+      <%= @listing.start_time.localtime.localtime.strftime("%A, %d %b %Y %l:%M %p %Z") %>
     <% end %>
   </p>
   <p>
-    <strong>End Time:</strong>
+    <strong>End time:</strong>
     <% if @listing.end_time %>
-      <%= @listing.end_time.strftime("%A, %d %b %Y %l:%M %p") %>
+      <%= @listing.end_time.localtime.localtime.strftime("%A, %d %b %Y %l:%M %p %Z") %>
       <% end %>
   </p>
   <p>
-    <strong>Ticket Required?</strong>
+    <strong>Occurrence:</strong>
+    <%= @listing.occurrence %>
+  </p>
+  <p>
+    <strong>Location:</strong>
+    <%= @listing.location %>
+  </p>
+  <p>
+    <strong>Ticket required:</strong>
     <%= @listing.ticket_required %>
   </p>
   <p>
-    <strong>Official Hastag:</strong>
+    <strong>Official hastag:</strong>
     <%= @listing.official_hastag %>
   </p>
   <p>
-    <strong>Facebook URL:</strong>
+    <strong>Facebook url:</strong>
     <%= @listing.facebook_url %>
   </p>
   <p>
-    <strong>Twitter Handle:</strong>
-    <%= @listing.twitter_handle %>
+    <strong>Google plus url:</strong>
+    <%= @listing.google_plus_url %>
   </p>
   <p>
-    <strong>Instagram Handle:</strong>
-    <%= @listing.instagram_handle %>
+    <strong>Twitter username:</strong>
+    <%= @listing.twitter_username %>
   </p>
-<% else %><!-- else if listing type is job -->
+  <p>
+    <strong>Instagram username:</strong>
+    <%= @listing.instagram_username %>
+  </p>
+<% else %>
 <p>
   <strong>Date:</strong>
   <% if Date.today < (@listing.end_time) %>
-    <%= Date.today.strftime("%A, %d %b %Y %l:%M %p") %>
-  <% else %>
-    <div class="taglines">This job vacancy has ended.</div>
+    <p><%= Date.today %></p>
   <% end %>
+</p>
+<p>
+  <strong>Location:</strong>
+  <%= @listing.location %>
 </p>
 <p>
   <strong>Job category:</strong>
@@ -117,9 +112,6 @@
 </p>
 <% end %> <!-- end of unless if it's a job type -->
 
-<% if user_signed_in? %>
-  <% if @listing.organisation.user == current_user %>
-    <p><strong>Number of Views: </strong><%= @listing.impressionist_count(:filter=>:session_hash)%></p>
-    <%= link_to 'Edit', edit_listing_path(@listing) %>
-  <% end %>
-<% end %>
+
+<%= link_to 'Edit', edit_listing_path(@listing) %> |
+<%= link_to 'Back', listings_path %>

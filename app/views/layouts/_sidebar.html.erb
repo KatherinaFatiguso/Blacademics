@@ -1,0 +1,14 @@
+<ul id="slide-out" class="side-nav fixed">
+  <li><i class="left medium material-icons">home</i><a href="/">Home</a></li>
+  <% if current_user.has_role? :organisation %>
+    </li><a href="/organisations/<%=current_user.organisation.id%>"><i class="left medium material-icons">domain</i>Org Profiles</a></li>
+    </li><a href="/listings"><i class="left medium material-icons">event_note</i>My Listings</a></li>
+    </li><a href="/student_profiles"><i class="left medium material-icons">supervisor_account</i>Candidates</a></li>
+  <% elsif current_user.has_role? :student %>
+    </li><a href="/student_profiles/<%=current_user.id%>"><i class="left medium material-icons">face</i>Student Profiles</a></li>
+
+
+  <% end %>
+</ul>
+<a href="/#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+<!-- can we fix this, please, this is the little icon on the left for mobile size -->

@@ -1,10 +1,4 @@
 Rails.application.routes.draw do
-  # devise_for :admin_users, ActiveAdmin::Devise.config
-  devise_for :users#, controllers: { registrations: 'users/registrations', passwords: 'users/passwords' }
-
-  # do not use this
-  # devise_for :users, ActiveAdmin::Devise.config
-  # ActiveAdmin.routes(self)
   resources :audiences
   resources :listings
   resources :jobs
@@ -19,8 +13,6 @@ Rails.application.routes.draw do
   resources :student_profiles
   get 'admin', to: 'pages#admin'
   get 'contact', to: 'pages#contact'
-  get 'admin' => 'pages#admin'
-  get 'contact' => 'pages#contact'
   root 'pages#home'
   get 'pages/home'
 
@@ -28,16 +20,12 @@ Rails.application.routes.draw do
 
   get 'pages/contact'
 
-# do not use this
-  # devise_for :users, ActiveAdmin::Devise.config
-  # ActiveAdmin.routes(self)
+  devise_for :users
 
   resources :listings do
   	member do
   		get :remove_audience_from
   		get :add_audience_to
-      post :add_number_of_click_to
-      post :change_status_of
   	end
   end
   # The priority is based upon order of creation: first created -> highest priority.

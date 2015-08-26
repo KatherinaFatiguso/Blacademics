@@ -1,9 +1,5 @@
-<% if user_signed_in? %>
-  <% if @organisation.user == current_user %>
-    <h1>Editing Organisation</h1>
-    <%= render 'form' %>
-    <%= link_to 'Show', @organisation %>
-  <% else %>
-    <%= render 'forbidden' %>
-  <% end %>
-<% end %>
+<h1>Editing Organisation</h1>
+
+<%= render 'form' %>
+
+<%= link_to 'Show', @organisation %> 
