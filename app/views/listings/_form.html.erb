@@ -31,47 +31,57 @@
 
 
     <% if @listing.listing_type == 'job' ||  params[:listing_type] == 'job' %><!-- testing value for editing a job or for a new job  -->
+      <%= f.input :company_name %>
       <div class="taglines"><p>Set the dates for job application opening and closing.</p></div>
-      <%= f.input :start_time, as: :string, input_html: { class: 'datetimepicker'} %>
-      <%= f.input :end_time, as: :string, input_html: { class: 'datetimepicker'} %>
-        <%= f.input :job_category, collection: [ 'Accounting',
-  'Administration Office Support',
-  'Advertising, Arts & Media',
-  'Banking & financial services',
-  'Call Centre & Customer Service',
-  'CEO & General Management',
-  'Community Services & Development',
-  'Construction',
-  'Consulting & Strategy',
-  'Design & Architecture',
-  'Education & Training',
-  'Engineering',
-  'Farming, Animals & Conservation',
-  'Government & Defence',
-  'Healthcare & Medical',
-  'Hospitality & Tourism',
-  'Human Resources & Recruitment',
-  'Information and Communication Technology',
-  'Insurance & Superannuation',
-  'Legal, Law Enforcement, Correctional Services',
-  'Manufacturing, Transport & Logistics',
-  'Marketing & Communications',
-  'Mining, Resources & Energy',
-  'Real Estate & Property',
-  'Retail & Consumer Products',
-  'Sales',
-  'Science & Technology',
-  'Self-Employment',
-  'Sport & Recreation',
-  'Trades and Services' ] %>
-      <%= f.input :job_type, collection: ['full time', 'part time', 'casual'] %>
+      <% if @listing.start_time.present? %>
+        <%= f.input :start_time, as: :string, input_html: { class: 'datetimepicker', value: localize(f.object.start_time, :format => "%d/%m/%Y  %I:%m %p %Z")} %>
+        <%= f.input :end_time, as: :string, input_html: { class: 'datetimepicker', value: localize(f.object.end_time, :format => "%d/%m/%Y  %I:%m %p %Z")} %>
+      <% else %>
+        <%= f.input :start_time, as: :string, input_html: { class: 'datetimepicker'} %>
+        <%= f.input :end_time, as: :string, input_html: { class: 'datetimepicker'} %>
+      <% end %>
+        <%= f.input :job_category, collection: ['full time', 'part time', 'casual', 'internship'] %>
+      <%= f.input :job_type, collection: [ 'Accounting',
+        'Administration Office Support',
+        'Advertising, Arts & Media',
+        'Banking & financial services',
+        'Call Centre & Customer Service',
+        'CEO & General Management',
+        'Community Services & Development',
+        'Construction',
+        'Consulting & Strategy',
+        'Design & Architecture',
+        'Education & Training',
+        'Engineering',
+        'Farming, Animals & Conservation',
+        'Government & Defence',
+        'Healthcare & Medical',
+        'Hospitality & Tourism',
+        'Human Resources & Recruitment',
+        'Information and Communication Technology',
+        'Insurance & Superannuation',
+        'Legal, Law Enforcement, Correctional Services',
+        'Manufacturing, Transport & Logistics',
+        'Marketing & Communications',
+        'Mining, Resources & Energy',
+        'Real Estate & Property',
+        'Retail & Consumer Products',
+        'Sales',
+        'Science & Technology',
+        'Self-Employment',
+        'Sport & Recreation',
+        'Trades and Services' ] %>
       <%= f.input :salary, label: 'Salary Range', collection: ['up to $30K', '$30K - $40K', '$40K - $50K', '$50K - $60K', '$60K - $70K', '$70K - $80K', '$80K - $90K', '$90K - $100K', '$100K - $120K', '$120K - $150K', '$150K - $200K', 'Hourly rates'] %>
 
     <% else %> <!-- else if it's an event or a program -->
 
-    <%= f.input :start_time, as: :string, input_html: { class: 'datetimepicker'} %>
-    <%= f.input :end_time, as: :string, input_html: { class: 'datetimepicker'} %>
-
+    <% if @listing.start_time.present? %>
+      <%= f.input :start_time, as: :string, input_html: { class: 'datetimepicker', value: localize(f.object.start_time, :format => "%d/%m/%Y  %I:%m %p %Z")} %>
+      <%= f.input :end_time, as: :string, input_html: { class: 'datetimepicker', value: localize(f.object.end_time, :format => "%d/%m/%Y  %I:%m %p %Z")} %>
+    <% else %>
+      <%= f.input :start_time, as: :string, input_html: { class: 'datetimepicker'} %>
+      <%= f.input :end_time, as: :string, input_html: { class: 'datetimepicker'} %>
+    <% end %>
       <p>Choose Audiences:</p>
       <% if (@listing.new_record?) %><!-- if the listing is never been recorded in database (new) -->
         <% @audiences.each do |audience| %><!-- check all the audiences items -->

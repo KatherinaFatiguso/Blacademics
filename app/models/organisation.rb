@@ -1,5 +1,5 @@
 class Organisation < ActiveRecord::Base
-  validates :name, presence: true
+  validates :company_name, presence: true
 
   belongs_to :user
 

@@ -2,8 +2,8 @@
 
 <table class="table">
     <tr>
-      <th>Name</th>
-      <th>University</th>
+      <th>Company Name</th>
+      <th>Department</th>
       <th>Phone</th>
       <th>Website</th>
         <th colspan="3"></th>
@@ -11,8 +11,8 @@
 
   <%= content_tag_for(:tr, @organisations) do |organisation| %>
   <tr>
-    <td><p><%= organisation.name %></p></td>
-    <td><p><%= organisation.university %></p></td>
+    <td><p><%= organisation.company_name %></p></td>
+    <td><p><%= organisation.department %></p></td>
     <td><%= organisation.contact_phone %></td>
     <td><%= organisation.website %></td>
   </tr>

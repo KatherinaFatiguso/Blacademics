@@ -1,6 +1,7 @@
 class ListingsController < ApplicationController
+  skip_before_action :authenticate_user!, only: :show
   before_action :set_listing, only: [:add_audience_to, :remove_audience_from, :show, :edit, :update, :destroy]
-
+  impressionist :actions=>[:show]
   # GET /listings
   # GET /listings.json
   def index
@@ -91,6 +92,6 @@ class ListingsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def listing_params
-      params.require(:listing).permit(:listing_type, :title, :subtitle, :description, :contact_name, :contact_email, :contact_phone, :website, :start_time, :end_time, :occurrence, :location, :ticket_required, :official_hastag, :facebook_url, :google_plus_url, :twitter_username, :instagram_username, :job_category, :job_type, :salary, :organisation_id, :audience_ids => [])
+      params.require(:listing).permit(:listing_type, :title, :short_description, :long_description, :contact_name, :contact_email, :contact_phone, :website, :start_time, :end_time, :ticket_required, :official_hastag, :facebook_url, :twitter_handle, :instagram_handle, :job_category, :job_type, :salary, :organisation_id, :street_address, :suburb, :state, :postcode, :status, :impressions_count, :company_name, :ticket_website, :audience_ids => [])
     end
 end
