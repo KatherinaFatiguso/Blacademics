@@ -9,58 +9,66 @@
   <%= @listing.title %>
 </p>
 <p>
-  <strong>Subtitle:</strong>
-  <%= @listing.subtitle %>
+  <strong>Short Description:</strong>
+  <%= @listing.short_description %>
 </p>
 <p>
-  <strong>Description:</strong>
-  <%= @listing.description %>
+  <strong>Long Description:</strong>
+  <%= @listing.long_description %>
 </p>
 <p>
   <strong>Audiences:</strong>
   <% @listing.audiences.each do |audience| %>
-  <a class="btn-flat btn-disabled"><%= audience.name %></a>
+    <a class="btn-flat btn-disabled"><%= audience.name %></a>
   <% end %>
 </p>
 <p>
-  <strong>Contact name:</strong>
+  <strong>Contact Name:</strong>
   <%= @listing.contact_name %>
 </p>
 <p>
-  <strong>Contact email:</strong>
+  <strong>Contact Email:</strong>
   <%= @listing.contact_email %>
 </p>
 <p>
-  <strong>Contact phone:</strong>
+  <strong>Contact Phone:</strong>
   <%= @listing.contact_phone %>
 </p>
 <p>
   <strong>Website:</strong>
   <%= @listing.website %>
 </p>
+<p>
+  <strong>Street Address:</strong>
+  <%= @listing.street_address %>
+</p>
+<p>
+  <strong>Suburb:</strong>
+  <%= @listing.suburb %>
+</p>
+<p>
+  <strong>State:</strong>
+  <%= @listing.state %>
+</p>
+<p>
+  <strong>Postcode:</strong>
+  <%= @listing.postcode %>
+</p>
 <% if @listing.listing_type == 'event' || @listing.listing_type == 'program' %>
   <p>
     <strong>Start time:</strong>
     <% if @listing.start_time %>
-      <%= @listing.start_time.localtime.localtime.strftime("%A, %d %b %Y %l:%M %p %Z") %>
+      <%= @listing.start_time.localtime.strftime("%A, %d %b %Y %l:%M %p %Z") %>
     <% end %>
   </p>
   <p>
     <strong>End time:</strong>
     <% if @listing.end_time %>
-      <%= @listing.end_time.localtime.localtime.strftime("%A, %d %b %Y %l:%M %p %Z") %>
+        <%= @listing.end_time.localtime.strftime("%A, %d %b %Y %l:%M %p %Z") %>
       <% end %>
   </p>
   <p>
-    <strong>Occurrence:</strong>
-    <%= @listing.occurrence %>
-  </p>
-  <p>
-    <strong>Location:</strong>
-    <%= @listing.location %>
-  </p>
-  <p>
-    <strong>Ticket required:</strong>
+    <strong>Ticket required?</strong>
     <%= @listing.ticket_required %>
   </p>
   <p>
@@ -68,50 +76,46 @@
     <%= @listing.official_hastag %>
   </p>
   <p>
-    <strong>Facebook url:</strong>
+    <strong>Facebook URL:</strong>
     <%= @listing.facebook_url %>
   </p>
-  <p>
-    <strong>Google plus url:</strong>
-    <%= @listing.google_plus_url %>
+    <strong>Twitter Handle:</strong>
+    <%= @listing.twitter_handle %>
   </p>
   <p>
-    <strong>Twitter username:</strong>
-    <%= @listing.twitter_username %>
+    <strong>Instagram Handle:</strong>
+    <%= @listing.instagram_handle %>
   </p>
+  <% else %><!-- else if listing type is job -->
   <p>
-    <strong>Instagram username:</strong>
-    <%= @listing.instagram_username %>
+    <strong>Date:</strong>
+    <% if Date.today < (@listing.end_time) %>
+      <%= Date.today.strftime("%A, %d %b %Y %l:%M %p") %>
+    <% else %>
+      <div class="taglines">This job vacancy has ended.</div>
+    <% end %>
   </p>
-<% else %>
 <p>
-  <strong>Date:</strong>
-  <% if Date.today < (@listing.end_time) %>
-    <p><%= Date.today %></p>
+    <strong>Job category:</strong>
+    <%= @listing.job_category %>
+  </p>
+  <p>
+    <strong>Job type:</strong>
+    <%= @listing.job_type %>
+  </p>
+  <p>
+    <strong>Salary:</strong>
+    <%= @listing.salary %>
+  </p>
+  <p>
+    <strong>Organiser:</strong>
+    <%= @listing.organisation.name %>
+  </p>
+  <% end %> <!-- end of unless if it's a job type -->
+
+  <% if user_signed_in? %>
+    <% if @listing.organisation.user == current_user %>
+      <p><strong>Number of Views: </strong><%= @listing.impressionist_count(:filter=>:session_hash)%></p>
+      <%= link_to 'Edit', edit_listing_path(@listing) %>
+    <% end %>
   <% end %>
-</p>
-<p>
-  <strong>Location:</strong>
-  <%= @listing.location %>
-</p>
-<p>
-  <strong>Job category:</strong>
-  <%= @listing.job_category %>
-</p>
-<p>
-  <strong>Job type:</strong>
-  <%= @listing.job_type %>
-</p>
-<p>
-  <strong>Salary:</strong>
-  <%= @listing.salary %>
-</p>
-<p>
-  <strong>Organisation:</strong>
-  <%= @listing.organisation.name %>
-</p>
-<% end %> <!-- end of unless if it's a job type -->
-
-
-<%= link_to 'Edit', edit_listing_path(@listing) %> |
-<%= link_to 'Back', listings_path %>

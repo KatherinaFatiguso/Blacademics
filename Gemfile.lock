@@ -96,8 +96,12 @@ GEM
     hitimes (1.2.2)
     http-cookie (1.0.2)
       domain_name (~> 0.5)
+    httpclient (2.6.0.1)
     i18n (0.7.0)
     i18n_data (0.7.0)
+    impressionist (1.5.1)
+      httpclient (~> 2.2)
+      nokogiri (~> 1.5)
     invisible_captcha (0.8.0)
       rails
     jbuilder (2.3.1)
@@ -239,6 +243,7 @@ DEPENDENCIES
   country_select
   devise
   friendly_id
+  impressionist
   invisible_captcha
   jbuilder (~> 2.0)
   jquery-rails

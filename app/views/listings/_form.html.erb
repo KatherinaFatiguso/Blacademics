@@ -11,26 +11,29 @@
     <% end %>
   </ul>
   </div>
-  <% end %>
+  <% end %> <!-- end of listing error -->
 
   <div class="form-inputs">
     <% if params[:listing_type] %>
       <%= f.input :listing_type, as: :hidden, input_html: { value: params[:listing_type]}  %>
     <% end %>
     <%= f.input :title %>
-    <%= f.input :subtitle, input_html: { maxlength: 200 } %>
-    <%= f.input :description, input_html: { maxlength: 1000 } %>
+    <%= f.input :short_description, input_html: { maxlength: 200 } %>
+    <%= f.input :long_description, input_html: { maxlength: 1000 } %>
     <%= f.input :contact_name %>
     <%= f.input :contact_email %>
     <%= f.input :contact_phone %>
     <%= f.input :website %>
+    <%= f.input :street_address %>
+    <%= f.input :suburb %>
+    <%= f.input :state, collection: ['NSW', 'ACT', 'VIC', 'QLD', 'SA', 'NT', 'TAS'] %>
+    <%= f.input :postcode %>
 
 
-      <% if @listing.listing_type == 'job' ||  params[:listing_type] == 'job' %>
+    <% if @listing.listing_type == 'job' ||  params[:listing_type] == 'job' %><!-- testing value for editing a job or for a new job  -->
       <div class="taglines"><p>Set the dates for job application opening and closing.</p></div>
       <%= f.input :start_time, as: :string, input_html: { class: 'datetimepicker'} %>
       <%= f.input :end_time, as: :string, input_html: { class: 'datetimepicker'} %>
-      <!-- testing value for a new job or for editing a job -->
         <%= f.input :job_category, collection: [ 'Accounting',
   'Administration Office Support',
   'Advertising, Arts & Media',
@@ -63,38 +66,56 @@
   'Trades and Services' ] %>
       <%= f.input :job_type, collection: ['full time', 'part time', 'casual'] %>
       <%= f.input :salary, label: 'Salary Range', collection: ['up to $30K', '$30K - $40K', '$40K - $50K', '$50K - $60K', '$60K - $70K', '$70K - $80K', '$80K - $90K', '$90K - $100K', '$100K - $120K', '$120K - $150K', '$150K - $200K', 'Hourly rates'] %>
-    <% else %> <!-- else if it's event or program -->
+
+    <% else %> <!-- else if it's an event or a program -->
+
     <%= f.input :start_time, as: :string, input_html: { class: 'datetimepicker'} %>
     <%= f.input :end_time, as: :string, input_html: { class: 'datetimepicker'} %>
+
       <p>Choose Audiences:</p>
-      <% if @listing.audiences.any? %>
-        <% @audiences.each do |audience| %><!-- go through the audiences list if you edit an existing event or program-->
-          <input class="" type="checkbox" value="<%= audience.id %>" name="listing[audience_ids][]" id="listing_audience_ids_<%= audience.id %>" <%= @listing.audiences.include?(audience) ? 'checked' : '' %> /> <!-- if the audience has been selected, it will have a tickmark -->
+      <% if (@listing.new_record?) %><!-- if the listing is never been recorded in database (new) -->
+        <% @audiences.each do |audience| %><!-- check all the audiences items -->
+          <input class="" type="checkbox" value="<%= audience.id %>" name="listing[audience_ids][]" id="listing_audience_ids_<%= audience.id %>" checked />
           <label for="listing_audience_ids_<%= audience.id %>"><%= audience.name %></label>
+          <% if audience.name == "highschool" %>
+            <div class="taglines"><p>Mentoring, Development, Pre-Tertiary programs and Winter and Summer schools.</p></div>
+          <% elsif audience.name == "undergraduate" %>
+            <div class="taglines"><p>Direct Access: ATAR and OP, Indirect Access: Pathway, Enabling, Admissions, Preparatory and Bridging programs.</p></div>
+          <% elsif audience.name == "postgraduate" %>
+            <div class="taglines"><p>Masters, Honours and PhD programs.</p></div>
+          <% elsif audience.name == "employment" %>
+            <div class="taglines"><p>Internships, Cadetships, Traineeships and Jobs.</p></div>
+          <% elsif audience.name == "community" %>
+            <div class="taglines"><p>Aboriginal and Torres Strait Islander peoples and organisations.</p></div>
+          <% end %>
           <br>
-        <% end %>
-        <input type="hidden" name="listing[audience_ids][]" value="" />
+        <% end %><!-- end of loop -->
+          <input type="hidden" name="listing[audience_ids][]" value="" /><!-- this is for when a box is unchecked, it will leave value '' (empty) must have this -->
       <% else %>
-        <% Audience.all.each do |audience| %><!-- go through the Audience class if you create a brand new event or program -->
-          <input class="" type="checkbox" value="<%= audience.id %>" name="listing[audience_ids][]" id="listing_audience_ids_<%= audience.id %>"  />
+      <!-- if the listing is already from the database -->
+        <% @audiences.each do |audience| %><!-- go through the audiences list and checked the ones already included -->
+          <input class="" type="checkbox" value="<%= audience.id %>" name="listing[audience_ids][]" id="listing_audience_ids_<%= audience.id %>" <%= @listing.audiences.include?(audience) ? 'checked' : '' %> /> <!-- if the audience has been selected, it will be checked -->
           <label for="listing_audience_ids_<%= audience.id %>"><%= audience.name %></label>
           <br>
-        <% end %>
-        <input type="hidden" name="listing[audience_ids][]" value="" />
+        <% end %><!-- end of loop -->
+        <input type="hidden" name="listing[audience_ids][]" value="" /><!-- this is for when a box is unchecked, it will leave value '' (empty) must have this -->
       <% end %>
 
-      <%= f.input :occurrence %>
-      <%= f.input :location %>
-      <%= f.input :ticket_required, label: 'Ticket Required?', collection: ['yes', 'no'] %>
+      <% if @listing.listing_type == 'event' ||  params[:listing_type] == 'event' %><!-- testing value for editing a job or for a new job  -->
+        <%= f.input :ticket_required, label: 'Ticket Required?', collection: ['Tickets Essential', 'Bookings Essential', 'No Booking Required'] %>
+        <%= f.input :ticket_website %>
+      <% elsif @listing.listing_type == 'program' ||  params[:listing_type] == 'program' %>
+        <%= f.input :ticket_required, label: 'Ticket Required?', collection: ['Tickets Essential', 'Bookings Essential', 'No Booking Required', 'Applications Open', 'Applications Closing Soon'] %>
+        <%= f.input :ticket_website %>
+      <% end %>
       <%= f.input :official_hastag %>
       <%= f.input :facebook_url %>
-      <%= f.input :google_plus_url %>
-      <%= f.input :twitter_username %>
-      <%= f.input :instagram_username %>
-    <% end %>
+      <%= f.input :twitter_handle %>
+      <%= f.input :instagram_handle %>
+    <% end %><!-- end of testing value for editing a job or for a new job  -->
   </div>
 
   <div class="form-actions">
     <%= f.button :submit %>
   </div>
-<% end %>
+<% end %><!-- end of simple form -->

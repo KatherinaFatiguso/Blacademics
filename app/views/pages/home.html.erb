@@ -1,13 +1,60 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="container">
+  <div class ="front-image">
+    <%= image_tag("young-people-sitting-on-grass.jpg") %>
+  </div>
+</div>
 
-<% if user_signed_in? %>
-  <% if (current_user.has_role? :student) %>
-    I'm a student
-  <% elsif (current_user.has_role? :organisation) %>
-  I'm an org
-  <% end %>
-<% else %>
-  <p><%= link_to 'Sign up as a Student', new_user_registration_path(user_type: 'student'), class: 'btn btn-primary' %></p>
-  <p><%= link_to 'Sign up as an Organisation', new_user_registration_path(user_type: 'organisation'), class: 'btn btn-primary' %></p>
-<% end %>
+  <div class="row">
+    <div class="col s4">
+      <div class="text-center"><h5>Events</h5></div>
+        <div class="col s12">
+          <% count_event = 0 %>
+          <% Listing.event_type.each do |event|%>
+            <% if count_event <= 3 %>
+              <div class="card">
+                <div class="card-content blue-grey-text">
+                  <span class="card-title blue-grey-text text-darken-2"><%=event.title%></span>
+                  <p><%=event.short_description%></p>
+                </div>
+                <div class="card-action">
+                  <a href="/listings/<%=event.id%>">Show </a>
+                </div>
+              </div>
+              <% count_event += 1 %>
+              <% end %>
+          <% end %>
+        </div>
+    </div>
+    <div class="col s4">
+      <div class="text-center"><h5>Programs</h5></div>
+        <div class="col s12">
+          <% Listing.program_type.each do |program|%>
+          <div class="card">
+            <div class="card-content blue-grey-text">
+              <span class="card-title blue-grey-text text-darken-2"><%=program.title%></span>
+              <p><%=program.short_description%></p>
+            </div>
+            <div class="card-action">
+              <a href="/listings/<%=program.id%>">Show </a>
+            </div>
+          </div>
+          <% end %>
+        </div>
+    </div>
+    <div class="col s4">
+      <div class="text-center"><h5>Jobs</h5></div>
+        <div class="col s12">
+          <% Listing.job_type.each do |job|%>
+          <div class="card">
+            <div class="card-content blue-grey-text">
+              <span class="card-title blue-grey-text text-darken-2"><%=job.title%></span>
+              <p><%=job.short_description%></p>
+            </div>
+            <div class="card-action">
+              <a href="/listings/<%=job.id%>">Show </a>
+            </div>
+          </div>
+          <% end %>
+        </div>
+    </div>
+  </div><!-- end of row -->

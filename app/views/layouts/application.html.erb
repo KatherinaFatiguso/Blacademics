@@ -16,36 +16,28 @@
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
-    </head>
+</head>
 <body>
 
-<%= render 'layouts/navbar' %>
-<% if user_signed_in? %>
-	<%= render 'layouts/sidebar' %>
-<% end %>
-<main class="container">
-  <%= yield %>
-</main>
-<script>
-$(document).ready(function() {
-    $('select').material_select();
-		$('.button-collapse').sideNav({
-			menuWidth: 300, // Default is 240
-			edge: 'right', // Choose the horizontal origin
-			closeOnClick: true // Closes side-nav on <a> clicks, useful for Angular/Meteor
-		});
-		$(".dropdown-button").dropdown();
-		$('.datetimepicker').datetimepicker({
-		  format:'d M Y H:i'
-		});
+	<%= render 'layouts/navbar' %>
+	<div class="container">
+  	<%= yield %>
+	</div>
+	<script>
+	$(document).ready(function() {
+	    $('select').material_select();
+			$('.button-collapse').sideNav({
+				menuWidth: 300, // Default is 240
+				edge: 'right', // Choose the horizontal origin
+				closeOnClick: true // Closes side-nav on <a> clicks, useful for Angular/Meteor
+			});
+			$(".dropdown-button").dropdown();
+			$('.datetimepicker').datetimepicker({
+			  format:'d M Y H:i'
+			});
 
-  });
-
-
-
-</script>
+	  });
+	</script>
 </body>
-
-
 
 </html>
