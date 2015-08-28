@@ -4,6 +4,10 @@
     <%= render 'form' %>
     <%= link_to 'Show', @listing %> |
     <%= link_to 'Back', listings_path %>
+  <% elsif current_user.has_role? :admin %>
+    <%= render 'form' %>
+    <%= link_to 'Show', @listing %> |
+    <%= link_to 'Back to Admin', pages_admin_path %>
   <% else %>
     <%= render 'forbidden' %>
   <% end %>

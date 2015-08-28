@@ -6,6 +6,10 @@ class Listing < ActiveRecord::Base
   scope :program_type,->{ where(listing_type: 'program') }
   scope :event_type,->{ where(listing_type: 'event') }
   scope :job_type,->{ where(listing_type: 'job') }
+  scope :draft,->{ where(status: 'draft') }
+  scope :approved,->{ where(status: 'approved') }
+  scope :expired,->{ where(status: 'expired') }
+
 
   validate :start_time_cannot_be_empty
   validate :end_time_cannot_be_empty

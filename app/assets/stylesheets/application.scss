@@ -31,6 +31,10 @@ header, main, footer {
   font-style: italic;
   color: #ed0e0e;
 }
+.okaymsg{
+  font-style: italic;
+  color: blue;
+}
 .material-icons {
   font-family: 'Material Icons';
   font-weight: normal;
@@ -58,10 +62,9 @@ header, main, footer {
 
 
 .front-image{
-  background-size: 300px;
-  background-position: center;
-  background-size: cover;
+  background-position: right;
   background-repeat: no-repeat;
+
 
 }
 

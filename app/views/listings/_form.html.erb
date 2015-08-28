@@ -20,6 +20,9 @@
     <%= f.input :title %>
     <%= f.input :short_description, input_html: { maxlength: 200 } %>
     <%= f.input :long_description, input_html: { maxlength: 1000 } %>
+    <% if @listing.listing_type == 'job' ||  params[:listing_type] == 'job' %><!-- please keep job company_name in this position, do not move.  -->
+      <%= f.input :company_name %>
+    <% end %>
     <%= f.input :contact_name %>
     <%= f.input :contact_email %>
     <%= f.input :contact_phone %>
@@ -31,11 +34,9 @@
 
 
     <% if @listing.listing_type == 'job' ||  params[:listing_type] == 'job' %><!-- testing value for editing a job or for a new job  -->
-      <%= f.input :company_name %>
-      <div class="taglines"><p>Set the dates for job application opening and closing.</p></div>
       <% if @listing.start_time.present? %>
-        <%= f.input :start_time, as: :string, input_html: { class: 'datetimepicker', value: localize(f.object.start_time, :format => "%d/%m/%Y  %I:%m %p %Z")} %>
-        <%= f.input :end_time, as: :string, input_html: { class: 'datetimepicker', value: localize(f.object.end_time, :format => "%d/%m/%Y  %I:%m %p %Z")} %>
+        <%= f.input :start_time, as: :string, label: 'Job Application Open Time:', input_html: { class: 'datetimepicker', value: localize(f.object.start_time, :format => "%d/%m/%Y  %I:%m %p")} %>
+        <%= f.input :end_time, as: :string, label: 'Job Application Closing Time:', input_html: { class: 'datetimepicker', value: localize(f.object.end_time, :format => "%d/%m/%Y  %I:%m %p")} %>
       <% else %>
         <%= f.input :start_time, as: :string, input_html: { class: 'datetimepicker'} %>
         <%= f.input :end_time, as: :string, input_html: { class: 'datetimepicker'} %>
@@ -76,8 +77,8 @@
     <% else %> <!-- else if it's an event or a program -->
 
     <% if @listing.start_time.present? %>
-      <%= f.input :start_time, as: :string, input_html: { class: 'datetimepicker', value: localize(f.object.start_time, :format => "%d/%m/%Y  %I:%m %p %Z")} %>
-      <%= f.input :end_time, as: :string, input_html: { class: 'datetimepicker', value: localize(f.object.end_time, :format => "%d/%m/%Y  %I:%m %p %Z")} %>
+      <%= f.input :start_time, as: :string, input_html: { class: 'datetimepicker', value: localize(f.object.start_time, :format => "%d/%m/%Y  %I:%m %p")} %>
+      <%= f.input :end_time, as: :string, input_html: { class: 'datetimepicker', value: localize(f.object.end_time, :format => "%d/%m/%Y  %I:%m %p")} %>
     <% else %>
       <%= f.input :start_time, as: :string, input_html: { class: 'datetimepicker'} %>
       <%= f.input :end_time, as: :string, input_html: { class: 'datetimepicker'} %>
@@ -122,8 +123,12 @@
       <%= f.input :facebook_url %>
       <%= f.input :twitter_handle %>
       <%= f.input :instagram_handle %>
+
     <% end %><!-- end of testing value for editing a job or for a new job  -->
   </div>
+  <% if current_user.has_role? :admin %>
+    <%= f.input :status, collection: ['draft', 'approved', 'expired']%>
+  <% end %>
 
   <div class="form-actions">
     <%= f.button :submit %>

@@ -1,4 +1,5 @@
 <p id="notice"><%= notice %></p>
+<% @listing.impressionist_count(:filter=>:session_hash, :unique=>true) %>
 
 <p>
   <strong>Listing Type:</strong>
@@ -16,12 +17,12 @@
   <strong>Long Description:</strong>
   <%= @listing.long_description %>
 </p>
-<p>
-  <strong>Audiences:</strong>
-  <% @listing.audiences.each do |audience| %>
-    <a class="btn-flat btn-disabled"><%= audience.name %></a>
-  <% end %>
-</p>
+<% if @listing.listing_type == 'job' %>
+  <p>
+    <strong>Company Name:</strong>
+    <%= @listing.company_name %>
+  </p>
+<% end %>
 <p>
   <strong>Contact Name:</strong>
   <%= @listing.contact_name %>
@@ -56,20 +57,30 @@
 </p>
 <% if @listing.listing_type == 'event' || @listing.listing_type == 'program' %>
   <p>
+    <strong>Audiences:</strong>
+    <% @listing.audiences.each do |audience| %>
+      <a class="btn-flat btn-disabled"><%= audience.name %></a>
+    <% end %>
+  </p>
+  <p>
     <strong>Start time:</strong>
     <% if @listing.start_time %>
-      <%= @listing.start_time.localtime.strftime("%A, %d %b %Y %l:%M %p %Z") %>
+      <%= @listing.start_time.strftime("%A, %d %b %Y %l:%M %p") %>
     <% end %>
   </p>
   <p>
     <strong>End time:</strong>
     <% if @listing.end_time %>
-        <%= @listing.end_time.localtime.strftime("%A, %d %b %Y %l:%M %p %Z") %>
+        <%= @listing.end_time.strftime("%A, %d %b %Y %l:%M %p") %>
       <% end %>
   </p>
   <p>
     <strong>Ticket required?</strong>
     <%= @listing.ticket_required %>
+  </p>
+  <p>
+    <strong>Ticket Website (if booking is necessary):</strong>
+    <%= @listing.ticket_website %>
   </p>
   <p>
     <strong>Official hastag:</strong>
@@ -86,13 +97,18 @@
     <strong>Instagram Handle:</strong>
     <%= @listing.instagram_handle %>
   </p>
-  <% else %><!-- else if listing type is job -->
+<% else %><!-- else if listing type is job -->
   <p>
-    <strong>Date:</strong>
+    <strong>Application Open Date:</strong>
+    <%= @listing.start_time.strftime("%A, %d %b %Y %l:%M %p") %>
+  </p>
+  <p>
+    <strong>Application Closing Date:</strong>
+    <%= @listing.end_time.strftime("%A, %d %b %Y %l:%M %p") %>
     <% if Date.today < (@listing.end_time) %>
-      <%= Date.today.strftime("%A, %d %b %Y %l:%M %p") %>
+      <div class="taglines"><a class="btn disabled"><i class="material-icons right">lock_open</i>This job vacancy is still open.</a></div>
     <% else %>
-      <div class="taglines">This job vacancy has ended.</div>
+      <div class="taglines"><a class="btn disabled"><i class="material-icons right">lock_closed</i>This job vacancy is closed.</a></div>
     <% end %>
   </p>
 <p>
@@ -111,11 +127,16 @@
     <strong>Organiser:</strong>
     <%= @listing.organisation.company_name %>
   </p>
-  <% end %> <!-- end of unless if it's a job type -->
+<% end %> <!-- end of unless if it's a job type -->
 
   <% if user_signed_in? %>
     <% if @listing.organisation.user == current_user %>
-      <p><strong>Number of Views: </strong><%= @listing.impressionist_count(:filter=>:session_hash)%></p>
+      <p><strong>Number of Views: </strong><%= @listing.impressions_count%></p>
       <%= link_to 'Edit', edit_listing_path(@listing) %>
+    <% elsif current_user.has_role? :admin %>
+      <p><strong>Listing Status: <div class='errormsg'><%= @listing.status %></div></strong></p>
+      <p><strong>Number of Views: </strong><%= @listing.impressions_count%></p>
+      <%= link_to 'Edit', edit_listing_path(@listing) %> |
+      <%= link_to 'Back to Admin', pages_admin_path %>
     <% end %>
   <% end %>

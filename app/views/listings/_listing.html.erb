@@ -1,13 +1,14 @@
-<div class="card"><div class="card-content">
-  <%= link_to listing.title, listing %>
-  <p><%= listing.short_description %></p>
-</div>
-<div class="card-action">
-  <%= link_to 'Edit', edit_listing_path(listing), class: 'btn' %>
-  <% if listing.audiences.any? %>
-    <div class="taglines"><p>Can't delete this listing if an audience is still attached to it.</p></div>
-  <% else %>
-    <%= link_to 'Delete', listing_path(listing), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-destroy' %>
-  <% end %>
-</div>
+<div class="card">
+  <div class="card-content">
+    <%= link_to listing.title, listing %>
+    <p><%= listing.short_description %></p>
+  </div>
+  <div class="card-action">
+    <%= link_to 'Edit', edit_listing_path(listing), class: 'btn' %>
+    <!-- <% if listing.audiences.any? %>
+      <div class="taglines"><p>Can't delete this listing if an audience is still attached to it.</p></div>
+    <% else %>
+      <%= link_to 'Delete', listing_path(listing), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-destroy' %>
+    <% end %> -->
+  </div>
 </div>

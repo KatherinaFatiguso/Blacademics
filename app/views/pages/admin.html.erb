@@ -1,2 +1,42 @@
-<h1>Pages#admin</h1>
-<p>Find me in app/views/pages/admin.html.erb</p>
+<% unless user_signed_in? %>
+  <li><%= link_to "Sign in", new_user_session_path %></li>
+<% end %>
+
+<h1>Admin Pages</h1>
+
+<h3>Events</h3>
+<ul class="collapsible" data-collapsible="accordion">
+  <li>
+    <div class="collapsible-header"><i class="material-icons">subject</i>Draft</div>
+    <div class="collapsible-body">
+      <br>
+      <% Listing.draft.each do |listing| %>
+        <p><strong><%= link_to listing.title, listing_path(listing) %></strong><br>
+          <%= listing.organisation.company_name %><br>
+          <%= listing.short_description %></p>
+      <% end %>
+    </div><!-- end of collapsible-body -->
+  </li>
+  <li>
+    <div class="collapsible-header"><i class="material-icons">check</i>Approved</div>
+    <div class="collapsible-body">
+      <br>
+      <% Listing.approved.each do |listing| %>
+        <p><strong><%= link_to listing.title, listing_path(listing) %></strong><br>
+          <%= listing.organisation.company_name %><br>
+          <%= listing.short_description %></p>
+      <% end %>
+    </div><!-- end of collapsible-body -->
+  </li>
+  <li>
+    <div class="collapsible-header"><i class="material-icons">archive</i>Expired</div>
+    <div class="collapsible-body">
+      <br>
+      <% Listing.expired.each do |listing| %>
+        <p><strong><%= link_to listing.title, listing_path(listing) %></strong><br>
+          <%= listing.organisation.company_name %><br>
+          <%= listing.short_description %></p>
+      <% end %>
+    </div><!-- end of collapsible-body -->
+  </li>
+</ul>
