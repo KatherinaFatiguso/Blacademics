@@ -85,7 +85,7 @@
     <% end %>
       <p>Choose Audiences:</p>
       <% if (@listing.new_record?) %><!-- if the listing is never been recorded in database (new) -->
-        <% @audiences.each do |audience| %><!-- check all the audiences items -->
+        <% @listing.audiences.each do |audience| %><!-- check all the audiences items -->
           <input class="" type="checkbox" value="<%= audience.id %>" name="listing[audience_ids][]" id="listing_audience_ids_<%= audience.id %>" checked />
           <label for="listing_audience_ids_<%= audience.id %>"><%= audience.name %></label>
           <% if audience.name == "highschool" %>
@@ -112,12 +112,12 @@
         <input type="hidden" name="listing[audience_ids][]" value="" /><!-- this is for when a box is unchecked, it will leave value '' (empty) must have this -->
       <% end %>
 
-      <% if @listing.listing_type == 'event' ||  params[:listing_type] == 'event' %><!-- testing value for editing a job or for a new job  -->
+      <% if @listing.listing_type == 'event' ||  params[:listing_type] == 'event' %>
         <%= f.input :ticket_required, label: 'Ticket Required?', collection: ['Tickets Essential', 'Bookings Essential', 'No Booking Required'] %>
-        <%= f.input :ticket_website %>
+        <%= f.input :ticket_website, label: 'Website to Book Tickets (if required):' %>
       <% elsif @listing.listing_type == 'program' ||  params[:listing_type] == 'program' %>
         <%= f.input :ticket_required, label: 'Ticket Required?', collection: ['Tickets Essential', 'Bookings Essential', 'No Booking Required', 'Applications Open', 'Applications Closing Soon'] %>
-        <%= f.input :ticket_website %>
+        <%= f.input :ticket_website, label: 'Website to Book Tickets (if required):' %>
       <% end %>
       <%= f.input :official_hastag %>
       <%= f.input :facebook_url %>

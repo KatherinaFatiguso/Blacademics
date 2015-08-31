@@ -20,10 +20,15 @@ class ListingsController < ApplicationController
   def new
     if params[:listing_type] && params[:org]
       @listing = Listing.new
+      @audiences = Audience.all
+      @audiences.each do |audience|
+        @listing.audiences << audience
+      end
+
     else
       redirect_to organisation_path(current_user.organisation)
     end
-    @audiences = Audience.all
+
   end
 
   # GET /listings/1/edit

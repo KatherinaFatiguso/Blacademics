@@ -1,42 +1,76 @@
-<% unless user_signed_in? %>
-  <li><%= link_to "Sign in", new_user_session_path %></li>
-<% end %>
-
-<h1>Admin Pages</h1>
-
-<h3>Events</h3>
-<ul class="collapsible" data-collapsible="accordion">
-  <li>
-    <div class="collapsible-header"><i class="material-icons">subject</i>Draft</div>
-    <div class="collapsible-body">
-      <br>
-      <% Listing.draft.each do |listing| %>
-        <p><strong><%= link_to listing.title, listing_path(listing) %></strong><br>
-          <%= listing.organisation.company_name %><br>
-          <%= listing.short_description %></p>
-      <% end %>
-    </div><!-- end of collapsible-body -->
-  </li>
-  <li>
-    <div class="collapsible-header"><i class="material-icons">check</i>Approved</div>
-    <div class="collapsible-body">
-      <br>
-      <% Listing.approved.each do |listing| %>
-        <p><strong><%= link_to listing.title, listing_path(listing) %></strong><br>
-          <%= listing.organisation.company_name %><br>
-          <%= listing.short_description %></p>
-      <% end %>
-    </div><!-- end of collapsible-body -->
-  </li>
-  <li>
-    <div class="collapsible-header"><i class="material-icons">archive</i>Expired</div>
-    <div class="collapsible-body">
-      <br>
-      <% Listing.expired.each do |listing| %>
-        <p><strong><%= link_to listing.title, listing_path(listing) %></strong><br>
-          <%= listing.organisation.company_name %><br>
-          <%= listing.short_description %></p>
-      <% end %>
-    </div><!-- end of collapsible-body -->
-  </li>
-</ul>
+<% if user_signed_in? %>
+  <% if current_user.has_role? :admin%>
+    <h1>Admin Pages</h1>
+    <h3>Events</h3>
+    <ul class="collapsible" data-collapsible="accordion">
+      <li>
+        <div class="collapsible-header"><i class="material-icons">subject</i>Draft</div>
+        <div class="collapsible-body">
+          <ul class="pagination">
+            <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+            <li class="active"><a href="#!">1</a></li>
+            <li class="waves-effect"><a href="#!">2</a></li>
+            <li class="waves-effect"><a href="#!">3</a></li>
+            <li class="waves-effect"><a href="#!">4</a></li>
+            <li class="waves-effect"><a href="#!">5</a></li>
+            <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+          </ul>
+          <br>
+          <% Listing.all.each do |listing| %>
+            <!-- <% if listing.listing_type == 'event' %> -->
+              <p><strong><%= link_to listing.title, listing_path(listing) %></strong><br>
+                <%= listing.organisation.company_name %><br>
+                <%= listing.short_description %></p>
+            <!-- <% end %> -->
+          <% end %><!-- end loop -->
+        </div><!-- end of collapsible-body -->
+      </li>
+      <li>
+        <div class="collapsible-header"><i class="material-icons">check</i>Approved</div>
+        <div class="collapsible-body">
+          <ul class="pagination">
+            <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+            <li class="active"><a href="#!">1</a></li>
+            <li class="waves-effect"><a href="#!">2</a></li>
+            <li class="waves-effect"><a href="#!">3</a></li>
+            <li class="waves-effect"><a href="#!">4</a></li>
+            <li class="waves-effect"><a href="#!">5</a></li>
+            <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+          </ul>
+          <br>
+          <% Listing.approved.each do |listing| %>
+            <!-- <% if listing.listing_type == 'event' %> -->
+              <p><strong><%= link_to listing.title, listing_path(listing) %></strong><br>
+                <%= listing.organisation.company_name %><br>
+                <%= listing.short_description %></p>
+            <!-- <% end %> -->
+          <% end %><!-- end loop -->
+        </div><!-- end of collapsible-body -->
+      </li>
+      <li>
+        <div class="collapsible-header"><i class="material-icons">archive</i>Expired</div>
+        <div class="collapsible-body">
+          <ul class="pagination">
+            <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+            <li class="active"><a href="#!">1</a></li>
+            <li class="waves-effect"><a href="#!">2</a></li>
+            <li class="waves-effect"><a href="#!">3</a></li>
+            <li class="waves-effect"><a href="#!">4</a></li>
+            <li class="waves-effect"><a href="#!">5</a></li>
+            <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+          </ul>
+          <br>
+          <% Listing.expired.each do |listing| %>
+            <!-- <% if listing.listing_type == 'event' %> -->
+              <p><strong><%= link_to listing.title, listing_path(listing) %></strong><br>
+                <%= listing.organisation.company_name %><br>
+                <%= listing.short_description %></p>
+            <!-- <% end %> -->
+          <% end %><!-- end loop -->
+        </div><!-- end of collapsible-body -->
+      </li>
+    </ul>
+  <% else %>
+    <%= link_to 'Return to Home Page', pages_home_url %><!-- DON'T LIKE THIS, PREFER REDIRECT BUT DOESN'T WORK -->
+  <% end %><!-- end of checking if the user has admin role -->
+<% end %> <!-- end of checking if the user has signed-in -->
