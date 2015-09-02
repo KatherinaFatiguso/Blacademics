@@ -1,10 +1,24 @@
+
 <div class="card">
+  <div class="card-image">
+    <%= image_tag(listing.image_url, width:100) %>
+  </div>
   <div class="card-content">
-    <%= link_to listing.title, listing %>
+    <p><%= link_to listing.title, listing %> (Listing ID: <%= listing.id %>)</p>
     <p><%= listing.short_description %></p>
   </div>
   <div class="card-action">
-    <%= link_to 'Edit', edit_listing_path(listing), class: 'btn' %>
+    <% unless current_page?(root_path) %>
+      <% if user_signed_in? %>
+        <% if listing.organisation.user == current_user %>
+          <%= link_to 'Edit', edit_listing_path(listing), class: 'btn' %>
+        <% end %>
+        <% if current_user.has_role? :admin %>
+          <%= link_to 'Edit', edit_listing_path(listing), class: 'btn' %>
+        <% end %>
+      <% end %><!-- end if user signed in -->
+    <% end %><!-- end if current page is root path -->
+    <!-- DO NOT USE THE BLOCK OF LINES BELOW -->
     <!-- <% if listing.audiences.any? %>
       <div class="taglines"><p>Can't delete this listing if an audience is still attached to it.</p></div>
     <% else %>

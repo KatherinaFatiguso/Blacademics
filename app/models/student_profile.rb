@@ -1,4 +1,5 @@
 class StudentProfile < ActiveRecord::Base
+  # include Cloudinary::CarrierWave
   belongs_to :user
   has_many :university_educations
   accepts_nested_attributes_for :university_educations, :allow_destroy => true

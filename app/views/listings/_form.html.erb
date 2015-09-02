@@ -35,11 +35,11 @@
 
     <% if @listing.listing_type == 'job' ||  params[:listing_type] == 'job' %><!-- testing value for editing a job or for a new job  -->
       <% if @listing.start_time.present? %>
-        <%= f.input :start_time, as: :string, label: 'Job Application Open Time:', input_html: { class: 'datetimepicker', value: localize(f.object.start_time, :format => "%d/%m/%Y  %I:%m %p")} %>
-        <%= f.input :end_time, as: :string, label: 'Job Application Closing Time:', input_html: { class: 'datetimepicker', value: localize(f.object.end_time, :format => "%d/%m/%Y  %I:%m %p")} %>
+        <%= f.input :start_time, as: :string, label: 'Job Application Open Time (AEST):', input_html: { class: 'datetimepicker', value: localize(f.object.start_time, :format => "%d/%m/%Y  %I:%m %p")} %>
+        <%= f.input :end_time, as: :string, label: 'Job Application Closing Time (AEST):', input_html: { class: 'datetimepicker', value: localize(f.object.end_time, :format => "%d/%m/%Y  %I:%m %p")} %>
       <% else %>
-        <%= f.input :start_time, as: :string, input_html: { class: 'datetimepicker'} %>
-        <%= f.input :end_time, as: :string, input_html: { class: 'datetimepicker'} %>
+        <%= f.input :start_time, as: :string, label: 'Job Application Open Time (AEST):', input_html: { class: 'datetimepicker'} %>
+        <%= f.input :end_time, as: :string, label: 'Job Application Closing Time (AEST):', input_html: { class: 'datetimepicker'} %>
       <% end %>
         <%= f.input :job_category, collection: ['full time', 'part time', 'casual', 'internship'] %>
       <%= f.input :job_type, collection: [ 'Accounting',
@@ -77,11 +77,11 @@
     <% else %> <!-- else if it's an event or a program -->
 
     <% if @listing.start_time.present? %>
-      <%= f.input :start_time, as: :string, input_html: { class: 'datetimepicker', value: localize(f.object.start_time, :format => "%d/%m/%Y  %I:%m %p")} %>
-      <%= f.input :end_time, as: :string, input_html: { class: 'datetimepicker', value: localize(f.object.end_time, :format => "%d/%m/%Y  %I:%m %p")} %>
+      <%= f.input :start_time, as: :string, label: 'Start Time (AEST):', input_html: { class: 'datetimepicker', value: localize(f.object.start_time, :format => "%d/%m/%Y  %I:%m %p")} %>
+      <%= f.input :end_time, as: :string, label: 'End Time (AEST):', input_html: { class: 'datetimepicker', value: localize(f.object.end_time, :format => "%d/%m/%Y  %I:%m %p")} %>
     <% else %>
-      <%= f.input :start_time, as: :string, input_html: { class: 'datetimepicker'} %>
-      <%= f.input :end_time, as: :string, input_html: { class: 'datetimepicker'} %>
+      <%= f.input :start_time, as: :string, label: 'Start Time (AEST):', input_html: { class: 'datetimepicker'} %>
+      <%= f.input :end_time, as: :string, label: 'End Time (AEST):', input_html: { class: 'datetimepicker'} %>
     <% end %>
       <p>Choose Audiences:</p>
       <% if (@listing.new_record?) %><!-- if the listing is never been recorded in database (new) -->
@@ -104,7 +104,7 @@
           <input type="hidden" name="listing[audience_ids][]" value="" /><!-- this is for when a box is unchecked, it will leave value '' (empty) must have this -->
       <% else %>
       <!-- if the listing is already from the database -->
-        <% @audiences.each do |audience| %><!-- go through the audiences list and checked the ones already included -->
+        <% @listing.audiences.each do |audience| %><!-- go through the audiences list and checked the ones already included -->
           <input class="" type="checkbox" value="<%= audience.id %>" name="listing[audience_ids][]" id="listing_audience_ids_<%= audience.id %>" <%= @listing.audiences.include?(audience) ? 'checked' : '' %> /> <!-- if the audience has been selected, it will be checked -->
           <label for="listing_audience_ids_<%= audience.id %>"><%= audience.name %></label>
           <br>
@@ -123,12 +123,17 @@
       <%= f.input :facebook_url %>
       <%= f.input :twitter_handle %>
       <%= f.input :instagram_handle %>
-
+      <%= f.input :image %>
     <% end %><!-- end of testing value for editing a job or for a new job  -->
+    <% if current_user.has_role? :admin %>
+      <% if @listing.expired_at.present? %>
+        <%= f.input :expired_at, as: :string, label: 'Expired At (AEST):', input_html: { class: 'datetimepicker', value: localize(f.object.start_time, :format => "%d/%m/%Y  %I:%m %p")} %>
+      <% else %>
+        <%= f.input :expired_at, as: :string, label: 'Expired At (AEST):', input_html: { class: 'datetimepicker'} %>
+      <% end %>
+      <%= f.input :status, collection: ['draft', 'approved', 'archived']%>
+    <% end %>
   </div>
-  <% if current_user.has_role? :admin %>
-    <%= f.input :status, collection: ['draft', 'approved', 'expired']%>
-  <% end %>
 
   <div class="form-actions">
     <%= f.button :submit %>

@@ -15,9 +15,10 @@ Rails.application.routes.draw do
   get 'contact', to: 'pages#contact'
   root 'pages#home'
   get 'pages/home'
-
   get 'pages/admin'
-
+  get 'pages/events'
+  get 'pages/programs'
+  get 'pages/jobs'
   get 'pages/contact'
 
   devise_for :users

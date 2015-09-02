@@ -1,34 +1,27 @@
-<h1>Listing Organisation</h1>
+<% if user_signed_in? %>
+  <% if current_user.has_role? :admin%>
+    <%= render 'layouts/sidebar' %>
+    <div class='margin-left'>
+    <h3>Listing of Organisations</h3>
+      <table class="bordered responsive-table">
+        <tr>
+          <th>Company Name</th>
+          <th>Department</th>
+          <th>Phone</th>
+          <th>Website</th>
+            <th colspan="3"></th>
+        </tr>
 
-<table class="table">
-    <tr>
-      <th>Company Name</th>
-      <th>Department</th>
-      <th>Phone</th>
-      <th>Website</th>
-        <th colspan="3"></th>
-    </tr>
-
-  <%= content_tag_for(:tr, @organisations) do |organisation| %>
-  <tr>
-    <td><p><%= organisation.company_name %></p></td>
-    <td><p><%= organisation.department %></p></td>
-    <td><%= organisation.contact_phone %></td>
-    <td><%= organisation.website %></td>
-  </tr>
-</table>
-    <%= link_to 'Show', organisation, class: 'btn btn-show' %>
-    <%= link_to 'Edit', edit_organisation_path(organisation), class: 'btn btn-edit' %>
-    <% if organisation.listings.any? %>
-      <div class="taglines"><p>Can not delete Organisation Profile if it has a listing associated with it.</p></div>
-    <% else %>
-      <%= link_to 'Delete', organisation, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-destroy' %>
-    <% end %>
-  <% end %>
-
-
-<% if current_user.organisation.nil? %>
-  <div class="form-actions">
-    <%= link_to 'New Organisation', new_organisation_path, class: 'btn btn-success' %>
-  </div>
-<% end %>
+        <%= content_tag_for(:tr, @organisations) do |organisation| %>
+          <tr>
+            <td><p><a href="/organisations/<%=organisation.id%>"><%= organisation.company_name %></a></p></td>
+            <td><p><a href="/organisations/<%=organisation.id%>"><%= organisation.department %></a></p></td>
+            <td><p><%= organisation.contact_phone %></p></td>
+            <td><p><%= organisation.website %></p></td>
+            <td><%= link_to 'Edit', edit_organisation_path(organisation), class: 'btn btn-edit' %></td>
+          </tr>
+        <% end %> <!-- end of loop -->
+      </table>
+    </div>
+  <% end %><!-- end if user has role admin -->
+<% end %><!-- end if user has signed in -->

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150827131612) do
+ActiveRecord::Schema.define(version: 20150902041241) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -195,6 +195,8 @@ ActiveRecord::Schema.define(version: 20150827131612) do
     t.integer  "impressions_count", default: 0
     t.string   "company_name"
     t.string   "ticket_website"
+    t.string   "image"
+    t.datetime "expired_at"
   end
 
   add_index "listings", ["organisation_id"], name: "index_listings_on_organisation_id", using: :btree

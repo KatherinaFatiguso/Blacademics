@@ -88,6 +88,15 @@ class ListingsController < ApplicationController
   	redirect_to :back
   end
 
+  def draft_events
+    @listings = Listing.all
+  end
+
+  # def expired
+  #   if @listing.expired
+  #     @listing.status = 'expired'
+  #   end
+  # end
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -97,6 +106,6 @@ class ListingsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def listing_params
-      params.require(:listing).permit(:listing_type, :title, :short_description, :long_description, :contact_name, :contact_email, :contact_phone, :website, :start_time, :end_time, :ticket_required, :official_hastag, :facebook_url, :twitter_handle, :instagram_handle, :job_category, :job_type, :salary, :organisation_id, :street_address, :suburb, :state, :postcode, :status, :impressions_count, :company_name, :ticket_website, :audience_ids => [])
+      params.require(:listing).permit(:image, :listing_type, :title, :short_description, :long_description, :contact_name, :contact_email, :contact_phone, :website, :start_time, :end_time, :ticket_required, :official_hastag, :facebook_url, :twitter_handle, :instagram_handle, :job_category, :job_type, :salary, :organisation_id, :street_address, :suburb, :state, :postcode, :status, :impressions_count, :company_name, :ticket_website, :expired_at, :audience_ids => [])
     end
 end

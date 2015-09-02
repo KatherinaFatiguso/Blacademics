@@ -1,27 +1,25 @@
 <h3>My Listings</h3>
 
 <h5>Events</h5>
-  <% if @events.any? %>
+  <% if @events.organisation.any? %>
     <%= render @events %> <!-- render @events will call the _listing.html.erb -->
   <% else %>
     <div class="taglines"><p>Currently no event listed</p></div>
   <% end %>
 
 <h5>Programs</h5>
-  <% if @programs.any? %>
+  <% if @programs.organisation.any? %>
     <%= render @programs %>
   <% else %>
     <div class="taglines"><p>Currently no program listed</p></div>
   <% end %>
 
 <h5>Jobs</h5>
-<% if @jobs.any? %>
+<% if @jobs.organisation.any? %>
   <%= render @jobs %>
 <% else %>
   <div class="taglines"><p>Currently no job listed</p></div>
 <% end %>
-
-
 
 <div class="form-actions">
   <%= link_to 'New Listing', new_listing_path, class: 'btn btn-success' %>

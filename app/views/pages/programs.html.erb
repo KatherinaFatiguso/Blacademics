@@ -1,0 +1,16 @@
+<% if user_signed_in? %>
+  <% if current_user.has_role? :admin%>
+    <%= render 'layouts/sidebar' %>
+      <div class='margin-left'>
+        <h3>Listing of Programs</h3>
+        <%= link_to 'Draft', pages_programs_path(filter: 'draft'), class: "waves-effect waves-light btn" %>
+        <%= link_to 'Approved', pages_programs_path(filter: 'approved'), class: "waves-effect waves-light btn" %>
+        <%= link_to 'Expired', pages_programs_path(filter: 'expired'), class: "waves-effect waves-light btn" %>
+        <%= link_to 'Archived', pages_programs_path(filter: 'archived'), class: "waves-effect waves-light btn" %>
+        <%= link_to 'All', pages_programs_path(filter: 'all'), class: "waves-effect waves-light btn" %>
+        <%= paginate @programs %>
+          <%= render @programs %>
+        <%= paginate @programs %>
+      </div>
+  <% end %>
+<% end %>

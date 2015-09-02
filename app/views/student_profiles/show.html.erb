@@ -19,7 +19,7 @@
         <p>Resume name:  <%= @student_profile.resume_url %></p>
         <p><%= link_to 'Download Resume', @student_profile.resume_url %>
       <% end %>
-      <p><%= link_to "Edit Profile", edit_student_profile_path(@student_profile) %></p>
+      <p><%= link_to "Edit Profile", edit_student_profile_path(@student_profile), class: "btn" %></p>
       <br>
 
       <div class="border-top">
@@ -56,7 +56,7 @@
             </tr>
           </table>
         <% end %>
-        <p><%= link_to "Add Education", new_university_education_path(student_profile_id: @student_profile.id) %><p>
+        <p><%= link_to "Add Education", new_university_education_path(student_profile_id: @student_profile.id), class: "btn" %><p>
         <br>
 
       <div class="border-top">
@@ -86,7 +86,7 @@
             </tr>
           </table>
         <% end %>
-        <p><%= link_to "Add Scholarship", new_scholarship_path(student_profile_id: @student_profile.id) %></p>
+        <p><%= link_to "Add Scholarship", new_scholarship_path(student_profile_id: @student_profile.id), class: "btn" %></p>
         <br>
 
       <div class="border-top">
@@ -115,7 +115,7 @@
             </tr>
           </table>
         <% end %>
-        <p><%= link_to "Add Award", new_award_path(student_profile_id: @student_profile.id) %></p>
+        <p><%= link_to "Add Award", new_award_path(student_profile_id: @student_profile.id), class: "btn" %></p>
         <br>
 
       <div class="border-top">
@@ -148,7 +148,7 @@
             </tr>
           </table>
         <% end %>
-        <p><%= link_to "Add Internship", new_internship_path(student_profile_id: @student_profile.id) %></p>
+        <p><%= link_to "Add Internship", new_internship_path(student_profile_id: @student_profile.id), class: "btn" %></p>
         <br>
 
       <div class="border-top">
@@ -181,7 +181,7 @@
             </tr>
           </table>
         <% end %>
-        <p><%= link_to "Add Cadetship", new_cadetship_path(student_profile_id: @student_profile.id) %></p>
+        <p><%= link_to "Add Cadetship", new_cadetship_path(student_profile_id: @student_profile.id), class: "btn" %></p>
         <br>
 
       <div class="border-top">
@@ -214,7 +214,7 @@
             </tr>
           </table>
         <% end %>
-        <p><%= link_to "Add Employment", new_employment_path(student_profile_id: @student_profile.id) %></p>
+        <p><%= link_to "Add Employment", new_employment_path(student_profile_id: @student_profile.id), class: "btn" %></p>
         <br>
 
       <div class="border-top">
@@ -226,7 +226,7 @@
             <br>
         <% end %>
         <% if count < 40 %><!-- max 40 skills -->
-          <%= link_to "Add Skill", new_skill_path(student_profile_id: @student_profile.id) %>
+          <%= link_to "Add Skill", new_skill_path(student_profile_id: @student_profile.id), class: "btn" %>
         <% end %>
         <br><br>
 

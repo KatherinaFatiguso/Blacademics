@@ -9,7 +9,8 @@ class Listing < ActiveRecord::Base
   scope :draft,->{ where(status: 'draft') }
   scope :approved,->{ where(status: 'approved') }
   scope :expired,->{ where(status: 'expired') }
-
+  scope :archived,->{ where(status: 'archived') }
+  scope :expires,->{where("expired_at < ?", Date.today)}
 
   validate :start_time_cannot_be_empty
   validate :end_time_cannot_be_empty
@@ -17,12 +18,24 @@ class Listing < ActiveRecord::Base
   validate :end_time_cannot_be_in_the_past
   validate :end_time_must_be_greater_than_start_time
 
+  mount_uploader :image, ProfilePicUploader
+
 
   validates_presence_of :audiences, unless: :is_job_listing
   # audiences must be present only for listing type of event and program, but not for job
   # see http://guides.rubyonrails.org/active_record_validations.html#conditional-validation
 
   is_impressionable :counter_cache => true, :unique => :request_hash
+
+  def self.newly_expired_listings
+    where('expired_at < ? && status != ?', Date.today, 'expired')
+  end
+
+  def self.check_for_expired_listings
+    newly_expired_listings.each do |listing|
+      listing.update_attributes(status: 'expired')
+    end
+  end
 
   def is_job_listing
     listing_type == 'job'
@@ -47,4 +60,10 @@ class Listing < ActiveRecord::Base
   def end_time_must_be_greater_than_start_time
     errors.add(:end_time, "must be after the start time") if end_time.present? && start_time.present? && end_time < start_time
   end
+
+  def is_expired?
+    status == 'expired'
+  end
+
+
 end

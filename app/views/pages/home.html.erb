@@ -6,53 +6,19 @@
     <div class="col s4">
       <div class="text-center"><h5>Events</h5></div>
         <div class="col s12">
-          <% count_event = 0 %>
-          <% Listing.event_type.each do |event|%>
-            <% if count_event <= 3 %>
-              <div class="card">
-                <div class="card-content blue-grey-text">
-                  <span class="card-title blue-grey-text text-darken-2"><%=event.title%></span>
-                  <p><%=event.short_description%></p>
-                </div>
-                <div class="card-action">
-                  <a href="/listings/<%=event.id%>">Show </a>
-                </div>
-              </div>
-              <% count_event += 1 %>
-              <% end %>
-          <% end %>
+          <%= render @events %>
         </div>
     </div>
     <div class="col s4">
       <div class="text-center"><h5>Programs</h5></div>
         <div class="col s12">
-          <% Listing.program_type.each do |program|%>
-          <div class="card">
-            <div class="card-content blue-grey-text">
-              <span class="card-title blue-grey-text text-darken-2"><%=program.title%></span>
-              <p><%=program.short_description%></p>
-            </div>
-            <div class="card-action">
-              <a href="/listings/<%=program.id%>">Show </a>
-            </div>
-          </div>
-          <% end %>
+          <%= render @programs %>
         </div>
     </div>
     <div class="col s4">
       <div class="text-center"><h5>Jobs</h5></div>
         <div class="col s12">
-          <% Listing.job_type.each do |job|%>
-          <div class="card">
-            <div class="card-content blue-grey-text">
-              <span class="card-title blue-grey-text text-darken-2"><%=job.title%></span>
-              <p><%=job.short_description%></p>
-            </div>
-            <div class="card-action">
-              <a href="/listings/<%=job.id%>">Show </a>
-            </div>
-          </div>
-          <% end %>
+          <%= render @jobs %>
         </div>
     </div>
   </div><!-- end of row -->

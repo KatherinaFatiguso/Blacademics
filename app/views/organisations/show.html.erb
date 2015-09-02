@@ -58,30 +58,30 @@
       </div>
     </div>
   </div>
+
   <div class="col s6">
     <div class="card">
       <div class="card-content">
         <h4>My listings</h4>
-
         <h5>Events</h5>
-          <% if @events %>
-            <%= render @events %> <!-- this will call the _listing.html.erb from listings view -->
+          <% if @organisation.listings.event_type.any? %>
+            <%= render @organisation.listings.event_type %> <!-- this will call the _listing.html.erb from listings view -->
           <% else %>
             <p>Currently no jobs listed</p>
           <% end %>
           <%= link_to 'Add Event', new_listing_path(org: @organisation.id, listing_type: 'event'), class: 'btn btn-sml-success' %>
 
         <h5>Programs</h5>
-          <% if @programs %>
-            <%= render @programs %>
+          <% if @organisation.listings.program_type.any? %>
+            <%= render @organisation.listings.program_type %>
           <% else %>
             <p>Currently no programs listed</p>
           <% end %>
           <%= link_to 'Add Program', new_listing_path(org: @organisation.id, listing_type: 'program'), class: 'btn btn-sml-success' %>
 
         <h5>Jobs</h5>
-          <% if @jobs %>
-            <%= render @jobs %>
+          <% if @organisation.listings.job_type.any? %>
+            <%= render @organisation.listings.job_type %>
           <% else %>
             <p>Currently no jobs listed</p>
           <% end %>

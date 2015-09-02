@@ -139,3 +139,16 @@ skill: "Tutoring university students",
 student_profile_id: student1.id
 )
 =end
+
+(1..100).each do |i|
+  Listing.create!(
+    listing_type: "event",
+    title: "Lipsum Post #{i}",
+    short_description: "This is an example of listing #{i}",
+    long_description: "Nullam hendrerit iaculis sodales. Curabitur varius nibh arcu, id molestie nibh fermentum vitae. Cras quis semper dui. Cras porttitor urna sit amet risus vehicula tempor. Maecenas quis tempor ligula. Donec et nibh eu leo volutpat placerat. Fusce vulputate elit in nisi pretium, vel fermentum mi fermentum. Mauris scelerisque, lectus non luctus ultricies, urna eros tincidunt risus, at varius sapien diam id erat.",
+    start_time: "2015-09-01 09:00:00",
+    end_time: "2015-09-02 16:00:00",
+    organisation_id: '12',
+    :audiences => Audience.all
+  )
+end

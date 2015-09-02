@@ -1,7 +1,8 @@
 # encoding: utf-8
 
-class OrgLogoUploader < CarrierWave::Uploader::Base
+class ImageUploader < CarrierWave::Uploader::Base
   include Cloudinary::CarrierWave 
+
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
   # include CarrierWave::MiniMagick

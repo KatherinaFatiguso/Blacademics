@@ -10,10 +10,6 @@ class OrganisationsController < ApplicationController
   # GET /organisations/1
   # GET /organisations/1.json
   def show
-    @listings = current_user.organisation.listings
-    @events = @listings.event_type
-    @jobs = @listings.job_type
-    @programs = @listings.program_type
   end
 
   # GET /organisations/new

@@ -1,9 +1,13 @@
 <p id="notice"><%= notice %></p>
 <% @listing.impressionist_count(:filter=>:session_hash, :unique=>true) %>
-
+<%= image_tag(@listing.image_url, size: "300") %>
 <p>
   <strong>Listing Type:</strong>
   <%= @listing.listing_type %>
+</p>
+<p>
+  <strong>Listing ID:</strong>
+  <%= @listing.id %>
 </p>
 <p>
   <strong>Title:</strong>
@@ -63,13 +67,13 @@
     <% end %>
   </p>
   <p>
-    <strong>Start time:</strong>
+    <strong>Start time (AEST):</strong>
     <% if @listing.start_time %>
       <%= @listing.start_time.strftime("%A, %d %b %Y %l:%M %p") %>
     <% end %>
   </p>
   <p>
-    <strong>End time:</strong>
+    <strong>End time (AEST):</strong>
     <% if @listing.end_time %>
         <%= @listing.end_time.strftime("%A, %d %b %Y %l:%M %p") %>
       <% end %>
@@ -99,11 +103,11 @@
   </p>
 <% else %><!-- else if listing type is job -->
   <p>
-    <strong>Application Open Date:</strong>
+    <strong>Application Open Date (AEST):</strong>
     <%= @listing.start_time.strftime("%A, %d %b %Y %l:%M %p") %>
   </p>
   <p>
-    <strong>Application Closing Date:</strong>
+    <strong>Application Closing Date (AEST):</strong>
     <%= @listing.end_time.strftime("%A, %d %b %Y %l:%M %p") %>
     <% if Date.today < (@listing.end_time) %>
       <div class="taglines"><a class="btn disabled"><i class="material-icons right">lock_open</i>This job vacancy is still open.</a></div>
@@ -134,7 +138,15 @@
       <p><strong>Number of Views: </strong><%= @listing.impressions_count%></p>
       <%= link_to 'Edit', edit_listing_path(@listing) %>
     <% elsif current_user.has_role? :admin %>
-      <p><strong>Listing Status: <div class='errormsg'><%= @listing.status %></div></strong></p>
+      <p><strong>Listing Expired At: </strong>
+        <div class='errormsg'><%= @listing.expired_at.strftime("%A, %d %b %Y %l:%M %p") %></div>
+      </p>
+      <p><strong>Listing Status: </strong>
+        <% if @listing.is_expired? %>
+          <% @listing.status = "expired" %>
+        <% end %>
+        <div class='errormsg'><%= @listing.status %></div>
+      </p>
       <p><strong>Number of Views: </strong><%= @listing.impressions_count%></p>
       <%= link_to 'Edit', edit_listing_path(@listing) %> |
       <%= link_to 'Back to Admin', pages_admin_path %>
