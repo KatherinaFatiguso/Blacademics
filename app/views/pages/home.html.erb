@@ -4,21 +4,38 @@
 
   <div class="row">
     <div class="col s4">
-      <div class="text-center"><h5>Events</h5></div>
+      <div class="text-center"><h4>Events</h4></div>
         <div class="col s12">
           <%= render @events %>
+          <h5><%= link_to "More Events", pages_approved_events_path %></h5>
         </div>
     </div>
     <div class="col s4">
-      <div class="text-center"><h5>Programs</h5></div>
+      <div class="text-center"><h4>Programs</h4></div>
         <div class="col s12">
           <%= render @programs %>
+          <h5><%= link_to "More Programs", pages_approved_programs_path %></h5>
         </div>
     </div>
     <div class="col s4">
-      <div class="text-center"><h5>Jobs</h5></div>
+      <div class="text-center"><h4>Jobs</h4></div>
         <div class="col s12">
           <%= render @jobs %>
+          <h5><%= link_to "More Jobs", pages_approved_jobs_path %></h5>
         </div>
+    </div>
+  </div><!-- end of row -->
+
+  <div class="row">
+    <div class="col s12">
+      <p class="center">Watch Video</p>
+      <div class="video"></div>
+    </div>
+  </div><!-- end of row -->
+
+  <div class="row">
+    <div class="col s12">
+      <p class="center">Major Universities in Australia</p>
+      <div class="center"><iframe src="https://www.google.com/maps/d/embed?mid=znuiI5BoaB3Y.k2iICEN7PcFE" width="900"  height="500"></iframe></div>
     </div>
   </div><!-- end of row -->

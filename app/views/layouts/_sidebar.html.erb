@@ -1,6 +1,7 @@
 <!-- DO NOT USE SIDEBAR -->
  <ul id="slide-out" class="side-nav fixed">
   <% if current_user.has_role? :admin %>
+    <li></li>
     <li><a href="/pages/admin"><i class="left medium material-icons">perm_identity</i>Admin</a></li>
     <li><a href="/pages/events"><i class="left medium material-icons">event_note</i>Events</a></li>
     <li><a href="/pages/programs"><i class="left medium material-icons">assignment</i>Programs</a></li>

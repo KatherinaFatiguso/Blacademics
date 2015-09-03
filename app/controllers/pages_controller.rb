@@ -55,4 +55,14 @@ class PagesController < ApplicationController
 
   def contact
   end
+
+  def approved_events
+    @events = Listing.event_type.approved
+  end
+  def approved_programs
+    @programs = Listing.program_type.approved
+  end
+  def approved_jobs
+    @jobs = Listing.job_type.approved
+  end
 end
