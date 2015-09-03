@@ -8,9 +8,14 @@
           <%= link_to 'Expired', pages_events_path(filter: 'expired'), class: "waves-effect waves-light btn" %>
           <%= link_to 'Archived', pages_events_path(filter: 'archived'), class: "waves-effect waves-light btn" %>
           <%= link_to 'All', pages_events_path, class: "waves-effect waves-light btn" %>
-        <%= paginate @events %>
-          <%= render @events %>
-        <%= paginate @events %>
+          <div class="row">
+            <div class="col s8">
+              <%= paginate @events %>
+                <%= render @events %>
+              <%= paginate @events %>
+            </div>
+          </div>
+
       </div>
   <% end %>
 <% end %>

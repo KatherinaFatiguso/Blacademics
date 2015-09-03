@@ -27,14 +27,15 @@ class Listing < ActiveRecord::Base
 
   is_impressionable :counter_cache => true, :unique => :request_hash
 
-  def self.newly_expired_listings
-    where('expired_at < ? && status != ?', Date.today, 'expired')
-  end
-
   def self.check_for_expired_listings
     newly_expired_listings.each do |listing|
       listing.update_attributes(status: 'expired')
+      listing.save!
     end
+  end
+
+  def self.newly_expired_listings
+    where('expired_at < ? AND status != ?', Date.today, 'expired')
   end
 
   def is_job_listing

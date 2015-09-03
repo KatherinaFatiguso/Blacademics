@@ -13,7 +13,7 @@ class PagesController < ApplicationController
 
   def events
     if params[:filter] == 'draft'
-      @events = Listing.event_type.draft.page(params[:page]).per(2)
+      @events = Listing.event_type.draft.page(params[:page]).per(10)
     elsif params[:filter] == 'approved'
       @events = Listing.event_type.approved.page(params[:page]).per(10)
     elsif params[:filter] == 'expired'

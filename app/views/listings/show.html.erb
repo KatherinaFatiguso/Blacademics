@@ -139,7 +139,9 @@
       <%= link_to 'Edit', edit_listing_path(@listing) %>
     <% elsif current_user.has_role? :admin %>
       <p><strong>Listing Expired At: </strong>
-        <div class='errormsg'><%= @listing.expired_at.strftime("%A, %d %b %Y %l:%M %p") %></div>
+        <% if @listing.expired_at %>
+          <div class='errormsg'><%= @listing.expired_at.strftime("%A, %d %b %Y %l:%M %p") %></div>
+        <% end %>
       </p>
       <p><strong>Listing Status: </strong>
         <% if @listing.is_expired? %>
@@ -151,4 +153,8 @@
       <%= link_to 'Edit', edit_listing_path(@listing) %> |
       <%= link_to 'Back to Admin', pages_admin_path %>
     <% end %>
+  <% end %>
+
+  <% Listing.check_for_expired_listings.each do |e| %>
+  <%= e.id %>
   <% end %>

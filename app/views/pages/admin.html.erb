@@ -3,29 +3,42 @@
   <%= render 'layouts/sidebar' %>
   <div class='margin-left'>
     <h3>Admin Pages</h3>
-    <ul>
       <p>
-        <li>Total Draft Events: <%= Listing.event_type.draft.count %></li>
-        <li>Total Approved Events: <%= Listing.event_type.approved.count %></li>
-        <li>Total Expired Events: <%= Listing.event_type.expired.count %></li>
-        <li>Total Archived Events: <%= Listing.event_type.archived.count %></li>
+        <ul>
+          <li><strong>Events</strong></li>
+          <ol>
+            <li>Drafts: <%= Listing.event_type.draft.count %></li>
+            <li>Approved: <%= Listing.event_type.approved.count %></li>
+            <li>Expired: <%= Listing.event_type.expired.count %></li>
+            <li>Archived: <%= Listing.event_type.archived.count %></li>
+          </ol>
+        </ul>
       </p>
 
       <p>
-        <li>Total Draft Programs: <%= Listing.program_type.draft.count %></li>
-        <li>Total Approved Programs: <%= Listing.program_type.approved.count %></li>
-        <li>Total Expired Programs: <%= Listing.program_type.expired.count %></li>
-        <li>Total Archived Programs: <%= Listing.program_type.archived.count %></li>
+        <ul>
+          <li><strong>Programs</strong></li>
+          <ol>
+            <li>Draft: <%= Listing.program_type.draft.count %></li>
+            <li>Approved: <%= Listing.program_type.approved.count %></li>
+            <li>Expired: <%= Listing.program_type.expired.count %></li>
+            <li>Archived: <%= Listing.program_type.archived.count %></li>
+          </ol>
+        </ul>
       </p>
-        <p>
-        <li>Total Draft Jobs: <%= Listing.job_type.draft.count %></li>
-        <li>Total Approved Jobs: <%= Listing.job_type.approved.count %></li>
-        <li>Total Expired Jobs: <%= Listing.job_type.expired.count %></li>
-        <li>Total Archived Jobs: <%= Listing.job_type.archived.count %></li>
+      <p>
+        <ul>
+          <li><strong>Jobs</strong></li>
+        <ol>
+          <li>Draft: <%= Listing.job_type.draft.count %></li>
+          <li>Approved: <%= Listing.job_type.approved.count %></li>
+          <li>Expired: <%= Listing.job_type.expired.count %></li>
+          <li>Archived: <%= Listing.job_type.archived.count %></li>
+        </ol>
+        </ul>
       </p>
-      <p>Total Organisations: <%= Organisation.count %></p>
-      <p>Total Students: <%= StudentProfile.count %></p>
-    </ul>
+      <p><strong>Organisations: </strong><%= Organisation.count %></p>
+      <p><strong>Students: </strong><%= StudentProfile.count %></p>
   </div>
   <% else %>
     <br>

@@ -97,6 +97,9 @@ class ListingsController < ApplicationController
   #     @listing.status = 'expired'
   #   end
   # end
+  def newly_expired_listings
+    where('expired_at > ? && status != ?', Date.today, 'expired')
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.

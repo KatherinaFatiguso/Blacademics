@@ -8,9 +8,13 @@
         <%= link_to 'Expired', pages_programs_path(filter: 'expired'), class: "waves-effect waves-light btn" %>
         <%= link_to 'Archived', pages_programs_path(filter: 'archived'), class: "waves-effect waves-light btn" %>
         <%= link_to 'All', pages_programs_path(filter: 'all'), class: "waves-effect waves-light btn" %>
-        <%= paginate @programs %>
-          <%= render @programs %>
-        <%= paginate @programs %>
+        <div class="row">
+          <div class="col s8">
+            <%= paginate @programs %>
+              <%= render @programs %>
+            <%= paginate @programs %>
+          </div>
+        </div>
       </div>
   <% end %>
 <% end %>

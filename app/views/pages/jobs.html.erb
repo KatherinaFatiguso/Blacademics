@@ -8,9 +8,13 @@
         <%= link_to 'Expired', pages_jobs_path(filter: 'expired'), class: "waves-effect waves-light btn" %>
         <%= link_to 'Archived', pages_jobs_path(filter: 'archived'), class: "waves-effect waves-light btn" %>
         <%= link_to 'All', pages_jobs_path(filter: 'all'), class: "waves-effect waves-light btn" %>
-        <%= paginate @jobs %>
-          <%= render @jobs %>
-        <%= paginate @jobs %>
+        <div class="row">
+          <div class="col s8">
+            <%= paginate @jobs %>
+              <%= render @jobs %>
+            <%= paginate @jobs %>
+          </div>
+        </div>
       </div>
   <% end %>
 <% end %>
