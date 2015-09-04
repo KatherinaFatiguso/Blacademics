@@ -62,9 +62,7 @@ class Listing < ActiveRecord::Base
     errors.add(:end_time, "must be after the start time") if end_time.present? && start_time.present? && end_time < start_time
   end
 
-  def is_expired?
-    status == 'expired'
+  def self.search(search)
+    where("suburb ILIKE ? OR state ILIKE ? OR postcode ILIKE ?", "%#{search}%", "%#{search}%", "%#{search}%")
   end
-
-
 end

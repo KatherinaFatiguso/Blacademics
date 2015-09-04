@@ -31,7 +31,7 @@
     <%= f.input :suburb %>
     <%= f.input :state, collection: ['NSW', 'ACT', 'VIC', 'QLD', 'SA', 'NT', 'TAS'] %>
     <%= f.input :postcode %>
-
+    <%= f.input :image, label: 'Image or Company Logo:' %><br>
 
     <% if @listing.listing_type == 'job' ||  params[:listing_type] == 'job' %><!-- testing value for editing a job or for a new job  -->
       <% if @listing.start_time.present? %>
@@ -75,42 +75,40 @@
       <%= f.input :salary, label: 'Salary Range', collection: ['up to $30K', '$30K - $40K', '$40K - $50K', '$50K - $60K', '$60K - $70K', '$70K - $80K', '$80K - $90K', '$90K - $100K', '$100K - $120K', '$120K - $150K', '$150K - $200K', 'Hourly rates'] %>
 
     <% else %> <!-- else if it's an event or a program -->
-
-    <% if @listing.start_time.present? %>
-      <%= f.input :start_time, as: :string, label: 'Start Time (AEST):', input_html: { class: 'datetimepicker', value: localize(f.object.start_time, :format => "%d/%m/%Y  %I:%m %p")} %>
-      <%= f.input :end_time, as: :string, label: 'End Time (AEST):', input_html: { class: 'datetimepicker', value: localize(f.object.end_time, :format => "%d/%m/%Y  %I:%m %p")} %>
-    <% else %>
-      <%= f.input :start_time, as: :string, label: 'Start Time (AEST):', input_html: { class: 'datetimepicker'} %>
-      <%= f.input :end_time, as: :string, label: 'End Time (AEST):', input_html: { class: 'datetimepicker'} %>
-    <% end %>
-      <p>Choose Audiences:</p>
-      <% if (@listing.new_record?) %><!-- if the listing is never been recorded in database (new) -->
-        <% @listing.audiences.each do |audience| %><!-- check all the audiences items -->
-          <input class="" type="checkbox" value="<%= audience.id %>" name="listing[audience_ids][]" id="listing_audience_ids_<%= audience.id %>" checked />
-          <label for="listing_audience_ids_<%= audience.id %>"><%= audience.name %></label>
-          <% if audience.name == "highschool" %>
-            <div class="taglines"><p>Mentoring, Development, Pre-Tertiary programs and Winter and Summer schools.</p></div>
-          <% elsif audience.name == "undergraduate" %>
-            <div class="taglines"><p>Direct Access: ATAR and OP, Indirect Access: Pathway, Enabling, Admissions, Preparatory and Bridging programs.</p></div>
-          <% elsif audience.name == "postgraduate" %>
-            <div class="taglines"><p>Masters, Honours and PhD programs.</p></div>
-          <% elsif audience.name == "employment" %>
-            <div class="taglines"><p>Internships, Cadetships, Traineeships and Jobs.</p></div>
-          <% elsif audience.name == "community" %>
-            <div class="taglines"><p>Aboriginal and Torres Strait Islander peoples and organisations.</p></div>
-          <% end %>
-          <br>
-        <% end %><!-- end of loop -->
-          <input type="hidden" name="listing[audience_ids][]" value="" /><!-- this is for when a box is unchecked, it will leave value '' (empty) must have this -->
+      <% if @listing.start_time.present? %>
+        <%= f.input :start_time, as: :string, label: 'Start Time (AEST):', input_html: { class: 'datetimepicker', value: localize(f.object.start_time, :format => "%d/%m/%Y  %I:%m %p")} %>
+        <%= f.input :end_time, as: :string, label: 'End Time (AEST):', input_html: { class: 'datetimepicker', value: localize(f.object.end_time, :format => "%d/%m/%Y  %I:%m %p")} %>
       <% else %>
-      <!-- if the listing is already from the database -->
-        <% @listing.audiences.each do |audience| %><!-- go through the audiences list and checked the ones already included -->
-          <input class="" type="checkbox" value="<%= audience.id %>" name="listing[audience_ids][]" id="listing_audience_ids_<%= audience.id %>" <%= @listing.audiences.include?(audience) ? 'checked' : '' %> /> <!-- if the audience has been selected, it will be checked -->
-          <label for="listing_audience_ids_<%= audience.id %>"><%= audience.name %></label>
-          <br>
-        <% end %><!-- end of loop -->
-        <input type="hidden" name="listing[audience_ids][]" value="" /><!-- this is for when a box is unchecked, it will leave value '' (empty) must have this -->
+        <%= f.input :start_time, as: :string, label: 'Start Time (AEST):', input_html: { class: 'datetimepicker'} %>
+        <%= f.input :end_time, as: :string, label: 'End Time (AEST):', input_html: { class: 'datetimepicker'} %>
       <% end %>
+        <p>Choose Audiences:</p> <!-- only for events and programs, but not for jobs -->
+          <% if (@listing.new_record?) %><!-- if the listing is never been recorded in database (new) -->
+            <% @listing.audiences.each do |audience| %><!-- check all the audiences items -->
+              <input class="" type="checkbox" value="<%= audience.id %>" name="listing[audience_ids][]" id="listing_audience_ids_<%= audience.id %>" checked />
+              <label for="listing_audience_ids_<%= audience.id %>"><%= audience.name %></label>
+              <% if audience.name == "highschool" %>
+                <div class="taglines"><p>Mentoring, Development, Pre-Tertiary programs and Winter and Summer schools.</p></div>
+              <% elsif audience.name == "undergraduate" %>
+                <div class="taglines"><p>Direct Access: ATAR and OP, Indirect Access: Pathway, Enabling, Admissions, Preparatory and Bridging programs.</p></div>
+              <% elsif audience.name == "postgraduate" %>
+                <div class="taglines"><p>Masters, Honours and PhD programs.</p></div>
+              <% elsif audience.name == "employment" %>
+                <div class="taglines"><p>Internships, Cadetships, Traineeships and Jobs.</p></div>
+              <% elsif audience.name == "community" %>
+                <div class="taglines"><p>Aboriginal and Torres Strait Islander peoples and organisations.</p></div>
+              <% end %>
+              <br>
+            <% end %><!-- end of loop -->
+              <input type="hidden" name="listing[audience_ids][]" value="" /><!-- this is for when a box is unchecked, it will leave value '' (empty) must have this -->
+          <% else %> <!-- if the listing is already from the database (not new record) -->
+            <% @listing.audiences.each do |audience| %><!-- go through the audiences list and checked the ones already included -->
+              <input class="" type="checkbox" value="<%= audience.id %>" name="listing[audience_ids][]" id="listing_audience_ids_<%= audience.id %>" <%= @listing.audiences.include?(audience) ? 'checked' : '' %> /> <!-- if the audience has been selected, it will be checked -->
+              <label for="listing_audience_ids_<%= audience.id %>"><%= audience.name %></label>
+              <br>
+            <% end %><!-- end of loop -->
+            <input type="hidden" name="listing[audience_ids][]" value="" /><!-- this is for when a box is unchecked, it will leave value '' (empty) must have this -->
+          <% end %><!-- end choose audiences -->
 
       <% if @listing.listing_type == 'event' ||  params[:listing_type] == 'event' %>
         <%= f.input :ticket_required, label: 'Ticket Required?', collection: ['Tickets Essential', 'Bookings Essential', 'No Booking Required'] %>

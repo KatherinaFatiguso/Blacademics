@@ -1,11 +1,23 @@
 @import "materialize/components/color";
-$primary-color: color("blue", "lighten-2") !default;
+<!-- original colour setting, commented out -->
+// $primary-color: color("blue", "lighten-2") !default;
+
+// $primary-color:white;
+
+$font-stack:    Helvetica, sans-serif;
+$primary-color: #333;
+
+body {
+  font: 100% $font-stack;
+  color: $primary-color;
+}
+
 @import 'materialize';
 @import 'datetimepicker';
 #logo{
   width: 100px;
   height: 100px;
-  background: blue;
+  background: white;
 }
 header, main, footer {
     padding-left: 240px;
@@ -85,5 +97,19 @@ header, main, footer {
   width: 600px;
   height: 400px;
   background: blue;
+}
 
+.info_graphic{
+  margin: 0 auto;
+  width: 1000px;
+  height: 600px;
+  background: blue;
+}
+
+.content_boxes{
+  margin: 0 auto;
+  width: 330px;
+  height: 300px;
+  background: blue;
+  margin-bottom: 10px;
 }

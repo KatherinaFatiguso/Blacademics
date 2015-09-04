@@ -1,2 +1,14 @@
 <h3>All Jobs</h3>
-<%= render @jobs %>
+<%= form_tag(pages_approved_jobs_path, :method => "get", id: "search-form") do %>
+  <%= text_field_tag :search, params[:search], placeholder: "Search State or Suburb or Postcode"%>
+  <%= submit_tag "Search" %>
+<% end %>
+<div class="row">
+  <div class="col s6">
+    <% if @jobs.present? %>
+      <%= render @jobs %>
+    <% else %>
+      <p>There are no listings located in <%= params[:search] %>.</p>
+    <% end %>
+  </div>
+</div>

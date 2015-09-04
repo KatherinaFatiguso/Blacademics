@@ -58,11 +58,26 @@ class PagesController < ApplicationController
 
   def approved_events
     @events = Listing.event_type.approved
+    if params[:search]
+      @events = Listing.event_type.approved.search(params[:search]).order("created_at DESC")
+    else
+      @events = Listing.event_type.approved.order("created_at DESC")
+    end
   end
   def approved_programs
     @programs = Listing.program_type.approved
+    if params[:search]
+      @programs = Listing.program_type.approved.search(params[:search]).order("created_at DESC")
+    else
+      @programs = Listing.program_type.approved.order("created_at DESC")
+    end
   end
   def approved_jobs
     @jobs = Listing.job_type.approved
+    if params[:search]
+      @jobs = Listing.job_type.approved.search(params[:search]).order("created_at DESC")
+    else
+      @jobs = Listing.job_type.approved.order("created_at DESC")
+    end
   end
 end

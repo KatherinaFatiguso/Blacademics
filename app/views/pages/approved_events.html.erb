@@ -1,2 +1,14 @@
 <h3>All Events</h3>
-<%= render @events %>
+<%= form_tag(pages_approved_events_path, :method => "get", id: "search-form") do %>
+  <%= text_field_tag :search, params[:search], placeholder: "Search State or Suburb or Postcode"%>
+  <%= submit_tag "Search" %>
+<% end %>
+<div class="row">
+  <div class="col s6">
+    <% if @events.present? %>
+      <%= render @events %>
+    <% else %>
+      <p>There are no listings located in <%= params[:search] %>.</p>
+    <% end %>
+  </div>
+</div>

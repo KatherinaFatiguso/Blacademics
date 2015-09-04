@@ -92,11 +92,6 @@ class ListingsController < ApplicationController
     @listings = Listing.all
   end
 
-  # def expired
-  #   if @listing.expired
-  #     @listing.status = 'expired'
-  #   end
-  # end
   def newly_expired_listings
     where('expired_at > ? && status != ?', Date.today, 'expired')
   end

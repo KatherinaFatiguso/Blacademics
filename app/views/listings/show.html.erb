@@ -144,9 +144,6 @@
         <% end %>
       </p>
       <p><strong>Listing Status: </strong>
-        <% if @listing.is_expired? %>
-          <% @listing.status = "expired" %>
-        <% end %>
         <div class='errormsg'><%= @listing.status %></div>
       </p>
       <p><strong>Number of Views: </strong><%= @listing.impressions_count%></p>
