@@ -1,11 +1,18 @@
 @import "materialize/components/color";
-<!-- original colour setting, commented out -->
-// $primary-color: color("blue", "lighten-2") !default;
+// $primary-color: color("#33691e", "lighten-2") !default;
 
-// $primary-color:white;
+// $primary-color: blue;
 
-$font-stack:    Helvetica, sans-serif;
-$primary-color: #333;
+
+$font-stack:    Helvetica, sans-serif, #000000;
+$primary-color: #000000 !default;
+
+.nav-wrapper ul a{
+  color: #000000;
+}
+.nav-mobile ul a{
+  color: #000000;
+}
 
 body {
   font: 100% $font-stack;
@@ -74,10 +81,9 @@ header, main, footer {
 
 
 .front-image{
-  background-position: right;
+  background-position: center;
   background-repeat: no-repeat;
-
-
+  margin: 0 auto;
 }
 
 .text-center{
@@ -86,10 +92,6 @@ header, main, footer {
 
 .grey-text{
   color: #424242;
-}
-
-.margin-left{
-  margin-left: 80px;
 }
 
 .video{
@@ -112,4 +114,51 @@ header, main, footer {
   height: 300px;
   background: blue;
   margin-bottom: 10px;
+}
+
+.palette1{
+  color: #d4e8d0;
+}
+.palette1-bg{
+  background-color: #d4e8d0;
+}
+.palette2{
+  color: #fff180;
+}
+.palette2-bg{
+  background-color: #fff180;
+}
+.palette3{
+  color: #dfeef6;
+}
+.palette3-bg{
+  background-color: #dfeef6;
+}
+.palette4{
+  color: #00a2b4;
+}
+.palette4-bg{
+  background-color: #00a2b4;
+}
+.palette5{
+  color: #e64630;
+}
+.palette5-bg{
+  background-color: #e64630;
+}
+.palette6{
+  color: #000000;
+}
+.palette6-bg{
+  background-color: #000000;
+}
+.white-text{
+  color: #ffffff;
+  text-decoration: none;
+}
+.white-bg{
+  background-color: #ffffff;
+}
+.side-nav{
+  background-color: #fff180;
 }

@@ -1,8 +1,11 @@
+<div class="palette6-bg">
 <% if user_signed_in? %>
   <% if current_user.has_role? :admin%>
   <%= render 'layouts/sidebar' %>
-  <div class='margin-left'>
-    <h3>Admin Pages</h3>
+  <div class="row">
+    <div class="col s3">.</div><!-- do not remove the dot . -->
+    <div class="col s7">
+      <div class="white-text"><h3>Admin Pages</h3>
       <p>
         <ul>
           <li><strong>Events</strong></li>
@@ -39,9 +42,13 @@
       </p>
       <p><strong>Organisations: </strong><%= Organisation.count %></p>
       <p><strong>Students: </strong><%= StudentProfile.count %></p>
-  </div>
-  <% else %>
-    <br>
-    <%= link_to 'Return to Home Page', pages_home_url %><!-- DON'T LIKE THIS, PREFER REDIRECT BUT DOESN'T WORK -->
+      <% else %>
+        <br>
+        <%= link_to 'Return to Home Page', pages_home_url %><!-- DON'T LIKE THIS, PREFER REDIRECT BUT DOESN'T WORK -->
+        </div><!-- end of white text -->
+      </div><!-- end of col s7 -->
+      </div><!-- end of row -->
+
   <% end %><!-- end of checking if the user has admin role -->
 <% end %> <!-- end of checking if the user has signed-in -->
+</div>
