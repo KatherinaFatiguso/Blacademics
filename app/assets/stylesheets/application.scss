@@ -25,6 +25,7 @@ body {
   width: 100px;
   height: 100px;
   background: white;
+
 }
 header, main, footer {
     padding-left: 240px;
@@ -35,7 +36,6 @@ header, main, footer {
       padding-left: 0;
     }
   }
-
 
 .border-top{
   border-top: 1px solid grey;
@@ -154,6 +154,10 @@ header, main, footer {
 }
 .white-text{
   color: #ffffff;
+  text-decoration: none;
+}
+.black-text{
+  color: #000000;
   text-decoration: none;
 }
 .white-bg{

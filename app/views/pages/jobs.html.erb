@@ -11,7 +11,18 @@
           <%= link_to 'Archived', pages_jobs_path(filter: 'archived'), class: "waves-effect waves-light btn" %>
           <%= link_to 'All', pages_jobs_path(filter: 'all'), class: "waves-effect waves-light btn" %>
           <%= paginate @jobs %>
-            <%= render @jobs %>
+          <% @jobs.each do |job| %>
+            <ul class="collection">
+              <li class="collection-item avatar">
+                <img src=<%=job.image_url%> alt="" class="circle">
+                <a href="/listings/<%=job.id%>">
+                <span class="title"><%=job.title%></span>
+                <p><%=job.short_description%></p>
+                </a>
+                <div class="secondary-content"><i class="material-icons">grade</i></div>
+              </li>
+            </ul>
+          <% end %>
           <%= paginate @jobs %>
         </div>
       </div>

@@ -11,7 +11,18 @@
         <%= link_to 'Archived', pages_programs_path(filter: 'archived'), class: "waves-effect waves-light btn" %>
         <%= link_to 'All', pages_programs_path(filter: 'all'), class: "waves-effect waves-light btn" %>
         <%= paginate @programs %>
-          <%= render @programs %>
+        <% @programs.each do |program| %>
+          <ul class="collection">
+            <li class="collection-item avatar">
+              <img src=<%=program.image_url%> alt="" class="circle">
+              <a href="/listings/<%=program.id%>">
+              <span class="title"><%=program.title%></span>
+              <p><%=program.short_description%></p>
+              </a>
+              <div class="secondary-content"><i class="material-icons">grade</i></div>
+            </li>
+          </ul>
+        <% end %>
         <%= paginate @programs %>
       </div>
     </div>

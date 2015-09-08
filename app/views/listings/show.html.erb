@@ -1,157 +1,178 @@
-<p id="notice"><%= notice %></p>
-<% @listing.impressionist_count(:filter=>:session_hash, :unique=>true) %>
-<%= image_tag(@listing.image_url, size: "300") %>
-<p>
-  <strong>Listing Type:</strong>
-  <%= @listing.listing_type %>
-</p>
-<p>
-  <strong>Listing ID:</strong>
-  <%= @listing.id %>
-</p>
-<p>
-  <strong>Title:</strong>
-  <%= @listing.title %>
-</p>
-<p>
-  <strong>Short Description:</strong>
-  <%= @listing.short_description %>
-</p>
-<p>
-  <strong>Long Description:</strong>
-  <%= @listing.long_description %>
-</p>
-<% if @listing.listing_type == 'job' %>
-  <p>
-    <strong>Company Name:</strong>
-    <%= @listing.company_name %>
-  </p>
-<% end %>
-<p>
-  <strong>Contact Name:</strong>
-  <%= @listing.contact_name %>
-</p>
-<p>
-  <strong>Contact Email:</strong>
-  <%= @listing.contact_email %>
-</p>
-<p>
-  <strong>Contact Phone:</strong>
-  <%= @listing.contact_phone %>
-</p>
-<p>
-  <strong>Website:</strong>
-  <%= @listing.website %>
-</p>
-<p>
-  <strong>Street Address:</strong>
-  <%= @listing.street_address %>
-</p>
-<p>
-  <strong>Suburb:</strong>
-  <%= @listing.suburb %>
-</p>
-<p>
-  <strong>State:</strong>
-  <%= @listing.state %>
-</p>
-<p>
-  <strong>Postcode:</strong>
-  <%= @listing.postcode %>
-</p>
-<% if @listing.listing_type == 'event' || @listing.listing_type == 'program' %>
-  <p>
-    <strong>Audiences:</strong>
-    <% @listing.audiences.each do |audience| %>
-      <a class="btn-flat btn-disabled"><%= audience.name %></a>
-    <% end %>
-  </p>
-  <p>
-    <strong>Start time (AEST):</strong>
-    <% if @listing.start_time %>
-      <%= @listing.start_time.strftime("%A, %d %b %Y %l:%M %p") %>
-    <% end %>
-  </p>
-  <p>
-    <strong>End time (AEST):</strong>
-    <% if @listing.end_time %>
-        <%= @listing.end_time.strftime("%A, %d %b %Y %l:%M %p") %>
-      <% end %>
-  </p>
-  <p>
-    <strong>Ticket required?</strong>
-    <%= @listing.ticket_required %>
-  </p>
-  <p>
-    <strong>Ticket Website (if booking is necessary):</strong>
-    <%= @listing.ticket_website %>
-  </p>
-  <p>
-    <strong>Official hastag:</strong>
-    <%= @listing.official_hastag %>
-  </p>
-  <p>
-    <strong>Facebook URL:</strong>
-    <%= @listing.facebook_url %>
-  </p>
-    <strong>Twitter Handle:</strong>
-    <%= @listing.twitter_handle %>
-  </p>
-  <p>
-    <strong>Instagram Handle:</strong>
-    <%= @listing.instagram_handle %>
-  </p>
-<% else %><!-- else if listing type is job -->
-  <p>
-    <strong>Application Open Date (AEST):</strong>
-    <%= @listing.start_time.strftime("%A, %d %b %Y %l:%M %p") %>
-  </p>
-  <p>
-    <strong>Application Closing Date (AEST):</strong>
-    <%= @listing.end_time.strftime("%A, %d %b %Y %l:%M %p") %>
-    <% if Date.today < (@listing.end_time) %>
-      <div class="taglines"><a class="btn disabled"><i class="material-icons right">lock_open</i>This job vacancy is still open.</a></div>
-    <% else %>
-      <div class="taglines"><a class="btn disabled"><i class="material-icons right">lock_closed</i>This job vacancy is closed.</a></div>
-    <% end %>
-  </p>
-<p>
-    <strong>Job category:</strong>
-    <%= @listing.job_category %>
-  </p>
-  <p>
-    <strong>Job type:</strong>
-    <%= @listing.job_type %>
-  </p>
-  <p>
-    <strong>Salary:</strong>
-    <%= @listing.salary %>
-  </p>
-  <p>
-    <strong>Organiser:</strong>
-    <%= @listing.organisation.company_name %>
-  </p>
-<% end %> <!-- end of unless if it's a job type -->
-
-  <% if user_signed_in? %>
-    <% if @listing.organisation.user == current_user %>
-      <p><strong>Number of Views: </strong><%= @listing.impressions_count%></p>
-      <%= link_to 'Edit', edit_listing_path(@listing) %>
-    <% elsif current_user.has_role? :admin %>
-      <p><strong>Listing Expired At: </strong>
-        <% if @listing.expired_at %>
-          <div class='errormsg'><%= @listing.expired_at.strftime("%A, %d %b %Y %l:%M %p") %></div>
+<div class="row">
+  <div class="col s2">.</div><!-- do not remove the dot . -->
+  <div class="col s8 white-bg">
+    <div class="card-panel">
+      <p id="notice"><%= notice %></p>
+      <% @listing.impressionist_count(:filter=>:session_hash, :unique=>true) %>
+      <%= image_tag(@listing.image_url, size: "300") %>
+      <% if @listing.listing_type == 'job' %><!-- job vacancy sign if still open or closed -->
+        <% if Date.today < (@listing.end_time) %>
+          <div class="taglines"><a class="btn disabled"><i class="material-icons right">lock_open</i>This job vacancy is still open.</a></div>
+        <% else %>
+          <div class="taglines"><a class="btn disabled"><i class="material-icons right">lock_closed</i>This job vacancy is closed.</a></div>
         <% end %>
-      </p>
-      <p><strong>Listing Status: </strong>
-        <div class='errormsg'><%= @listing.status %></div>
-      </p>
-      <p><strong>Number of Views: </strong><%= @listing.impressions_count%></p>
-      <%= link_to 'Edit', edit_listing_path(@listing) %> |
-      <%= link_to 'Back to Admin', pages_admin_path %>
-    <% end %>
-  <% end %>
+      <% end %>
+      <br>
+      <table class="bordered responsive-table">
+        <tr>
+          <td><strong>Listing Type:</strong></td>
+          <td><%= @listing.listing_type %></td>
+        </tr>
+        <tr>
+          <td><strong>Listing ID:</strong></td>
+          <td><%= @listing.id %></td>
+        </tr>
+        <tr>
+          <td><strong>Title:</strong></td>
+          <td><%= @listing.title %></td>
+        </tr>
+        <tr>
+          <td><strong>Short Description:</strong></td>
+          <td><%= @listing.short_description %></td>
+        </tr>
+        <tr>
+          <td><strong>Long Description:</strong></td>
+          <td><%= @listing.long_description %></td>
+        </tr>
+        <% if @listing.listing_type == 'job' %>
+          <tr>
+            <td><strong>Company Name:</strong></td>
+            <td><%= @listing.company_name %></td>
+          </tr>
+        <% end %>
+        <tr>
+          <td><strong>Contact Name:</strong></td>
+          <td><%= @listing.contact_name %></td>
+        </tr>
+        <tr>
+          <td><strong>Contact Email:</strong></td>
+          <td><%= @listing.contact_email %></td>
+        </tr>
+        <tr>
+          <td><strong>Contact Phone:</strong></td>
+          <td><%= @listing.contact_phone %></td>
+        </tr>
+        <tr>
+          <td><strong>Website:</strong></td>
+          <td><%= @listing.website %></td>
+        </tr>
+        <tr>
+          <td><strong>Street Address:</strong></td>
+          <td><%= @listing.street_address %></td>
+        </tr>
+        <tr>
+          <td><strong>Suburb:</strong></td>
+          <td><%= @listing.suburb %></td>
+        </tr>
+        <tr>
+          <td><strong>State:</strong></td>
+          <td><%= @listing.state %></td>
+        </tr>
+        <tr>
+          <td><strong>Postcode:</strong></td>
+          <td><%= @listing.postcode %></td>
+        </tr>
+        <% if @listing.listing_type == 'event' || @listing.listing_type == 'program' %>
+          <tr>
+            <td><strong>Audiences:</strong></td>
+              <td>
+            <% @listing.audiences.each do |audience| %>
+              <a class="btn-flat btn-disabled"><%= audience.name %></a>
+            <% end %>
+            </td>
+          </tr>
+          <tr>
+            <td><strong>Start time (AEST):</strong></td>
+            <% if @listing.start_time %>
+              <td><%= @listing.start_time.strftime("%A, %d %b %Y %l:%M %p") %></td>
+            <% end %>
+          </tr>
+          <tr>
+            <td><strong>End time (AEST):</strong></td>
+            <% if @listing.end_time %>
+                <td><%= @listing.end_time.strftime("%A, %d %b %Y %l:%M %p") %></td>
+              <% end %>
+          </tr>
+          <tr>
+            <td><strong>Ticket required?</strong></td>
+            <td><%= @listing.ticket_required %></td>
+          </tr>
+          <tr>
+            <td><strong>Ticket Website <br>(if booking is necessary):</strong></td>
+            <td><%= @listing.ticket_website %></td>
+          </tr>
+          <tr>
+            <td><strong>Official hastag:</strong></td>
+            <td><%= @listing.official_hastag %></td>
+          </tr>
+          <tr>
+            <td><strong>Facebook URL:</strong></td>
+            <td><%= @listing.facebook_url %></td>
+          </tr>
+            <td><strong>Twitter Handle:</strong></td>
+            <td><%= @listing.twitter_handle %></td>
+          </tr>
+          <tr>
+            <td><strong>Instagram Handle:</strong></td>
+            <td><%= @listing.instagram_handle %></td>
+          </tr>
+        <% else %><!-- else if listing type is job -->
+          <tr>
+            <td><strong>Application Open Date (AEST):</strong></td>
+            <td><%= @listing.start_time.strftime("%A, %d %b %Y %l:%M %p") %></td>
+          </tr>
+          <tr>
+            <td><strong>Application Closing Date (AEST):</strong></td>
+            <td><%= @listing.end_time.strftime("%A, %d %b %Y %l:%M %p") %></td>
+          </tr>
+          <tr>
+            <td><strong>Job category:</strong></td>
+            <td><%= @listing.job_category %></td>
+          </tr>
+          <tr>
+            <td><strong>Job type:</strong></td>
+            <td><%= @listing.job_type %></td>
+          </tr>
+          <tr>
+            <td><strong>Salary:</strong></td>
+            <td><%= @listing.salary %></td>
+          </tr>
+          <tr>
+            <td><strong>Organiser:</strong></td>
+            <td><%= @listing.organisation.company_name %></td>
+          </tr>
+        <% end %> <!-- end of unless if it's a job type -->
 
-  <% Listing.check_for_expired_listings.each do |e| %>
-  <%= e.id %>
-  <% end %>
+          <% if user_signed_in? %>
+            <% if @listing.organisation.user == current_user %>
+              <tr>
+                <td><strong>Number of Views: </strong></td>
+                <td><%= @listing.impressions_count%></td>
+              </tr>
+              <%= link_to 'Edit', edit_listing_path(@listing) %>
+            <% elsif current_user.has_role? :admin %>
+              <tr>
+                <td><strong>Listing Expired At: </strong></td>
+                <% if @listing.expired_at %>
+                  <td><div class='errormsg'><%= @listing.expired_at.strftime("%A, %d %b %Y %l:%M %p") %></div></td>
+                <% else %>
+                  <td>No expiry date.</td>
+                <% end %>
+              </tr>
+              <tr>
+                <td><strong>Listing Status: </strong></td>
+                <td><div class='errormsg'><%= @listing.status %></div></td>
+              </tr>
+              <tr>
+                <td><strong>Number of Views: </strong></td>
+                <td><%= @listing.impressions_count%></td>
+              </tr>
+            </table>
+              <%= link_to 'Edit', edit_listing_path(@listing) %> |
+              <%= link_to 'Back to Admin', pages_admin_path %>
+            <% end %>
+          <% end %>
+
+  </div>
+  </div>
+</div>

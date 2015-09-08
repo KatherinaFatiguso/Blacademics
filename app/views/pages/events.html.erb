@@ -11,7 +11,18 @@
               <%= link_to 'Archived', pages_events_path(filter: 'archived'), class: "waves-effect waves-light btn" %>
               <%= link_to 'All', pages_events_path, class: "waves-effect waves-light btn" %>
                 <%= paginate @events %>
-                  <%= render @events %>
+                <% @events.each do |event| %>
+                  <ul class="collection">
+                    <li class="collection-item avatar">
+                      <img src=<%=event.image_url%> alt="" class="circle">
+                      <a href="/listings/<%=event.id%>">
+                      <span class="title"><%=event.title%></span>
+                      <p><%=event.short_description%></p>
+                      </a>
+                      <div class="secondary-content"><i class="material-icons">grade</i></div>
+                    </li>
+                  </ul>
+                <% end %>
                 <%= paginate @events %>
           </div>
         </div>
