@@ -94,28 +94,28 @@ header, main, footer {
   color: #424242;
 }
 
-.video{
-  margin: 0 auto;
-  width: 600px;
-  height: 400px;
-  background: blue;
-}
-
-.info_graphic{
-  margin: 0 auto;
-  width: 1000px;
-  height: 600px;
-  background: blue;
-}
-
-.content_boxes{
-  margin: 0 auto;
-  width: 330px;
+.parallax-container {
   height: 300px;
-  background: blue;
-  margin-bottom: 10px;
 }
 
+.text-18px{
+   font-size: 18px;
+}
+
+.main-pattern{
+  background-image: url("/assets/indigenous_pattern1.jpg");
+  // background-image: url("https://c3.staticflickr.com/7/6023/5975465375_9c089b6085_b.jpg");
+  background-size: cover;
+  background-size: 100%;
+}
+
+.container .row{
+  margin-left: 0px;
+  margin-right: 0px;
+}
+.container {
+  min-height: 1000px;
+}
 .palette1{
   color: #d4e8d0;
 }

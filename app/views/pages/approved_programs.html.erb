@@ -1,32 +1,32 @@
-<div class="row">
-  <div class="col s2">.</div><!-- do not remove the dot . -->
-  <div class="col s7">
-    <div class="white-text">
-      <h3>All Programs</h3>
-      <%= form_tag(pages_approved_programs_path, :method => "get", id: "search-form") do %>
-        <%= text_field_tag :search, params[:search], placeholder: "Search for State, Suburb or Postcode"%>
-    </div><!-- end white text -->
-        <button class="btn waves-effect waves-light" type="submit" name="commit" value="Search">SEARCH</button>
-      <% end %>
-
-      <% if @programs.present? %>
-      <%= paginate @programs %>
-        <% @programs.each do |program| %>
-          <ul class="collection">
-            <li class="collection-item avatar">
-              <img src=<%=program.image_url%> alt="" class="circle">
-              <a href="/listings/<%=program.id%>">
-              <span class="title"><%=program.title%></span>
-              <p><%=program.short_description%></p>
-              </a>
-              <div class="secondary-content"><i class="material-icons">grade</i></div>
-            </li>
-          </ul>
+<div class="main-pattern">
+  <div class="container white-bg">
+    <div class="row">
+      <div class="col s12">
+        <h3>All Programs</h3>
+        <%= form_tag(pages_approved_programs_path, :method => "get", id: "search-form") do %>
+          <%= text_field_tag :search, params[:search], placeholder: "Search for State, Suburb or Postcode"%>
+          <button class="btn waves-effect waves-light" type="submit" name="commit" value="Search">SEARCH</button>
         <% end %>
+
+        <% if @programs.present? %>
         <%= paginate @programs %>
-      <% else %>
-        <div class="white-text">
-          <p>There are no events located in <%= params[:search] %>.</p>
-        </div><!-- end white text -->
-      <% end %>
+          <% @programs.each do |program| %>
+            <ul class="collection">
+              <li class="collection-item avatar">
+                <img src=<%=program.image_url%> alt="" class="circle">
+                <a href="/listings/<%=program.id%>">
+                <span class="title"><%=program.title%></span>
+                <p><%=program.short_description%></p>
+                </a>
+                <div class="secondary-content"><i class="material-icons">grade</i></div>
+              </li>
+            </ul>
+          <% end %>
+          <%= paginate @programs %>
+        <% else %>
+            <p>There are no events located in <%= params[:search] %>.</p>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>

@@ -1,32 +1,33 @@
-<div class="row">
-  <div class="col s2">.</div><!-- do not remove the dot . -->
-  <div class="col s7">
-    <div class="white-text">
-      <h3>All Jobs</h3>
-      <%= form_tag(pages_approved_jobs_path, :method => "get", id: "search-form") do %>
-        <%= text_field_tag :search, params[:search], placeholder: "Search for State, Suburb or Postcode"%>
-    </div><!-- end white text -->
-        <button class="btn waves-effect waves-light" type="submit" name="commit" value="Search">SEARCH</button>
-      <% end %>
+<div class="main-pattern">
+  <div class="container white-bg">
+    <div class="row">
+      <div class="col s12">
+        <h3>All Jobs</h3>
+        <%= form_tag(pages_approved_jobs_path, :method => "get", id: "search-form") do %>
+          <%= text_field_tag :search, params[:search], placeholder: "Search for State, Suburb or Postcode"%>
 
-      <% if @jobs.present? %>
-        <%= paginate @jobs %>
-        <% @jobs.each do |job| %>
-          <ul class="collection">
-            <li class="collection-item avatar">
-              <img src=<%=job.image_url%> alt="" class="circle">
-              <a href="/listings/<%=job.id%>">
-              <span class="title"><%=job.title%></span>
-              <p><%=job.short_description%></p>
-              </a>
-              <div class="secondary-content"><i class="material-icons">grade</i></div>
-            </li>
-          </ul>
+          <button class="btn waves-effect waves-light" type="submit" name="commit" value="Search">SEARCH</button>
         <% end %>
-        <%= paginate @jobs %>
-      <% else %>
-        <div class="white-text">
-          <p>There are no jobs located in <%= params[:search] %>.</p>
-        </div><!-- end white text -->
-      <% end %>
+
+        <% if @jobs.present? %>
+          <%= paginate @jobs %>
+          <% @jobs.each do |job| %>
+            <ul class="collection">
+              <li class="collection-item avatar">
+                <img src=<%=job.image_url%> alt="" class="circle">
+                <a href="/listings/<%=job.id%>">
+                <span class="title"><%=job.title%></span>
+                <p><%=job.short_description%></p>
+                </a>
+                <div class="secondary-content"><i class="material-icons">grade</i></div>
+              </li>
+            </ul>
+          <% end %>
+          <%= paginate @jobs %>
+        <% else %>
+            <p>There are no jobs located in <%= params[:search] %>.</p>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>
