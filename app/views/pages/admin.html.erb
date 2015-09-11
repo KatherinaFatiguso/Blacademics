@@ -1,56 +1,55 @@
-<div class="palette6-bg">
-<% if user_signed_in? %>
-  <% if current_user.has_role? :admin%>
-  <%= render 'layouts/sidebar' %>
-  <div class="row">
-    <div class="col s3">.</div><!-- do not remove the dot . -->
-    <div class="col s8 white-bg">
+    <div class="row">
+      <% if user_signed_in? %>
+        <% if current_user.has_role? :admin%>
+          <%= render 'layouts/sidebar' %>
+            <div class="col l3">.</div>
+            <div class="col s12 m12 l8">
+              <div class="card ">
+                <div class="card-content">
+                  <span class="card-title black-text">Admin Pages</span>
+                  <p>
+                    <ul>
+                      <li><strong>Events</strong></li>
+                      <ol>
+                        <li>Drafts: <%= Listing.event_type.draft.count %></li>
+                        <li>Approved: <%= Listing.event_type.approved.count %></li>
+                        <li>Expired: <%= Listing.event_type.expired.count %></li>
+                        <li>Archived: <%= Listing.event_type.archived.count %></li>
+                      </ol>
+                    </ul>
+                  </p>
 
-      <div class="card ">
-        <div class="card-content">
-          <span class="card-title black-text">Admin Pages</span>
-          <p>
-            <ul>
-              <li><strong>Events</strong></li>
-              <ol>
-                <li>Drafts: <%= Listing.event_type.draft.count %></li>
-                <li>Approved: <%= Listing.event_type.approved.count %></li>
-                <li>Expired: <%= Listing.event_type.expired.count %></li>
-                <li>Archived: <%= Listing.event_type.archived.count %></li>
-              </ol>
-            </ul>
-          </p>
+                  <p>
+                    <ul>
+                      <li><strong>Programs</strong></li>
+                      <ol>
+                        <li>Draft: <%= Listing.program_type.draft.count %></li>
+                        <li>Approved: <%= Listing.program_type.approved.count %></li>
+                        <li>Expired: <%= Listing.program_type.expired.count %></li>
+                        <li>Archived: <%= Listing.program_type.archived.count %></li>
+                      </ol>
+                    </ul>
+                  </p>
+                  <p>
+                    <ul>
+                      <li><strong>Jobs</strong></li>
+                    <ol>
+                      <li>Draft: <%= Listing.job_type.draft.count %></li>
+                      <li>Approved: <%= Listing.job_type.approved.count %></li>
+                      <li>Expired: <%= Listing.job_type.expired.count %></li>
+                      <li>Archived: <%= Listing.job_type.archived.count %></li>
+                    </ol>
+                    </ul>
+                  </p>
+                  <p><strong>Organisations: </strong><%= Organisation.count %></p>
+                  <p><strong>Students: </strong><%= StudentProfile.count %></p>
 
-          <p>
-            <ul>
-              <li><strong>Programs</strong></li>
-              <ol>
-                <li>Draft: <%= Listing.program_type.draft.count %></li>
-                <li>Approved: <%= Listing.program_type.approved.count %></li>
-                <li>Expired: <%= Listing.program_type.expired.count %></li>
-                <li>Archived: <%= Listing.program_type.archived.count %></li>
-              </ol>
-            </ul>
-          </p>
-          <p>
-            <ul>
-              <li><strong>Jobs</strong></li>
-            <ol>
-              <li>Draft: <%= Listing.job_type.draft.count %></li>
-              <li>Approved: <%= Listing.job_type.approved.count %></li>
-              <li>Expired: <%= Listing.job_type.expired.count %></li>
-              <li>Archived: <%= Listing.job_type.archived.count %></li>
-            </ol>
-            </ul>
-          </p>
-          <p><strong>Organisations: </strong><%= Organisation.count %></p>
-          <p><strong>Students: </strong><%= StudentProfile.count %></p>
+                </div><!-- end of card content -->
+              </div><!-- end of card -->
+            </div><!-- end of col s12 -->
 
-        </div><!-- end of card content -->
-      </div><!-- end of card -->
-    </div><!-- end of col s7 -->
-  </div><!-- end of row -->
-
-  <% end %><!-- end of checking if the user has admin role -->
-<% end %> <!-- end of checking if the user has signed-in -->
-</div>
+          <% else %>
+            <%= render "listings/forbidden" %>
+          <% end %><!-- end of checking if the user has admin role -->
+        <% end %> <!-- end of checking if the user has signed-in -->
+    </div><!-- end of row -->

@@ -2,7 +2,7 @@ class Listing < ActiveRecord::Base
   belongs_to :organisation
   has_many :listing_audiences
   has_many :audiences, through: :listing_audiences
-  validates :title, :short_description, :long_description, :contact_name, :contact_email, :street_address, :suburb, :state, :postcode, presence: true
+  validates :title, :short_description, :long_description, :contact_name, :contact_email, :street_address, :suburb, :state, :postcode, :start_time, :end_time, presence: true
 
   scope :program_type,->{ where(listing_type: 'program') }
   scope :event_type,->{ where(listing_type: 'event') }

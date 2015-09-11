@@ -140,6 +140,7 @@ student_profile_id: student1.id
 )
 =end
 
+=begin
 (1..100).each do |i|
   Listing.create!(
     listing_type: "event",
@@ -152,3 +153,4 @@ student_profile_id: student1.id
     :audiences => Audience.all
   )
 end
+=end

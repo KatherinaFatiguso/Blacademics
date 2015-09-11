@@ -1,4 +1,3 @@
-
 <%= simple_form_for(@listing) do |f| %>
   <%= f.error_notification %>
 
@@ -137,3 +136,17 @@
     <%= f.button :submit %>
   </div>
 <% end %><!-- end of simple form -->
+
+<% if user_signed_in? %>
+  <% if @listing.organisation.present? %><!-- if editing a listing, not for creating a new listing-->
+    <% if @listing.organisation.user == current_user %>
+      <%= link_to 'Show', @listing %> |
+      <%= link_to 'Back', :back %>
+    <% elsif current_user.has_role? :admin %>
+      <%= link_to 'Show', @listing %> |
+      <%= link_to 'Back to Admin', pages_admin_path %>
+    <% else %>
+      <%= render 'forbidden' %>
+    <% end %>
+  <% end %>
+<% end %>
