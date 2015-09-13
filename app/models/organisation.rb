@@ -8,4 +8,8 @@ class Organisation < ActiveRecord::Base
 
   mount_uploader :logo, ProfilePicUploader
 
+  def self.search(search)
+    where("company_name ILIKE ? OR department ILIKE ? OR state ILIKE ? OR suburb ILIKE ? OR postcode ILIKE ?", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%")
+  end
+
 end

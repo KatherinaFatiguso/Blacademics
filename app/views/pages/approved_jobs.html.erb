@@ -6,7 +6,7 @@
         <%= form_tag(pages_approved_jobs_path, :method => "get", id: "search-form") do %>
           <%= text_field_tag :search, params[:search], placeholder: "Search for State, Suburb or Postcode"%>
 
-          <button class="btn waves-effect waves-light" type="submit" name="commit" value="Search">SEARCH</button>
+          <button class="btn waves-effect waves-light palette4-bg" type="submit" name="commit" value="Search">SEARCH</button>
         <% end %>
 
         <% if @jobs.present? %>

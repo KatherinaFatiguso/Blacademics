@@ -72,6 +72,7 @@ class PagesController < ApplicationController
       @programs = Listing.program_type.approved.order("created_at DESC").page(params[:page]).per(10)
     end
   end
+
   def approved_jobs
     @jobs = Listing.job_type.approved
     if params[:search]
@@ -80,4 +81,31 @@ class PagesController < ApplicationController
       @jobs = Listing.job_type.approved.order("created_at DESC").page(params[:page]).per(10)
     end
   end
+
+  def organisations
+    @organisations = Organisation.all
+    if params[:search]
+      @organisations = Organisation.all.search(params[:search]).order("created_at DESC").page(params[:page]).per(10)
+    else
+      @organisations = Organisation.all.order("created_at DESC").page(params[:page]).per(10)
+    end
+  end
+
+  def highschoolers_view_listings
+    @events = Listing.event_type.approved
+    if params[:search]
+      @events = Listing.event_type.approved.search(params[:search]).order("created_at DESC").page(params[:page]).per(10)
+    else
+      @events = Listing.event_type.approved.order("created_at DESC").page(params[:page]).per(10)
+    end
+
+    @programs = Listing.program_type.approved
+    if params[:search]
+      @programs = Listing.program_type.approved.search(params[:search]).order("created_at DESC").page(params[:page]).per(10)
+    else
+      @programs = Listing.program_type.approved.order("created_at DESC").page(params[:page]).per(10)
+    end
+
+  end
+
 end

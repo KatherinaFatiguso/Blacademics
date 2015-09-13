@@ -1,0 +1,62 @@
+<div class="main-pattern">
+  <div class="container white-bg">
+    <div class="row">
+      <div class="col s1 white-text">.</div>
+      <div class="col s10">
+        <h4>High Schoolers</h4>
+          <div class="quotes">
+            <p class="flow-text bold italic" >Welcome to Blacademics guy!</p>
+            <p class="flow-text italic">You’ve probably already check out the website including the video, infographic and photographs so you might want something else to do here now.</p>
+            <p class="flow-text italic">We’ve created a place for you to tell your story on the Upload your profile page.</p>
+            <p class="flow-text italic">You’ll be able to message your friends and relatives and ask other people questions about their studies and how they succeeded at university.</p>
+        </div><!-- end of quotes -->
+        <br><br>
+      </div>
+      <div class="col l1 white-text">.</div>
+    </div><!-- end of row -->
+
+  <div class="row">
+      <!-- View Listings -------------------------------------->
+      <a href="/pages/highschoolers_view_listings">
+        <div class="col s12 m4 l4">
+          <div class="card-panel palette4-bg center">
+            <span class="white-text font-14pt">View Listings</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Upload Your File HELP?????-------------------------------------->
+      <% if user_signed_in? %>
+        <a href="/users/sign_in">
+          <div class="col s12 m4 l4">
+              <div class="card-panel palette4-bg center">
+              <span class="white-text font-14pt">Upload Your File</span>
+              </div>
+          </div>
+        </a>
+      <% else %>
+        <a href="/student_profiles/<%= current_user.id %>">
+          <div class="col s12 m4 l4">
+              <div class="card-panel palette4-bg center">
+              <span class="white-text font-14pt">Upload Your File</span>
+              </div>
+          </div>
+        </a>
+      <% end %>
+
+
+
+      <!-- Guides & FAQ -------------------------------------->
+      <a href="/pages/universities">
+        <div class="col s12 m4 l4">
+          <div class="card-panel palette4-bg center">
+            <span class="white-text font-14pt">Universities and Indigenous Units</span>
+          </div>
+        </div>
+      </a>
+
+
+    </div><!-- end of row -->
+
+  </div>
+</div>

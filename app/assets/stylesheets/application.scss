@@ -4,7 +4,8 @@
 // $primary-color: blue;
 
 
-$font-stack:    Helvetica, sans-serif, #000000;
+// $font-stack:    Roboto, sans-serif, #000000;
+$font-stack: GillSans, Calibri, Trebuchet, sans-serif;
 $primary-color: #000000 !default;
 
 .nav-wrapper ul a{
@@ -79,6 +80,15 @@ header, main, footer {
   font-feature-settings: 'liga';
 }
 
+.bold {
+  font-weight: bold;;
+}
+.italic {
+  font-style: italic;
+}
+.top-margin-5px {
+  margin-top: 5px;
+}
 
 .front-image{
   background-position: center;
@@ -164,5 +174,35 @@ header, main, footer {
   background-color: #ffffff;
 }
 .side-nav{
-  background-color: #fff180;
+  background-color: #00a2b4; // uses palette4-bg
+}
+
+@media only screen and (max-width: 600px) {
+    .medium, .large {
+        display:none;
+    }
+}
+
+@media only screen and (min-width: 601px) and (max-width: 992px) {
+    .small, .large {
+        display: none;
+    }
+}
+
+@media only screen and (min-width: 993px) {
+    .small, .medium {
+        display:none;
+    }
+}
+
+.quotes{
+  font-style: thin;
+  font-size: 18px;
+}
+
+.font-12pt{
+  font-size: 12pt;
+}
+.font-14pt{
+  font-size: 14pt;
 }

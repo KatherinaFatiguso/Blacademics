@@ -23,6 +23,10 @@ Rails.application.routes.draw do
   get 'pages/approved_events'
   get 'pages/approved_programs'
   get 'pages/approved_jobs'
+  get 'pages/universities'
+  get 'pages/organisations'
+  get 'pages/highschoolers'
+  get 'pages/highschoolers_view_listings'
 
 
   devise_for :users

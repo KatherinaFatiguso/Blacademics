@@ -1,0 +1,38 @@
+<div class="main-pattern">
+  <div class="container white-bg">
+    <div class="row">
+      <div class="col s12 m12 l12">
+        <h4>List of Organisations</h4>
+          <%= form_tag(pages_organisations_path, :method => "get", id: "search-form") do %>
+          <%= text_field_tag :search, params[:search], placeholder: "Search Company Name, State, Suburb or Postcode"%>
+          <%= submit_tag "Search" %>
+        <% end %>
+      </div>
+      <% if @organisations.present? %>
+        <% @organisations.each do |organisation| %>
+          <ul class="collection">
+            <li class="collection-item">
+              <div class="col s12 m4 l3">
+                <img src=<%=organisation.logo_url%> alt=""  width=200>
+              </div>
+              <div class="col s12 m8 l9">
+                <p>
+                  <span class="title"><%= organisation.company_name %></span><br>
+                  <% if organisation.department.present? %>
+                    Department: <%= organisation.department %></br>
+                  <% end %>
+                  <%= organisation.suburb %>, <%= organisation.state %> <%= organisation.postcode %></br>
+                  <%= organisation.contact_phone %></br>
+                  <a href="http://<%= organisation.website %>"><%= organisation.website %></a></br>
+                </p>
+              </div>
+          </ul>
+        <% end %><!-- end of loop -->
+      <% else %>
+        <p>There are no listings located in <%= params[:search] %>.</p>
+      <% end %>
+
+      </div><!-- end of row -->
+    </div><!-- end of row -->
+  </div>
+</div>
