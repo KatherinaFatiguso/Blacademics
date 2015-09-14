@@ -27,6 +27,8 @@ Rails.application.routes.draw do
   get 'pages/organisations'
   get 'pages/highschoolers'
   get 'pages/highschoolers_view_listings'
+  get 'pages/uni_students'
+  get 'pages/uni_students_listings'
 
 
   devise_for :users

@@ -108,4 +108,27 @@ class PagesController < ApplicationController
 
   end
 
+  def uni_students_listings
+    @events = Listing.event_type.approved
+    if params[:search]
+      @events = Listing.event_type.approved.search(params[:search]).order("created_at DESC").page(params[:page]).per(10)
+    else
+      @events = Listing.event_type.approved.order("created_at DESC").page(params[:page]).per(10)
+    end
+
+    @programs = Listing.program_type.approved
+    if params[:search]
+      @programs = Listing.program_type.approved.search(params[:search]).order("created_at DESC").page(params[:page]).per(10)
+    else
+      @programs = Listing.program_type.approved.order("created_at DESC").page(params[:page]).per(10)
+    end
+
+    @jobs = Listing.job_type.approved
+    if params[:search]
+      @jobs = Listing.job_type.approved.search(params[:search]).order("created_at DESC").page(params[:page]).per(10)
+    else
+      @jobs = Listing.job_type.approved.order("created_at DESC").page(params[:page]).per(10)
+    end
+  end
+
 end
