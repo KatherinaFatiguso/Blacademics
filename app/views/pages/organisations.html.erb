@@ -5,17 +5,18 @@
         <h4>List of Organisations</h4>
           <%= form_tag(pages_organisations_path, :method => "get", id: "search-form") do %>
           <%= text_field_tag :search, params[:search], placeholder: "Search Company Name, State, Suburb or Postcode"%>
-          <%= submit_tag "Search" %>
+          <button class="btn waves-effect waves-light palette4-bg" type="submit" name="commit" value="Search">SEARCH</button>
         <% end %>
       </div>
+
       <% if @organisations.present? %>
         <% @organisations.each do |organisation| %>
           <ul class="collection">
             <li class="collection-item">
-              <div class="col s12 m4 l3">
+              <div class="col s12 m4 l4">
                 <img src=<%=organisation.logo_url%> alt=""  width=200>
               </div>
-              <div class="col s12 m8 l9">
+              <div class="col s12 m8 l8">
                 <p>
                   <span class="title"><%= organisation.company_name %></span><br>
                   <% if organisation.department.present? %>

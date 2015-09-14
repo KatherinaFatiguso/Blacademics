@@ -30,7 +30,7 @@
       <div class="border-top"></div>
         <div class="col s12"><h5><bold>Education:</bold></h5></div>
           <% @student_profile.university_educations.each do |student| %>
-            <div class="col s4 m2 l2"><p>Degree: </p></div>
+            <div class="col s4 m2 l2"><p>Qualification: </p></div>
             <% if student.degree.present? %>
               <div class="col s8 m10 l10"><p><%= student.degree %></p></div>
             <% else %>
