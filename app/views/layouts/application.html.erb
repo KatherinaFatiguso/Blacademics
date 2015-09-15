@@ -29,7 +29,9 @@
 				edge: 'right', // Choose the horizontal origin
 				closeOnClick: true // Closes side-nav on <a> clicks, useful for Angular/Meteor
 			});
-			$(".dropdown-button").dropdown();
+			$(".dropdown-button").dropdown({
+				hover: true
+			});
 			$('.datetimepicker').datetimepicker({
 			  format:'d M Y H:i'
 			});
@@ -37,7 +39,7 @@
 	      accordion : false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
 	    });
 			$('.parallax').parallax();
-			
+
 	  });
 	</script>
 </body>
