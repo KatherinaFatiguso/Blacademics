@@ -65,6 +65,7 @@ class PagesController < ApplicationController
       @events = Listing.event_type.approved.order("created_at DESC").page(params[:page]).per(10)
     end
   end
+
   def approved_programs
     @programs = Listing.program_type.approved
     if params[:search]
@@ -129,6 +130,15 @@ class PagesController < ApplicationController
       @jobs = Listing.job_type.approved.search(params[:search]).order("created_at DESC").page(params[:page]).per(10)
     else
       @jobs = Listing.job_type.approved.order("created_at DESC").page(params[:page]).per(10)
+    end
+  end
+
+  def students_gallery
+    @student_profiles = StudentProfile.all
+    if params[:search]
+      @student_profiles = StudentProfile.search(params[:search]).order("created_at DESC").page(params[:page]).per(10)
+    else
+      @student_profiles = StudentProfile.order("created_at DESC").page(params[:page]).per(10)
     end
   end
 

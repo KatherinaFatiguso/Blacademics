@@ -1,4 +1,4 @@
-<!-- Dropdown Structure 1 -->
+<!-- Dropdown Structure 1 THIS IS FOR THE FULL SCREEN-->
 <ul id="dropdown1" class="dropdown-content">
   <% if user_signed_in? %>
     <% if current_user.has_role? :student %>
@@ -18,7 +18,7 @@
   <% end %>
 </ul>
 
-<!-- Dropdown Structure 2 -->
+<!-- Dropdown Structure 2 THIS IS FOR THE MOBILE ICON (BURGER)-->
 <ul id="dropdown2" class="dropdown-content">
   <% if user_signed_in? %>
     <% if current_user.has_role? :student %>

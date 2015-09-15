@@ -29,7 +29,7 @@ Rails.application.routes.draw do
   get 'pages/highschoolers_view_listings'
   get 'pages/uni_students'
   get 'pages/uni_students_listings'
-
+  get 'pages/students_gallery'
 
   devise_for :users
 

@@ -77,3 +77,7 @@ group :production do
   gem 'passenger'
   # gem 'pg'
 end
+
+group 'test' do
+  gem 'faker'
+end

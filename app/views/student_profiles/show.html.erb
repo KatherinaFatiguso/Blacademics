@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col s12 m12 l12"><p id="notice"><%= notice %></p></div>
       <div class="col s12 m12 l12 center"><%= image_tag(@student_profile.profile_pic_url, size: "300") %></div>
-      <div class="col s12 m12 l12 center"><h3><strong><%= @student_profile.title%>. <%= @student_profile.first_name %> <%= @student_profile.last_name %> <%= @student_profile.letters %> <%= @student_profile.post_nominal_titles %></strong></h3></div>
+      <div class="col s12 m12 l12 center"><h3><strong><%= @student_profile.title%> <%= @student_profile.first_name %> <%= @student_profile.last_name %> <%= @student_profile.letters %> <%= @student_profile.post_nominal_titles %></strong></h3></div>
       <!-- email address can only be seen by the student profile owner or the admin, but not for public viewing -->
       <% if user_signed_in? %>
         <% if (@student_profile.user == current_user) || (current_user.has_role? :admin)  %>

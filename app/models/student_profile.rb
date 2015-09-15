@@ -1,8 +1,4 @@
 class StudentProfile < ActiveRecord::Base
-  # include Cloudinary::CarrierWave
-  belongs_to :user
-  has_many :university_educations
-  accepts_nested_attributes_for :university_educations, :allow_destroy => true
   # If true, destroys any members from the attributes hash with a _destroy key
   # and a value that evaluates to true (eg. 1, '1', true, or 'true').
   # This option is off by default.
@@ -10,6 +6,9 @@ class StudentProfile < ActiveRecord::Base
   mount_uploader :resume, ResumeUploader
   mount_uploader :profile_pic, ProfilePicUploader
 
+  belongs_to :user
+  has_many :university_educations
+  accepts_nested_attributes_for :university_educations, :allow_destroy => true
 
   has_many :scholarships
   accepts_nested_attributes_for :scholarships, :allow_destroy => true

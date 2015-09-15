@@ -5,8 +5,23 @@
 
 
 // $font-stack:    Roboto, sans-serif, #000000;
-$font-stack: GillSans, Calibri, Trebuchet, sans-serif;
+// $font-stack: GillSans, Calibri, Trebuchet, sans-serif;
 $primary-color: #000000 !default;
+
+// This is to declare the font
+@font-face {
+  font-family: "Nationale Bold";
+  src: url(/assets/Nationale-Bold.otf) format("truetype");
+
+  font-family: "Nationale Regular";
+  src: url(/assets/Nationale-Regular.otf) format("truetype");
+}
+
+// This is to use the font that I declared
+#e-registration {
+  font-family: "Nationale Bold";
+  font-family: "Nationale Regular";
+}
 
 .nav-wrapper ul a{
   color: #000000;
@@ -16,17 +31,17 @@ $primary-color: #000000 !default;
 }
 
 body {
-  font: 100% $font-stack;
+  font: 100%;
   color: $primary-color;
 }
 
 @import 'materialize';
 @import 'datetimepicker';
+
 #logo{
   width: 100px;
   height: 100px;
   background: white;
-
 }
 header, main, footer {
     padding-left: 240px;
@@ -89,7 +104,9 @@ header, main, footer {
 .top-margin-5px {
   margin-top: 5px;
 }
-
+.top-margin-40px{
+  margin-top: 40px;
+}
 .front-image{
   background-position: center;
   background-repeat: no-repeat;
@@ -210,4 +227,12 @@ header, main, footer {
 }
 .font-26px{
    font-size: 26px;
+}
+.paginate{
+    background-color: #e64630;
+}
+
+.nav {
+  background-color: #e64630;
+
 }

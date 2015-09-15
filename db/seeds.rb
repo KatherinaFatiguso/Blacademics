@@ -154,3 +154,14 @@ student_profile_id: student1.id
   )
 end
 =end
+
+
+
+
+(1..50).each do |i|
+  StudentProfile.create!(
+    first_name: "Firstname ",
+    last_name: "Lastname#{i}",
+    bio: "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga."
+  )
+end

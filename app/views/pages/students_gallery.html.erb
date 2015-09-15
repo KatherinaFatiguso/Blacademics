@@ -1,0 +1,30 @@
+<div class="main-pattern">
+  <div class="container white-bg">
+    <div class="row">
+      <div class="col s12">
+        <h4>Students Gallery</h4>
+        <% if @student_profiles.present? %>
+          <div class="palette4-bg black-text"><%= paginate @student_profiles %></div>
+          <ul class="collection">
+            <% @student_profiles.each do |student| %>
+                <li class="collection-item avatar">
+                  <a href="/student_profiles/<%=student.id%>">
+                  <img src=<%=student.profile_pic_url%> alt="" class="circle">
+                  <span class="title"><%=student.title%> <%=student.first_name%> <%=student.last_name%></span>
+                  <% if student.university_educations.present? %>
+                    <p><% student.university_educations.each do |qualification|%>
+                      <%= qualification.degree %>
+                      <% end %>
+                    </p>
+                  <% end %>
+                  </a>
+                </li>
+
+            <% end %>
+          </ul>
+          <%= paginate @student_profiles %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
