@@ -2,8 +2,15 @@
   <div class="container white-bg">
     <div class="row">
       <div class="col s12">
-        <h4>Students Gallery</h4>
+        <a href="/pages/students_gallery"><h4>Students Gallery</h4></a>
+
+        <%= form_tag(pages_students_gallery_path, :method => "get", id: "search-form") do %>
+          <%= text_field_tag :search, params[:search], placeholder: "Search for First Name or Last Name or Skills"%>
+          <button class="btn waves-effect waves-light palette4-bg" type="submit" name="commit" value="Search">SEARCH</button>
+        <% end %>
+
         <% if @student_profiles.present? %>
+        <br>
           <div class="palette4-bg black-text"><%= paginate @student_profiles %></div>
           <ul class="collection">
             <% @student_profiles.each do |student| %>
@@ -23,6 +30,8 @@
             <% end %>
           </ul>
           <%= paginate @student_profiles %>
+        <% else %>
+          <p>Sorry, can't find details for <%= params[:search] %>.</p>
         <% end %>
       </div>
     </div>

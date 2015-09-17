@@ -19,7 +19,10 @@
     <![endif]-->
 </head>
 <body>
-	<%= render 'layouts/navbar' %>
+	<% @pre_launch_landing = true %>
+	<% if !@pre_launch_landing %>
+		<%= render 'layouts/navbar' %>
+	<% end %>
 	  	<%= yield %>
 	<script>
 	$(document).ready(function() {

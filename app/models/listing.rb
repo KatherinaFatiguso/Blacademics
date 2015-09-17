@@ -64,6 +64,6 @@ class Listing < ActiveRecord::Base
   end
 
   def self.search(search)
-    where("suburb ILIKE ? OR state ILIKE ? OR postcode ILIKE ?", "%#{search}%", "%#{search}%", "%#{search}%")
+    where("suburb ILIKE ? OR state ILIKE ? OR postcode ILIKE ? OR title ILIKE ? OR short_description ILIKE ? OR long_description ILIKE ?", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%")
   end
 end

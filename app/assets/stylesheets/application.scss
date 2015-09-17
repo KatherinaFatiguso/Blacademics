@@ -1,11 +1,5 @@
 @import "materialize/components/color";
-// $primary-color: color("#33691e", "lighten-2") !default;
 
-// $primary-color: blue;
-
-
-// $font-stack:    Roboto, sans-serif, #000000;
-// $font-stack: GillSans, Calibri, Trebuchet, sans-serif;
 $primary-color: #000000 !default;
 
 // This is to declare the font
@@ -23,12 +17,17 @@ $primary-color: #000000 !default;
   font-family: "Nationale Regular";
 }
 
+.pagination {
+  background-color: #00a2b4; //color palette 4
+}
+
 .nav-wrapper ul a{
-  color: #000000;
+  color: #000000; //black
 }
 .nav-mobile ul a{
-  color: #000000;
+  color: #000000; //black
 }
+
 
 body {
   font: 100%;
@@ -104,8 +103,8 @@ header, main, footer {
 .top-margin-5px {
   margin-top: 5px;
 }
-.top-margin-40px{
-  margin-top: 40px;
+.top-margin-20px{
+  margin-top: 20px;
 }
 .front-image{
   background-position: center;
@@ -196,13 +195,13 @@ header, main, footer {
     }
 }
 
-@media only screen and (min-width: 601px) and (max-width: 992px) {
+@media only screen and (min-width: 600px) and (max-width: 992px) {
     .small, .large {
         display: none;
     }
 }
 
-@media only screen and (min-width: 993px) {
+@media only screen and (min-width: 992px) {
     .small, .medium {
         display:none;
     }
@@ -213,8 +212,11 @@ header, main, footer {
   font-size: 18px;
 }
 
+.font-8pt{
+  font-size: 8pt;
+}
 .font-10pt{
-  font-size: 12pt;
+  font-size: 10pt;
 }
 .font-12pt{
   font-size: 12pt;
@@ -228,6 +230,10 @@ header, main, footer {
 .font-26px{
    font-size: 26px;
 }
+.font-34px{
+   font-size: 34px;
+}
+
 .paginate{
     background-color: #e64630;
 }
@@ -235,4 +241,7 @@ header, main, footer {
 .nav {
   background-color: #e64630;
 
+}
+.button {
+  background-color: #00a2b4;
 }

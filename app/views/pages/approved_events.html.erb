@@ -2,13 +2,14 @@
   <div class="container white-bg">
     <div class="row">
       <div class="col s12">
-        <h4>All Events</h4>
+        <a href="/pages/approved_events"><h4>All Events</h4></a>
         <%= form_tag(pages_approved_events_path, :method => "get", id: "search-form") do %>
           <%= text_field_tag :search, params[:search], placeholder: "Search for State, Suburb or Postcode"%>
           <button class="btn waves-effect waves-light palette4-bg" type="submit" name="commit" value="Search">SEARCH</button>
         <% end %>
 
         <% if @events.present? %>
+        <br>
         <%= paginate @events %>
           <% @events.each do |event| %>
             <ul class="collection">

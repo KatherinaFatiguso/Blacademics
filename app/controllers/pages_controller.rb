@@ -5,7 +5,7 @@ class PagesController < ApplicationController
     @events = Listing.event_type.approved.limit(3)
     @programs = Listing.program_type.approved.limit(3)
     @jobs = Listing.job_type.approved.limit(3)
-    @student_profiles = StudentProfile.limit(24)
+    @student_profiles = StudentProfile.all
   end
 
   def admin

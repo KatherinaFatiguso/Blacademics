@@ -2,7 +2,7 @@
   <div class="container white-bg">
     <div class="row">
       <div class="col s12">
-        <h4>All Jobs</h4>
+        <a href="/pages/approved_jobs"><h4>All Jobs</h4></a>
         <%= form_tag(pages_approved_jobs_path, :method => "get", id: "search-form") do %>
           <%= text_field_tag :search, params[:search], placeholder: "Search for State, Suburb or Postcode"%>
 
@@ -10,6 +10,7 @@
         <% end %>
 
         <% if @jobs.present? %>
+          <br>
           <%= paginate @jobs %>
           <% @jobs.each do |job| %>
             <ul class="collection">

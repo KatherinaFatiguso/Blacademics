@@ -1,17 +1,17 @@
-<% @pre_launch_landing = false %>
+<% @pre_launch_landing = true %>
 <% if @pre_launch_landing %>
-  <div class="section white">
-    <div class="main-pattern">
-      <div class="container white-bg">
-        <div class="row">
-          <div class="col s2 m1 l1 white-text">.</div>
-          <div class="col s8 m10 l10">
+  <div class="row">
+    <div class="col s12 m12 l12 center"><img src="/assets/holding_page.jpg"></div>
+    <div class="col s2 m2 l2 white-text">.</div>
+    <div class="col s8 m8 l8">
             <%= content_for :title, "Welcome to BLACADEMICS" %>
+
+
             <!-- Begin MailChimp Signup Form -->
             <div id="mc_embed_signup">
             <form action="//blacademics.us11.list-manage.com/subscribe/post?u=1c5d4e58fc7cfe36d4f7b90af&amp;id=eb781301da" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
             <div id="mc_embed_signup_scroll">
-            <h5 class="flow-text">Are you an Aboriginal or Torres Strait Islander university student, future student or alumni?  Then stay tuned because we’re about to launch Australia’s first online platform designed for you.  Leave your details below for a pre-launch preview and updates.</h5>
+            <!-- <h5 class="flow-text">Are you an Aboriginal or Torres Strait Islander university student, future student or alumni?  Then stay tuned because we’re about to launch Australia’s first online platform designed for you.  Leave your details below for a pre-launch preview and updates.</h5> -->
             <div class="indicates-required"><span class="asterisk">*</span> indicates required</div>
             <div class="mc-field-group">
             <label for="mce-EMAIL">Email Address  <span class="asterisk">*</span>
@@ -35,14 +35,13 @@
             </div>
             </form>
             </div>
-            <!--End mc_embed_signup-->
-          </div>
-        </div><!-- end of row -->
-      </div><!-- container white-bg -->
-    </div><!-- main-pattern -->
-  </div><!-- end section white -->
+            <!-- End MailChimp Signup Form -->
+    </div>
+  </div>
 
-<% else %>
+
+
+<% else %><!-- if @pre_launch_landing = true -->
 
   <div class="row">
     <div class="col s12">
@@ -103,16 +102,35 @@
               <div class="card">
                 <div class="card-content">
                   <div class="row">
-                    <% @student_profiles.each do |student|%>
-                      <div class="col s2 m2 l2 center">
-                        <div class="top-margin-40px"><img src=<%=student.profile_pic_url%> width=100% ></div>
-                        <p><%= student.first_name %><br><%= student.last_name %></p>
-                      </div>
-                    <% end %>
+                    <!-- the loop must be outside the class col to make the images appear horizontally -->
+                    <div class="small">
+                      <% @student_profiles.limit(9).each do |student|%>
+                        <div class="col s4 center font-10pt">
+                          <div class="top-margin-20px"><img src=<%=student.profile_pic_url%> width=60% ></div>
+                          <p><%= student.first_name %><br><%= student.last_name %></p>
+                        </div>
+                      <% end %>
+                    </div><!-- end small -->
+                    <div class="medium">
+                      <% @student_profiles.limit(12).each do |student|%>
+                        <div class="col s3 center font-10pt">
+                          <div class="top-margin-20px"><img src=<%=student.profile_pic_url%> width=60% ></div>
+                          <p><%= student.first_name %><br><%= student.last_name %></p>
+                        </div>
+                      <% end %>
+                    </div><!-- end medium -->
+                    <div class="large">
+                      <% @student_profiles.limit(12).each do |student|%>
+                        <div class="col s3 center font-10pt">
+                          <div class="top-margin-20px"><img src=<%=student.profile_pic_url%> width=60% ></div>
+                          <p><%= student.first_name %><br><%= student.last_name %></p>
+                        </div>
+                      <% end %>
+                    </div><!-- end large -->
                   </div><!-- end of row -->
                 </div><!-- card-image -->
                 <div class="card-content">
-                  <span class="card-title grey-text text-darken-4"><a href="pages/students_gallery">Students Gallery</a></span>
+                  <span class="card-title grey-text text-darken-4"><a href="pages/students_gallery">View All <%= @student_profiles.count %> Students Gallery</a></span>
                 </div>
               </div>
             </div>
