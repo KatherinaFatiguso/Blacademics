@@ -27,6 +27,7 @@ class StudentProfilesController < ApplicationController
   def create
     @student_profile = StudentProfile.new(student_profile_params)
     @student_profile.user = current_user
+    @student_profile.setup_fullname
 
     respond_to do |format|
       if @student_profile.save
@@ -44,6 +45,7 @@ class StudentProfilesController < ApplicationController
   def update
     respond_to do |format|
       if @student_profile.update(student_profile_params)
+        @student_profile.setup_fullname
         format.html { redirect_to @student_profile, notice: 'Student profile was successfully updated.' }
         format.json { render :show, status: :ok, location: @student_profile }
       else
@@ -71,6 +73,6 @@ class StudentProfilesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def student_profile_params
-      params.require(:student_profile).permit(:title, :first_name, :last_name, :letters, :profile_pic, :post_nominal_titles, :bio, :work_history, :resume)
+      params.require(:student_profile).permit(:title, :first_name, :last_name, :full_name, :letters, :profile_pic, :post_nominal_titles, :bio, :work_history, :resume)
     end
 end

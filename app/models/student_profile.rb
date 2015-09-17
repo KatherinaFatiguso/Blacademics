@@ -28,8 +28,14 @@ class StudentProfile < ActiveRecord::Base
   has_many :skills
   accepts_nested_attributes_for :skills, :allow_destroy => true
 
-  def self.search(search)
-    where("first_name ILIKE ? OR last_name ILIKE ? OR work_history ILIKE ?", "%#{search}%", "%#{search}%", "%#{search}%")
+  def self.setup_fullname
+    full_name = [first_name, last_name].compact.join(' ')
   end
+
+  def self.search(search)
+    where("first_name ILIKE ? OR last_name ILIKE ? OR full_name ILIKE ?OR work_history ILIKE ?", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%")
+  end
+
+
 
 end
