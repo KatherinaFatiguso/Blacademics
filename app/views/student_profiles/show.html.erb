@@ -6,16 +6,17 @@
       <div class="col s12 m12 l12 center"><h3><strong><%= @student_profile.title%> <%= @student_profile.first_name %> <%= @student_profile.last_name %> <%= @student_profile.letters %> <%= @student_profile.post_nominal_titles %></strong></h3></div>
       <!-- email address can only be seen by the student profile owner or the admin, but not for public viewing -->
       <% if user_signed_in? %>
-
-      <!--test messaging -->
-      <p>@student_profile.user.id: <%= @student_profile.user.id%></p>
-      <p>current_user.id: <%= current_user.id %></p>
-
-
-        <% if (@student_profile.user == current_user) || (current_user.has_role? :admin)  %>
-          <div class="col s12 m12 l12"><p><h5>Email: <%= @student_profile.user.email %></h5></p></div>
+        <!--test messaging -->
+        <div class="col s12 m12 l12 center">
+          <p>@student_profile.user.id: <%= @student_profile.user.id%></p>
+          <p>current_user.id: <%= current_user.id %></p>
+          <a class="waves-effect waves-light btn" href="/messages/new">Send message to this Student</a>
+        </div>
+          <% if (@student_profile.user == current_user) || (current_user.has_role? :admin)  %>
+            <div class="col s12 m12 l12"><p><h5>Email: <%= @student_profile.user.email %></h5></p></div>
+          <% end %>
         <% end %>
-      <% end %>
+
         <div class="col s12"><p><h5>Biography: </h5></p></div>
         <div class="col s12 m12 l12"><p><%= @student_profile.bio %></p></div>
         <div class="col s12"><p><h5>Summary of Work History: </h5></p></div>

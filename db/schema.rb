@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150917044719) do
+ActiveRecord::Schema.define(version: 20150918045807) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -201,6 +201,20 @@ ActiveRecord::Schema.define(version: 20150917044719) do
 
   add_index "listings", ["organisation_id"], name: "index_listings_on_organisation_id", using: :btree
 
+  create_table "messages", force: :cascade do |t|
+    t.integer  "from",                             null: false
+    t.integer  "to",                               null: false
+    t.text     "short_message"
+    t.text     "long_message"
+    t.string   "status",        default: "unread"
+    t.string   "attachment"
+    t.integer  "user_id"
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+  end
+
+  add_index "messages", ["user_id"], name: "index_messages_on_user_id", using: :btree
+
   create_table "organisations", force: :cascade do |t|
     t.string   "company_name"
     t.string   "department"
@@ -318,6 +332,7 @@ ActiveRecord::Schema.define(version: 20150917044719) do
   add_foreign_key "listing_audiences", "audiences"
   add_foreign_key "listing_audiences", "listings"
   add_foreign_key "listings", "organisations"
+  add_foreign_key "messages", "users"
   add_foreign_key "organisations", "users"
   add_foreign_key "scholarships", "student_profiles"
   add_foreign_key "skills", "student_profiles"
