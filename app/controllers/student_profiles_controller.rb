@@ -27,8 +27,7 @@ class StudentProfilesController < ApplicationController
   def create
     @student_profile = StudentProfile.new(student_profile_params)
     @student_profile.user = current_user
-    @student_profile.setup_fullname
-
+    @student_profile.setup_full_name
     respond_to do |format|
       if @student_profile.save
         format.html { redirect_to @student_profile, notice: 'Student profile was successfully created.' }
@@ -43,9 +42,10 @@ class StudentProfilesController < ApplicationController
   # PATCH/PUT /student_profiles/1
   # PATCH/PUT /student_profiles/1.json
   def update
+
     respond_to do |format|
       if @student_profile.update(student_profile_params)
-        @student_profile.setup_fullname
+        @student_profile.setup_full_name
         format.html { redirect_to @student_profile, notice: 'Student profile was successfully updated.' }
         format.json { render :show, status: :ok, location: @student_profile }
       else

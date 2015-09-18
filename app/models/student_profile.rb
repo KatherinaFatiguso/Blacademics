@@ -28,8 +28,9 @@ class StudentProfile < ActiveRecord::Base
   has_many :skills
   accepts_nested_attributes_for :skills, :allow_destroy => true
 
-  def self.setup_fullname
-    full_name = [first_name, last_name].compact.join(' ')
+  def setup_full_name
+    self.full_name = [self.first_name, self.last_name].compact.join(' ')
+    self.save!
   end
 
   def self.search(search)

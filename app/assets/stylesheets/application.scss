@@ -106,6 +106,12 @@ header, main, footer {
 .top-margin-20px{
   margin-top: 20px;
 }
+.top_margin_none{
+  margin-top: 0px;
+}
+.bottom_margin_20px{
+  margin-bottom: 20px;
+}
 .front-image{
   background-position: center;
   background-repeat: no-repeat;
@@ -174,6 +180,10 @@ header, main, footer {
 .palette6-bg{
   background-color: #000000;
 }
+.no-color-text{
+  color: transparent;
+  text-decoration-color: transparent;
+}
 .white-text{
   color: #ffffff;
   text-decoration: none;
@@ -189,19 +199,19 @@ header, main, footer {
   background-color: #00a2b4; // uses palette4-bg
 }
 
-@media only screen and (max-width: 600px) {
+@media all and (max-width: 600px) {
     .medium, .large {
         display:none;
     }
 }
 
-@media only screen and (min-width: 600px) and (max-width: 992px) {
+@media all and (max-width: 992px) and (min-width: 600px) {
     .small, .large {
         display: none;
     }
 }
 
-@media only screen and (min-width: 992px) {
+@media all and (min-width: 992px) {
     .small, .medium {
         display:none;
     }
@@ -233,15 +243,23 @@ header, main, footer {
 .font-34px{
    font-size: 34px;
 }
-
 .paginate{
     background-color: #e64630;
 }
-
 .nav {
   background-color: #e64630;
-
 }
 .button {
   background-color: #00a2b4;
+}
+
+.holding-page-background{
+  background-image: url("/assets/holding_page_bg_image.png");
+  max-height: 100%;
+}
+.align-center{
+  text-align: center;
+}
+.align-right{
+  text-align: right;
 }
