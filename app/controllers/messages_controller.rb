@@ -14,7 +14,9 @@ class MessagesController < ApplicationController
 
   # GET /messages/new
   def new
-    @message = Message.new
+    if params[:from] && params[:to]
+      @message = Message.new
+    end
   end
 
   # GET /messages/1/edit

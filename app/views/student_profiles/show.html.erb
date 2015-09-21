@@ -10,7 +10,7 @@
         <div class="col s12 m12 l12 center">
           <p>@student_profile.user.id: <%= @student_profile.user.id%></p>
           <p>current_user.id: <%= current_user.id %></p>
-          <a class="waves-effect waves-light btn" href="/messages/new">Send message to this Student</a>
+          <a href="/messages/new?from=<%= current_user.id %>&amp;to=<%= @student_profile.user.id%>" class="waves-effect waves-light btn">Send Message To <%= @student_profile.first_name %></a>
         </div>
           <% if (@student_profile.user == current_user) || (current_user.has_role? :admin)  %>
             <div class="col s12 m12 l12"><p><h5>Email: <%= @student_profile.user.email %></h5></p></div>

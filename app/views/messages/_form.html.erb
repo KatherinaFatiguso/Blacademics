@@ -2,13 +2,17 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.input :from %>
-    <%= f.input :to %>
-    <%= f.input :short_message %>
-    <%= f.input :long_message %>
-    <%= f.input :status %>
+    <%= f.input :from, as: :hidden, input_html: { value: params[:from]}  %>
+    <%= f.input :to, as: :hidden, input_html: { value: params[:to]}  %>
+    <%= f.input :short_message, label: 'Title', input_html: { maxlength: 100 } %>
+    <%= f.input :long_message, label: 'Message', input_html: { maxlength: 1000 } %>
+    <%= f.input :status, collection: ['unread', 'read'] %>
+    <% unless @message.attachment.nil? %>
+      <%= image_tag(@message.attachment_url, width:100) %>
+    <% end %>
     <%= f.input :attachment %>
-    <%= f.association :user %>
+    <%= f.association :user, :as => :hidden, input_html: { value: params[:from]} %>
+
   </div>
 
   <div class="form-actions">
