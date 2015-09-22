@@ -16,4 +16,8 @@ class User < ActiveRecord::Base
     self.add_role role
   end
 
+  def find_user_type(id)
+    user.user_type where('id ?', id)
+  end
+
 end

@@ -4,7 +4,9 @@ class MessagesController < ApplicationController
   # GET /messages
   # GET /messages.json
   def index
-    @messages = Message.all
+    if params[:my_id] && params[:contact_id]
+      @messages = Message.all
+    end
   end
 
   # GET /messages/1
@@ -71,6 +73,6 @@ class MessagesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def message_params
-      params.require(:message).permit(:from, :to, :short_message, :long_message, :status, :attachment, :user_id)
+      params.require(:message).permit(:from, :to, :long_message, :status, :attachment, :user_id)
     end
 end

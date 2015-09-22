@@ -10,7 +10,11 @@
         <div class="col s12 m12 l12 center">
           <p>@student_profile.user.id: <%= @student_profile.user.id%></p>
           <p>current_user.id: <%= current_user.id %></p>
-          <a href="/messages/new?from=<%= current_user.id %>&amp;to=<%= @student_profile.user.id%>" class="waves-effect waves-light btn">Send Message To <%= @student_profile.first_name %></a>
+          <% if current_user.id == @student_profile.user.id %>
+            <a href="/messages?my_id=<%= current_user.id %>&amp;contact_id=<%= @student_profile.user.id%>" class="waves-effect waves-light btn palette4-bg">View My Inbox</a>
+          <% else %>
+            <a href="/messages/new?from=<%= current_user.id %>&amp;to=<%= @student_profile.user.id%>" class="waves-effect waves-light btn palette4-bg">Send Message To <%= @student_profile.first_name %></a>
+          <% end %>
         </div>
           <% if (@student_profile.user == current_user) || (current_user.has_role? :admin)  %>
             <div class="col s12 m12 l12"><p><h5>Email: <%= @student_profile.user.email %></h5></p></div>

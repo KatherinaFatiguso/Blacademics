@@ -2,7 +2,12 @@
   <div class="container white-bg">
     <div class="row">
       <div class="col s12">
-        <h4>Send message to <%= @student_profile.id == { value: params[:from]}%></h4>
+        <% User.all.each do |receiver| %>
+          <% if receiver.id == (params[:to]).to_i %>
+            <% @receiver = receiver %>
+          <% end %>
+        <% end %>
+        <h4>Send message to <%= @receiver.student_profile.first_name %></h4>
         <%= render 'form' %>
         <%= link_to 'Back', messages_path %>
       </div>
