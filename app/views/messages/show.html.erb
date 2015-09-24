@@ -35,16 +35,8 @@
   <%= @message.attachment %>
 </p>
 
-<p>
-  <strong>User:</strong>
-  <% if @message.user.user_type == 'student' %>
-    <% @contact = @message.user.student_profile %>
-    <%= @contact.full_name %>
-  <% elsif @message.user.user_type == 'organisation' %>
-    <% @contact = @message.user.organisation %>
-    <%= @contact.company_name %>
-  <% end %>
-
-</p>
-
-<%= link_to 'Back to Messages', pages_conversations_path(contact: @message.to, my_id:@message.from) %>
+<% if @from.user_type == 'student' %>
+  <%= link_to 'Back to Messages with ' + @from.student_profile.full_name, pages_conversations_path(contact: @message.to, my_id:@message.from) %>
+<% elsif @from.user_type == 'organisation' %>
+  <%= link_to 'Back to Messages with ' + @from.organisation.company_name, pages_conversations_path(contact: @message.to, my_id:@message.from) %>
+<% end %>

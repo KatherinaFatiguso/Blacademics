@@ -42,6 +42,7 @@ Rails.application.routes.draw do
   	end
   end
 
+  # I will have to do this style to all pages sections
   # get 'conversations', to: 'pages#conversations'
 
   # The priority is based upon order of creation: first created -> highest priority.

@@ -9,7 +9,7 @@
                 <div style="font-weight: bold; color: blue;">
                   <%= message.long_message %><br>
                 </div>
-                <%= message.created_at.strftime("%e %b %Y %H:%M:%S%p") %>
+                <%= message.created_at.getlocal.strftime("%e %b %Y %I:%M:%S%p") %>
               </p>
             <% end %>
             <% if (message.to == params[:contact].to_i) && (message.from == params[:my_id].to_i) %>
@@ -17,7 +17,7 @@
                 <div style="font-style: italic; font-weight: bold;">
                   <%= message.long_message %><br>
                 </div>
-                <%= message.created_at.strftime("%e %b %Y %H:%M:%S%p") %>
+                <%= message.created_at.getlocal.strftime("%e %b %Y %I:%M:%S%p") %>
               </p>
             <% end %>
           <% end %>
