@@ -4,7 +4,7 @@ class MessagesController < ApplicationController
   # GET /messages
   # GET /messages.json
   def index
-    if params[:my_id] && params[:contact_id]
+    if params[:my_id] || params[:sender_id]
       @messages = Message.all
     end
   end
@@ -33,6 +33,7 @@ class MessagesController < ApplicationController
     respond_to do |format|
       if @message.save
         format.html { redirect_to @message, notice: 'Message was successfully created.' }
+        # format.html { redirect_to pages_conversations_path(contact: params[:to], my_id: params[:from].to_i), notice: 'Message was successfully created.' }
         format.json { render :show, status: :created, location: @message }
       else
         format.html { render :new }
@@ -62,6 +63,12 @@ class MessagesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to messages_url, notice: 'Message was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  def contacts
+    if params[:sender_id]
+      @messages = Message.where('from == ? OR to == ?', 'params[:sender_id]', 'params[:sender_id]')
     end
   end
 

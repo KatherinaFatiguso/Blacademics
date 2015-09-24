@@ -37,6 +37,10 @@ class StudentProfile < ActiveRecord::Base
     where("first_name ILIKE ? OR last_name ILIKE ? OR full_name ILIKE ?OR work_history ILIKE ?", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%")
   end
 
-
+  def check_contact(id)
+    StudentProfile.where("'connections' = ANY (id)")
+    # self.connections.where("connections @> ?", '{id}')
+  end
+  # Returns true if the contact id is not found in the connections column of this student.
 
 end

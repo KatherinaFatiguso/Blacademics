@@ -1,0 +1,28 @@
+<div class="main-pattern">
+  <div class="container white-bg">
+    <div class="row">
+      <div class="col s12">
+        <h4>Conversations with <%= @contact %></h4>
+          <% @messages.each do |message| %>
+            <% if (message.to == params[:my_id].to_i) && (message.from == params[:contact].to_i) %>
+              <p>
+                <div style="font-weight: bold; color: blue;">
+                  <%= message.long_message %><br>
+                </div>
+                <%= message.created_at.strftime("%e %b %Y %H:%M:%S%p") %>
+              </p>
+            <% end %>
+            <% if (message.to == params[:contact].to_i) && (message.from == params[:my_id].to_i) %>
+              <p>
+                <div style="font-style: italic; font-weight: bold;">
+                  <%= message.long_message %><br>
+                </div>
+                <%= message.created_at.strftime("%e %b %Y %H:%M:%S%p") %>
+              </p>
+            <% end %>
+          <% end %>
+        <%= link_to 'Reply', new_message_path(to: @contact_user.id, from: params[:my_id]) , class: 'btn btn-success' %>
+      </div>
+    </div>
+  </div>
+</div>

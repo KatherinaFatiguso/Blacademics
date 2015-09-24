@@ -31,6 +31,7 @@ Rails.application.routes.draw do
   get 'pages/uni_students'
   get 'pages/uni_students_listings'
   get 'pages/students_gallery'
+  get 'pages/conversations'
 
   devise_for :users
 
@@ -40,6 +41,9 @@ Rails.application.routes.draw do
   		get :add_audience_to
   	end
   end
+
+  # get 'conversations', to: 'pages#conversations'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

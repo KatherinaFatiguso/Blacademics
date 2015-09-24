@@ -11,7 +11,7 @@
           <p>@student_profile.user.id: <%= @student_profile.user.id%></p>
           <p>current_user.id: <%= current_user.id %></p>
           <% if current_user.id == @student_profile.user.id %>
-            <a href="/messages?my_id=<%= current_user.id %>&amp;contact_id=<%= @student_profile.user.id%>" class="waves-effect waves-light btn palette4-bg">View My Inbox</a>
+            <a href="/messages?my_id=<%= current_user.id %>" class="waves-effect waves-light btn palette4-bg">View My Inbox</a>
           <% else %>
             <a href="/messages/new?from=<%= current_user.id %>&amp;to=<%= @student_profile.user.id%>" class="waves-effect waves-light btn palette4-bg">Send Message To <%= @student_profile.first_name %></a>
           <% end %>

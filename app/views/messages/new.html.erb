@@ -7,9 +7,13 @@
             <% @receiver = receiver %>
           <% end %>
         <% end %>
-        <h4>Send message to <%= @receiver.student_profile.first_name %></h4>
+        <% if @receiver.user_type == 'student'%>
+          <h4>Send message to <%= @receiver.student_profile.first_name %></h4>
+        <% elsif @receiver.user_type == 'organisation' %>
+          <h4>Send message to <%= @receiver.organisation.company_name %></h4>
+        <% end %>
         <%= render 'form' %>
-        <%= link_to 'Back', messages_path %>
+        <%= link_to 'Back', messages_path((params[:to]).to_i) %>
       </div>
     </div>
   </div>

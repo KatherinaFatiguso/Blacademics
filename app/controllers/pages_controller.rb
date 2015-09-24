@@ -142,4 +142,18 @@ class PagesController < ApplicationController
     end
   end
 
+  # def all_messages_from_contact(id)
+  #   @messages = Message.where("from == ? OR to == ?", id, id)
+  # end
+
+  def conversations
+    @contact_user = User.find(params[:contact])
+    if @contact_user.user_type == "student"
+      @contact = @contact_user.student_profile.full_name
+    elsif @contact_user.user_type == "organisation"
+      @contact = @contact_user.organisation.company_name
+    end
+    @messages = Message.all
+  end
+
 end
