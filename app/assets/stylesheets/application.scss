@@ -28,8 +28,14 @@ $primary-color: #000000 !default;
   color: #000000; //black
 }
 
+html {
+  min-height: 100%;
+  margin: 0;
+}
 
 body {
+  min-height: 100%;
+  margin: 0;
   font: 100%;
   color: $primary-color;
 }
@@ -142,7 +148,10 @@ header, main, footer {
   margin-right: 0px;
 }
 .container {
-  min-height: 1000px;
+  min-height: 100%;
+}
+.row{
+  min-height: 100%;
 }
 .palette1{
   color: #d4e8d0;
@@ -255,7 +264,11 @@ header, main, footer {
 
 .holding-page-background{
   background-image: url("/assets/holding_page_bg_image.png");
-  max-height: 100%;
+  width: 100%;
+  // height: 100%; DOESN'T WORK
+  min-height: 1000px;
+  background-position: center;
+  background-size: cover;
 }
 .align-center{
   text-align: center;
