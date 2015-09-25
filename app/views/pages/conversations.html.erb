@@ -3,7 +3,9 @@
     <div class="row">
       <div class="col s12">
         <h4>Conversations with <%= @contact %></h4>
+        <%= paginate @messages %>
           <% @messages.each do |message| %>
+            <!-- messages for me -->
             <% if (message.to == params[:my_id].to_i) && (message.from == params[:contact].to_i) %>
               <p>
                 <div style="font-weight: bold; color: blue;">
@@ -12,6 +14,7 @@
                 <%= message.created_at.getlocal.strftime("%e %b %Y %I:%M:%S%p") %>
               </p>
             <% end %>
+            <!-- messages from me -->
             <% if (message.to == params[:contact].to_i) && (message.from == params[:my_id].to_i) %>
               <p>
                 <div style="font-style: italic; font-weight: bold;">
@@ -21,7 +24,10 @@
               </p>
             <% end %>
           <% end %>
-        <%= link_to 'Reply', new_message_path(to: @contact_user.id, from: params[:my_id]) , class: 'btn btn-success' %>
+          <%= paginate @messages %>
+          <br>
+        <%= link_to 'Reply', new_message_path(to: @contact_user.id, from: params[:my_id]), class: 'waves-effect waves-light btn palette4-bg' %>
+        <%= link_to 'Inbox', messages_path(my_id: params[:my_id]), class: 'waves-effect waves-light btn palette4-bg'%>
       </div>
     </div>
   </div>

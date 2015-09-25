@@ -12,6 +12,9 @@
                 <%= image_tag(@organisation.logo_url) %>
               </div>
               <div class="card-content">
+                <% if current_user.id == @organisation.user.id %>
+                  <a href="/messages?my_id=<%= current_user.id %>" class="waves-effect waves-light btn palette4-bg">View My Inbox</a>
+                <% end %>
                 <p>
                   <strong>Name:</strong>
                   <%= @organisation.company_name %>
@@ -64,9 +67,9 @@
 
         <div class="row">
           <div class="col s12 m12 l12">
+            <h4>My listings</h4>
             <div class="card">
               <div class="card-content">
-                <h4>My listings</h4>
                 <h5>Events</h5>
                   <% if @organisation.listings.event_type.any? %>
                     <%= render @organisation.listings.event_type %> <!-- this will call the _listing.html.erb from listings view -->
@@ -74,7 +77,11 @@
                     <p>Currently no jobs listed</p>
                   <% end %>
                   <%= link_to 'Add Event', new_listing_path(org: @organisation.id, listing_type: 'event'), class: 'btn btn-sml-success' %>
+                </div><!-- end of card-content -->
+              </div><!-- end of card -->
 
+            <div class="card">
+              <div class="card-content">
                 <h5>Programs</h5>
                   <% if @organisation.listings.program_type.any? %>
                     <%= render @organisation.listings.program_type %>
@@ -82,7 +89,11 @@
                     <p>Currently no programs listed</p>
                   <% end %>
                   <%= link_to 'Add Program', new_listing_path(org: @organisation.id, listing_type: 'program'), class: 'btn btn-sml-success' %>
+                </div><!-- end of card-content -->
+              </div><!-- end of card -->
 
+            <div class="card">
+              <div class="card-content">
                 <h5>Jobs</h5>
                   <% if @organisation.listings.job_type.any? %>
                     <%= render @organisation.listings.job_type %>
@@ -90,10 +101,10 @@
                     <p>Currently no jobs listed</p>
                   <% end %>
                   <%= link_to 'Add Job', new_listing_path(org: @organisation.id, listing_type: 'job'), class: 'btn btn-sml-success' %>
+              </div><!-- end of card-content -->
+            </div><!-- end of card -->
 
-              </div>
-            </div>
-          </div>
+          </div><!-- end of col s12 m12 l12-->
         </div> <!-- end of row-->
       </div>
     </div>

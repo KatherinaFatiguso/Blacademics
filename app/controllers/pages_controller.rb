@@ -153,7 +153,7 @@ class PagesController < ApplicationController
     elsif @contact_user.user_type == "organisation"
       @contact = @contact_user.organisation.company_name
     end
-    @messages = Message.all
+    @messages = Message.all.order("created_at DESC").page(params[:page]).per(10)
   end
 
 end

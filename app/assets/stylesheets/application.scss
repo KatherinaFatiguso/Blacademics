@@ -145,6 +145,14 @@ header, main, footer {
   // background-image: url("https://c3.staticflickr.com/7/6023/5975465375_9c089b6085_b.jpg");
   background-size: cover;
   background-size: 100%;
+  min-height: 100%;
+
+  // width: 100%;
+  // min-height: 100%;
+  // background-position: center;
+  // background-size: cover;
+
+
 }
 
 .container .row{
@@ -152,7 +160,7 @@ header, main, footer {
   margin-right: 0px;
 }
 .container {
-  height: 100%;
+min-height: 800px;
 }
 
 .palette1{

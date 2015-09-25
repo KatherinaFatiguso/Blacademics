@@ -13,13 +13,6 @@
           <h4>Send message to <%= @receiver.organisation.company_name %></h4>
         <% end %>
         <%= render 'form' %>
-        <br>
-        <% @from = User.find(params[:to])%>
-        <% if @from.user_type == 'student' %>
-          <%= link_to 'Back to Messages with ' + @from.student_profile.full_name, pages_conversations_path(contact: params[:to], my_id: params[:from]) %>
-        <% elsif @from.user_type == 'organisation' %>
-          <%= link_to 'Back to Messages with ' + @from.organisation.company_name, pages_conversations_path(contact: params[:to], my_id: params[:from]) %>
-        <% end %>
 
       </div>
     </div>
