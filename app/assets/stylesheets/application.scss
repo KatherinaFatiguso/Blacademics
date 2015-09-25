@@ -29,15 +29,19 @@ $primary-color: #000000 !default;
 }
 
 html {
-  min-height: 100%;
+  height: 100%;
   margin: 0;
 }
 
 body {
-  min-height: 100%;
+  height: 100%;
   margin: 0;
   font: 100%;
   color: $primary-color;
+}
+
+header {
+  height: 100%;
 }
 
 @import 'materialize';
@@ -150,9 +154,7 @@ header, main, footer {
 .container {
   min-height: 100%;
 }
-.row{
-  min-height: 100%;
-}
+
 .palette1{
   color: #d4e8d0;
 }
@@ -265,8 +267,8 @@ header, main, footer {
 .holding-page-background{
   background-image: url("/assets/holding_page_bg_image.png");
   width: 100%;
-  // height: 100%; DOESN'T WORK
-  min-height: 1000px;
+  height: 100%;
+  // min-height: 1000px;
   background-position: center;
   background-size: cover;
 }
