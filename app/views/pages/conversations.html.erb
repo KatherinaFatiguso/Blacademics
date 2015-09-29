@@ -7,7 +7,8 @@
           <% @messages.each do |message| %>
             <!-- messages for me from contact -->
             <% if (message.to == params[:my_id].to_i) && (message.from == params[:contact].to_i) %>
-            <!-- here, add function to change from unread to read status -->
+            <!-- the function to change from unread to read status, ONLY for messages for me -->
+              <% message.status_read %>
               <p>
                 <div style="font-weight: bold; color: blue;">
                   <%= message.long_message %><br>
@@ -15,6 +16,7 @@
                 <%= message.created_at.getlocal.strftime("%e %b %Y %I:%M:%S%p") %>
               </p>
             <% end %>
+
             <!-- messages from me to contact -->
             <% if (message.to == params[:contact].to_i) && (message.from == params[:my_id].to_i) %>
               <p>

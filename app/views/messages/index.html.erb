@@ -10,7 +10,6 @@
           <% @receiver = @receiver_user.organisation %>
         <% end %>
 
-        <p>All unread messages: <%= Message.incoming_messages(1)%></p>
           <!-- Check the contacts from all messages to see if contact id is new and will be added into the connections list -->
           <%= content_tag_for(:tr, @messages) do |message| %>
             <% if (message.from == params[:my_id].to_i) || (message.to == params[:my_id].to_i) %>
@@ -37,10 +36,20 @@
                 <% @sender_user = User.find(connection)%>
                 <% if @sender_user.user_type == 'student'%>
                   <% @sender = @sender_user.student_profile%>
-                  <li><%= link_to @sender.full_name, pages_conversations_path(my_id: current_user.id, contact: @sender_user.id) %></li>
+                  <li>
+                    <%= link_to @sender.full_name, pages_conversations_path(my_id: current_user.id, contact: @sender_user.id) %>
+                    <% if Message.count_new_messages(params[:my_id], @sender_user.id) > 0 %>
+                      (<%= Message.count_new_messages(params[:my_id], @sender_user.id)%>)<!-- shows the number of unread messages -->
+                    <% end %>
+                  </li>
                 <% elsif @sender_user.user_type == 'organisation'%>
                   <% @sender = @sender_user.organisation%>
-                  <li><%= link_to @sender.company_name, pages_conversations_path(my_id: current_user.id, contact: @sender_user.id) %></li>
+                  <li>
+                    <%= link_to @sender.company_name, pages_conversations_path(my_id: current_user.id, contact: @sender_user.id) %>
+                    <% if Message.count_new_messages(params[:my_id], @sender_user.id) > 0 %>
+                      (<%= Message.count_new_messages(params[:my_id], @sender_user.id)%>)<!-- shows the number of unread messages -->
+                    <% end %>
+                  </li>
                 <% end %>
               </p>
             <% end %>
