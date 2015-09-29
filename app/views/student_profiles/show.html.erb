@@ -6,12 +6,12 @@
       <div class="col s12 m12 l12 center"><h3><strong><%= @student_profile.title%> <%= @student_profile.first_name %> <%= @student_profile.last_name %> <%= @student_profile.letters %> <%= @student_profile.post_nominal_titles %></strong></h3></div>
       <!-- email address can only be seen by the student profile owner or the admin, but not for public viewing -->
       <% if user_signed_in? %>
-        <!--test messaging -->
+        <!-- messaging -->
         <div class="col s12 m12 l12 center">
           <p>@student_profile.user.id: <%= @student_profile.user.id%></p>
           <p>current_user.id: <%= current_user.id %></p>
           <% if current_user.id == @student_profile.user.id %>
-            <a href="/messages?my_id=<%= current_user.id %>" class="waves-effect waves-light btn palette4-bg">View My Inbox</a>
+            <a href="/messages?my_id=<%= current_user.id %>" class="waves-effect waves-light btn palette4-bg">View My Inbox</a><!-- here, add the number of unread messages for me from contacts -->
           <% else %>
             <a href="/messages/new?from=<%= current_user.id %>&amp;to=<%= @student_profile.user.id%>" class="waves-effect waves-light btn palette4-bg">Send Message To <%= @student_profile.first_name %></a>
           <% end %>

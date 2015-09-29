@@ -5,8 +5,9 @@
         <h4>Conversations with <%= @contact %></h4>
         <%= paginate @messages %>
           <% @messages.each do |message| %>
-            <!-- messages for me -->
+            <!-- messages for me from contact -->
             <% if (message.to == params[:my_id].to_i) && (message.from == params[:contact].to_i) %>
+            <!-- here, add function to change from unread to read status -->
               <p>
                 <div style="font-weight: bold; color: blue;">
                   <%= message.long_message %><br>
@@ -14,7 +15,7 @@
                 <%= message.created_at.getlocal.strftime("%e %b %Y %I:%M:%S%p") %>
               </p>
             <% end %>
-            <!-- messages from me -->
+            <!-- messages from me to contact -->
             <% if (message.to == params[:contact].to_i) && (message.from == params[:my_id].to_i) %>
               <p>
                 <div style="font-style: italic; font-weight: bold;">

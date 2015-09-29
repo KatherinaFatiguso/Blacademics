@@ -1,4 +1,4 @@
-<% @pre_launch_landing = false %>
+<% @pre_launch_landing = true %>
 <!-- appears in home.html.erb and application.html.erb -->
 <% if @pre_launch_landing %>
   <div class="row holding-page-background">
@@ -7,7 +7,7 @@
     <div class="row">
       <div class="col s1 m2 l3 no-color-text">.</div>
       <div class="col s10 m8 l6 top-margin-20px">
-        <img src="/assets/logo_and_takes_you_higher.png" style="max-width: 100%" >
+        <img src="/assets/takes_you_higher.png" style="max-width: 100%" >
       </div>
       <div class="col s1 m2 l3 no-color-text">.</div>
     </div> <!-- end of row -->
@@ -16,7 +16,7 @@
       <div class="col s2 m2 l2 no-color-text">.</div>
       <div class="col s8 m8 l8">
         <p class="flow-text center">
-          Are you an Aboriginal and/or Torres Strait Islander university student, future student or alumni? Then stay tuned as we’re building an online community designed to support and celebrate you! Sign in below to receive our updates, invitations and notification of our launch.
+          Are you an Aboriginal and/or Torres Strait Islander university student, future student or alumni? Then stay tuned as we’re building an online community designed to support and celebrate you. Sign in below to receive our updates, invitations and notification of our launch.
         </p>
         <%= content_for :title, "Welcome to BLACADEMICS" %>
 
@@ -64,10 +64,7 @@
   </div><!-- row holding-page-background -->
 
 
-
-
-<% else %><!-- if @pre_launch_landing = true -->
-
+<% else %><!-- if @pre_launch_landing = true --------------------->
 
   <div class="row">
     <div class="col s12">
@@ -106,7 +103,7 @@
           <div class="col s12 m6 l6">
             <div class="card">
               <div class="card-image">
-                <%= image_tag("BLAC_Infographic1.png") %>
+                <%= video_tag(["/videos/blacademics.mp4"], width: '100%', controls: true ) %>
               </div>
               <div class="card-content">
                 <span class="card-title grey-text text-darken-4">Watch Video</span>

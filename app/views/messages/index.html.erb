@@ -10,7 +10,8 @@
           <% @receiver = @receiver_user.organisation %>
         <% end %>
 
-          <!-- Check for all message to search for user id that has never been added into the connections list -->
+        <p>All unread messages: <%= Message.incoming_messages(1)%></p>
+          <!-- Check the contacts from all messages to see if contact id is new and will be added into the connections list -->
           <%= content_tag_for(:tr, @messages) do |message| %>
             <% if (message.from == params[:my_id].to_i) || (message.to == params[:my_id].to_i) %>
               <!-- save the new contact that send me the message -->
