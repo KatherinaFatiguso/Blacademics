@@ -4,7 +4,7 @@
       <div class="col s12">
         <a href="/pages/approved_jobs"><h4>All Jobs</h4></a>
         <%= form_tag(pages_approved_jobs_path, :method => "get", id: "search-form") do %>
-          <%= text_field_tag :search, params[:search], placeholder: "Search for State, Suburb or Postcode"%>
+          <%= text_field_tag :search, params[:search], placeholder: "Search by Location or Description"%>
 
           <button class="btn waves-effect waves-light palette4-bg" type="submit" name="commit" value="Search">SEARCH</button>
         <% end %>
@@ -15,7 +15,11 @@
           <% @jobs.each do |job| %>
             <ul class="collection">
               <li class="collection-item avatar">
-                <img src=<%=job.image_url%> alt="" class="circle">
+                <% if job.image_url.present? %>
+                  <%= cl_image_tag(job.image_url, :alt => "", :class => "circle") %>
+                <% else %>
+                  <%= cl_image_tag("default_pic2_otesv3.png", :alt => "", :class => "circle")%>
+                <% end %>
                 <a href="/listings/<%=job.id%>">
                 <span class="title"><%=job.title%></span>
                 <p><%=job.short_description%></p>

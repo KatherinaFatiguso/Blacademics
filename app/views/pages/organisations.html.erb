@@ -15,6 +15,11 @@
                 <li class="collection-item">
                   <div class="col s12 m4 l4">
                     <img src=<%=organisation.logo_url%> alt=""  width=200>
+                    <% if organisation.logo_url.present? %>
+                      <%= cl_image_tag(organisation.logo_url, :alt => "", :width => 200) %>
+                    <% else %>
+                      <%= cl_image_tag("no_logo_pic_ozams0.png", :alt => "", :width => 200) %>
+                    <% end %>
                   </div>
                   <div class="col s12 m8 l8">
                     <p>

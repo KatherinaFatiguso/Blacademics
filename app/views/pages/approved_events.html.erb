@@ -4,7 +4,7 @@
       <div class="col s12">
         <a href="/pages/approved_events"><h4>All Events</h4></a>
         <%= form_tag(pages_approved_events_path, :method => "get", id: "search-form") do %>
-          <%= text_field_tag :search, params[:search], placeholder: "Search for State, Suburb or Postcode"%>
+          <%= text_field_tag :search, params[:search], placeholder: "Search by Location or Description"%>
           <button class="btn waves-effect waves-light palette4-bg" type="submit" name="commit" value="Search">SEARCH</button>
         <% end %>
 
@@ -14,7 +14,11 @@
           <% @events.each do |event| %>
             <ul class="collection">
               <li class="collection-item avatar">
-                <img src=<%=event.image_url%> alt="" class="circle">
+                <% if event.image_url.present? %>
+                  <%= cl_image_tag(event.image_url, :alt => "", :class => "circle") %>
+                <% else %>
+                  <%= cl_image_tag("default_pic2_otesv3.png", :alt => "", :class => "circle") %>
+                <% end %>
                 <a href="/listings/<%=event.id%>">
                 <span class="title"><%=event.title%></span>
                 <p><%=event.short_description%></p>

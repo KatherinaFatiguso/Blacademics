@@ -5,10 +5,15 @@
       <div class="col l3">.</div><!-- do not remove the dot . -->
       <div class="col s12 m12 l8">
         <h3>Listing of Organisations</h3>
+          <%= paginate @organisations %>
           <%= content_tag_for(:tr, @organisations) do |organisation| %>
           <ul class="collection">
             <li class="collection-item avatar">
-              <img src=<%=organisation.logo_url%> alt="" class="circle">
+              <% if organisation.logo_url.present? %>
+                <%= cl_image_tag(organisation.logo_url, :alt => "", :class => "circle", :size => "300") %>
+              <% else %>
+                <%= cl_image_tag("no_logo_pic_ozams0.png", :alt => "", :class => "circle") %>
+              <% end %>
               <span class="title"><a href="/organisations/<%=organisation.id%>"><%= organisation.company_name %></a></span>
               <p><a href="/organisations/<%=organisation.id%>"><%= organisation.department %></a></p>
               <p><%= organisation.contact_phone %></p>
@@ -16,8 +21,8 @@
               <%= link_to 'Edit', edit_organisation_path(organisation), class: 'btn btn-edit' %>
             </li>
           </ul>
-
-          <% end %> <!-- end of loop -->
+        <% end %> <!-- end of loop -->
+        <%= paginate @organisations %>
       </div>
     </div>
   <% end %><!-- end if user has role admin -->

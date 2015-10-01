@@ -14,7 +14,11 @@
         <% @programs.each do |program| %>
           <ul class="collection">
             <li class="collection-item avatar">
-              <img src=<%=program.image_url%> alt="" class="circle">
+              <% if program.image_url.present? %>
+                <%= cl_image_tag(program.image_url, :alt => "", :class => "circle") %>
+              <% else %>
+                <%= cl_image_tag("default_pic2_otesv3.png", :alt => "", :class => "circle") %>
+              <% end %>
               <a href="/listings/<%=program.id%>">
               <span class="title"><%=program.title%></span>
               <p><%=program.short_description%></p>

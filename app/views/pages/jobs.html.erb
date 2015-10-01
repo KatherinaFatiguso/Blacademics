@@ -14,7 +14,11 @@
           <% @jobs.each do |job| %>
             <ul class="collection">
               <li class="collection-item avatar">
-                <img src=<%=job.image_url%> alt="" class="circle">
+                <% if job.image_url.present? %>
+                  <%= cl_image_tag(job.image_url, :alt => "", :class => "circle") %>
+                <% else %>
+                  <%= cl_image_tag("default_pic2_otesv3.png", :alt => "", :class => "circle") %>
+                <% end %>
                 <a href="/listings/<%=job.id%>">
                 <span class="title"><%=job.title%></span>
                 <p><%=job.short_description%></p>

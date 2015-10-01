@@ -4,7 +4,7 @@ class OrganisationsController < ApplicationController
   # GET /organisations
   # GET /organisations.json
   def index
-    @organisations = Organisation.all
+    @organisations = Organisation.all.order("company_name ASC").page(params[:page]).per(10)
   end
 
   # GET /organisations/1

@@ -3,65 +3,63 @@
 <div class="main-pattern">
   <div class="container white-bg">
     <div class="row">
-      <div class="col s12">
-        <h4>Company Profile</h4>
+      <div class="col s12 m12 l12">
+        <h4><%= @organisation.company_name %></h4>
         <div class="row">
-          <div class="col s12 m12 l12">
-            <div class="card">
-              <div class="card-image">
-                <%= image_tag(@organisation.logo_url) %>
-              </div>
-              <div class="card-content">
-                <% if current_user.id == @organisation.user.id %>
-                  <a href="/messages?my_id=<%= current_user.id %>" class="waves-effect waves-light btn palette4-bg">View My Inbox</a>
-                <% end %>
-                <p>
-                  <strong>Name:</strong>
-                  <%= @organisation.company_name %>
-                </p>
-                <p>
-                  <strong>University:</strong>
-                  <%= @organisation.department %>
-                </p>
-                <p>
-                  <strong>Street address 1:</strong>
-                  <%= @organisation.street_address_1 %>
-                </p>
-                <p>
-                  <strong>Street address 2:</strong>
-                  <%= @organisation.street_address_2 %>
-                </p>
-                <p>
-                  <strong>Suburb:</strong>
-                  <%= @organisation.suburb %>
-                </p>
-                <p>
-                  <strong>State:</strong>
-                  <%= @organisation.state %>
-                </p>
-                <p>
-                  <strong>Postcode:</strong>
-                  <%= @organisation.postcode %>
-                </p>
-                <p>
-                  <strong>Contact name:</strong>
-                  <%= @organisation.contact_name %>
-                </p>
-                <p>
-                  <strong>Contact email:</strong>
-                  <%= @organisation.contact_email %>
-                </p>
-                <p>
-                  <strong>Contact phone:</strong>
-                  <%= @organisation.contact_phone %>
-                </p>
-                <p>
-                  <strong>Website:</strong>
-                  <%= @organisation.website %>
-                </p>
-                <%= link_to 'Edit', edit_organisation_path(@organisation) %>
-              </div>
-            </div>
+          <div class="col s12 m6 l6">
+            <% if @organisation.department.present? %>
+              <p>
+                <strong>Department:</strong>
+                <%= @organisation.department %>
+              </p>
+            <% end%>
+            <p>
+              <strong>Street address 1:</strong>
+              <%= @organisation.street_address_1 %>
+            </p>
+            <p>
+              <strong>Street address 2:</strong>
+              <%= @organisation.street_address_2 %>
+            </p>
+            <p>
+              <strong>Suburb:</strong>
+              <%= @organisation.suburb %>
+            </p>
+            <p>
+              <strong>State:</strong>
+              <%= @organisation.state %>
+            </p>
+            <p>
+              <strong>Postcode:</strong>
+              <%= @organisation.postcode %>
+            </p>
+            <p>
+              <strong>Contact name:</strong>
+              <%= @organisation.contact_name %>
+            </p>
+            <p>
+              <strong>Contact email:</strong>
+              <%= @organisation.contact_email %>
+            </p>
+            <p>
+              <strong>Contact phone:</strong>
+              <%= @organisation.contact_phone %>
+            </p>
+            <p>
+              <strong>Website:</strong>
+              <%= @organisation.website %>
+            </p>
+            <%= link_to 'Edit', edit_organisation_path(@organisation) %>
+          </div>
+          <div class="col s12 m6 l6">
+            <% if @organisation.logo_url.present? %>
+              <%= cl_image_tag(@organisation.logo_url, :width => '100%') %>
+            <% else %>
+              <%= cl_image_tag("no_logo_pic_ozams0.png") %>
+            <% end %>
+            <% if current_user.id == @organisation.user.id %>
+              <a href="/messages?my_id=<%= current_user.id %>" class="waves-effect waves-light btn palette4-bg">View My Inbox</a>
+            <% end %>
           </div>
         </div> <!-- end of row-->
 

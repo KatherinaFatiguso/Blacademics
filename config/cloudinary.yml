@@ -1,19 +1,18 @@
----
 development:
-  cloud_name: coder-factory
-  api_key: '767274749816166'
-  api_secret: CRN-Tcdy6YyibdHh06yzaDAemMU
+  cloud_name: blacademics-limited
+  api_key: '622479513895262'
+  api_secret: FoPfi3hY30AR4jlv2t-1ll9TwYA
   enhance_image_tag: true
   static_image_support: false
 production:
-  cloud_name: coder-factory
-  api_key: '767274749816166'
-  api_secret: CRN-Tcdy6YyibdHh06yzaDAemMU
+  cloud_name: blacademics-limited
+  api_key: '622479513895262'
+  api_secret: FoPfi3hY30AR4jlv2t-1ll9TwYA
   enhance_image_tag: true
   static_image_support: true
 test:
-  cloud_name: coder-factory
-  api_key: '767274749816166'
-  api_secret: CRN-Tcdy6YyibdHh06yzaDAemMU
+  cloud_name: blacademics-limited
+  api_key: '622479513895262'
+  api_secret: FoPfi3hY30AR4jlv2t-1ll9TwYA
   enhance_image_tag: true
   static_image_support: false

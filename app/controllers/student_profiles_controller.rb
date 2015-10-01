@@ -4,7 +4,7 @@ class StudentProfilesController < ApplicationController
   # GET /student_profiles
   # GET /student_profiles.json
   def index
-    @student_profiles = StudentProfile.all
+    @student_profiles = StudentProfile.all.order("full_name ASC").page(params[:page]).per(10)
   end
 
   # GET /student_profiles/1

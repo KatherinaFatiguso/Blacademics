@@ -16,7 +16,11 @@
             <% @student_profiles.each do |student| %>
                 <li class="collection-item avatar">
                   <a href="/student_profiles/<%=student.id%>">
-                  <img src=<%=student.profile_pic_url%> alt="" class="circle">
+                  <% if student.profile_pic_url.present? %>
+                    <%= cl_image_tag(student.profile_pic_url, :alt => "", :class => "circle") %>
+                  <% else %>
+                    <%= cl_image_tag("default_pic1_ztn0yq.png", :alt => "", :class => "circle") %>
+                  <% end %>
                   <span class="title"><%=student.title%> <%=student.first_name%> <%=student.last_name%></span>
                   <% if student.university_educations.present? %>
                     <p><% student.university_educations.each do |qualification|%>

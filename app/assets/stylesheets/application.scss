@@ -141,8 +141,7 @@ header, main, footer {
 }
 
 .main-pattern{
-  background-image: url("/assets/indigenous_pattern1.jpg");
-  // background-image: url("https://c3.staticflickr.com/7/6023/5975465375_9c089b6085_b.jpg");
+  background-image: url("https://res.cloudinary.com/blacademics-limited/image/upload/v1443507323/indigenous_pattern1_tiglvr.jpg");
   background-size: cover;
   background-size: 100%;
   min-height: 100%;
@@ -284,4 +283,25 @@ min-height: 800px;
 }
 .align-right{
   text-align: right;
+}
+
+
+.embed-container {
+  position: relative;
+  padding-bottom: 56.25%;
+  padding-top: 30px;
+  height: 0;
+  overflow: hidden;
+  width: 100%;
+  height: auto;
+  margin-bottom: 12px;
+}
+
+.embed-container iframe,
+.embed-container object,
+.embed-container embed {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
 }

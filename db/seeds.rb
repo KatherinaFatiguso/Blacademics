@@ -6,6 +6,21 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+
+
+role1 = "admin"
+role2 = "student"
+role3 = "organisation"
+
+user1 = User.create!(
+  email: "admin@example.com",
+  password: "12345678",
+  password_confirmation: "12345678",
+  user_type: role1
+)
+user1.add_role role1
+
+
 =begin
 role1 = "student"
 
@@ -157,7 +172,7 @@ end
 
 
 
-
+=begin
 (1..50).each do |i|
   StudentProfile.create!(
     first_name: "Firstname ",
@@ -165,3 +180,4 @@ end
     bio: "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga."
   )
 end
+=end

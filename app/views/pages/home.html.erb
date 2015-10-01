@@ -2,8 +2,6 @@
 <!-- appears in home.html.erb and application.html.erb -->
 <% if @pre_launch_landing %>
   <div class="row holding-page-background">
-    <!-- <div class="col s12 m12 l12 center"><img src="/assets/holding_page.jpg"></div> -->
-    <!-- <div class="col s12 m12 l12"><img src="/assets/holding_page_bg_image.png">hello</div> -->
     <div class="row">
       <div class="col s1 m2 l3 no-color-text">.</div>
       <div class="col s10 m8 l6 top-margin-20px">
@@ -70,7 +68,7 @@
     <div class="col s12">
       <div class="parallax-container">
         <div class="parallax">
-          <img src="/assets/homepage.jpg" style="max-width: 100%;">
+          <%= cl_image_tag("blacademics_homepage_tgfnei.jpg") %>
         </div>
       </div>
     </div>
@@ -101,20 +99,13 @@
 
         <div class="row">
           <div class="col s12 m6 l6">
-            <div class="card">
-              <div class="card-image">
-                <%= video_tag(["/videos/blacademics.mp4"], width: '100%', controls: true ) %>
-              </div>
-              <div class="card-content">
-                <span class="card-title grey-text text-darken-4">Watch Video</span>
-              </div>
+            <div class="embed-container">
+              <%= embed("we1ah4DgMrc") %>
             </div>
           </div>
           <div class="col s12 m6 l6">
-            <div class="card">
-              <div class="card-image">
-                <iframe src="https://www.google.com/maps/d/embed?mid=znuiI5BoaB3Y.k2iICEN7PcFE" width=100%  height=375></iframe>
-              </div>
+            <div class="embed-container">
+              <iframe src="https://www.google.com/maps/d/embed?mid=znuiI5BoaB3Y.k2iICEN7PcFE"></iframe>
             </div>
           </div>
         </div><!-- end of row -->
@@ -145,7 +136,13 @@
                     <div class="large">
                       <% @student_profiles.limit(12).each do |student|%>
                         <div class="col s3 center font-10pt">
-                          <div class="top-margin-20px"><img src=<%=student.profile_pic_url%> width=60% ></div>
+                          <div class="top-margin-20px">
+                            <% if student.profile_pic_url.present? %>
+                              <%= cl_image_tag("student.profile_pic_url", :width => "50%") %>
+                            <% else %>
+                              <%= cl_image_tag("default_pic1_ztn0yq.png", :width => "50%") %>
+                            <% end %>
+                          </div>
                           <p><%= student.first_name %><br><%= student.last_name %></p>
                         </div>
                       <% end %>
@@ -164,7 +161,7 @@
           <div class="col s12 m12 l12">
             <div class="card">
               <div class="card-image">
-                <%= image_tag("BLAC_Infographic1.png") %>
+                <%= cl_image_tag("BLAC_Infographic1_dmptuk.png") %>
               </div>
               <div class="card-content">
                 <span class="card-title grey-text text-darken-4">Info Graphic 1</span>
@@ -177,7 +174,7 @@
           <div class="col s12 m12 l12">
             <div class="card">
               <div class="card-image">
-                <%= image_tag("BLAC_Infographic2.png") %>
+                <%= cl_image_tag("BLAC_Infographic2_i5plri.png") %>
               </div>
               <div class="card-content">
                 <span class="card-title grey-text text-darken-4">Info Graphic 2</span>
@@ -197,10 +194,10 @@
           <div class="col m4 medium">
             <div class="card">
               <div class="card-image">
-                <%= image_tag("two_students_on_computer.jpg") %>
+                <%= cl_image_tag("blacademics_guides_faq_pr0kbd.jpg") %>
               </div>
-              <div class="card-content">
-                <span class="card-title grey-text text-darken-4">Guides and FAQs</span>
+              <div class="card-content center">
+                <span class="card-title grey-text text-darken-4" style="font-size: 13pt">Guides and FAQs</span>
               </div>
             </div>
           </div>
@@ -208,9 +205,9 @@
           <div class="col l4 large">
             <div class="card">
               <div class="card-image">
-                <%= image_tag("two_students_on_computer.jpg") %>
+                <%= cl_image_tag("blacademics_guides_faq_pr0kbd.jpg") %>
               </div>
-              <div class="card-content">
+              <div class="card-content center">
                 <span class="card-title grey-text text-darken-4">Guides and FAQs</span>
               </div>
             </div>
@@ -229,10 +226,10 @@
             <div class="col m4 medium">
               <div class="card">
                 <div class="card-image">
-                  <%= image_tag("university.jpg") %>
+                  <%= cl_image_tag("blacademics_universities_indig_units_crshgk.jpg") %>
                 </div>
-                <div class="card-content">
-                  <span class="card-title grey-text text-darken-4"><div class="font-12pt">Universities/Indigenous Units</div></span>
+                <div class="card-content center">
+                  <span class="card-title grey-text text-darken-4 font-10pt" style="font-size: 13pt;">Universities and Indigenous Units</span>
                 </div>
               </div>
             </div>
@@ -242,10 +239,10 @@
             <div class="col l4 large">
               <div class="card">
                 <div class="card-image">
-                  <%= image_tag("university.jpg") %>
+                  <%= cl_image_tag("blacademics_universities_indig_units_crshgk.jpg") %>
                 </div>
-                <div class="card-content">
-                  <span class="card-title grey-text text-darken-4"><div class="font-14pt">Universities and Indigenous Units</div></span>
+                <div class="card-content center">
+                  <span class="card-title grey-text text-darken-4" style="font-size: 13pt;">Universities and Indigenous Units</span>
                 </div>
               </div>
             </div>
@@ -264,10 +261,10 @@
             <div class="col m4 medium">
               <div class="card">
                 <div class="card-image">
-                  <%= image_tag("graduates.jpg") %>
+                  <%= cl_image_tag("blacademics_uni_alumni_d2uwg3.jpg") %>
                 </div>
-                <div class="card-content">
-                  <span class="card-title grey-text text-darken-4"><div class="font-12pt">Uni Students and Alumni</div></span>
+                <div class="card-content center">
+                  <span class="card-title grey-text text-darken-4" style="font-size: 13pt;">Uni Students and Alumni</span>
                 </div>
               </div>
             </div>
@@ -277,9 +274,9 @@
             <div class="col l4 large">
               <div class="card">
                 <div class="card-image">
-                  <%= image_tag("graduates.jpg") %>
+                  <%= cl_image_tag("blacademics_uni_alumni_d2uwg3.jpg") %>
                 </div>
-                <div class="card-content">
+                <div class="card-content center">
                   <span class="card-title grey-text text-darken-4">Uni Students and Alumni</span>
                 </div>
               </div>
@@ -302,10 +299,10 @@
             <div class="col m4 medium">
               <div class="card">
                 <div class="card-image">
-                  <%= image_tag("city_skyscrapers.jpg") %>
+                  <%= cl_image_tag("blacademics_organisations_rorkcs.jpg") %>
                 </div>
                 <div class="card-content">
-                  <span class="card-title grey-text text-darken-4">Organisations</span>
+                  <span class="card-title grey-text text-darken-4" style="font-size: 13pt;">Organisations</span>
                 </div>
               </div>
             </div>
@@ -314,10 +311,10 @@
           <a href="/pages/organisations">
             <div class="col l4 large">
               <div class="card">
-                <div class="card-image">
-                  <%= image_tag("city_skyscrapers.jpg") %>
+                <div class="card-image center">
+                  <%= cl_image_tag("blacademics_organisations_rorkcs.jpg") %>
                 </div>
-                <div class="card-content">
+                <div class="card-content center">
                   <span class="card-title grey-text text-darken-4">Organisations</span>
                 </div>
               </div>
@@ -337,10 +334,10 @@
             <div class="col m4 medium">
               <div class="card">
                 <div class="card-image">
-                  <%= image_tag("girl_student.jpg") %>
+                  <%= cl_image_tag("blacademics_high_school_eut1qd.jpg") %>
                 </div>
-                <div class="card-content">
-                  <span class="card-title grey-text text-darken-4">High Schooler</span>
+                <div class="card-content center">
+                  <span class="card-title grey-text text-darken-4" style="font-size: 13pt;">High Schooler</span>
                 </div>
               </div>
             </div>
@@ -350,9 +347,9 @@
             <div class="col l4 large">
               <div class="card">
                 <div class="card-image">
-                  <%= image_tag("girl_student.jpg") %>
+                  <%= cl_image_tag("blacademics_high_school_eut1qd.jpg") %>
                 </div>
-                <div class="card-content">
+                <div class="card-content center">
                   <span class="card-title grey-text text-darken-4">High Schooler</span>
                 </div>
               </div>
@@ -372,10 +369,10 @@
             <div class="col m4 medium">
               <div class="card">
                 <div class="card-image">
-                  <%= image_tag("students_on_laptops.jpg") %>
+                  <%= cl_image_tag("blacademics_all_listings_d3hj3i.jpg") %>
                 </div>
-                <div class="card-content">
-                  <span class="card-title grey-text text-darken-4">All Listings</span>
+                <div class="card-content center">
+                  <span class="card-title grey-text text-darken-4" style="font-size: 13pt;">All Listings</span>
                 </div>
               </div>
             </div>
@@ -385,9 +382,9 @@
             <div class="col l4 large">
               <div class="card">
                 <div class="card-image">
-                  <%= image_tag("students_on_laptops.jpg") %>
+                  <%= cl_image_tag("blacademics_all_listings_d3hj3i.jpg") %>
                 </div>
-                <div class="card-content">
+                <div class="card-content center">
                   <span class="card-title grey-text text-darken-4">All Listings</span>
                 </div>
               </div>

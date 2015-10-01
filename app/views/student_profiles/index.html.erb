@@ -5,13 +5,20 @@
       <div class="col l3">.</div><!-- do not remove the dot . -->
       <div class="col s12 m12 l8">
         <h4>Listing of Students</h4>
-
+        <%= paginate @student_profiles %>
             <%= content_tag_for(:tr, @student_profiles) do |student_profile| %>
               <ul class="collection">
                 <li class="collection-item avatar">
-                  <img src=<%=student_profile.profile_pic_url%> alt="" class="circle">
-                  <span class="title"><a href="/student_profiles/<%=student_profile.id%>"><%= student_profile.first_name %> <%= student_profile.last_name %></a>
-                  <p><%= student_profile.user.email %></p>
+                  <a href="/student_profiles/<%=student_profile.id%>">
+                  <% if student_profile.profile_pic_url.present? %>
+                    <%= cl_image_tag(student_profile.profile_pic_url, :alt => "", :class => "circle") %>
+                  <% else %>
+                    <%= cl_image_tag("default_pic1_ztn0yq.png", :alt => "", :class => "circle") %>
+                  <% end %>
+
+                  <h5><%= student_profile.full_name %></h5>
+                  </a>
+
                   <p>
                     <%= link_to 'Edit', edit_student_profile_path(student_profile), class: 'btn btn-edit' %>
                     <%= link_to 'Delete', student_profile, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-destroy' %>
@@ -19,7 +26,7 @@
                 </li>
               </ul>
             <% end %>
-
+            <%= paginate @student_profiles %>
           <div class="form-actions">
             <!-- <%= link_to 'New Student profile', new_student_profile_path, class: 'btn btn-success' %> -->
           </div>

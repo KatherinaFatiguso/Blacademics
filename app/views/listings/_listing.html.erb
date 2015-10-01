@@ -1,7 +1,10 @@
-
 <ul class="collection">
   <li class="collection-item avatar">
-    <%= image_tag(listing.image_url, alt: "", class: "circle") %>
+    <% if listing.image_url.present? %>
+      <%= cl_image_tag(listing.image_url, alt: "", class: "circle",) %>
+    <% else %>
+      <%= cl_image_tag("default_pic2_otesv3.png", alt: "", class: "circle") %>
+    <% end %>
     <span class="title"><p><%= link_to listing.title, listing_path(listing.id) %></p></span>
     <p><%= listing.short_description %></p>
     <% unless current_page?(root_path) || current_page?(pages_approved_events_path) || current_page?(pages_approved_programs_path) || current_page?(pages_approved_jobs_path) %>

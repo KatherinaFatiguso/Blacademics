@@ -2,17 +2,22 @@
   <div class="container white-bg">
     <div class="row">
       <div class="col s12 m12 l12"><p id="notice"><%= notice %></p></div>
-      <div class="col s12 m12 l12 center"><%= image_tag(@student_profile.profile_pic_url, size: "300") %></div>
-      <div class="col s12 m12 l12 center"><h3><strong><%= @student_profile.title%> <%= @student_profile.first_name %> <%= @student_profile.last_name %> <%= @student_profile.letters %> <%= @student_profile.post_nominal_titles %></strong></h3></div>
+      <div class="col s12 m12 l12 center">
+        <% if @student_profile.profile_pic_url.present? %>
+          <%= cl_image_tag(@student_profile.profile_pic_url, size: "300") %>
+        <% else %>
+        <%= cl_image_tag("default_pic1_ztn0yq.png") %>
+        <% end %>
+
+      </div>
+      <div class="col s12 m12 l12 center"><h3><%= @student_profile.title%> <%= @student_profile.first_name %> <%= @student_profile.last_name %> <%= @student_profile.letters %> <%= @student_profile.post_nominal_titles %></h3></div>
       <!-- email address can only be seen by the student profile owner or the admin, but not for public viewing -->
       <% if user_signed_in? %>
         <!-- messaging -->
         <div class="col s12 m12 l12 center">
-          <p>@student_profile.user.id: <%= @student_profile.user.id%></p>
-          <p>current_user.id: <%= current_user.id %></p>
-          <% if current_user.id == @student_profile.user.id %>
+          <% if current_user == @student_profile.user %>
             <a href="/messages?my_id=<%= current_user.id %>" class="waves-effect waves-light btn palette4-bg">View My Inbox</a><!-- here, add the number of unread messages for me from contacts -->
-          <% else %>
+          <% elsif (current_user.has_role? :student) || (current_user.has_role? :organisation) %>
             <a href="/messages/new?from=<%= current_user.id %>&amp;to=<%= @student_profile.user.id%>" class="waves-effect waves-light btn palette4-bg">Send Message To <%= @student_profile.first_name %></a>
           <% end %>
         </div>
@@ -39,7 +44,7 @@
     <!-------------------------------------------------------------->
     <div class="row">
       <div class="border-top"></div>
-        <div class="col s12"><h5><bold>Education:</bold></h5></div>
+        <div class="col s12"><h5>Education:</h5></div>
           <% @student_profile.university_educations.each do |student| %>
             <div class="col s4 m2 l2"><p>Qualification: </p></div>
             <% if student.degree.present? %>
@@ -142,7 +147,7 @@
           <!-------------------------------------------------------------->
     <div class="row">
       <div class="border-top"></div>
-        <div class="col s12"><h5><strong>Awards:</strong></h5></div>
+        <div class="col s12"><h5>Awards:</h5></div>
         <% @student_profile.awards.each do |award| %>
           <div class="col s4 m2 l2"><p>Title:</p></div>
           <% if award.title.present? %>
@@ -187,7 +192,7 @@
           <!-------------------------------------------------------------->
     <div class="row">
       <div class="border-top"></div>
-        <div class="col s12"><h5><strong>Internships:</strong></h5></div>
+        <div class="col s12"><h5>Internships:</h5></div>
         <% @student_profile.internships.each do |internship| %>
           <div class="col s4 m2 l2"><p>Title:</p></div>
           <% if internship.title.present? %>
@@ -241,7 +246,7 @@
           <!-------------------------------------------------------------->
     <div class="row">
       <div class="border-top"></div>
-        <div class="col s12"><h5><strong>Cadetships:</strong></h5></div>
+        <div class="col s12"><h5>Cadetships:</h5></div>
         <% @student_profile.cadetships.each do |cadetships| %>
           <div class="col s4 m2 l2"><p>Title:</p></div>
           <% if cadetships.title.present? %>
@@ -295,7 +300,7 @@
           <!-------------------------------------------------------------->
     <div class="row">
       <div class="border-top"></div>
-        <div class="col s12"><h5><strong>Employments:</strong></h5></div>
+        <div class="col s12"><h5>Employments:</h5></div>
         <% @student_profile.employments.each do |employment| %>
           <div class="col s4 m2 l2"><p>Title:</p></div>
           <% if employment.title.present? %>
@@ -346,7 +351,7 @@
           <!-------------------------------------------------------------->
     <div class="row">
           <div class="border-top"></div>
-            <div class="col s12"><h5><strong>Skills:</strong> (up to 40 skills)<h5></div>
+            <div class="col s12"><h5>Skills: (up to 40 skills)<h5></div>
             <% count = 0 %>
             <% @student_profile.skills.each do |skill| %>
               <% if skill.skill.present? %>
