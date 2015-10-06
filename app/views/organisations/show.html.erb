@@ -72,7 +72,7 @@
                   <% if @organisation.listings.event_type.any? %>
                     <%= render @organisation.listings.event_type %> <!-- this will call the _listing.html.erb from listings view -->
                   <% else %>
-                    <p>Currently no jobs listed</p>
+                    <p>Currently no events listed</p>
                   <% end %>
                   <%= link_to 'Add Event', new_listing_path(org: @organisation.id, listing_type: 'event'), class: 'btn btn-sml-success' %>
                 </div><!-- end of card-content -->
