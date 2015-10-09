@@ -64,55 +64,97 @@
 
 <% else %><!-- if @pre_launch_landing = true --------------------->
 
-  <div class="row">
-    <div class="col s12">
+  <div class="row" style="margin: 0;">
+    <div class="col s12 m12 l12">
+
       <div class="parallax-container">
+        <div class="container">
+          <div class="row">
+            <div class="col s12 m12 l12" style="margin-top: 180px; text-align: center;">
+              <h3 style="color: white; text-align: center; font-family: Nationale-Bold;">Supporting Indigenous Excellence</h3>
+              <h5 style="color: white; text-align: center; font-family: Nationale;">For all Aboriginal and/or Torres Strait Islander university student, future student and alumni.</h5>
+                <a class="waves-effect waves-light btn" style="background-color: #e64630;">Read More</a>
+                <a class="waves-effect waves-light btn">Contact Us</a>
+            </div>
+          </div>
+        </div>
         <div class="parallax">
-          <%= cl_image_tag("blacademics_homepage_tgfnei.jpg") %>
+          <%= cl_image_tag("blacademics_homepage.jpg", :background=>"#000", :opacity=>80) %>
         </div>
       </div>
+
     </div>
   </div>
 
-  <div class="section white">
+    <div class="row" style=" margin: 0; padding-top: 70px; padding-bottom: 40px; background-color: #dfeef6; background-size: cover">
+      <div class="col s12 m3 l3">
+        <a href="/pages/approved_events" style="text-decoration: none; color: black;">
+          <%= cl_image_tag("events.jpg", :width=>"100%") %>
+          <h5>Events</h5>
+          <p>Add some text here for more information.</p>
+        </a>
+      </div>
+
+      <div class="col s12 m3 l3">
+        <a href="/pages/approved_programs" style="text-decoration: none; color: black;">
+          <%= cl_image_tag("programs.jpg", :width=>"100%") %>
+          <h5>Programs</h5>
+          <p>Add some text here for more information.</p>
+        </a>
+      </div>
+
+      <div class="col s12 m3 l3">
+        <a href="/pages/approved_jobs" style="text-decoration: none; color: black;">
+          <%= cl_image_tag("jobs2.jpg", :width=>"100%") %>
+          <h5>Jobs</h5>
+          <p>Add some text here for more information.</p>
+        </a>
+      </div>
+
+      <div class="col s12 m3 l3">
+        <a href="#" style="text-decoration: none; color: black;">
+          <%= cl_image_tag("news_videos.jpg", :width=>"100%") %>
+          <h5>News and Videos</h5>
+          <p>Add some text here for more information.</p>
+        </a>
+      </div>
+
+    </div><!-- end of row -->
+
+    <div class="row" style=" margin-top: 80px; margin-bottom: 80px;">
+      <div class="col s12 m6 l6">
+        <h5>What to expect at university</h5>
+        <div class="embed-container">
+          <%= embed("we1ah4DgMrc") %>
+        </div>
+      </div>
+      <div class="col s12 m6 l6">
+        <h5>Find a university in Australia</h5>
+        <div class="embed-container">
+          <iframe src="https://www.google.com/maps/d/embed?mid=znuiI5BoaB3Y.k2iICEN7PcFE"></iframe>
+        </div>
+      </div>
+    </div><!-- end of row -->
+
+
+
     <div class="main-pattern">
-      <div class="container white-bg">
+      <div class="container"  style="width: 80%;">
         <div class="row">
-          <div class="col s12 m4 l4">
-            <div class="text-center"><h4>EVENTS</h4></div>
-            <%= render @events %>
-            <h5><%= link_to "More Events", pages_approved_events_path %></h5>
-          </div>
-
-          <div class="col s12 m4 l4">
-            <div class="text-center"><h4>PROGRAMS</h4></div>
-              <%= render @programs %>
-              <h5><%= link_to "More Programs", pages_approved_programs_path %></h5>
-          </div>
-
-          <div class="col s12 m4 l4">
-            <div class="text-center"><h4>JOBS</h4></div>
-            <%= render @jobs %>
-            <h5><%= link_to "More Jobs", pages_approved_jobs_path %></h5>
+          <div class="col s12 m12 l12" style=" margin-top: 80px;">
+            <%= cl_image_tag("BLAC_Infographic1.png", width: "100%") %>
           </div>
         </div><!-- end of row -->
 
         <div class="row">
-          <div class="col s12 m6 l6">
-            <div class="embed-container">
-              <%= embed("we1ah4DgMrc") %>
-            </div>
-          </div>
-          <div class="col s12 m6 l6">
-            <div class="embed-container">
-              <iframe src="https://www.google.com/maps/d/embed?mid=znuiI5BoaB3Y.k2iICEN7PcFE"></iframe>
-            </div>
+          <div class="col s12 m12 l12" style=" margin-top: 80px; margin-bottom: 80px;">
+            <%= cl_image_tag("BLAC_Infographic2.png", width: "100%") %>
           </div>
         </div><!-- end of row -->
 
         <% if user_signed_in? %>
           <div class="row">
-            <div class="col s12 m12 l12">
+            <div class="col s12 m12 l12" style=" margin-bottom: 80px;">
               <div class="card">
                 <div class="card-content">
                   <div class="row">
@@ -157,33 +199,12 @@
           </div><!-- end of row -->
         <% end %>
 
-        <div class="row">
-          <div class="col s12 m12 l12">
-            <div class="card">
-              <div class="card-image">
-                <%= cl_image_tag("BLAC_Infographic1_dmptuk.png") %>
-              </div>
-              <div class="card-content">
-                <span class="card-title grey-text text-darken-4">Info Graphic 1</span>
-              </div>
-            </div>
-          </div>
-        </div><!-- end of row -->
+      </div><!-- end of container-->
+    </div><!-- end of main-pattern -->
 
-        <div class="row">
-          <div class="col s12 m12 l12">
-            <div class="card">
-              <div class="card-image">
-                <%= cl_image_tag("BLAC_Infographic2_i5plri.png") %>
-              </div>
-              <div class="card-content">
-                <span class="card-title grey-text text-darken-4">Info Graphic 2</span>
-              </div>
-            </div>
-          </div>
-        </div><!-- end of row -->
 
-        <div class="row">
+  <div class="container" style="width: 80%;">
+        <div class="row" style="margin-top: 80px;">
           <!-- Guides and FAQs ------------------>
           <div class="col s12 small">
             <div class="card-panel palette4-bg center">
@@ -192,61 +213,45 @@
           </div>
 
           <div class="col m4 medium">
-            <div class="card">
-              <div class="card-image">
-                <%= cl_image_tag("blacademics_guides_faq_pr0kbd.jpg") %>
-              </div>
-              <div class="card-content center">
-                <span class="card-title grey-text text-darken-4" style="font-size: 13pt">Guides and FAQs</span>
-              </div>
-            </div>
+            <a href="#" style="text-decoration: none; color: black;">
+              <%= cl_image_tag("blacademics_guides_faq.jpg", width: "100%") %>
+              <h5 style="font-size: 100%; text-align: center;"><strong>Guides and FAQs</strong></h5>
+            </a>
           </div>
 
           <div class="col l4 large">
-            <div class="card">
-              <div class="card-image">
-                <%= cl_image_tag("blacademics_guides_faq_pr0kbd.jpg") %>
-              </div>
-              <div class="card-content center">
-                <span class="card-title grey-text text-darken-4">Guides and FAQs</span>
-              </div>
-            </div>
+            <a href="#" style="text-decoration: none; color: black;">
+                <%= cl_image_tag("blacademics_guides_faq.jpg", width: "100%") %>
+                <h5 style="font-size: 100%; text-align: center;"><strong>Guides and FAQs</strong></h5>
+            </a>
           </div>
 
           <!--- Universities and Indigenous Units ------------------>
-          <a href="/pages/universities">
+
             <div class="col s12 small">
-              <div class="card-panel palette4-bg center">
-                <span class="white-text font-14pt">Universities and Indigenous Units</span>
-              </div>
+              <a href="/pages/universities">
+                <div class="card-panel palette4-bg center">
+                  <span class="white-text">Universities and Indigenous Units</span>
+                </div>
+              </a>
             </div>
-          </a>
 
-          <a href="/pages/universities">
+
             <div class="col m4 medium">
-              <div class="card">
-                <div class="card-image">
-                  <%= cl_image_tag("blacademics_universities_indig_units_crshgk.jpg") %>
-                </div>
-                <div class="card-content center">
-                  <span class="card-title grey-text text-darken-4 font-10pt" style="font-size: 13pt;">Universities and Indigenous Units</span>
-                </div>
-              </div>
+              <a href="/pages/universities" style="text-decoration: none; color: black;">
+                  <%= cl_image_tag("blacademics_universities_indig_units.jpg", width: "100%") %>
+                  <h5 style="font-size: 100%; text-align: center;"><strong>Universities and Indigenous Units</strong></h5>
+              </a>
             </div>
-          </a>
 
-          <a href="/pages/universities">
-            <div class="col l4 large">
-              <div class="card">
-                <div class="card-image">
-                  <%= cl_image_tag("blacademics_universities_indig_units_crshgk.jpg") %>
-                </div>
-                <div class="card-content center">
-                  <span class="card-title grey-text text-darken-4" style="font-size: 13pt;">Universities and Indigenous Units</span>
-                </div>
-              </div>
-            </div>
-          </a>
+
+          <div class="col l4 large">
+            <a href="/pages/universities" style="text-decoration: none; color: black;">
+              <%= cl_image_tag("blacademics_universities_indig_units.jpg", width: "100%") %>
+              <h5 style="font-size: 100%; text-align: center;"><strong>Universities and Indigenous Units</strong></h5>
+            </a>
+          </div>
+
 
           <!-- Uni Students and Alumni ---------------------------->
           <a href="/pages/uni_students">
@@ -257,34 +262,25 @@
             </div>
           </a>
 
-          <a href="/pages/uni_students">
-            <div class="col m4 medium">
-              <div class="card">
-                <div class="card-image">
-                  <%= cl_image_tag("blacademics_uni_alumni_d2uwg3.jpg") %>
-                </div>
-                <div class="card-content center">
-                  <span class="card-title grey-text text-darken-4" style="font-size: 13pt;">Uni Students and Alumni</span>
-                </div>
-              </div>
-            </div>
-          </a>
+          <div class="col m4 medium">
+            <a href="/pages/uni_students" style="text-decoration: none; color: black;">
+              <%= cl_image_tag("blacademics_uni_alumni_d2uwg3.jpg", width: "100%") %>
+              <h5 style="font-size: 100%; text-align: center;"><strong>Uni Students and Alumni</strong></h5>
+            </a>
+          </div>
 
-          <a href="/pages/uni_students">
+
             <div class="col l4 large">
-              <div class="card">
-                <div class="card-image">
-                  <%= cl_image_tag("blacademics_uni_alumni_d2uwg3.jpg") %>
-                </div>
-                <div class="card-content center">
-                  <span class="card-title grey-text text-darken-4">Uni Students and Alumni</span>
-                </div>
-              </div>
+              <a href="/pages/uni_students" style="text-decoration: none; color: black;">
+                <%= cl_image_tag("blacademics_uni_alumni_d2uwg3.jpg", width: "100%") %>
+                <h5 style="font-size: 100%; text-align: center;"><strong>Uni Students and Alumni</strong></h5>
+              </a>
             </div>
-          </a>
+
+
         </div><!-- end of row -->
 
-        <div class="row">
+        <div class="row" style="margin-bottom: 80px;">
 
           <!-- Organisations ---------------------------->
           <a href="/pages/organisations">
@@ -295,31 +291,21 @@
             </div>
           </a>
 
-          <a href="/pages/organisations">
             <div class="col m4 medium">
-              <div class="card">
-                <div class="card-image">
-                  <%= cl_image_tag("blacademics_organisations_rorkcs.jpg") %>
-                </div>
-                <div class="card-content">
-                  <span class="card-title grey-text text-darken-4" style="font-size: 13pt;">Organisations</span>
-                </div>
-              </div>
+              <a href="/pages/organisations" style="text-decoration: none; color: black;">
+                <%= cl_image_tag("blacademics_organisations.jpg", width: "100%") %>
+                <h5 style="font-size: 100%; text-align: center;"><strong>Organisations</strong></h5>
+              </a>
             </div>
-          </a>
 
-          <a href="/pages/organisations">
+
             <div class="col l4 large">
-              <div class="card">
-                <div class="card-image center">
-                  <%= cl_image_tag("blacademics_organisations_rorkcs.jpg") %>
-                </div>
-                <div class="card-content center">
-                  <span class="card-title grey-text text-darken-4">Organisations</span>
-                </div>
-              </div>
+              <a href="/pages/organisations" style="text-decoration: none; color: black;">
+                <%= cl_image_tag("blacademics_organisations.jpg", width: "100%") %>
+                <h5 style="font-size: 100%; text-align: center;"><strong>Organisations</strong></h5>
+              </a>
             </div>
-          </a>
+
 
           <!-- High Schooler ---------------------------->
           <a href="/pages/highschoolers">
@@ -330,31 +316,22 @@
             </div>
           </a>
 
-          <a href="/pages/highschoolers">
-            <div class="col m4 medium">
-              <div class="card">
-                <div class="card-image">
-                  <%= cl_image_tag("blacademics_high_school_eut1qd.jpg") %>
-                </div>
-                <div class="card-content center">
-                  <span class="card-title grey-text text-darken-4" style="font-size: 13pt;">High Schooler</span>
-                </div>
-              </div>
-            </div>
-          </a>
 
-          <a href="/pages/highschoolers">
-            <div class="col l4 large">
-              <div class="card">
-                <div class="card-image">
-                  <%= cl_image_tag("blacademics_high_school_eut1qd.jpg") %>
-                </div>
-                <div class="card-content center">
-                  <span class="card-title grey-text text-darken-4">High Schooler</span>
-                </div>
-              </div>
-            </div>
-          </a>
+          <div class="col m4 medium">
+            <a href="/pages/highschoolers" style="text-decoration: none; color: black;">
+              <%= cl_image_tag("blacademics_high_school.jpg", width: "100%") %>
+              <h5 style="font-size: 100%; text-align: center;"><strong>High Schooler</strong></h5>
+            </a>
+          </div>
+
+
+          <div class="col l4 large">
+            <a href="/pages/highschoolers" style="text-decoration: none; color: black;">
+              <%= cl_image_tag("blacademics_high_school.jpg", width: "100%") %>
+              <h5 style="font-size: 100%; text-align: center;"><strong>High Schooler</strong></h5>
+            </a>
+          </div>
+
 
           <!-- All Listings ---------------------------->
           <a href="/pages/uni_students_listings">
@@ -365,34 +342,25 @@
             </div>
           </a>
 
-          <a href="/pages/uni_students_listings">
-            <div class="col m4 medium">
-              <div class="card">
-                <div class="card-image">
-                  <%= cl_image_tag("blacademics_all_listings_d3hj3i.jpg") %>
-                </div>
-                <div class="card-content center">
-                  <span class="card-title grey-text text-darken-4" style="font-size: 13pt;">All Listings</span>
-                </div>
-              </div>
-            </div>
-          </a>
 
-          <a href="/pages/uni_students_listings">
-            <div class="col l4 large">
-              <div class="card">
-                <div class="card-image">
-                  <%= cl_image_tag("blacademics_all_listings_d3hj3i.jpg") %>
-                </div>
-                <div class="card-content center">
-                  <span class="card-title grey-text text-darken-4">All Listings</span>
-                </div>
-              </div>
-            </div>
-          </a>
+          <div class="col m4 medium">
+            <a href="/pages/uni_students_listings" style="text-decoration: none; color: black;">
+              <%= cl_image_tag("blacademics_all_listings.jpg", width: "100%") %>
+              <h5 style="font-size: 100%; text-align: center;"><strong>All Listings</strong></h5>
+            </a>
+          </div>
+
+
+          <div class="col l4 large">
+            <a href="/pages/uni_students_listings" style="text-decoration: none; color: black;">
+              <%= cl_image_tag("blacademics_all_listings.jpg", width: "100%") %>
+              <h5 style="font-size: 100%; text-align: center;"><strong>All Listings</strong></h5>
+            </a>
+          </div>
+
 
         </div><!-- end of row -->
-      </div><!-- end of container white-bg -->
-    </div><!-- end of container -->
-  </div><!-- end of section white -->
+
+  </div><!-- end of container -->
+
 <% end %>

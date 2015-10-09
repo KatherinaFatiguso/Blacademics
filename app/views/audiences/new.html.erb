@@ -2,9 +2,13 @@
   <div class="container white-bg">
     <div class="row">
       <div class="col s12">
-        <h4>New Audience</h4>
-        <%= render 'form' %>
-        <%= link_to 'Back', audiences_path %>
+        <% if current_user.has_role? :admin %>
+          <h4>New Audience</h4>
+          <%= render 'form' %>
+          <%= link_to 'Back', audiences_path %>
+        <% else %>
+          <%= render "listings/forbidden" %>
+        <% end %>
       </div>
     </div>
   </div>
