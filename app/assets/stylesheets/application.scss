@@ -137,8 +137,9 @@ header, main, footer {
 }
 
 .parallax-container {
-  height: 600px;
+  height: 550px;
 }
+
 
 .main-pattern{
   background-image: url("https://res.cloudinary.com/blacademics-limited/image/upload/v1443507323/indigenous_pattern1_tiglvr.jpg");
@@ -146,7 +147,7 @@ header, main, footer {
   background-size: 100%;
   min-height: 100%;
 
-  // width: 100%;
+  // min-width: 100%;
   // min-height: 100%;
   // background-position: center;
   // background-size: cover;
@@ -159,7 +160,7 @@ header, main, footer {
   margin-right: 0px;
 }
 .container {
-min-height: 800px;
+// min-height: 800px;
 }
 
 .palette1{
