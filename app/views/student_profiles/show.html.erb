@@ -6,7 +6,7 @@
         <% if @student_profile.profile_pic_url.present? %>
           <%= cl_image_tag(@student_profile.profile_pic_url, size: "300") %>
         <% else %>
-        <%= cl_image_tag("default_pic1_ztn0yq.png") %>
+          <%= cl_image_tag("default_pic1_ztn0yq.png") %>
         <% end %>
 
       </div>

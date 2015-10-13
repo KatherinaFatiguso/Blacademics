@@ -1,0 +1,112 @@
+<!-- <div class="main-pattern">
+  <div class="container white-bg"> -->
+    <div class="row">
+      <div class="col s12">
+        <h4 style="text-align: center;">News Index</h4>
+
+        <% @organisation = Organisation.find(params[:org_id]) %>
+        <% @news = @organisation.news %>
+        <div class="form-actions" style="text-align: center; margin-top: 30px; margin-bottom: 40px;">
+          <%= link_to 'Create News', new_news_path(org_id: @organisation.id), class: 'btn btn-success', style: 'background-color: #e64630' %>
+        </div>
+
+        <% @news.each do |news| %>
+          <div class="card">
+            <div class="row" style="background-color: #fff180; margin: 0px; text-align: center;">
+              <div class="col s12 m4 l4" style="margin-top: 0px; padding-bottom: 20px;">
+                <h5>Image</h5>
+                <% if news.picture.present? %>
+                  <div class="embed-container" style="margin: 0px; padding-top: 0px; max-height: 250px;">
+                    <img src=<%=news.picture%>>
+                  </div>
+                <% end %>
+              </div>
+              <div class="col s12 m4 l4" style="margin-top: 0px; padding-bottom: 20px;">
+                <h5>YouTube</h5>
+                <% if news.picture.present? %>
+                  <div class="embed-container" style="margin: 0px; max-height: 250px;">
+                    <%= embed(news.youtube)%>
+                  </div>
+                <% end %>
+              </div>
+              <div class="col s12 m4 l4" style="margin-top: 0px; padding-bottom: 20px;">
+                <h5>Video</h5>
+                <% if news.picture.present? %>
+                  <div class="embed-container" style="margin: 0px; padding-top: 0px; max-height: 250px;">
+                    <img src=<%=news.picture%>>
+                  </div>
+                <% end %>
+              </div>
+            </div><!-- end of row -->
+
+            <p style="margin-bottom: 5px; margin-left: 10px; margin-right: 10px; font-weight: bold;">
+              Title: <span style="font-weight: normal;"><%= news.title %></span>
+            </p>
+
+            <p style="margin-bottom: 5px; margin-left: 10px; margin-right: 10px; font-weight: bold;">
+              Published Status: <span style="font-weight: normal;"><%= news.published %></span>
+            </p>
+
+            <% if news.date_published.present? %>
+            <p style="margin-bottom: 5px; margin-left: 10px; margin-right: 10px; font-weight: bold;">
+              Published Date: <span style="font-weight: normal;"><%= news.date_published %></span>
+            </p>
+            <% end %>
+
+            <p style="margin-bottom: 5px; margin-left: 10px; margin-right: 10px; font-weight: bold;">
+              Author: <span style="font-weight: normal;"><%= news.author %></span>
+            </p>
+
+            <p style="margin-bottom: 5px; margin-left: 10px; margin-right: 10px; font-weight: bold;">
+              Organisation: <span style="font-weight: normal;"><%= news.organisation.company_name %></span>
+            </p>
+
+            <p style="margin-bottom: 5px; margin-left: 10px; margin-right: 10px; font-weight: bold;">
+              Description: <span style="font-weight: normal;"><%= news.description %></span>
+            </p>
+
+            <p style="margin-bottom: 5px; margin-left: 10px; margin-right: 10px; font-weight: bold;">
+              Categories: <span style="font-weight: normal;"><%= news.categories %></span>
+            </p>
+
+            <% if news.picture.present? %>
+              <p style="margin-bottom: 5px; margin-left: 10px; margin-right: 10px; font-weight: bold;">
+                Picture: <span style="font-weight: normal;"><%= news.picture %></span>
+              </p>
+            <% end %>
+
+            <% if news.weblink.present? %>
+              <p style="margin-bottom: 5px; margin-left: 10px; margin-right: 10px; font-weight: bold;">
+                Weblink: <span style="font-weight: normal;"><a href="http://<%= news.weblink %>"><%= news.weblink %></a></span>
+              </p>
+            <% end %>
+
+            <% if news.youtube.present? %>
+              <p style="margin-bottom: 5px; margin-left: 10px; margin-right: 10px; font-weight: bold;">
+                Youtube: <span style="font-weight: normal;"><a href="http://<%= news.youtube %>"><%= news.youtube %></a></span>
+              </p>
+            <% end %>
+
+            <% if news.video.present? %>
+              <p style="margin-bottom: 5px; margin-left: 10px; margin-right: 10px; font-weight: bold;">
+                Video: <span style="font-weight: normal;"><%= news.video %></span>
+              </p>
+            <% end %>
+
+            <% if news.impressions_count.present? %>
+              <p style="margin-bottom: 5px; margin-left: 10px; margin-right: 10px; font-weight: bold;">
+                Impressions_count: <span style="font-weight: normal;"><%= news.impressions_count %></span>
+              </p>
+            <% end %>
+
+            <div style="margin-top: 10px; margin-bottom: 10px; margin-left: 10px;">
+              <td><%= link_to 'Edit', edit_news_path(news, org_id: @organisation.id), class: 'btn btn-edit', style: "background-color: #00a2b4" %></td>
+              <td><%= link_to 'Delete', news, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-destroy', style: "background-color: #00a2b4" %></td>
+            </div>
+
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <!-- </div>
+</div> -->

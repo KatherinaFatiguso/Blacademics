@@ -58,7 +58,8 @@
               <%= cl_image_tag("no_logo_pic_ozams0.png") %>
             <% end %>
             <% if current_user.id == @organisation.user.id %>
-              <a href="/messages?my_id=<%= current_user.id %>" class="waves-effect waves-light btn palette4-bg">View My Inbox</a>
+              <a href="/messages?my_id=<%= current_user.id %>" class="waves-effect waves-light btn palette4-bg" style="background-color: #00a2b4; margin-top: 5px;">View My Inbox</a>
+              <a href="/news?org_id=<%= @organisation.id %>" class="waves-effect waves-light btn palette4-bg" style="background-color: #e64630; margin-top: 5px;">View My News</a>
             <% end %>
           </div>
         </div> <!-- end of row-->

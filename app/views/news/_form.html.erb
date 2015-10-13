@@ -1,0 +1,35 @@
+<%= simple_form_for(@news) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :title, input_html: { maxlength: 100 } %>
+    <%= f.input :published, label: 'Publish this news?', collection: ['Off','On'] %>
+    <% if @news.published == 'On' %>
+      <% @news.date_published = Date.today %>
+    <% end %>
+    <%= f.input :author %>
+    <%= f.input :description, input_html: { maxlength: 250 } %>
+    <%= f.input :categories, collection: [
+      'Architecture and Building',
+      'Agriculture, Environmental & Related Studies',
+      'Mixed Field Programs',
+      'Natural & Physical Sciences',
+      'Education',
+      'Health',
+      'Information Technology',
+      'Engineering and related technologies',
+      'Creative Arts',
+      'Management & Commerce',
+      'Law, Society & Culture'] %>
+    <%= f.input :picture, label: 'Picture (Max size 450 pixels x 250 pixels)' %>
+    <%= f.input :weblink, label: 'Web Link (do not include http://)' %>
+    <%= f.input :youtube, label: 'YouTube URL (do not include http://)' %>
+    <%= f.input :video %><br>
+    <%# f.input :impressions_count %><!-- do not show -->
+    <%= f.association :organisation, :as => :hidden, input_html: { value: params[:org_id]} %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

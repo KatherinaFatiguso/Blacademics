@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150925033743) do
+ActiveRecord::Schema.define(version: 20151012010839) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -214,6 +214,25 @@ ActiveRecord::Schema.define(version: 20150925033743) do
 
   add_index "messages", ["user_id"], name: "index_messages_on_user_id", using: :btree
 
+  create_table "news", force: :cascade do |t|
+    t.string   "title"
+    t.string   "published",         default: "off"
+    t.string   "author"
+    t.text     "description"
+    t.string   "categories"
+    t.string   "picture"
+    t.string   "weblink"
+    t.string   "youtube"
+    t.string   "video"
+    t.integer  "impressions_count", default: 0
+    t.integer  "organisation_id"
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+    t.datetime "date_published"
+  end
+
+  add_index "news", ["organisation_id"], name: "index_news_on_organisation_id", using: :btree
+
   create_table "organisations", force: :cascade do |t|
     t.string   "company_name"
     t.string   "department"
@@ -334,6 +353,7 @@ ActiveRecord::Schema.define(version: 20150925033743) do
   add_foreign_key "listing_audiences", "listings"
   add_foreign_key "listings", "organisations"
   add_foreign_key "messages", "users"
+  add_foreign_key "news", "organisations"
   add_foreign_key "organisations", "users"
   add_foreign_key "scholarships", "student_profiles"
   add_foreign_key "skills", "student_profiles"
