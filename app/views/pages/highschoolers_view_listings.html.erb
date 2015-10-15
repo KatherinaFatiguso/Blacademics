@@ -1,20 +1,14 @@
-<div class="main-pattern">
-  <div class="container white-bg">
-    <div class="row">
-      <div class="col s12 center"><h4>View Events and Programs</h4></div>
-
-      <div class="col s12 m6 l6">
-        <div class="text-center"><h4>EVENTS</h4></div>
-        <%= render @events %>
-        <h5><%= link_to "View More Events", pages_approved_events_path %></h5><br>
-      </div>
-
-      <div class="col s12 m6 l6">
-        <div class="text-center"><h4>PROGRAMS</h4></div>
-          <%= render @programs %>
-          <h5><%= link_to "View More Programs", pages_approved_programs_path %></h5><br>
-      </div>
-
-    </div><!-- end of row -->
+<div class="row">
+  <div class="col s12 m10 offset-m1 l10 offset-l1"><h4 class="center">View Events and Programs</h4>
+    <div class="col s12 m6 l6">
+      <div class="text-center"><h5>Events</h5></div>
+      <%= render @events %>
+      <p class="italic text-center"><%= link_to "View More Events", pages_approved_events_path %></p class="italic"><br>
+    </div>
+    <div class="col s12 m6 l6">
+      <div class="text-center"><h5>Programs</h5></div>
+        <%= render @programs %>
+        <p class="italic text-center"><%= link_to "View More Programs", pages_approved_programs_path %></p class="italic"><br>
+    </div>
   </div>
-</div>
+</div><!-- end of row -->

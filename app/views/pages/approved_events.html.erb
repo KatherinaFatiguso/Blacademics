@@ -1,36 +1,42 @@
-<div class="main-pattern">
-  <div class="container white-bg">
-    <div class="row">
-      <div class="col s12">
-        <a href="/pages/approved_events"><h4>All Events</h4></a>
-        <%= form_tag(pages_approved_events_path, :method => "get", id: "search-form") do %>
-          <%= text_field_tag :search, params[:search], placeholder: "Search by Location or Description"%>
-          <button class="btn waves-effect waves-light palette4-bg" type="submit" name="commit" value="Search">SEARCH</button>
-        <% end %>
+<div class="row">
+  <div class="col s12">
+    <a href="/pages/approved_events"><h4 class="align-center black-text">All Events</h4></a>
+    <div class="col s12 m8 offset-m2 l8 offset-l2" style="margin-bottom: 20px;">
+      <%= form_tag(pages_approved_events_path, :method => "get", id: "search-form") do %>
+        <%= text_field_tag :search, params[:search], placeholder: "Search by Location or Description"%>
+        <button class="btn waves-effect waves-light palette4-bg" type="submit" name="commit" value="Search">SEARCH</button>
+      <% end %>
+    </div>
 
-        <% if @events.present? %>
-        <br>
+    <% if @events.present? %>
+    <br>
+    <div class="col s12 m8 offset-m2 l8 offset-l2">
+      <%= paginate @events %>
+    </div>
+      <% @events.each do |event| %>
+      <div class="col s12 m8 offset-m2 l8 offset-l2">
+        <ul class="collection">
+            <li class="collection-item avatar">
+              <% if event.image_url.present? %>
+                <%= cl_image_tag(event.image_url, :alt => "", :class => "circle") %>
+              <% else %>
+                <%= cl_image_tag("default_pic2_otesv3.png", :alt => "", :class => "circle") %>
+              <% end %>
+              <a href="/listings/<%=event.id%>">
+              <span class="title black-text"><%=event.title%></span>
+              <p class="black-text"><%=event.short_description%></p>
+              </a>
+            </li>
+          </ul>
+        </div>
+      <% end %>
+      <div class="col s12 m8 offset-m2 l8 offset-l2">
         <%= paginate @events %>
-          <% @events.each do |event| %>
-            <ul class="collection">
-              <li class="collection-item avatar">
-                <% if event.image_url.present? %>
-                  <%= cl_image_tag(event.image_url, :alt => "", :class => "circle") %>
-                <% else %>
-                  <%= cl_image_tag("default_pic2_otesv3.png", :alt => "", :class => "circle") %>
-                <% end %>
-                <a href="/listings/<%=event.id%>">
-                <span class="title"><%=event.title%></span>
-                <p><%=event.short_description%></p>
-                </a>
-              </li>
-            </ul>
-          <% end %>
-          <%= paginate @events %>
-        <% else %>
-            <p>There are no events located in <%= params[:search] %>.</p>
-        <% end %>
-      </div><!-- end of col 12 -->
-    </div><!-- end of row -->
-  </div><!-- end of container white-bg -->
-</div><!-- end of home-bg -->
+      </div>
+    <% else %>
+        <div class="col s12 m8 offset-m2 l8 offset-l2">
+          <p>There are no events located in <%= params[:search] %>.</p>
+        </div>
+    <% end %>
+  </div><!-- end of col 12 -->
+</div><!-- end of row -->

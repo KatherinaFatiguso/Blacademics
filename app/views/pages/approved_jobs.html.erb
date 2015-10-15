@@ -1,37 +1,44 @@
-<div class="main-pattern">
-  <div class="container white-bg">
-    <div class="row">
-      <div class="col s12">
-        <a href="/pages/approved_jobs"><h4>All Jobs</h4></a>
-        <%= form_tag(pages_approved_jobs_path, :method => "get", id: "search-form") do %>
-          <%= text_field_tag :search, params[:search], placeholder: "Search by Location or Description"%>
+<div class="row">
+  <div class="col s12">
+    <a href="/pages/approved_jobs"><h4 class="align-center black-text">All Jobs</h4></a>
 
-          <button class="btn waves-effect waves-light palette4-bg" type="submit" name="commit" value="Search">SEARCH</button>
-        <% end %>
-
-        <% if @jobs.present? %>
-          <br>
-          <%= paginate @jobs %>
-          <% @jobs.each do |job| %>
-            <ul class="collection">
-              <li class="collection-item avatar">
-                <% if job.image_url.present? %>
-                  <%= cl_image_tag(job.image_url, :alt => "", :class => "circle") %>
-                <% else %>
-                  <%= cl_image_tag("default_pic2_otesv3.png", :alt => "", :class => "circle")%>
-                <% end %>
-                <a href="/listings/<%=job.id%>">
-                <span class="title"><%=job.title%></span>
-                <p><%=job.short_description%></p>
-                </a>
-              </li>
-            </ul>
-          <% end %>
-          <%= paginate @jobs %>
-        <% else %>
-            <p>There are no jobs located in <%= params[:search] %>.</p>
-        <% end %>
-      </div>
+    <div class="col s12 m8 offset-m2 l8 offset-l2" style="margin-bottom: 20px;">
+      <%= form_tag(pages_approved_jobs_path, :method => "get", id: "search-form") do %>
+        <%= text_field_tag :search, params[:search], placeholder: "Search by Location or Description"%>
+        <button class="btn waves-effect waves-light palette4-bg" type="submit" name="commit" value="Search">SEARCH</button>
+      <% end %>
     </div>
+
+    <% if @jobs.present? %>
+      <br>
+      <div class="col s12 m8 offset-m2 l8 offset-l2">
+        <%= paginate @jobs %>
+      </div>
+
+      <% @jobs.each do |job| %>
+        <div class="col s12 m8 offset-m2 l8 offset-l2">
+          <ul class="collection">
+            <li class="collection-item avatar">
+              <% if job.image_url.present? %>
+                <%= cl_image_tag(job.image_url, :alt => "", :class => "circle") %>
+              <% else %>
+                <%= cl_image_tag("default_pic2_otesv3.png", :alt => "", :class => "circle")%>
+              <% end %>
+              <a href="/listings/<%=job.id%>">
+              <span class="title black-text"><%=job.title%></span>
+              <p class="black-text"><%=job.short_description%></p>
+              </a>
+            </li>
+          </ul>
+        </div>
+      <% end %>
+      <div class="col s12 m8 offset-m2 l8 offset-l2">
+        <%= paginate @jobs %>
+      </div>
+    <% else %>
+      <div class="col s12 m8 offset-m2 l8 offset-l2">
+        <p>There are no jobs located in <%= params[:search] %>.</p>
+      </div>
+    <% end %>
   </div>
 </div>

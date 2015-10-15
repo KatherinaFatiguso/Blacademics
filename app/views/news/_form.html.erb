@@ -3,7 +3,7 @@
 
   <div class="form-inputs">
     <%= f.input :title, input_html: { maxlength: 100 } %>
-    <%= f.input :published, label: 'Publish this news?', collection: ['Off','On'] %>
+    <%= f.input :published, label: 'Publish this news?', collection: ['off','on'] %>
     <% if @news.published == 'On' %>
       <% @news.date_published = Date.today %>
     <% end %>

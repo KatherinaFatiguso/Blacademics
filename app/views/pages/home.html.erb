@@ -71,9 +71,8 @@
           <div class="row">
             <div class="col s12 m12 l12" style="margin-top: 180px; text-align: center; font-size: 100%;">
               <h3 style="color: white; text-align: center; font-family: Nationale-Bold; text-shadow: 2px 2px 2px #00a2b4;">Supporting Indigenous Excellence</h3>
-              <h5 style="color: white; text-align: center; text-shadow: 2px 2px 2px #00a2b4;">For all Aboriginal and/or Torres Strait Islander university student, future student and alumni.</h5>
-                <a class="waves-effect waves-light btn" style="background-color: #e64630; margin-top: 5px;">Read More</a>
-                <a class="waves-effect waves-light btn" style="background-color: #00a2b4; margin-top: 5px;">Contact Us</a>
+              <h5 style="color: white; text-align: center; text-shadow: 2px 2px 2px #00a2b4;">For all Aboriginal and/or Torres Strait Islander university students, future students and alumni.</h5>
+                <a class="waves-effect waves-light btn" style="background-color: #e64630; margin-top: 5px;">About Us</a>
             </div>
           </div>
         </div>
@@ -117,7 +116,7 @@
     </div>
 
     <div class="col s12 m3 l3" style=" padding-bottom: 50px;">
-      <a href="/news" style="text-decoration: none; color: black;">
+      <a href="/pages/news" style="text-decoration: none; color: black;">
         <%= cl_image_tag("news_videos.jpg", :width=>"100%") %>
         <h5>News and Videos</h5>
         <p>Add some text here for more information.</p>
@@ -128,22 +127,19 @@
 
     <div class="row" style="background-color: #fff180; margin: 0px;">
       <div class="col s12 m6 l6" style="margin-top: 50px;">
-        <h5 style="text-align: center;">What to expect at university</h5>
+        <h5 style="text-align: center;">Why should I go to Uni?</h5>
         <div class="embed-container" style="margin-top: 30px;">
           <%= embed("we1ah4DgMrc") %>
         </div>
       </div>
       <div class="col s12 m6 l6" style="margin-top: 50px; margin-bottom: 50px;">
-        <h5 style="text-align: center;">Find a university in Australia</h5>
+        <h5 style="text-align: center;">Where are the Uni's?</h5>
         <div class="embed-container" style="margin-top: 30px;">
           <iframe src="https://www.google.com/maps/d/embed?mid=znuiI5BoaB3Y.k2iICEN7PcFE"></iframe>
         </div>
       </div>
     </div><!-- end of row -->
 
-
-
-    <div class="main-pattern">
       <div class="container">
         <div class="row">
           <div class="col s12 m12 l12" style=" margin-top: 30px;">
@@ -163,56 +159,62 @@
               <div class="card">
                 <div class="card-content">
                   <div class="row">
+                    <h5 class="align-center bottom_margin_40px">Students Gallery</h5>
                     <!-- the loop must be outside the class col to make the images appear horizontally -->
                     <div class="small">
-                      <% @student_profiles.limit(9).each do |student|%>
-                        <div class="col s4 center font-10pt">
-                          <div class="top-margin-20px"><img src=<%=student.profile_pic_url%> width=60% ></div>
+                      <% @student_profiles.limit(6).order("created_at ASC").each do |student|%>
+                        <div class="col s6 center font-10pt">
+                          <% if student.profile_pic_url.present? %>
+                            <%= cl_image_tag(student.profile_pic_url, :width => 80, :height => 80, :crop => :thumb, :gravity => :face)%>
+                          <% else %>
+                            <%= cl_image_tag("default_pic1_ztn0yq.png", :width => 80, :height => 80, :crop => :thumb, :gravity => :face) %>
+                          <% end %>
                           <p><%= student.first_name %><br><%= student.last_name %></p>
                         </div>
                       <% end %>
                     </div><!-- end small -->
                     <div class="medium">
-                      <% @student_profiles.limit(12).each do |student|%>
-                        <div class="col s3 center font-10pt">
-                          <div class="top-margin-20px"><img src=<%=student.profile_pic_url%> width=60% ></div>
+                      <% @student_profiles.limit(9).order("created_at ASC").each do |student|%>
+                        <div class="col s4 center font-10pt">
+                          <% if student.profile_pic_url.present? %>
+                            <%= cl_image_tag(student.profile_pic_url, :width => 80, :height => 80, :crop => :thumb, :gravity => :face)%>
+                          <% else %>
+                            <%= cl_image_tag("default_pic1_ztn0yq.png", :width => 80, :height => 80, :crop => :thumb, :gravity => :face) %>
+                          <% end %>
                           <p><%= student.first_name %><br><%= student.last_name %></p>
                         </div>
                       <% end %>
                     </div><!-- end medium -->
                     <div class="large">
-                      <% @student_profiles.limit(12).each do |student|%>
+                      <% @student_profiles.limit(12).order("created_at ASC").each do |student|%>
                         <div class="col s3 center font-10pt">
-                          <div class="top-margin-20px">
-                            <% if student.profile_pic_url.present? %>
-                              <%= cl_image_tag("student.profile_pic_url", :width => "50%") %>
-                            <% else %>
-                              <%= cl_image_tag("default_pic1_ztn0yq.png", :width => "50%") %>
-                            <% end %>
-                          </div>
+                          <% if student.profile_pic_url.present? %>
+                            <%= cl_image_tag(student.profile_pic_url, :width => 80, :height => 80, :crop => :thumb, :gravity => :face)%>
+                          <% else %>
+                            <%= cl_image_tag("default_pic1_ztn0yq.png", :width => 80, :height => 80, :crop => :thumb, :gravity => :face) %>
+                          <% end %>
                           <p><%= student.first_name %><br><%= student.last_name %></p>
                         </div>
                       <% end %>
                     </div><!-- end large -->
                   </div><!-- end of row -->
-                </div><!-- card-image -->
+                </div><!-- card-content -->
                 <div class="card-content">
-                  <span class="card-title grey-text text-darken-4"><a href="pages/students_gallery">View All <%= @student_profiles.count %> Students Gallery</a></span>
+                  <span class="card-title grey-text text-darken-4"><a href="/pages/students_gallery"><h6 class="align-center">View All <%= @student_profiles.count %> Students Profiles</h6></a></span>
                 </div>
-              </div>
-            </div>
+              </div><!-- card -->
+            </div><!-- col s12 m12 l12 -->
           </div><!-- end of row -->
         <% end %>
 
       </div><!-- end of container-->
-    </div><!-- end of main-pattern -->
 
 
 
 
 
   <div class="row" style="margin: 0;">
-    <div class="col s12 m12 l12" style="margin-top: 0; padding-left: 0; padding-right: 0; padding-top: 50px; padding-bottom: 30px;">
+    <div class="col s12 m12 l12" style="margin-top: 0; padding-left: 0; padding-right: 0;">
       <div class="parallax-container" style="height: 500px;">
         <div class="container">
           <div class="row">
@@ -248,20 +250,22 @@
         <div class="row" style="margin-top: 80px;">
           <!-- Guides and FAQs ------------------>
           <div class="col s12 small">
-            <div class="card-panel palette4-bg center">
-              <span class="white-text font-14pt">Guides and FAQs</span>
-            </div>
+            <a href="/pages/guides">
+              <div class="card-panel palette4-bg center">
+                <span class="white-text font-14pt">Guides and FAQs</span>
+              </div>
+            </a>
           </div>
 
           <div class="col m4 medium">
-            <a href="#" style="text-decoration: none; color: black;">
+            <a href="/pages/guides" style="text-decoration: none; color: black;">
               <%= cl_image_tag("blacademics_guides_faq.jpg", width: "100%") %>
               <h5 style="font-size: 100%; text-align: center;"><strong>Guides and FAQs</strong></h5>
             </a>
           </div>
 
           <div class="col l4 large">
-            <a href="#" style="text-decoration: none; color: black;">
+            <a href="/pages/guides" style="text-decoration: none; color: black;">
                 <%= cl_image_tag("blacademics_guides_faq.jpg", width: "100%") %>
                 <h5 style="text-align: center;"><strong>Guides and FAQs</strong></h5>
             </a>
@@ -399,49 +403,50 @@
     </div><!-- end of row -->
   </div><!-- end of container -->
 
-  <footer class="page-footer" style="padding-left: 0px;">
-  <div class="container" style="text-align: center;">
-    <div class="row">
-      <div class="col s12 m12 l12">
-        <h5 class="white-text">Blacademics</h5>
-        <%= cl_image_tag("blacademics_icon_horizontal.png", :width=>200, :crop=>:scale) %>
-        <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+  <footer class="page-footer" style="padding: 0px;">
+    <div class="palette3-bg">
+    <div class="container" style="text-align: center;">
+      <div class="row">
+        <div class="col s12 m12 l12 black-text">
+          <h5>Blacademics</h5>
+          <%= cl_image_tag("blacademics_icon_horizontal.png", :width=>200, :crop=>:scale) %>
+          <p class="black-text">You can use rows and columns here to organize your footer content.</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s12 m2 offset-m2 l2 offset-l2">
+          <h5 class="black-text">Links</h5>
+          <ul>
+            <li><a class="black-text" href="#!">Link 1</a></li>
+            <li><a class="black-text" href="#!">Link 2</a></li>
+            <li><a class="black-text" href="#!">Link 3</a></li>
+            <li><a class="black-text" href="#!">Link 4</a></li>
+          </ul>
+        </div>
+        <div class="col s12 m2 offset-m1 l2 offset-l1">
+          <h5 class="black-text">Links</h5>
+          <ul>
+            <li><a class="black-text" href="#!">Link 1</a></li>
+            <li><a class="black-text" href="#!">Link 2</a></li>
+            <li><a class="black-text" href="#!">Link 3</a></li>
+            <li><a class="black-text" href="#!">Link 4</a></li>
+          </ul>
+        </div>
+        <div class="col s12 m2 offset-m1 l2 offset-l1">
+          <h5 class="black-text">Links</h5>
+          <ul>
+            <li><a class="black-text" href="#!">Link 1</a></li>
+            <li><a class="black-text" href="#!">Link 2</a></li>
+            <li><a class="black-text" href="#!">Link 3</a></li>
+            <li><a class="black-text" href="#!">Link 4</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-copyright black-text palette3-bg">
+        © 2015 Copyright Blacademics
       </div>
     </div>
-    <div class="row">
-      <div class="col s12 m2 offset-m2 l2 offset-l2">
-        <h5 class="white-text">Links</h5>
-        <ul>
-          <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
-          <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
-          <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
-          <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
-        </ul>
-      </div>
-      <div class="col s12 m2 offset-m1 l2 offset-l1">
-        <h5 class="white-text">Links</h5>
-        <ul>
-          <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
-          <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
-          <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
-          <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
-        </ul>
-      </div>
-      <div class="col s12 m2 offset-m1 l2 offset-l1">
-        <h5 class="white-text">Links</h5>
-        <ul>
-          <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
-          <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
-          <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
-          <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
-        </ul>
-      </div>
     </div>
-    <div class="footer-copyright">
-      © 2015 Copyright Blacademics
-    </div>
-  </div>
-
-</footer>
+  </footer>
 
 <% end %>

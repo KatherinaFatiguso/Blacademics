@@ -156,4 +156,17 @@ class PagesController < ApplicationController
     @messages = Message.all.order("created_at DESC").page(params[:page]).per(10)
   end
 
+  def news
+    @news = News.on.order("created_at DESC").page(params[:page]).per(2)
+    if params[:search]
+      @news = News.on.search(params[:search]).order("created_at DESC").page(params[:page]).per(2)
+    else
+      @events = News.on.order("created_at DESC").page(params[:page]).per(2)
+    end
+  end
+
+  def guides
+
+  end
+
 end

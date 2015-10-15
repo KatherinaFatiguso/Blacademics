@@ -1,7 +1,8 @@
 <div class="main-pattern">
   <div class="container white-bg">
     <div class="row">
-      <div class="col s12">
+      <div class="col s12 m12 l12">
+        <div class="bottom_margin_20px left_margin_20px right_margin_20px">
         <h4>Conversations with <%= @contact %></h4>
         <%= paginate @messages %>
           <% @messages.each do |message| %>
@@ -29,8 +30,10 @@
           <% end %>
           <%= paginate @messages %>
           <br>
-        <%= link_to 'Reply', new_message_path(to: @contact_user.id, from: params[:my_id]), class: 'waves-effect waves-light btn palette4-bg' %>
-        <%= link_to 'Inbox', messages_path(my_id: params[:my_id]), class: 'waves-effect waves-light btn palette4-bg'%>
+
+          <%= link_to 'Reply', new_message_path(to: @contact_user.id, from: params[:my_id]), class: 'waves-effect waves-light btn palette4-bg' %>
+          <%= link_to 'Inbox', messages_path(my_id: params[:my_id]), class: 'waves-effect waves-light btn palette4-bg'%>
+        </div>
       </div>
     </div>
   </div>

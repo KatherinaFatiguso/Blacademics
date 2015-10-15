@@ -1,111 +1,120 @@
 <!-- <p id="notice"><%= notice %></p> don't need this, it will make double notice lines-->
 
-<div class="main-pattern">
-  <div class="container white-bg">
+<div class="row">
+  <div class="col s12 m8 offset-m2 l8 offset-l2">
+    <h4 class="text-center bottom_margin_40px"><%= @organisation.company_name %></h4>
     <div class="row">
-      <div class="col s12 m12 l12">
-        <h4><%= @organisation.company_name %></h4>
-        <div class="row">
-          <div class="col s12 m6 l6">
-            <% if @organisation.department.present? %>
-              <p>
-                <strong>Department:</strong>
-                <%= @organisation.department %>
-              </p>
-            <% end%>
-            <p>
-              <strong>Street address 1:</strong>
-              <%= @organisation.street_address_1 %>
-            </p>
-            <p>
-              <strong>Street address 2:</strong>
-              <%= @organisation.street_address_2 %>
-            </p>
-            <p>
-              <strong>Suburb:</strong>
-              <%= @organisation.suburb %>
-            </p>
-            <p>
-              <strong>State:</strong>
-              <%= @organisation.state %>
-            </p>
-            <p>
-              <strong>Postcode:</strong>
-              <%= @organisation.postcode %>
-            </p>
-            <p>
-              <strong>Contact name:</strong>
-              <%= @organisation.contact_name %>
-            </p>
-            <p>
-              <strong>Contact email:</strong>
-              <%= @organisation.contact_email %>
-            </p>
-            <p>
-              <strong>Contact phone:</strong>
-              <%= @organisation.contact_phone %>
-            </p>
-            <p>
-              <strong>Website:</strong>
-              <%= @organisation.website %>
-            </p>
-            <%= link_to 'Edit', edit_organisation_path(@organisation) %>
-          </div>
-          <div class="col s12 m6 l6">
-            <% if @organisation.logo_url.present? %>
-              <%= cl_image_tag(@organisation.logo_url, :width => '100%') %>
-            <% else %>
-              <%= cl_image_tag("no_logo_pic_ozams0.png") %>
-            <% end %>
-            <% if current_user.id == @organisation.user.id %>
-              <a href="/messages?my_id=<%= current_user.id %>" class="waves-effect waves-light btn palette4-bg" style="background-color: #00a2b4; margin-top: 5px;">View My Inbox</a>
-              <a href="/news?org_id=<%= @organisation.id %>" class="waves-effect waves-light btn palette4-bg" style="background-color: #e64630; margin-top: 5px;">View My News</a>
-            <% end %>
-          </div>
-        </div> <!-- end of row-->
+      <div class="col s12 m6 l6">
 
+        <% if @organisation.department.present? %>
+          <p>
+            <strong>Department:</strong>
+            <%= @organisation.department %>
+          </p>
+        <% end%>
+        <p>
+          <strong>Street address 1:</strong>
+          <%= @organisation.street_address_1 %>
+        </p>
+        <p>
+          <strong>Street address 2:</strong>
+          <%= @organisation.street_address_2 %>
+        </p>
+        <p>
+          <strong>Suburb:</strong>
+          <%= @organisation.suburb %>
+        </p>
+        <p>
+          <strong>State:</strong>
+          <%= @organisation.state %>
+        </p>
+        <p>
+          <strong>Postcode:</strong>
+          <%= @organisation.postcode %>
+        </p>
+        <p>
+          <strong>Contact name:</strong>
+          <%= @organisation.contact_name %>
+        </p>
+        <p>
+          <strong>Contact email:</strong>
+          <%= @organisation.contact_email %>
+        </p>
+        <p>
+          <strong>Contact phone:</strong>
+          <%= @organisation.contact_phone %>
+        </p>
+        <p>
+          <strong>Website:</strong>
+          <%= @organisation.website %>
+        </p>
+        <%= link_to 'Edit', edit_organisation_path(@organisation) %>
+      </div>
+      <div class="col s12 m6 l6 center">
+        <% if @organisation.logo_url.present? %>
+          <%= cl_image_tag(@organisation.logo_url, :width => 200, :crop => :scale) %>
+        <% else %>
+          <%= cl_image_tag("no_logo_pic.png") %>
+        <% end %>
+
+        <% if current_user.id == @organisation.user.id %>
+          <div class="top-margin-20px">
+            <a href="/messages?my_id=<%= current_user.id %>" class="waves-effect waves-light btn palette4-bg" style="background-color: #00a2b4; margin-top: 5px;">View My Inbox</a>
+            <a href="/news?org_id=<%= @organisation.id %>" class="waves-effect waves-light btn palette4-bg" style="background-color: #e64630; margin-top: 5px;">View My News</a>
+          </div>
+        <% end %>
+      </div>
+    </div> <!-- end of row-->
+  </div>
+
+    <div class="row">
+      <div class="col s12 m10 offset-m1 l10 offset-l1">
+        <h5 class="text-center bottom_margin_40px">My Listings</h5>
         <div class="row">
-          <div class="col s12 m12 l12">
-            <h4>My listings</h4>
-            <div class="card">
+          <div class="col s12 m4 l4">
+            <div class="card palette1-bg">
               <div class="card-content">
                 <h5>Events</h5>
+                  <%= link_to 'Add Event', new_listing_path(org: @organisation.id, listing_type: 'event'), class: 'btn btn-sml-success' %>
                   <% if @organisation.listings.event_type.any? %>
                     <%= render @organisation.listings.event_type %> <!-- this will call the _listing.html.erb from listings view -->
                   <% else %>
                     <p>Currently no events listed</p>
                   <% end %>
-                  <%= link_to 'Add Event', new_listing_path(org: @organisation.id, listing_type: 'event'), class: 'btn btn-sml-success' %>
                 </div><!-- end of card-content -->
               </div><!-- end of card -->
+            </div>
 
-            <div class="card">
-              <div class="card-content">
-                <h5>Programs</h5>
-                  <% if @organisation.listings.program_type.any? %>
-                    <%= render @organisation.listings.program_type %>
-                  <% else %>
-                    <p>Currently no programs listed</p>
-                  <% end %>
-                  <%= link_to 'Add Program', new_listing_path(org: @organisation.id, listing_type: 'program'), class: 'btn btn-sml-success' %>
+            <div class="col s12 m4 l4">
+              <div class="card palette1-bg">
+                <div class="card-content">
+                  <h5>Programs</h5>
+                    <%= link_to 'Add Program', new_listing_path(org: @organisation.id, listing_type: 'program'), class: 'btn btn-sml-success' %>
+                    <% if @organisation.listings.program_type.any? %>
+                      <%= render @organisation.listings.program_type %>
+                    <% else %>
+                      <p>Currently no programs listed</p>
+                    <% end %>
+                  </div><!-- end of card-content -->
+                </div><!-- end of card -->
+              </div>
+
+            <div class="col s12 m4 l4">
+              <div class="card palette1-bg">
+                <div class="card-content">
+                  <h5>Jobs</h5>
+                    <%= link_to 'Add Job', new_listing_path(org: @organisation.id, listing_type: 'job'), class: 'btn btn-sml-success' %>
+                    <% if @organisation.listings.job_type.any? %>
+                      <%= render @organisation.listings.job_type %>
+                    <% else %>
+                      <p>Currently no jobs listed</p>
+                    <% end %>
                 </div><!-- end of card-content -->
               </div><!-- end of card -->
+          </div>
 
-            <div class="card">
-              <div class="card-content">
-                <h5>Jobs</h5>
-                  <% if @organisation.listings.job_type.any? %>
-                    <%= render @organisation.listings.job_type %>
-                  <% else %>
-                    <p>Currently no jobs listed</p>
-                  <% end %>
-                  <%= link_to 'Add Job', new_listing_path(org: @organisation.id, listing_type: 'job'), class: 'btn btn-sml-success' %>
-              </div><!-- end of card-content -->
-            </div><!-- end of card -->
+        </div>
+      </div><!-- end of col s12 m12 l12-->
+    </div> <!-- end of row-->
 
-          </div><!-- end of col s12 m12 l12-->
-        </div> <!-- end of row-->
-      </div>
-    </div>
-  </div>
 </div>

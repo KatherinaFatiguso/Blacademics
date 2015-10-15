@@ -1,0 +1,93 @@
+<div class="row">
+  <div class="col s12">
+    <a href="/pages/news"><h4 style="text-align: center;">News and Videos</h4></a>
+
+      <div class="col s12 m8 offset-m2 l8 offset-l2" style="margin-bottom: 20px;">
+        <%= form_tag(pages_news_path, :method => "get", id: "search-form") do %>
+          <%= text_field_tag :search, params[:search], placeholder: "Search word in Title or Description"%>
+          <button class="btn waves-effect waves-light palette4-bg" type="submit" name="commit" value="Search">SEARCH</button>
+        <% end %>
+      </div>
+
+        <% if @news.present? %>
+        <br>
+        <div class="col s12 m8 offset-m2 l8 offset-l2">
+          <%= paginate @news %>
+        </div>
+        <% @news.each do |news| %>
+          <div class="col s12 m8 offset-m2 l8 offset-l2">
+            <div class="card">
+              <div style="margin-left: 40px; margin-right: 40px; margin-top: 40px; margin-bottom: 40px;">
+                <div class="row">
+                  <span><%= news.created_at.strftime('%d %b, %Y') %>
+                  <h4 style=" font-style: bold; margin-bottom: 40px;"><%= news.title %></h4>
+                  <p style="font-weight: normal;"><%= news.author %></p>
+                  <div class="col s12 m4 l4" style="margin-top: 0px; padding-bottom: 20px; text-align: center;">
+                    <!-- Image -->
+                    <% if news.picture.present? %>
+                      <div class="embed-container" style="padding-top: 0px; max-height: 250px; max-width: 100%;">
+                        <img src=<%=news.picture%>>
+                      </div>
+                    <% end %>
+                  </div>
+                  <div class="col s12 m4 l4" style="padding-bottom: 20px;  text-align: center;">
+                    <!-- YouTube -->
+                    <% if news.picture.present? %>
+                      <div class="embed-container" style="padding-top: 0px; max-height: 250px; max-width: 100%;">
+                        <%= embed(news.youtube)%>
+                      </div>
+                    <% end %>
+                  </div>
+                  <div class="col s12 m4 l4" style="margin-top: 0px; padding-bottom: 20px; text-align: center;">
+                    <!-- Video -->
+                    <% if news.picture.present? %>
+                      <div class="embed-container" style="padding-top: 0px; max-height: 250px; max-width: 100%;">
+                        <img src=<%=news.picture%>>
+                      </div>
+                    <% end %>
+                  </div>
+
+                </div><!-- end of row -->
+
+                <h5 style="margin-bottom: 5px; font-weight: bold;">
+                <span style="font-weight: normal;"><%= news.description %></span>
+                </h5>
+
+                <p style="margin-bottom: 5px; font-weight: bold;">
+                  <% @org = Organisation.find(news.organisation_id)%>
+                  Organisation: <span style="font-weight: normal;"><%= @org.company_name %></span>
+                </p>
+
+                <p style="margin-bottom: 5px; font-weight: bold;">
+                  Categories: <span style="font-weight: normal;"><%= news.categories %></span>
+                </p>
+
+                <% if news.weblink.present? %>
+                  <p style="margin-bottom: 5px; font-weight: bold;">
+                    Weblink: <span style="font-weight: normal;"><a href="http://<%= news.weblink %>"><%= news.weblink %></a></span>
+                  </p>
+                <% end %>
+
+                <% if news.youtube.present? %>
+                  <p style="margin-bottom: 5px; font-weight: bold;">
+                    Youtube: <span style="font-weight: normal;"><a href="http://<%= news.youtube %>"><%= news.youtube %></a></span>
+                  </p>
+                <% end %>
+
+                <% if news.video.present? %>
+                  <p style="margin-bottom: 5px; font-weight: bold;">
+                    Video: <span style="font-weight: normal;"><%= news.video %></span>
+                  </p>
+                <% end %>
+                </div>
+              </div><!-- end of card -->
+              </div>
+            <% end %>
+            <div class="col s12 m8 offset-m2 l8 offset-l2">
+              <%= paginate @news %>
+            </div>
+          <% else %>
+              <p>There are no news related to <%= params[:search] %>.</p>
+          <% end %>
+        </div><!-- end of row -->
+      </div><!-- end of row -->

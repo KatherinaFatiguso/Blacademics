@@ -33,6 +33,9 @@ Rails.application.routes.draw do
   get 'pages/uni_students_listings'
   get 'pages/students_gallery'
   get 'pages/conversations'
+  get 'pages/news'
+  get 'pages/guides'
+
 
   devise_for :users
 

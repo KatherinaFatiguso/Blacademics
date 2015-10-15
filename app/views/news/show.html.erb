@@ -1,101 +1,112 @@
-    <div class="row">
-      <div class="col s12">
-        <p id="notice"><%= notice %></p>
+<% if current_user.organisation.id == @news.organisation_id %>
+  <div class="row">
+    <div class="col s12">
+      <p id="notice"><%= notice %></p>
+      <div class="col s12 m8 offset-m2 l8 offset-l2">
+        <div class="card">
+          <div style="margin-left: 40px; margin-right: 40px; margin-top: 40px; margin-bottom: 40px;">
 
-        <div class="row" style="background-color: #fff180; margin: 0px; text-align: center;">
-          <div class="col s12 m4 l4" style="margin-top: 0px; padding-bottom: 20px;">
-            <h5>Image</h5>
-            <% if @news.picture.present? %>
-              <div class="embed-container" style="margin: 0px; padding-top: 0px; max-height: 250px;">
-                <img src=<%=@news.picture%>>
+            <div class="row" style="margin: 0px; text-align: center;">
+              <div class="col s12 m4 l4" style="margin-top: 0px; padding-bottom: 20px;">
+                <h5>Image</h5>
+                <% if @news.picture.present? %>
+                  <div class="embed-container" style="margin: 0px; padding-top: 0px; max-height: 250px;">
+                    <img src=<%=@news.picture%>>
+                  </div>
+                <% end %>
               </div>
-            <% end %>
-          </div>
-          <div class="col s12 m4 l4" style="margin-top: 0px; padding-bottom: 20px;">
-            <h5>YouTube</h5>
-            <% if @news.picture.present? %>
-              <div class="embed-container" style="margin: 0px; max-height: 250px;">
-                <%= embed(@news.youtube)%>
+              <div class="col s12 m4 l4" style="margin-top: 0px; padding-bottom: 20px;">
+                <h5>YouTube</h5>
+                <% if @news.picture.present? %>
+                  <div class="embed-container" style="margin: 0px; max-height: 250px;">
+                    <%= embed(@news.youtube)%>
+                  </div>
+                <% end %>
               </div>
-            <% end %>
-          </div>
-          <div class="col s12 m4 l4" style="margin-top: 0px; padding-bottom: 20px;">
-            <h5>Video</h5>
-            <% if @news.picture.present? %>
-              <div class="embed-container" style="margin: 0px; padding-top: 0px; max-height: 250px;">
-                <img src=<%=@news.picture%>>
+              <div class="col s12 m4 l4" style="margin-top: 0px; padding-bottom: 20px;">
+                <h5>Video</h5>
+                <% if @news.picture.present? %>
+                  <div class="embed-container" style="margin: 0px; padding-top: 0px; max-height: 250px;">
+                    <img src=<%=@news.picture%>>
+                  </div>
+                <% end %>
               </div>
+            </div><!-- end of row -->
+
+            <div style="text-align: center; margin-top: 5px;">
+
+            </div>
+            <p style="margin-bottom: 5px; margin-left: 10px; margin-right: 10px; font-weight: bold;">
+              Title: <span style="font-weight: normal;"><%= @news.title %></span>
+            </p>
+
+            <p style="margin-bottom: 5px; margin-left: 10px; margin-right: 10px; font-weight: bold;">
+              Published Status: <span style="font-weight: normal;"><%= @news.published %></span>
+            </p>
+
+            <% if @news.date_published.present? %>
+            <p style="margin-bottom: 5px; margin-left: 10px; margin-right: 10px; font-weight: bold;">
+              Published Date: <span style="font-weight: normal;"><%= @news.date_published %></span>
+            </p>
             <% end %>
-          </div>
-        </div><!-- end of row -->
 
-        <div style="text-align: center; margin-top: 5px;">
+            <p style="margin-bottom: 5px; margin-left: 10px; margin-right: 10px; font-weight: bold;">
+              Author: <span style="font-weight: normal;"><%= @news.author %></span>
+            </p>
 
-        </div>
-        <p style="margin-bottom: 5px; margin-left: 10px; margin-right: 10px; font-weight: bold;">
-          Title: <span style="font-weight: normal;"><%= @news.title %></span>
-        </p>
+            <p style="margin-bottom: 5px; margin-left: 10px; margin-right: 10px; font-weight: bold;">
+              Organisation: <span style="font-weight: normal;"><%= @news.organisation.company_name %></span>
+            </p>
 
-        <p style="margin-bottom: 5px; margin-left: 10px; margin-right: 10px; font-weight: bold;">
-          Published Status: <span style="font-weight: normal;"><%= @news.published %></span>
-        </p>
+            <p style="margin-bottom: 5px; margin-left: 10px; margin-right: 10px; font-weight: bold;">
+              Description: <span style="font-weight: normal;"><%= @news.description %></span>
+            </p>
 
-        <% if @news.date_published.present? %>
-        <p style="margin-bottom: 5px; margin-left: 10px; margin-right: 10px; font-weight: bold;">
-          Published Date: <span style="font-weight: normal;"><%= @news.date_published %></span>
-        </p>
-        <% end %>
+            <p style="margin-bottom: 5px; margin-left: 10px; margin-right: 10px; font-weight: bold;">
+              Categories: <span style="font-weight: normal;"><%= @news.categories %></span>
+            </p>
 
-        <p style="margin-bottom: 5px; margin-left: 10px; margin-right: 10px; font-weight: bold;">
-          Author: <span style="font-weight: normal;"><%= @news.author %></span>
-        </p>
+            <% if @news.picture.present? %>
+              <p style="margin-bottom: 5px; margin-left: 10px; margin-right: 10px; font-weight: bold;">
+                Picture: <span style="font-weight: normal;"><%= @news.picture %></span>
+              </p>
+            <% end %>
 
-        <p style="margin-bottom: 5px; margin-left: 10px; margin-right: 10px; font-weight: bold;">
-          Organisation: <span style="font-weight: normal;"><%= @news.organisation.company_name %></span>
-        </p>
+            <% if @news.weblink.present? %>
+              <p style="margin-bottom: 5px; margin-left: 10px; margin-right: 10px; font-weight: bold;">
+                Weblink: <span style="font-weight: normal;"><a href="http://<%= @news.weblink %>"><%= @news.weblink %></a></span>
+              </p>
+            <% end %>
 
-        <p style="margin-bottom: 5px; margin-left: 10px; margin-right: 10px; font-weight: bold;">
-          Description: <span style="font-weight: normal;"><%= @news.description %></span>
-        </p>
+            <% if @news.youtube.present? %>
+              <p style="margin-bottom: 5px; margin-left: 10px; margin-right: 10px; font-weight: bold;">
+                Youtube: <span style="font-weight: normal;"><a href="http://<%= @news.youtube %>"><%= @news.youtube %></a></span>
+              </p>
+            <% end %>
 
-        <p style="margin-bottom: 5px; margin-left: 10px; margin-right: 10px; font-weight: bold;">
-          Categories: <span style="font-weight: normal;"><%= @news.categories %></span>
-        </p>
+            <% if @news.video.present? %>
+              <p style="margin-bottom: 5px; margin-left: 10px; margin-right: 10px; font-weight: bold;">
+                Video: <span style="font-weight: normal;"><%= @news.video %></span>
+              </p>
+            <% end %>
 
-        <% if @news.picture.present? %>
-          <p style="margin-bottom: 5px; margin-left: 10px; margin-right: 10px; font-weight: bold;">
-            Picture: <span style="font-weight: normal;"><%= @news.picture %></span>
-          </p>
-        <% end %>
+            <% if @news.impressions_count.present? %>
+              <p style="margin-bottom: 5px; margin-left: 10px; margin-right: 10px; font-weight: bold;">
+                Impressions_count: <span style="font-weight: normal;"><%= @news.impressions_count %></span>
+              </p>
+            <% end %>
 
-        <% if @news.weblink.present? %>
-          <p style="margin-bottom: 5px; margin-left: 10px; margin-right: 10px; font-weight: bold;">
-            Weblink: <span style="font-weight: normal;"><a href="http://<%= @news.weblink %>"><%= @news.weblink %></a></span>
-          </p>
-        <% end %>
+            <p style="margin-bottom: 5px; margin-left: 10px; margin-right: 10px; font-weight: bold;">
+              Organisation ID: <span style="font-weight: normal;"><%= @news.organisation_id %></span>
+            </p>
 
-        <% if @news.youtube.present? %>
-          <p style="margin-bottom: 5px; margin-left: 10px; margin-right: 10px; font-weight: bold;">
-            Youtube: <span style="font-weight: normal;"><a href="http://<%= @news.youtube %>"><%= @news.youtube %></a></span>
-          </p>
-        <% end %>
+            <a href="/news?org_id=<%= @news.organisation_id %>" class="waves-effect waves-light btn palette4-bg" style="background-color: #00a2b4; margin-top: 5px; margin-left: 10px;">Back To News Index</a>
+          </div><!-- end of div style -->
+        </div><!-- end of card -->
 
-        <% if @news.video.present? %>
-          <p style="margin-bottom: 5px; margin-left: 10px; margin-right: 10px; font-weight: bold;">
-            Video: <span style="font-weight: normal;"><%= @news.video %></span>
-          </p>
-        <% end %>
-
-        <% if @news.impressions_count.present? %>
-          <p style="margin-bottom: 5px; margin-left: 10px; margin-right: 10px; font-weight: bold;">
-            Impressions_count: <span style="font-weight: normal;"><%= @news.impressions_count %></span>
-          </p>
-        <% end %>
-
-        <p style="margin-bottom: 5px; margin-left: 10px; margin-right: 10px; font-weight: bold;">
-          Organisation ID: <span style="font-weight: normal;"><%= @news.organisation_id %></span>
-        </p>
-
-        <a href="/news?org_id=<%= @news.organisation_id %>" class="waves-effect waves-light btn palette4-bg" style="background-color: #00a2b4; margin-top: 5px; margin-left: 10px;">My News Index</a>
-      </div><!-- end of col s12 -->
-    </div><!-- end of row -->
+      </div><!-- end of col s12 m8 offset-m2 l8 offset-l2 -->
+    </div><!-- col s12 -->
+  </div><!-- end of row -->
+<% else %>
+  <%= render "listings/forbidden" %>
+<% end %>

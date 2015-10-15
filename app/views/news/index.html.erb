@@ -1,18 +1,29 @@
-<!-- <div class="main-pattern">
-  <div class="container white-bg"> -->
-    <div class="row">
-      <div class="col s12">
-        <h4 style="text-align: center;">News Index</h4>
+<% @organisation = Organisation.find(params[:org_id]) %>
+<% if @organisation.id == current_user.organisation.id %>
+  <div class="row">
+    <div class="col s12 m12 l12">
+      <h4 style="text-align: center;">News Index</h4>
 
-        <% @organisation = Organisation.find(params[:org_id]) %>
-        <% @news = @organisation.news %>
-        <div class="form-actions" style="text-align: center; margin-top: 30px; margin-bottom: 40px;">
-          <%= link_to 'Create News', new_news_path(org_id: @organisation.id), class: 'btn btn-success', style: 'background-color: #e64630' %>
-        </div>
+      <% @news = @organisation.news %>
+      <div class="form-actions" style="text-align: center; margin-top: 30px; margin-bottom: 40px;">
+        <%= link_to 'Create News', new_news_path(org_id: @organisation.id), class: 'btn btn-success', style: 'background-color: #e64630' %>
+      </div>
 
+      <div class="col s12 m8 offset-m2 l8 offset-l2" style="margin-bottom: 20px;">
+        <%= form_tag(pages_news_path, :method => "get", id: "search-form") do %>
+          <%= text_field_tag :search, params[:search], placeholder: "Search word in Title or Description"%>
+          <button class="btn waves-effect waves-light palette4-bg" type="submit" name="commit" value="Search">SEARCH</button>
+        <% end %>
+      </div>
+
+      <% if @news.present? %>
+        <br>
         <% @news.each do |news| %>
+          <div class="col s12 m8 offset-m2 l8 offset-l2">
           <div class="card">
-            <div class="row" style="background-color: #fff180; margin: 0px; text-align: center;">
+            <div style="margin-left: 40px; margin-right: 40px; margin-top: 40px; margin-bottom: 40px;">
+
+            <div class="row" style="margin: 0px; text-align: center;">
               <div class="col s12 m4 l4" style="margin-top: 0px; padding-bottom: 20px;">
                 <h5>Image</h5>
                 <% if news.picture.present? %>
@@ -58,6 +69,14 @@
             </p>
 
             <p style="margin-bottom: 5px; margin-left: 10px; margin-right: 10px; font-weight: bold;">
+              Created At: <span style="font-weight: normal;"><%= news.created_at.strftime('%d %b, %Y') %></span>
+            </p>
+
+            <p style="margin-bottom: 5px; margin-left: 10px; margin-right: 10px; font-weight: bold;">
+              Updated At: <span style="font-weight: normal;"><%= news.updated_at.strftime('%d %b, %Y') %></span>
+            </p>
+
+            <p style="margin-bottom: 5px; margin-left: 10px; margin-right: 10px; font-weight: bold;">
               Organisation: <span style="font-weight: normal;"><%= news.organisation.company_name %></span>
             </p>
 
@@ -99,14 +118,20 @@
               </p>
             <% end %>
 
-            <div style="margin-top: 10px; margin-bottom: 10px; margin-left: 10px;">
-              <td><%= link_to 'Edit', edit_news_path(news, org_id: @organisation.id), class: 'btn btn-edit', style: "background-color: #00a2b4" %></td>
-              <td><%= link_to 'Delete', news, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-destroy', style: "background-color: #00a2b4" %></td>
-            </div>
-
+          <div style="margin-top: 10px; margin-bottom: 10px; margin-left: 10px;">
+            <td><%= link_to 'Edit', edit_news_path(news, org_id: @organisation.id), class: 'btn btn-edit', style: "background-color: #00a2b4" %></td>
+            <td><%= link_to 'Delete', news, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-destroy', style: "background-color: #00a2b4" %></td>
           </div>
-        <% end %>
-      </div>
+          </div>
+          </div><!-- end of card -->
+          </div>
+        <% end %><!-- end of loop -->
+
+      <% else %>
+        <p>There are no news related to <%= params[:search] %>.</p>
+      <% end %>
     </div>
-  <!-- </div>
-</div> -->
+  </div>
+<% else %>
+  <%= render "listings/forbidden" %>
+<% end %><!-- end of if @organisation.id == current_user.organisation.id -->

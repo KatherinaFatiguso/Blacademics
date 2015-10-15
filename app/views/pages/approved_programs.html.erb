@@ -1,36 +1,42 @@
-<div class="main-pattern">
-  <div class="container white-bg">
-    <div class="row">
-      <div class="col s12">
-        <a href="/pages/approved_programs"><h4>All Programs</h4></a>
-        <%= form_tag(pages_approved_programs_path, :method => "get", id: "search-form") do %>
-          <%= text_field_tag :search, params[:search], placeholder: "Search by Location or Description"%>
-          <button class="btn waves-effect waves-light palette4-bg" type="submit" name="commit" value="Search">SEARCH</button>
-        <% end %>
-
-        <% if @programs.present? %>
-        <br>
-        <%= paginate @programs %>
-          <% @programs.each do |program| %>
-            <ul class="collection">
-              <li class="collection-item avatar">
-                <% if program.image_url.present? %>
-                  <%= cl_image_tag(program.image_url, :alt => "", :class => "circle") %>
-                <% else %>
-                  <%= cl_image_tag("default_pic2_otesv3.png", :alt => "", :class => "circle") %>
-                <% end %>
-                <a href="/listings/<%=program.id%>">
-                <span class="title"><%=program.title%></span>
-                <p><%=program.short_description%></p>
-                </a>
-              </li>
-            </ul>
-          <% end %>
-          <%= paginate @programs %>
-        <% else %>
-            <p>There are no events located in <%= params[:search] %>.</p>
-        <% end %>
-      </div>
+<div class="row">
+  <div class="col s12">
+    <a href="/pages/approved_programs"><h4 class="align-center black-text">All Programs</h4></a>
+    <div class="col s12 m8 offset-m2 l8 offset-l2" style="margin-bottom: 20px;">
+      <%= form_tag(pages_approved_programs_path, :method => "get", id: "search-form") do %>
+        <%= text_field_tag :search, params[:search], placeholder: "Search by Location or Description"%>
+        <button class="btn waves-effect waves-light palette4-bg" type="submit" name="commit" value="Search">SEARCH</button>
+      <% end %>
     </div>
+
+    <% if @programs.present? %>
+    <br>
+    <div class="col s12 m8 offset-m2 l8 offset-l2">
+      <%= paginate @programs %>
+    </div>
+      <% @programs.each do |program| %>
+        <div class="col s12 m8 offset-m2 l8 offset-l2">
+          <ul class="collection">
+            <li class="collection-item avatar">
+              <% if program.image_url.present? %>
+                <%= cl_image_tag(program.image_url, :alt => "", :class => "circle") %>
+              <% else %>
+                <%= cl_image_tag("default_pic2_otesv3.png", :alt => "", :class => "circle") %>
+              <% end %>
+              <a href="/listings/<%=program.id%>">
+              <span class="title black-text"><%=program.title%></span>
+              <p class="black-text"><%=program.short_description%></p>
+              </a>
+            </li>
+          </ul>
+        </div>
+      <% end %>
+      <div class="col s12 m8 offset-m2 l8 offset-l2">
+        <%= paginate @programs %>
+      </div>
+      <% else %>
+        <div class="col s12 m8 offset-m2 l8 offset-l2">
+          <p>There are no programs with description <%= params[:search] %>.</p>
+        </div>
+    <% end %>
   </div>
 </div>
