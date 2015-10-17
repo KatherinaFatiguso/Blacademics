@@ -1,15 +1,11 @@
-<div class="main-pattern">
-  <div class="container white-bg">
-    <div class="row">
-      <div class="col s12">
-        <% if current_user.has_role? :admin %>
-          <h4>New Audience</h4>
-          <%= render 'form' %>
-          <%= link_to 'Back', audiences_path %>
-        <% else %>
-          <%= render "listings/forbidden" %>
-        <% end %>
-      </div>
-    </div>
+<div class="row">
+  <div class="col s12 m8 offset-m2 l8 offset-l2">
+    <% if current_user.has_role? :admin %>
+      <h4>New Audience</h4>
+      <%= render 'form' %>
+      <%= link_to 'Back', audiences_path %>
+    <% else %>
+      <%= render "listings/forbidden" %>
+    <% end %>
   </div>
 </div>

@@ -1,15 +1,11 @@
-<% if current_user.organisation.id == @news.organisation_id %>
-  <div class="main-pattern">
-    <div class="container white-bg">
-      <div class="row">
-        <div class="col s12">
-          <h1>Create News</h1>
-          <%= render 'form' %>
-          <%= link_to 'Back', news_index_path %>
-        </div><!-- end of col s12 -->
-      </div><!-- end of row -->
-    </div><!-- end of container white-bg -->
-  </div><!-- end of main-pattern -->
+<% if current_user.organisation.id == params[:org_id].to_i %>
+  <div class="row">
+    <div class="col s12 m8 offset-m2 l8 offset-l2">
+      <h1>Create News</h1>
+      <%= render 'form' %>
+      <%= link_to 'Back', news_index_path %>
+    </div><!-- end of col s12 -->
+  </div><!-- end of row -->
 <% else %>
   <%= render "listings/forbidden" %>
 <% end %>

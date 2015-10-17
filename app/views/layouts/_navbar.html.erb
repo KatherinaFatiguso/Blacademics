@@ -27,14 +27,19 @@
     <% if current_user.has_role? :student %>
       <% if current_user.student_profile %>
         <li><%= link_to 'My Profile', student_profile_path(current_user.student_profile)%></li>
+        <li><%= link_to 'Find Jobs', pages_approved_jobs_path %></li>
+        <li><%= link_to 'Programs', pages_approved_programs_path %></li>
+        <li><%= link_to 'Events', pages_approved_events_path %></li>
       <% else %>
         <li><%= link_to 'Create Your Own Profile', new_student_profile_path %></li>
       <% end %>
     <% elsif current_user.has_role? :organisation %>
-      <% if current_user.organisation.nil? %>
-        <li><%= link_to 'Create Your Organisation', new_organisation_path %></li>
-      <% else %>
-        <li><%= link_to current_user.organisation.company_name, organisation_path(current_user.organisation) %></li>
+      <% if current_user.organisation %>
+        <% if current_user.organisation.company_name.present?%>
+          <li><%= link_to current_user.organisation.company_name, organisation_path(current_user.organisation) %></li>
+        <% else %>
+          <li><%= link_to 'Create Your Organisation', new_organisation_path %></li>
+        <% end %>
       <% end %>
     <% end %>
       <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>

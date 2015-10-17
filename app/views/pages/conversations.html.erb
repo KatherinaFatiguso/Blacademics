@@ -1,40 +1,36 @@
-<div class="main-pattern">
-  <div class="container white-bg">
-    <div class="row">
-      <div class="col s12 m12 l12">
-        <div class="bottom_margin_20px left_margin_20px right_margin_20px">
-        <h4>Conversations with <%= @contact %></h4>
-        <%= paginate @messages %>
-          <% @messages.each do |message| %>
-            <!-- messages for me from contact -->
-            <% if (message.to == params[:my_id].to_i) && (message.from == params[:contact].to_i) %>
-            <!-- the function to change from unread to read status, ONLY for messages for me -->
-              <% message.status_read %>
-              <p>
-                <div style="font-weight: bold; color: blue;">
-                  <%= message.long_message %><br>
-                </div>
-                <%= message.created_at.getlocal.strftime("%e %b %Y %I:%M:%S%p") %>
-              </p>
-            <% end %>
+<div class="row">
+  <div class="col s12 m8 offset-m2 l8 offset-l2">
+    <div class="bottom_margin_20px left_margin_20px right_margin_20px">
+    <h4>Conversations with <%= @contact %></h4>
+    <%= paginate @messages %>
+      <% @messages.each do |message| %>
+        <!-- messages for me from contact -->
+        <% if (message.to == params[:my_id].to_i) && (message.from == params[:contact].to_i) %>
+        <!-- the function to change from unread to read status, ONLY for messages for me -->
+          <% message.status_read %>
+          <p>
+            <div style="font-weight: bold; color: blue;">
+              <%= message.long_message %><br>
+            </div>
+            <%= message.created_at.getlocal.strftime("%e %b %Y %I:%M:%S%p") %>
+          </p>
+        <% end %>
 
-            <!-- messages from me to contact -->
-            <% if (message.to == params[:contact].to_i) && (message.from == params[:my_id].to_i) %>
-              <p>
-                <div style="font-style: italic; font-weight: bold;">
-                  <%= message.long_message %><br>
-                </div>
-                <%= message.created_at.getlocal.strftime("%e %b %Y %I:%M:%S%p") %>
-              </p>
-            <% end %>
-          <% end %>
-          <%= paginate @messages %>
-          <br>
+        <!-- messages from me to contact -->
+        <% if (message.to == params[:contact].to_i) && (message.from == params[:my_id].to_i) %>
+          <p>
+            <div style="font-style: italic; font-weight: bold;">
+              <%= message.long_message %><br>
+            </div>
+            <%= message.created_at.getlocal.strftime("%e %b %Y %I:%M:%S%p") %>
+          </p>
+        <% end %>
+      <% end %>
+      <%= paginate @messages %>
+      <br>
 
-          <%= link_to 'Reply', new_message_path(to: @contact_user.id, from: params[:my_id]), class: 'waves-effect waves-light btn palette4-bg' %>
-          <%= link_to 'Inbox', messages_path(my_id: params[:my_id]), class: 'waves-effect waves-light btn palette4-bg'%>
-        </div>
-      </div>
+      <%= link_to 'Reply', new_message_path(to: @contact_user.id, from: params[:my_id]), class: 'waves-effect waves-light btn palette4-bg' %>
+      <%= link_to 'Inbox', messages_path(my_id: params[:my_id]), class: 'waves-effect waves-light btn palette4-bg'%>
     </div>
   </div>
 </div>

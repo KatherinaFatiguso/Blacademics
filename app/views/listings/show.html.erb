@@ -1,168 +1,164 @@
 <%= content_for :title, @listing.title %>
-<div class="main-pattern">
-  <div class="container white-bg">
-    <div class="row">
-        <div class="col s12 m12 l12"><p id="notice"><%= notice %></p></div>
-          <% @listing.impressionist_count(:filter=>:session_hash, :unique=>true) %>
-        <div class="col s12 m12 l12">
-          <% if @listing.image_url.present? %>
-            <%= cl_image_tag(@listing.image_url, :size => "300") %>
+  <div class="row">
+    <div class="col s12 m12 l12"><p id="notice"><%= notice %></p></div>
+      <% @listing.impressionist_count(:filter=>:session_hash, :unique=>true) %>
+    <div class="col s12 m12 l12">
+      <% if @listing.image_url.present? %>
+        <%= cl_image_tag(@listing.image_url, :size => "300") %>
+      <% else %>
+        <%= cl_image_tag("default_pic2_otesv3.png", :size => "300", :opacity=>33) %>
+      <% end %>        </div>
+      <% if @listing.listing_type == 'job' %><!-- job vacancy sign if still open or closed -->
+        <% if Date.today < (@listing.end_time) %>
+          <div class="col s12 m12 l12 taglines"><a class="btn disabled"><i class="material-icons right">lock_open</i>Job vacancy is still open.</a></div>
+        <% else %>
+          <div class="col s12 m12 l12 taglines"><a class="btn disabled"><i class="material-icons right">lock_closed</i>Job vacancy is closed.</a></div>
+        <% end %>
+      <% end %>
+      <br>
+        <div class="col s4 m2 l3"><p>Listing Type:</p></div>
+        <div class="col s8 m10 l9"><p><%= @listing.listing_type %></p></div>
+        <div class="col s3 m2 l3"><p>Listing ID:</p></div>
+        <div class="col s9 m10 l9"><p><%= @listing.id %></p></div>
+        <div class="col s2 m2 l3"><p>Title:</p></div>
+        <div class="col s10 m10 l9"><p><%= @listing.title %></p></div>
+        <div class="col s12 m12 l12"><p>Short Description:<br><%= @listing.short_description %></p></div>
+        <div class="col s12 m12 l12"><p>Long Description:<br><%= @listing.long_description %></p></div>
+        <% if @listing.listing_type == 'job' %>
+          <div class="col s4 m2 l3"><p>Company Name:</p></div>
+          <div class="col s6 m10 l9"><p><%= @listing.company_name %></p></div>
+        <% end %>
+        <div class="col s5 m3 l3"><p>Contact Name:</p></div>
+        <div class="col s5 m9 l9"><p><%= @listing.contact_name %></p></div>
+        <div class="col s4 m2 l3"><p>Email:</p></div>
+        <div class="col s6 m10 l9"><p><%= @listing.contact_email %></p></div>
+        <div class="col s4 m2 l3"><p>Phone:</p></div>
+          <% if @listing.contact_phone.present? %>
+            <div class="col s6 m10 l9"><p><%= @listing.contact_phone %></p></div>
           <% else %>
-            <%= cl_image_tag("default_pic2_otesv3.png", :size => "300", :opacity=>33) %>
-          <% end %>        </div>
-          <% if @listing.listing_type == 'job' %><!-- job vacancy sign if still open or closed -->
-            <% if Date.today < (@listing.end_time) %>
-              <div class="col s12 m12 l12 taglines"><a class="btn disabled"><i class="material-icons right">lock_open</i>Job vacancy is still open.</a></div>
-            <% else %>
-              <div class="col s12 m12 l12 taglines"><a class="btn disabled"><i class="material-icons right">lock_closed</i>Job vacancy is closed.</a></div>
+            <div class="col s6 m10 l9"><p>_</p></div>
+          <% end %>
+        <div class="col s4 m2 l3"><p>Website:</p></div>
+          <% if @listing.website.present? %>
+            <div class="col s6 m10 l9"><p><a href="http://<%= @listing.website %>"><%= @listing.website %></a></p></div>
+          <% else %>
+            <div class="col s6 m10 l9"><p>_</p></div>
+          <% end %>
+        <div class="col s4 m2 l3"><p>Street:</p></div>
+        <div class="col s6 m10 l9"><p><%= @listing.street_address %></p></div>
+        <div class="col s4 m2 l3"><p>Suburb:</p></div>
+        <div class="col s6 m10 l9"><p><%= @listing.suburb %></p></div>
+        <div class="col s4 m2 l3"><p>State:</p></div>
+        <div class="col s6 m10 l9"><p><%= @listing.state %></p></div>
+        <div class="col s4 m2 l3"><p>Postcode:</p></div>
+        <div class="col s6 m10 l9"><p><%= @listing.postcode %></p></div>
+          <% if @listing.listing_type == 'event' || @listing.listing_type == 'program' %>
+            <% if user_signed_in? %>
+              <% unless current_user.has_role? :admin %><!-- only admin can see the audiences -->
+              <div class="col s4 m3 l3"><p>Audiences:</p></div>
+                <% @listing.audiences.each do |audience| %>
+                  <div class="col s12 m12 l12"><a class="btn-flat btn-disabled"><%= audience.name %></a></div>
+                <% end %>
             <% end %>
           <% end %>
-          <br>
-            <div class="col s4 m2 l3"><p>Listing Type:</p></div>
-            <div class="col s8 m10 l9"><p><%= @listing.listing_type %></p></div>
-            <div class="col s3 m2 l3"><p>Listing ID:</p></div>
-            <div class="col s9 m10 l9"><p><%= @listing.id %></p></div>
-            <div class="col s2 m2 l3"><p>Title:</p></div>
-            <div class="col s10 m10 l9"><p><%= @listing.title %></p></div>
-            <div class="col s12 m12 l12"><p>Short Description:<br><%= @listing.short_description %></p></div>
-            <div class="col s12 m12 l12"><p>Long Description:<br><%= @listing.long_description %></p></div>
-            <% if @listing.listing_type == 'job' %>
-              <div class="col s4 m2 l3"><p>Company Name:</p></div>
-              <div class="col s6 m10 l9"><p><%= @listing.company_name %></p></div>
+          <div class="col s4 m3 l3"><p>Start time (AEST):</p></div>
+            <% if @listing.start_time %>
+              <div class="col s6 m9 l9"><p><%= @listing.start_time.strftime("%A, %d %b %Y %l:%M %p") %></p></div>
             <% end %>
-            <div class="col s5 m3 l3"><p>Contact Name:</p></div>
-            <div class="col s5 m9 l9"><p><%= @listing.contact_name %></p></div>
-            <div class="col s4 m2 l3"><p>Email:</p></div>
-            <div class="col s6 m10 l9"><p><%= @listing.contact_email %></p></div>
-            <div class="col s4 m2 l3"><p>Phone:</p></div>
-              <% if @listing.contact_phone.present? %>
-                <div class="col s6 m10 l9"><p><%= @listing.contact_phone %></p></div>
-              <% else %>
-                <div class="col s6 m10 l9"><p>_</p></div>
-              <% end %>
-            <div class="col s4 m2 l3"><p>Website:</p></div>
-              <% if @listing.website.present? %>
-                <div class="col s6 m10 l9"><p><a href="http://<%= @listing.website %>"><%= @listing.website %></a></p></div>
-              <% else %>
-                <div class="col s6 m10 l9"><p>_</p></div>
-              <% end %>
-            <div class="col s4 m2 l3"><p>Street:</p></div>
-            <div class="col s6 m10 l9"><p><%= @listing.street_address %></p></div>
-            <div class="col s4 m2 l3"><p>Suburb:</p></div>
-            <div class="col s6 m10 l9"><p><%= @listing.suburb %></p></div>
-            <div class="col s4 m2 l3"><p>State:</p></div>
-            <div class="col s6 m10 l9"><p><%= @listing.state %></p></div>
-            <div class="col s4 m2 l3"><p>Postcode:</p></div>
-            <div class="col s6 m10 l9"><p><%= @listing.postcode %></p></div>
-              <% if @listing.listing_type == 'event' || @listing.listing_type == 'program' %>
-                <% if user_signed_in? %>
-                  <% unless current_user.has_role? :admin %><!-- only admin can see the audiences -->
-                  <div class="col s4 m3 l3"><p>Audiences:</p></div>
-                    <% @listing.audiences.each do |audience| %>
-                      <div class="col s12 m12 l12"><a class="btn-flat btn-disabled"><%= audience.name %></a></div>
-                    <% end %>
-                <% end %>
-              <% end %>
-              <div class="col s4 m3 l3"><p>Start time (AEST):</p></div>
-                <% if @listing.start_time %>
-                  <div class="col s6 m9 l9"><p><%= @listing.start_time.strftime("%A, %d %b %Y %l:%M %p") %></p></div>
-                <% end %>
-              <div class="col s4 m3 l3"><p>End time (AEST):</p></div>
-                <% if @listing.end_time %>
-                  <div class="col s6 m9 l9"><p><%= @listing.end_time.strftime("%A, %d %b %Y %l:%M %p") %></p></div>
-                <% end %>
+          <div class="col s4 m3 l3"><p>End time (AEST):</p></div>
+            <% if @listing.end_time %>
+              <div class="col s6 m9 l9"><p><%= @listing.end_time.strftime("%A, %d %b %Y %l:%M %p") %></p></div>
+            <% end %>
 
-              <% if @listing.ticket_required.present? %>
-                <p>
-                  <div class="col s12 m12 l12"><br>Ticket Booking or Opening Status:</div>
-                  <div class="col s12 m12 l12"><%= @listing.ticket_required %></div>
-                </p>
-              <% end %>
+          <% if @listing.ticket_required.present? %>
+            <p>
+              <div class="col s12 m12 l12"><br>Ticket Booking or Opening Status:</div>
+              <div class="col s12 m12 l12"><%= @listing.ticket_required %></div>
+            </p>
+          <% end %>
 
-              <% if @listing.ticket_website.present? %>
-                <p>
-                  <div class="col s5 m3 l3"><br>Ticket Website:</div>
-                  <div class="col s12 m9 l9"><a href="http://<%= @listing.ticket_website %>"><%= @listing.ticket_website %></a></div>
-                </p>
-              <% end %>
+          <% if @listing.ticket_website.present? %>
+            <p>
+              <div class="col s5 m3 l3"><br>Ticket Website:</div>
+              <div class="col s12 m9 l9"><a href="http://<%= @listing.ticket_website %>"><%= @listing.ticket_website %></a></div>
+            </p>
+          <% end %>
 
-              <% if @listing.official_hastag.present? %>
-                <p>
-                  <div class="col s12 m12 l12"><br>Official hastag:</div>
-                  <div class="col s12 m12 l12"><%= @listing.official_hastag %></div>
-                </p>
-              <% end %>
+          <% if @listing.official_hastag.present? %>
+            <p>
+              <div class="col s12 m12 l12"><br>Official hastag:</div>
+              <div class="col s12 m12 l12"><%= @listing.official_hastag %></div>
+            </p>
+          <% end %>
 
-              <% if @listing.facebook_url.present? %>
-                <p>
-                  <div class="col s12 m12 l12"><br>Facebook URL:</div>
-                  <div class="col s12 m12 l12"><a href="http://<%= @listing.website %>"><%= @listing.facebook_url %></a></div>
-                </p>
-              <% end %>
+          <% if @listing.facebook_url.present? %>
+            <p>
+              <div class="col s12 m12 l12"><br>Facebook URL:</div>
+              <div class="col s12 m12 l12"><a href="http://<%= @listing.website %>"><%= @listing.facebook_url %></a></div>
+            </p>
+          <% end %>
 
-              <% if @listing.twitter_handle.present? %>
-                <p>
-                  <div class="col s12 m12 l12"><br>Twitter Handle:</div>
-                  <div class="col s12 m12 l12"><%= @listing.twitter_handle %></div>
-                </p>
-              <% end %>
+          <% if @listing.twitter_handle.present? %>
+            <p>
+              <div class="col s12 m12 l12"><br>Twitter Handle:</div>
+              <div class="col s12 m12 l12"><%= @listing.twitter_handle %></div>
+            </p>
+          <% end %>
 
-              <% if @listing.instagram_handle.present? %>
-                <p>
-                  <div class="col s12 m12 l12"><br>Instagram Handle:</div>
-                  <div class="col s12 m12 l12"><%= @listing.instagram_handle %></div>
-                </p>
-              <% end %>
+          <% if @listing.instagram_handle.present? %>
+            <p>
+              <div class="col s12 m12 l12"><br>Instagram Handle:</div>
+              <div class="col s12 m12 l12"><%= @listing.instagram_handle %></div>
+            </p>
+          <% end %>
 
-            <% else %><!-- else if listing type is job -->
-              <div class="col s12 m4 l3"><p>Application Open Date (AEST):</p></div>
-              <div class="col s12 m8 l9"><p><%= @listing.start_time.strftime("%A, %d %b %Y %l:%M %p") %></p></div>
-              <div class="col s12 m4 l3"><p>Application Closing Date (AEST):</p></div>
-              <div class="col s12 m8 l9"><p><%= @listing.end_time.strftime("%A, %d %b %Y %l:%M %p") %></p></div>
-              <div class="col s12 m2 l3"><p>Job category:</p></div>
-                <% if @listing.job_category.present? %>
-                  <div class="col s12 m10 l9"><p><%= @listing.job_category %></p></div>
-                <% else %>
-                  <div class="col s12 m10 l9"><p>_</p></div>
-                <% end %>
-              <div class="col s12 m2 l3"><p>Job type:</p></div>
-                <% if @listing.job_type.present? %>
-                  <div class="col s12 m10 l9"><p><%= @listing.job_type %></p></div>
-                <% else %>
-                  <div class="col s12 m10 l9"><p>_</p></div>
-                <% end %>
-              <div class="col s12 m2 l3"><p>Salary:</p></div>
-                <% if @listing.salary.present? %>
-                  <div class="col s12 m10 l9"><p><%= @listing.salary %></p></div>
-                <% else %>
-                  <div class="col s12 m10 l9"><p>_</p></div>
-                <% end %>
+        <% else %><!-- else if listing type is job -->
+          <div class="col s12 m4 l3"><p>Application Open Date (AEST):</p></div>
+          <div class="col s12 m8 l9"><p><%= @listing.start_time.strftime("%A, %d %b %Y %l:%M %p") %></p></div>
+          <div class="col s12 m4 l3"><p>Application Closing Date (AEST):</p></div>
+          <div class="col s12 m8 l9"><p><%= @listing.end_time.strftime("%A, %d %b %Y %l:%M %p") %></p></div>
+          <div class="col s12 m2 l3"><p>Job category:</p></div>
+            <% if @listing.job_category.present? %>
+              <div class="col s12 m10 l9"><p><%= @listing.job_category %></p></div>
+            <% else %>
+              <div class="col s12 m10 l9"><p>_</p></div>
+            <% end %>
+          <div class="col s12 m2 l3"><p>Job type:</p></div>
+            <% if @listing.job_type.present? %>
+              <div class="col s12 m10 l9"><p><%= @listing.job_type %></p></div>
+            <% else %>
+              <div class="col s12 m10 l9"><p>_</p></div>
+            <% end %>
+          <div class="col s12 m2 l3"><p>Salary:</p></div>
+            <% if @listing.salary.present? %>
+              <div class="col s12 m10 l9"><p><%= @listing.salary %></p></div>
+            <% else %>
+              <div class="col s12 m10 l9"><p>_</p></div>
+            <% end %>
 
-              <div class="col s12 m2 l3"><p>Organiser:</p></div>
-              <div class="col s12 m10 l9"><p><%= @listing.organisation.company_name %></p></div>
-            <% end %> <!-- end of unless if it's a job type -->
+          <div class="col s12 m2 l3"><p>Organiser:</p></div>
+          <div class="col s12 m10 l9"><p><%= @listing.organisation.company_name %></p></div>
+        <% end %> <!-- end of unless if it's a job type -->
 
-            <% if user_signed_in? %>
-              <% if @listing.organisation.user == current_user %>
-                <div class="col s12 m2 l3"><p>Listing Status: </p></div>
-                <div class="col s12 errormsg"><p><%= @listing.status %></p></div>
-                <div class="col s6 m2 l3"><p>Number of Views: </p></div>
-                <div class="col s4 m10 l9"><p><%= @listing.impressions_count%></p></div>
-                <div class="col s12 m12 l12"><a class="waves-effect waves-light btn palette4-bg" href="/listings/<%= @listing.id %>/edit">Edit</a></div>
-              <% elsif current_user.has_role? :admin %>
-                <div class="col s5 m3 l3"><p>Listing Expired At: </p></div>
-                <% if @listing.expired_at %>
-                  <div class="col s5 m9 l9 errormsg"><p><%= @listing.expired_at.strftime("%A, %d %b %Y %l:%M %p") %></p></div>
-                <% else %>
-                  <div class="col s5 m9 l9"><p>No expiry date.</p></div>
-                <% end %>
-                <br>
-                <div class="col s12">
-                  <%= link_to 'Edit', edit_listing_path(@listing) %> |
-                  <%= link_to 'Back to Admin', pages_admin_path %>
-                </div>
-                <% end %>
-              <% end %>
+        <% if user_signed_in? %>
+          <% if @listing.organisation.user == current_user %>
+            <div class="col s12 m2 l3"><p>Listing Status: </p></div>
+            <div class="col s12 errormsg"><p><%= @listing.status %></p></div>
+            <div class="col s6 m2 l3"><p>Number of Views: </p></div>
+            <div class="col s4 m10 l9"><p><%= @listing.impressions_count%></p></div>
+            <div class="col s12 m12 l12"><a class="waves-effect waves-light btn palette4-bg" href="/listings/<%= @listing.id %>/edit">Edit</a></div>
+          <% elsif current_user.has_role? :admin %>
+            <div class="col s5 m3 l3"><p>Listing Expired At: </p></div>
+            <% if @listing.expired_at %>
+              <div class="col s5 m9 l9 errormsg"><p><%= @listing.expired_at.strftime("%A, %d %b %Y %l:%M %p") %></p></div>
+            <% else %>
+              <div class="col s5 m9 l9"><p>No expiry date.</p></div>
+            <% end %>
+            <br>
+            <div class="col s12">
+              <%= link_to 'Edit', edit_listing_path(@listing) %> |
+              <%= link_to 'Back to Admin', pages_admin_path %>
+            </div>
+          <% end %>
+        <% end %>
     </div><!-- end of row -->
-  </div><!-- container white-bg -->
-</div><!-- main-pattern -->

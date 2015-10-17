@@ -24,8 +24,8 @@
     <%= f.input :picture, label: 'Picture (Max size 450 pixels x 250 pixels)' %>
     <%= f.input :weblink, label: 'Web Link (do not include http://)' %>
     <%= f.input :youtube, label: 'YouTube URL (do not include http://)' %>
-    <%= f.input :video %><br>
-    <%# f.input :impressions_count %><!-- do not show -->
+    <%#= f.input :video %><!-- not required, use YouTube account instead-->
+    <%# f.input :impressions_count %><!-- not yet tested -->
     <%= f.association :organisation, :as => :hidden, input_html: { value: params[:org_id]} %>
   </div>
 

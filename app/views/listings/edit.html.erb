@@ -1,16 +1,12 @@
-<div class="main-pattern">
-  <div class="container white-bg">
-    <div class="row">
-      <div class="col s12">
-        <% if user_signed_in? %>
-          <% if (@listing.organisation.user == current_user) || (current_user.has_role? :admin) %>
-            <h3>Editing <%= @listing.listing_type %></h3>
-            <%= render 'form' %>
-          <% else %>
-            <%= render 'forbidden' %>
-          <% end %>
-        <% end %>
-      </div><!-- end of col s12 -->
-    </div><!-- end of row -->
-  </div><!-- end of container white-bg -->
-</div><!-- end of main-pattern -->
+<div class="row">
+  <div class="col s12 m8 offset-m2 l8 offset-l2">
+    <% if user_signed_in? %>
+      <% if (@listing.organisation.user == current_user) || (current_user.has_role? :admin) %>
+        <h3>Editing <%= @listing.listing_type %></h3>
+        <%= render 'form' %>
+      <% else %>
+        <%= render 'forbidden' %>
+      <% end %>
+    <% end %>
+  </div><!-- end of col s12 -->
+</div><!-- end of row -->

@@ -1,47 +1,43 @@
-<div class="main-pattern">
-  <div class="container white-bg">
-    <div class="row">
-      <div class="col s12">
-        <p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="col s12 m8 offset-m2 l8 offset-l2">
+    <p id="notice"><%= notice %></p>
 
-        <p>
-          <strong>From:</strong>
-          <% @from = User.find(@message.from) %>
-          <% if @from.user_type == 'student' %>
-            <%= @from.student_profile.full_name %>
-          <% elsif @from.user_type == 'organisation' %>
-            <%= @from.organisation.company_name %>
-          <% end %>
-        </p>
+    <p>
+      <strong>From:</strong>
+      <% @from = User.find(@message.from) %>
+      <% if @from.user_type == 'student' %>
+        <%= @from.student_profile.full_name %>
+      <% elsif @from.user_type == 'organisation' %>
+        <%= @from.organisation.company_name %>
+      <% end %>
+    </p>
 
-        <p>
-          <strong>To:</strong>
-          <% @from = User.find(@message.to) %>
-          <% if @from.user_type == 'student' %>
-            <%= @from.student_profile.full_name %>
-          <% elsif @from.user_type == 'organisation' %>
-            <%= @from.organisation.company_name %>
-          <% end %>
-        </p>
+    <p>
+      <strong>To:</strong>
+      <% @from = User.find(@message.to) %>
+      <% if @from.user_type == 'student' %>
+        <%= @from.student_profile.full_name %>
+      <% elsif @from.user_type == 'organisation' %>
+        <%= @from.organisation.company_name %>
+      <% end %>
+    </p>
 
-        <p>
-          <strong>Long message:</strong>
-          <%= @message.long_message %>
-        </p>
+    <p>
+      <strong>Message:</strong>
+      <%= @message.long_message %>
+    </p>
 
-        <% if @message.attachment.present? %>
-          <p>
-            <strong>Attachment:</strong>
-            <%= @message.attachment %>
-          </p>
-        <% end %>
+    <% if @message.attachment.present? %>
+      <p>
+        <strong>Attachment:</strong>
+        <%= @message.attachment %>
+      </p>
+    <% end %>
 
-        <% if @from.user_type == 'student' %>
-          <%= link_to 'Back to Messages with ' + @from.student_profile.full_name, pages_conversations_path(contact: @message.to, my_id:@message.from) %>
-        <% elsif @from.user_type == 'organisation' %>
-          <%= link_to 'Back to Messages with ' + @from.organisation.company_name, pages_conversations_path(contact: @message.to, my_id:@message.from) %>
-        <% end %>
-      </div><!-- end of col s12 -->
-    </div><!-- end of row -->
-  </div><!-- end of container white-bg -->
-</div><!-- end of main-pattern -->
+    <% if @from.user_type == 'student' %>
+      <%= link_to 'Back to Messages with ' + @from.student_profile.full_name, pages_conversations_path(contact: @message.to, my_id:@message.from) %>
+    <% elsif @from.user_type == 'organisation' %>
+      <%= link_to 'Back to Messages with ' + @from.organisation.company_name, pages_conversations_path(contact: @message.to, my_id:@message.from) %>
+    <% end %>
+  </div><!-- end of col s12 -->
+</div><!-- end of row -->

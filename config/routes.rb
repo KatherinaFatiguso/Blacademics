@@ -35,6 +35,8 @@ Rails.application.routes.draw do
   get 'pages/conversations'
   get 'pages/news'
   get 'pages/guides'
+  get 'pages/about'
+
 
 
   devise_for :users

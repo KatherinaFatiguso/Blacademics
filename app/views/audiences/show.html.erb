@@ -1,21 +1,17 @@
-<div class="main-pattern">
-  <div class="container white-bg">
-    <div class="row">
-      <div class="col s12">
-        <% if current_user.has_role? :admin %>
-          <p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="col s12 m8 offset-m2 l8 offset-l2">
+    <% if current_user.has_role? :admin %>
+      <p id="notice"><%= notice %></p>
 
-          <p>
-            <strong>Name:</strong>
-            <%= @audience.name %>
-          </p>
+      <p>
+        <strong>Name:</strong>
+        <%= @audience.name %>
+      </p>
 
-          <%= link_to 'Edit', edit_audience_path(@audience) %> |
-          <%= link_to 'Back', audiences_path %>
-        <% else %>
-          <%= render "listings/forbidden" %>
-        <% end %>
-      </div>
-    </div>
+      <%= link_to 'Edit', edit_audience_path(@audience) %> |
+      <%= link_to 'Back', audiences_path %>
+    <% else %>
+      <%= render "listings/forbidden" %>
+    <% end %>
   </div>
-</div>        
+</div>

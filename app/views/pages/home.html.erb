@@ -69,10 +69,8 @@
       <div class="parallax-container">
         <div class="container">
           <div class="row">
-            <div class="col s12 m12 l12" style="margin-top: 180px; text-align: center; font-size: 100%;">
-              <h3 style="color: white; text-align: center; font-family: Nationale-Bold; text-shadow: 2px 2px 2px #00a2b4;">Supporting Indigenous Excellence</h3>
-              <h5 style="color: white; text-align: center; text-shadow: 2px 2px 2px #00a2b4;">For all Aboriginal and/or Torres Strait Islander university students, future students and alumni.</h5>
-                <a class="waves-effect waves-light btn" style="background-color: #e64630; margin-top: 5px;">About Us</a>
+            <div class="col s12 m12 l12" style="margin-top: 450px; text-align: center; font-size: 100%;">
+              <h3 style="color: white; text-align: center; font-family: Nationale-Bold; text-shadow: 2px 2px 2px #00a2b4;">Takes You Higher</h3>
             </div>
           </div>
         </div>
@@ -80,50 +78,43 @@
           <%= cl_image_tag("blacademics_homepage.jpg", :background=>"#000", :opacity=>90) %>
         </div>
       </div><!-- end of parallax-container-->
-
     </div>
   </div><!-- end of row -->
 
-  <div class="row" style=" margin: 0; padding-top: 70px; padding-left: 30px; padding-right: 30px; background-size: cover">
+<!-- These four boxes will be used later on -->
+  <!-- <div class="row" style=" margin: 0; padding-top: 70px; padding-left: 30px; padding-right: 30px; background-size: cover">
     <div class="col s12 m3 l3" style=" margin-bottom: 50px;">
       <a href="/pages/approved_events" style="text-decoration: none; color: black;">
         <%= cl_image_tag("events.jpg", :width=>"100%") %>
         <p>
           <h5>Events</h5>
-          Add some text here for more information.
         </p>
       </a>
     </div>
-
     <div class="col s12 m3 l3" style=" margin-bottom: 50px;">
       <a href="/pages/approved_programs" style="text-decoration: none; color: black;">
         <%= cl_image_tag("programs_2.jpg", :width=>"100%") %>
         <p>
           <h5>Programs</h5>
-          Add some text here for more information.
         </p>
       </a>
     </div>
-
     <div class="col s12 m3 l3" style=" margin-bottom: 50px;">
       <a href="/pages/approved_jobs" style="text-decoration: none; color: black;">
         <%= cl_image_tag("jobs2.jpg", :width=>"100%") %>
         <p>
           <h5>Jobs</h5>
-          Add some text here for more information.
         </p>
       </a>
     </div>
-
     <div class="col s12 m3 l3" style=" padding-bottom: 50px;">
       <a href="/pages/news" style="text-decoration: none; color: black;">
         <%= cl_image_tag("news_videos.jpg", :width=>"100%") %>
         <h5>News and Videos</h5>
-        <p>Add some text here for more information.</p>
       </a>
     </div>
-
-  </div><!-- end of row -->
+  </div> -->
+  <!-- end of row -->
 
     <div class="row" style="background-color: #fff180; margin: 0px;">
       <div class="col s12 m6 l6" style="margin-top: 50px;">
@@ -140,26 +131,25 @@
       </div>
     </div><!-- end of row -->
 
-      <div class="container">
-        <div class="row">
-          <div class="col s12 m12 l12" style=" margin-top: 30px;">
+        <div class="row palette5-bg padding-top-20px" style="margin-bottom: 0px;">
+          <div class="col s12 m8 offset-m2 l8 offset-l2">
             <%= cl_image_tag("BLAC_Infographic1.png", width: "100%") %>
           </div>
         </div><!-- end of row -->
 
-        <div class="row">
-          <div class="col s12 m12 l12" style="margin-top: 30px; margin-bottom: 30px;">
+        <div class="row palette5-bg no-margin padding-top-20px padding-bottom-20px" style="margin-bottom: 0px;">
+          <div class="col s12 m8 offset-m2 l8 offset-l2">
             <%= cl_image_tag("BLAC_Infographic2.png", width: "100%") %>
           </div>
         </div><!-- end of row -->
 
         <% if user_signed_in? %>
-          <div class="row" style="margin: 0px;">
-            <div class="col s12 m12 l12" style="margin-bottom: 30px;">
+          <div class="row palette5-bg no-margin padding-bottom-40px" style="margin-bottom: 0px;">
+            <div class="col s12 m8 offset-m2 l8 offset-l2">
               <div class="card">
                 <div class="card-content">
                   <div class="row">
-                    <h5 class="align-center bottom_margin_40px">Students Gallery</h5>
+                    <h5 class="align-center bottom_margin_40px">Student Gallery</h5>
                     <!-- the loop must be outside the class col to make the images appear horizontally -->
                     <div class="small">
                       <% @student_profiles.limit(6).order("created_at ASC").each do |student|%>
@@ -207,32 +197,24 @@
           </div><!-- end of row -->
         <% end %>
 
-      </div><!-- end of container-->
 
 
-
-
-
-  <div class="row" style="margin: 0;">
+  <div class="row no-margin">
     <div class="col s12 m12 l12" style="margin-top: 0; padding-left: 0; padding-right: 0;">
       <div class="parallax-container" style="height: 500px;">
         <div class="container">
           <div class="row">
             <div class="col s12 m12 l12" style="margin-top: 230px; text-align: center;">
-              <h3 style="color: white; text-align: center; font-family: Nationale-Bold; text-shadow: 2px 2px 2px #00a2b4;">Student Profiles</h3>
-              <h5 style="color: white; text-align: center; text-shadow: 2px 2px 2px #00a2b4">Create an online profile then search and apply for jobs.</h5>
+              <h3 style="color: white; text-align: center; font-family: Nationale-Bold; text-shadow: 2px 2px 2px #00a2b4;">Create Your Profile</h3>
               <% if user_signed_in? %>
-                <% if current_user.has_role? :student %>
-                  <% if current_user.student_profile %>
-                    <a class="waves-effect waves-light btn" style="background-color: #e64630;" href="/student_profiles/<%=current_user.student_profile.id%>">My Profile</a>
-                  <% else %>
-                    <a class="waves-effect waves-light btn" style="background-color: #e64630;" href="/student_profiles/new">Create Your Own Profile</a>
-                  <% end %>
-                  <% else %><!-- else if current user does not have a profile yet -->
-                    <a class="waves-effect waves-light btn" style="background-color: #e64630;" href="/users/sign_in">Sign In</a>
+                <% if current_user.student_profile %>
+                  <a class="waves-effect waves-light btn" style="background-color: #e64630;" href="/student_profiles/<%=current_user.student_profile.id%>">My Student Profile</a>
+                <% elsif current_user.organisation %>
+                  <a class="waves-effect waves-light btn" style="background-color: #e64630;" href="/organisations/<%=current_user.organisation.id%>">My Organisation Profile</a>
                 <% end %>
-              <% else %> <!-- else if current user is not a student -->
-                <a class="waves-effect waves-light btn" style="background-color: #e64630;" href="/pages/home">Sign In</a>
+              <% else %>
+                <a class="waves-effect waves-light btn" style="background-color: #e64630;" href="/users/sign_in">Student</a>
+                <a class="waves-effect waves-light btn" style="background-color: #e64630;" href="/users/sign_in">Organisation</a>
               <% end %>
             </div>
           </div>
@@ -354,7 +336,7 @@
           <a href="/pages/highschoolers">
             <div class="col s12 small">
               <div class="card-panel palette4-bg center">
-                <span class="white-text font-14pt">High Schooler</span>
+                <span class="white-text font-14pt">High School Students</span>
               </div>
             </div>
           </a>
@@ -363,7 +345,7 @@
           <div class="col m4 medium">
             <a href="/pages/highschoolers" style="text-decoration: none; color: black;">
               <%= cl_image_tag("blacademics_high_school.jpg", width: "100%") %>
-              <h5 style="font-size: 100%; text-align: center;"><strong>High Schooler</strong></h5>
+              <h5 style="font-size: 100%; text-align: center;"><strong>High School Students</strong></h5>
             </a>
           </div>
 
@@ -371,7 +353,7 @@
           <div class="col l4 large">
             <a href="/pages/highschoolers" style="text-decoration: none; color: black;">
               <%= cl_image_tag("blacademics_high_school.jpg", width: "100%") %>
-              <h5 style="text-align: center;"><strong>High Schooler</strong></h5>
+              <h5 style="text-align: center;"><strong>High School Students</strong></h5>
             </a>
           </div>
 
@@ -410,35 +392,27 @@
         <div class="col s12 m12 l12 black-text">
           <h5>Blacademics</h5>
           <%= cl_image_tag("blacademics_icon_horizontal.png", :width=>200, :crop=>:scale) %>
-          <p class="black-text">You can use rows and columns here to organize your footer content.</p>
         </div>
       </div>
       <div class="row">
-        <div class="col s12 m2 offset-m2 l2 offset-l2">
-          <h5 class="black-text">Links</h5>
+        <div class="col s12 m4 offset-m1 l4 offset-l1">
+          <h5 class="black-text">More Information</h5>
           <ul>
-            <li><a class="black-text" href="#!">Link 1</a></li>
-            <li><a class="black-text" href="#!">Link 2</a></li>
-            <li><a class="black-text" href="#!">Link 3</a></li>
-            <li><a class="black-text" href="#!">Link 4</a></li>
+            <li><a class="black-text" href="/pages/about">About Blacademics</a></li>
+            <li><a class="black-text" href="/pages/contact">Contact Us</a></li>
+            <li><a class="black-text" href="#!">Privacy Policy</a></li>
+            <li><a class="black-text" href="#!">Terms and Conditions</a></li>
           </ul>
         </div>
-        <div class="col s12 m2 offset-m1 l2 offset-l1">
-          <h5 class="black-text">Links</h5>
+        <div class="col s12 m4 offset-m1 l4 offset-l1">
+          <h5 class="black-text">Resources</h5>
           <ul>
-            <li><a class="black-text" href="#!">Link 1</a></li>
-            <li><a class="black-text" href="#!">Link 2</a></li>
-            <li><a class="black-text" href="#!">Link 3</a></li>
-            <li><a class="black-text" href="#!">Link 4</a></li>
-          </ul>
-        </div>
-        <div class="col s12 m2 offset-m1 l2 offset-l1">
-          <h5 class="black-text">Links</h5>
-          <ul>
-            <li><a class="black-text" href="#!">Link 1</a></li>
-            <li><a class="black-text" href="#!">Link 2</a></li>
-            <li><a class="black-text" href="#!">Link 3</a></li>
-            <li><a class="black-text" href="#!">Link 4</a></li>
+            <li><a class="black-text" href="/pages/guides">Guides and FAQ's</a></li>
+            <li><a class="black-text" href="/pages/uni_students">Uni Students and Alumni</a></li>
+            <li><a class="black-text" href="/pages/organisations">Organisations</a></li>
+            <li><a class="black-text" href="/pages/highschoolers">High School Students</a></li>
+            <li><a class="black-text" href="/pages/universities">Universities and Indigenous Units</a></li>
+
           </ul>
         </div>
       </div>

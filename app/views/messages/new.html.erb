@@ -1,20 +1,15 @@
-<div class="main-pattern">
-  <div class="container white-bg">
-    <div class="row">
-      <div class="col s12">
-        <% User.all.each do |receiver| %>
-          <% if receiver.id == (params[:to]).to_i %>
-            <% @receiver = receiver %>
-          <% end %>
-        <% end %>
-        <% if @receiver.user_type == 'student'%>
-          <h4>Send message to <%= @receiver.student_profile.first_name %></h4>
-        <% elsif @receiver.user_type == 'organisation' %>
-          <h4>Send message to <%= @receiver.organisation.company_name %></h4>
-        <% end %>
-        <%= render 'form' %>
-
-      </div>
-    </div>
+<div class="row">
+  <div class="col s12 m8 offset-m2 l8 offset-l2">
+    <% User.all.each do |receiver| %>
+      <% if receiver.id == (params[:to]).to_i %>
+        <% @receiver = receiver %>
+      <% end %>
+    <% end %>
+    <% if @receiver.user_type == 'student'%>
+      <h4>Send message to <%= @receiver.student_profile.first_name %></h4>
+    <% elsif @receiver.user_type == 'organisation' %>
+      <h4>Send message to <%= @receiver.organisation.company_name %></h4>
+    <% end %>
+    <%= render 'form' %>
   </div>
 </div>

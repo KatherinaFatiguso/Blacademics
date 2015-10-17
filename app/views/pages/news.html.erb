@@ -22,31 +22,22 @@
                   <span><%= news.created_at.strftime('%d %b, %Y') %>
                   <h4 style=" font-style: bold; margin-bottom: 40px;"><%= news.title %></h4>
                   <p style="font-weight: normal;"><%= news.author %></p>
-                  <div class="col s12 m4 l4" style="margin-top: 0px; padding-bottom: 20px; text-align: center;">
+                  <div class="col s12 m6 l6" style="margin-top: 0px; padding-bottom: 20px; text-align: center;">
                     <!-- Image -->
                     <% if news.picture.present? %>
-                      <div class="embed-container" style="padding-top: 0px; max-height: 250px; max-width: 100%;">
-                        <img src=<%=news.picture%>>
+                      <div class="embed-container" style="margin: 0px; padding-top: 0px; max-height: 250px;">
+                        <%= cl_image_tag(news.picture_url, :width => "100%", :crop => :fill) %>
                       </div>
                     <% end %>
                   </div>
-                  <div class="col s12 m4 l4" style="padding-bottom: 20px;  text-align: center;">
+                  <div class="col s12 m6 l6" style="margin-top: 0px; padding-bottom: 20px;">
                     <!-- YouTube -->
-                    <% if news.picture.present? %>
-                      <div class="embed-container" style="padding-top: 0px; max-height: 250px; max-width: 100%;">
+                    <% if news.youtube.present? %>
+                      <div class="embed-container" style="margin: 0px; max-height: 250px;">
                         <%= embed(news.youtube)%>
                       </div>
                     <% end %>
                   </div>
-                  <div class="col s12 m4 l4" style="margin-top: 0px; padding-bottom: 20px; text-align: center;">
-                    <!-- Video -->
-                    <% if news.picture.present? %>
-                      <div class="embed-container" style="padding-top: 0px; max-height: 250px; max-width: 100%;">
-                        <img src=<%=news.picture%>>
-                      </div>
-                    <% end %>
-                  </div>
-
                 </div><!-- end of row -->
 
                 <h5 style="margin-bottom: 5px; font-weight: bold;">

@@ -24,27 +24,20 @@
             <div style="margin-left: 40px; margin-right: 40px; margin-top: 40px; margin-bottom: 40px;">
 
             <div class="row" style="margin: 0px; text-align: center;">
-              <div class="col s12 m4 l4" style="margin-top: 0px; padding-bottom: 20px;">
+              <div class="col s12 m6 l6" style="margin-top: 0px; padding-bottom: 20px;">
                 <h5>Image</h5>
                 <% if news.picture.present? %>
                   <div class="embed-container" style="margin: 0px; padding-top: 0px; max-height: 250px;">
-                    <img src=<%=news.picture%>>
+                    <%= cl_image_tag(news.picture_url, :width => "100%", :crop => :fill) %>
+                    <!-- <img src=<%=news.picture%>> -->
                   </div>
                 <% end %>
               </div>
-              <div class="col s12 m4 l4" style="margin-top: 0px; padding-bottom: 20px;">
+              <div class="col s12 m6 l6" style="margin-top: 0px; padding-bottom: 20px;">
                 <h5>YouTube</h5>
                 <% if news.picture.present? %>
                   <div class="embed-container" style="margin: 0px; max-height: 250px;">
                     <%= embed(news.youtube)%>
-                  </div>
-                <% end %>
-              </div>
-              <div class="col s12 m4 l4" style="margin-top: 0px; padding-bottom: 20px;">
-                <h5>Video</h5>
-                <% if news.picture.present? %>
-                  <div class="embed-container" style="margin: 0px; padding-top: 0px; max-height: 250px;">
-                    <img src=<%=news.picture%>>
                   </div>
                 <% end %>
               </div>
@@ -112,11 +105,11 @@
               </p>
             <% end %>
 
-            <% if news.impressions_count.present? %>
-              <p style="margin-bottom: 5px; margin-left: 10px; margin-right: 10px; font-weight: bold;">
+            <%# if news.impressions_count.present? %>
+              <!-- <p style="margin-bottom: 5px; margin-left: 10px; margin-right: 10px; font-weight: bold;">
                 Impressions_count: <span style="font-weight: normal;"><%= news.impressions_count %></span>
-              </p>
-            <% end %>
+              </p> -->
+            <%# end %> <!-- not tested -->
 
           <div style="margin-top: 10px; margin-bottom: 10px; margin-left: 10px;">
             <td><%= link_to 'Edit', edit_news_path(news, org_id: @organisation.id), class: 'btn btn-edit', style: "background-color: #00a2b4" %></td>

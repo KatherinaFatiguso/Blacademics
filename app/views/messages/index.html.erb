@@ -1,60 +1,56 @@
-<div class="main-pattern">
-  <div class="container white-bg">
-    <div class="row">
-      <div class="col s12">
-        <h4>View Contacts</h4>
-        <% @receiver_user = User.find(params[:my_id]) %>
-        <% if @receiver_user.user_type == 'student' %>
-          <% @receiver = @receiver_user.student_profile %>
-        <% elsif @receiver_user.user_type == 'organisation' %>
-          <% @receiver = @receiver_user.organisation %>
-        <% end %>
+<div class="row">
+  <div class="col s12 m8 offset-m2 l8 offset-l2">
+    <h4>View Contacts</h4>
+    <% @receiver_user = User.find(params[:my_id]) %>
+    <% if @receiver_user.user_type == 'student' %>
+      <% @receiver = @receiver_user.student_profile %>
+    <% elsif @receiver_user.user_type == 'organisation' %>
+      <% @receiver = @receiver_user.organisation %>
+    <% end %>
 
-          <!-- Check the contacts from all messages to see if contact id is new and will be added into the connections list -->
-          <%= content_tag_for(:tr, @messages) do |message| %>
-            <% if (message.from == params[:my_id].to_i) || (message.to == params[:my_id].to_i) %>
-              <!-- save the new contact that send me the message -->
-              <% if (message.from != current_user.id) && !(@receiver.connections.include?(message.from))%>
-                <!-- do not save my own id into my connections list AND -->
-                <!-- add receiver user id if it is a new connection -->
-                <% @receiver.connections << message.from %>
-                <% @receiver.save! %>
-              <% end %>
-              <!-- save the new contact that I send the message to -->
-              <% if (message.to != current_user.id) && !(@receiver.connections.include?(message.to))%>
-                <!-- do not save my own id into my connections list AND -->
-                <!-- add receiver user id if it is a new connection -->
-                <% @receiver.connections << message.to %>
-                <% @receiver.save! %>
-              <% end %>
-            <% end %>
+      <!-- Check the contacts from all messages to see if contact id is new and will be added into the connections list -->
+      <%= content_tag_for(:tr, @messages) do |message| %>
+        <% if (message.from == params[:my_id].to_i) || (message.to == params[:my_id].to_i) %>
+          <!-- save the new contact that send me the message -->
+          <% if (message.from != current_user.id) && !(@receiver.connections.include?(message.from))%>
+            <!-- do not save my own id into my connections list AND -->
+            <!-- add receiver user id if it is a new connection -->
+            <% @receiver.connections << message.from %>
+            <% @receiver.save! %>
           <% end %>
+          <!-- save the new contact that I send the message to -->
+          <% if (message.to != current_user.id) && !(@receiver.connections.include?(message.to))%>
+            <!-- do not save my own id into my connections list AND -->
+            <!-- add receiver user id if it is a new connection -->
+            <% @receiver.connections << message.to %>
+            <% @receiver.save! %>
+          <% end %>
+        <% end %>
+      <% end %>
 
-          <ol><!-- list all messages from each connection -->
-            <% @receiver.connections.each do |connection|%>
-              <p>
-                <% @sender_user = User.find(connection)%>
-                <% if @sender_user.user_type == 'student'%>
-                  <% @sender = @sender_user.student_profile%>
-                  <li>
-                    <%= link_to @sender.full_name, pages_conversations_path(my_id: current_user.id, contact: @sender_user.id) %>
-                    <% if Message.count_new_messages(params[:my_id], @sender_user.id) > 0 %>
-                      (<%= Message.count_new_messages(params[:my_id], @sender_user.id)%>)<!-- shows the number of unread messages -->
-                    <% end %>
-                  </li>
-                <% elsif @sender_user.user_type == 'organisation'%>
-                  <% @sender = @sender_user.organisation%>
-                  <li>
-                    <%= link_to @sender.company_name, pages_conversations_path(my_id: current_user.id, contact: @sender_user.id) %>
-                    <% if Message.count_new_messages(params[:my_id], @sender_user.id) > 0 %>
-                      (<%= Message.count_new_messages(params[:my_id], @sender_user.id)%>)<!-- shows the number of unread messages -->
-                    <% end %>
-                  </li>
+      <ol><!-- list all messages from each connection -->
+        <% @receiver.connections.each do |connection|%>
+          <p>
+            <% @sender_user = User.find(connection)%>
+            <% if @sender_user.user_type == 'student'%>
+              <% @sender = @sender_user.student_profile%>
+              <li>
+                <%= link_to @sender.full_name, pages_conversations_path(my_id: current_user.id, contact: @sender_user.id) %>
+                <% if Message.count_new_messages(params[:my_id], @sender_user.id) > 0 %>
+                  (<%= Message.count_new_messages(params[:my_id], @sender_user.id)%>)<!-- shows the number of unread messages -->
                 <% end %>
-              </p>
+              </li>
+            <% elsif @sender_user.user_type == 'organisation'%>
+              <% @sender = @sender_user.organisation%>
+              <li>
+                <%= link_to @sender.company_name, pages_conversations_path(my_id: current_user.id, contact: @sender_user.id) %>
+                <% if Message.count_new_messages(params[:my_id], @sender_user.id) > 0 %>
+                  (<%= Message.count_new_messages(params[:my_id], @sender_user.id)%>)<!-- shows the number of unread messages -->
+                <% end %>
+              </li>
             <% end %>
-          </ol>
-      </div>
-    </div>
+          </p>
+        <% end %>
+      </ol>
   </div>
 </div>

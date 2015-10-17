@@ -11,7 +11,7 @@
     <% unless @message.attachment.nil? %>
       <%= image_tag(@message.attachment_url, width:100) %>
     <% end %>
-    <%= f.input :attachment %>
+    <%#= f.input :attachment %><!-- not yet tested -->
     <%= f.association :user, :as => :hidden, input_html: { value: params[:my_id]} %>
 
   </div>
