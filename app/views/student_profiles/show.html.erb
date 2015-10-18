@@ -6,7 +6,7 @@
     <% else %>
       <%= cl_image_tag("default_pic1_ztn0yq.png") %>
     <% end %>
-    <h3><%= @student_profile.title%> <%= @student_profile.first_name %> <%= @student_profile.last_name %> <%= @student_profile.letters %> <%= @student_profile.post_nominal_titles %></h3>
+    <p class="word-wrap"><h5><%= @student_profile.title%> <%= @student_profile.first_name %> <%= @student_profile.last_name %> <%= @student_profile.letters %> <%= @student_profile.post_nominal_titles %></h5></p>
     <% if user_signed_in? %>
       <!-- messaging -->
       <% if current_user == @student_profile.user %>
@@ -25,7 +25,7 @@
     <p><span class="bold">Biography: </span><%= @student_profile.bio %></p>
     <p><span class="bold">Summary of Work History: </span><%= @student_profile.work_history %></p>
     <% unless @student_profile.resume_url.nil? %>
-      <p><span class="bold">Resume name: </span><%= @student_profile.resume_url %></p>
+      <p class="word-wrap"><span class="bold">Resume name: </span><%= @student_profile.resume_url %></p>
       <p><span class="bold"><%= link_to 'Download Resume', @student_profile.resume_url %></span></p>
     <% end %>
     <% if user_signed_in? %>
@@ -39,23 +39,23 @@
   <h5>Educations:</h5>
     <% @student_profile.university_educations.each do |student| %>
       <% if student.degree.present? %>
-        <p><span class="bold">Qualification: </span><%= student.degree %></p>
+        <p class="word-wrap"><span class="bold">Qualification: </span><%= student.degree %></p>
       <% end %>
 
       <% if student.field_of_study.present? %>
-        <p><span class="bold">Field of Study: </span><%= student.field_of_study %></p>
+        <p class="word-wrap"><span class="bold">Field of Study: </span><%= student.field_of_study %></p>
       <% end %>
 
       <% if student.university.present? %>
-        <p><span class="bold">University: </span><%= student.university %></p>
+        <p class="word-wrap"><span class="bold">University: </span><%= student.university %></p>
       <% end %>
 
       <% if student.school.present? %>
-        <p><span class="bold">School: </span><%= student.school %></p>
+        <p class="word-wrap"><span class="bold">School: </span><%= student.school %></p>
       <% end %>
 
       <% if student.year_ended.present? %>
-        <p><span class="bold">Year Ended: </span><%= student.year_ended %></p>
+        <p class="word-wrap"><span class="bold">Year Ended: </span><%= student.year_ended %></p>
       <% end %>
 
       <% if user_signed_in? %>
@@ -81,15 +81,15 @@
     <h5>Scholarships:</h5>
     <% @student_profile.scholarships.each do |scholar| %>
       <% if scholar.title.present? %>
-        <p><span class="bold">Title: </span><%= scholar.title %></p>
+        <p class="word-wrap"><span class="bold">Title: </span><%= scholar.title %></p>
       <% end %>
 
       <% if scholar.organisation.present? %>
-        <p><span class="bold">Organisation: </span><%= scholar.organisation %></p>
+        <p class="word-wrap"><span class="bold">Organisation: </span><%= scholar.organisation %></p>
       <% end %>
 
       <% if scholar.year_received.present? %>
-        <p><span class="bold">Year Received: </span><%= scholar.year_received %></p>
+        <p class="word-wrap"><span class="bold">Year Received: </span><%= scholar.year_received %></p>
       <% end %>
 
       <% if user_signed_in? %>
@@ -115,15 +115,15 @@
     <h5>Awards:</h5>
     <% @student_profile.awards.each do |award| %>
       <% if award.title.present? %>
-        <p><span class="bold">Title: </span><%= award.title %></p>
+        <p class="word-wrap"><span class="bold">Title: </span><%= award.title %></p>
       <% end %>
 
       <% if award.organisation.present? %>
-        <p><span class="bold">Organisation: </span><%= award.organisation %></p>
+        <p class="word-wrap"><span class="bold">Organisation: </span><%= award.organisation %></p>
       <% end %>
 
       <% if award.year_received.present? %>
-        <p><span class="bold">Year Received: </span><%= award.year_received %></p>
+        <p class="word-wrap"><span class="bold">Year Received: </span><%= award.year_received %></p>
       <% end %>
 
       <% if user_signed_in? %>
@@ -143,186 +143,157 @@
       <% end %>
     <% end %><!-- end of if user signed in? -->
 
-  </div><!-- col s12 m8 offset-m2 l8 offset-l2 -->
 
   <!-------------------------------------------------------------->
-      <div class="border-top"></div>
-        <h5>Internships:</h5>
-        <% @student_profile.internships.each do |internship| %>
-          <% if internship.title.present? %>
-            <p><span class="bold">Title: </span><%= internship.title %></p>
-          <% end %>
+  <div class="border-top"></div>
+    <h5>Internships:</h5>
+    <% @student_profile.internships.each do |internship| %>
+      <% if internship.title.present? %>
+        <p class="word-wrap"><span class="bold">Title: </span><%= internship.title %></p>
+      <% end %>
 
-          <% if internship.organisation.present? %>
-            <p><span class="bold">Organisation: </span><%= internship.organisation %></p>
-          <% end %>
+      <% if internship.organisation.present? %>
+        <p class="word-wrap"><span class="bold">Organisation: </span><%= internship.organisation %></p>
+      <% end %>
 
-          <% if internship.year_commenced.present? %>
-            <p><span class="bold">Year Commenced: </span><%= internship.year_commenced %></p>
-          <% end %>
+      <% if internship.year_commenced.present? %>
+        <p class="word-wrap"><span class="bold">Year Commenced: </span><%= internship.year_commenced %></p>
+      <% end %>
 
-          <% if internship.year_ended.present? %>
-            <div class="col s8 m10 l10"><p><span class="bold">Year Ended: </span><%= internship.year_ended %></p></div>
-          <% else %>
-            <div class="col s8 m10 l10"><p>-</p></div>
-          <% end %>
+      <% if internship.year_ended.present? %>
+        <p class="word-wrap"><span class="bold">Year Ended: </span><%= internship.year_ended %></p>
+      <% end %>
 
+      <% if user_signed_in? %>
+        <% if (@student_profile.user == current_user) || (current_user.has_role? :admin)  %>
+          <div class="bottom_margin_40px">
+            <%= link_to "Edit | ", edit_internship_path(internship) %>
+            <%= link_to "Delete", internship_path(internship), method: :delete, data: { confirm: 'Are you sure?'} %>
+          </div>
+        <% end %>
+      <% end %><!-- end of if user signed in? -->
+    <% end %><!-- end of loop -->
+    <% if user_signed_in? %>
+      <% if (@student_profile.user == current_user) || (current_user.has_role? :admin)  %>
+        <div class="bottom_margin_40px">
+          <%= link_to "Add Internship", new_internship_path(student_profile_id: @student_profile.id), class: "btn" %>
+        </div>
+      <% end %>
+    <% end %><!-- end of if user signed in? -->
 
-          <% if user_signed_in? %>
-            <% if (@student_profile.user == current_user) || (current_user.has_role? :admin)  %>
-              <div class="col s4 m2 l2">
-                <%= link_to "Edit | ", edit_internship_path(internship) %>
-                <%= link_to "Delete", internship_path(internship), method: :delete, data: { confirm: 'Are you sure?'} %>
-              </div>
-              <div class="col s8 m10 l10"><br><br><br></div>
-            <% end %>
-          <% end %><!-- end of if user signed in? -->
+  <!-------------------------------------------------------------->
+  <div class="border-top"></div>
+    <h5>Cadetships:</h5>
+    <% @student_profile.cadetships.each do |cadetships| %>
+      <% if cadetships.title.present? %>
+        <p class="word-wrap"><span class="bold">Title: </span><%= cadetships.title %></p>
+      <% end %>
 
-        <% end %><!-- end of loop -->
-        <% if user_signed_in? %>
-          <% if (@student_profile.user == current_user) || (current_user.has_role? :admin)  %>
-            <div class="col s12 m6 l6"><%= link_to "Add Internship", new_internship_path(student_profile_id: @student_profile.id), class: "btn" %></div>
-          <% end %>
-        <% end %><!-- end of if user signed in? -->
+      <% if cadetships.organisation.present? %>
+        <p class="word-wrap"><span class="bold">Organisation: </span><%= cadetships.organisation %></p>
+      <% end %>
 
+      <% if cadetships.year_commenced.present? %>
+        <p class="word-wrap"><span class="bold">Year Commenced: </span><%= cadetships.year_commenced %></p>
+      <% end %>
 
-          <!-------------------------------------------------------------->
-    <div class="row">
-      <div class="border-top"></div>
-        <div class="col s12"><h5>Cadetships:</h5></div>
-        <% @student_profile.cadetships.each do |cadetships| %>
-          <div class="col s4 m2 l2"><p>Title:</p></div>
-          <% if cadetships.title.present? %>
-            <div class="col s8 m10 l10"><p><%= cadetships.title %></p></div>
-          <% else %>
-            <div class="col s8 m10 l10"><p>-</p></div>
-          <% end %>
+      <% if cadetships.year_ended.present? %>
+        <p class="word-wrap"><span class="bold">Year Ended: </span><%= cadetships.year_ended %></p>
+      <% end %>
 
-          <div class="col s4 m2 l2"><p>Organisation:</p></div>
-          <% if cadetships.organisation.present? %>
-            <div class="col s8 m10 l10"><p><%= cadetships.organisation %></p></div>
-          <% else %>
-            <div class="col s8 m10 l10"><p>-</p></div>
-          <% end %>
+      <% if user_signed_in? %>
+        <% if (@student_profile.user == current_user) || (current_user.has_role? :admin)  %>
+          <div class="bottom_margin_40px">
+            <%= link_to "Edit | ", edit_cadetship_path(cadetships) %>
+            <%= link_to "Delete", cadetship_path(cadetships), method: :delete, data: { confirm: 'Are you sure?'} %>
+          </div>
+        <% end %>
+      <% end %><!-- end of if user signed in? -->
+    <% end %><!-- end of loop -->
+    <% if user_signed_in? %>
+      <% if (@student_profile.user == current_user) || (current_user.has_role? :admin)  %>
+        <div class="bottom_margin_40px">
+          <%= link_to "Add Cadetship", new_cadetship_path(student_profile_id: @student_profile.id), class: "btn" %>
+        </div>
+      <% end %>
+    <% end %><!-- end of if user signed in? -->
 
-          <div class="col s5 m3 l2"><p>Year Commenced:</p></div>
-          <% if cadetships.year_commenced.present? %>
-            <div class="col s7 m9 l10"><p><%= cadetships.year_commenced %></p></div>
-          <% else %>
-            <div class="col s8 m9 l10"><p>-</p></div>
-          <% end %>
+  <!-------------------------------------------------------------->
+  <div class="border-top"></div>
+    <h5>Employments:</h5>
+    <% @student_profile.employments.each do |employment| %>
+      <% if employment.title.present? %>
+        <p class="word-wrap"><span class="bold">Title: </span><%= employment.title %></p>
+      <% end %>
 
-          <div class="col s4 m2 l2"><p>Year Ended:</p></div>
-          <% if cadetships.year_ended.present? %>
-            <div class="col s8 m10 l10"><p><%= cadetships.year_ended %></p></div>
-          <% else %>
-            <div class="col s8 m10 l10"><p>-</p></div>
-          <% end %>
+      <% if employment.organisation.present? %>
+        <p class="word-wrap"><span class="bold">Organisation: </span><%= employment.organisation %></p>
+      <% end %>
 
+      <% if employment.year_commenced.present? %>
+        <p class="word-wrap"><span class="bold">Year Commenced: </span><%= employment.year_commenced %></p>
+      <% end %>
 
-          <% if user_signed_in? %>
-            <% if (@student_profile.user == current_user) || (current_user.has_role? :admin)  %>
-              <div class="col s4 m2 l2">
-                <%= link_to "Edit | ", edit_cadetship_path(cadetships) %>
-                <%= link_to "Delete", cadetship_path(cadetships), method: :delete, data: { confirm: 'Are you sure?'} %>
-              </div>
-              <div class="col s8 m10 l10"><br><br><br></div>
-            <% end %>
-          <% end %><!-- end of if user signed in? -->
+      <% if employment.year_ended.present? %>
+        <p class="word-wrap"><span class="bold">Year Ended: </span><%= employment.year_ended %></p>
+      <% end %>
 
-        <% end %><!-- end of loop -->
-        <% if user_signed_in? %>
-          <% if (@student_profile.user == current_user) || (current_user.has_role? :admin)  %>
-            <div class="col s12 m6 l6"><%= link_to "Add Cadetship", new_cadetship_path(student_profile_id: @student_profile.id), class: "btn" %></div>
-          <% end %>
-        <% end %><!-- end of if user signed in? -->
-
-        <br>
-    </div><!-- end of row -->
-
-          <!-------------------------------------------------------------->
-    <div class="row">
-      <div class="border-top"></div>
-        <div class="col s12"><h5>Employments:</h5></div>
-        <% @student_profile.employments.each do |employment| %>
-          <div class="col s4 m2 l2"><p>Title:</p></div>
-          <% if employment.title.present? %>
-            <div class="col s8 m10 l10"><p><%= employment.title %></p></div>
-          <% else %>
-            <div class="col s8 m10 l10"><p>-</p></div>
-          <% end %>
-
-          <div class="col s4 m2 l2"><p>Organisation:</p></div>
-          <% if employment.organisation.present? %>
-            <div class="col s8 m10 l10"><p><%= employment.organisation %></p></div>
-          <% else %>
-            <div class="col s8 m10 l10"><p>-</p></div>
-          <% end %>
-
-          <div class="col s5 m3 l2"><p>Year Commenced:</p></div>
-          <% if employment.year_commenced.present? %>
-            <div class="col s7 m9 l10"><p><%= employment.year_commenced %></p></div>
-          <% else %>
-            <div class="col s8 m9 l10"><p>-</p></div>
-          <% end %>
-
-          <div class="col s4 m2 l2"><p>Year Ended:</p></div>
-          <% if employment.year_ended.present? %>
-            <div class="col s8 m10 l10"><p><%= employment.year_ended %></p></div>
-          <% else %>
-            <div class="col s8 m10 l10"><p>-</p></div>
-          <% end %>
-
-          <% if user_signed_in? %>
-            <% if (@student_profile.user == current_user) || (current_user.has_role? :admin)  %>
-              <div class="col s4 m2 l2">
-                <%= link_to "Edit | ", edit_employment_path(employment) %>
-                <%= link_to "Delete", employment_path(employment), method: :delete, data: { confirm: 'Are you sure?'} %>
-              </div>
-              <div class="col s8 m10 l10"><br><br><br></div>
-            <% end %>
-          <% end %><!-- end of if user signed in? -->
-
-        <% end %><!-- end of loop -->
-        <% if user_signed_in? %>
-          <% if (@student_profile.user == current_user) || (current_user.has_role? :admin)  %>
-            <div class="col s12 m6 l6"><%= link_to "Add Employment", new_employment_path(student_profile_id: @student_profile.id), class: "btn" %></div>
-          <% end %>
-        <% end %><!-- end of if user signed in? -->
-        <br>
-    </div><!-- end of row -->
-          <!-------------------------------------------------------------->
-    <div class="row">
-          <div class="border-top"></div>
-            <div class="col s12"><h5>Skills: (up to 40 skills)<h5></div>
-            <% count = 0 %>
-            <% @student_profile.skills.each do |skill| %>
-              <% if skill.skill.present? %>
-                <div class="col s1"><p><%= count += 1 %>. </p></div>
-                <div class="col s7"><p><%= skill.skill %></p></div>
-                <% if user_signed_in? %>
-                  <% if (@student_profile.user == current_user) || (current_user.has_role? :admin)  %>
-                    <div class="col s4"><p><%= link_to "  Edit | ", edit_skill_path(skill) %><%= link_to "Delete", skill_path(skill), method: :delete, data: { confirm: 'Are you sure?'} %></p></div>
-                  <% end %>
-                <% end %><!-- end of if user signed in? -->
-                <br>
-              <% else %><!-- if no value is entered -->
-                <div class="col s8"><p><%= count += 1 %>. </p></div>
-                <% if user_signed_in? %>
-                  <% if (@student_profile.user == current_user) || (current_user.has_role? :admin)  %>
-                    <div class="col s4"><p><%= link_to "  Edit | ", edit_skill_path(skill) %><%= link_to "Delete", skill_path(skill), method: :delete, data: { confirm: 'Are you sure?'} %></p></div>
-                  <% end %>
-                <% end %><!-- end of if user signed in? -->
-              <% end %>
-            <% end %>
-
-            <% if count < 40 %><!-- max 40 skills -->
-              <% if user_signed_in? %>
-                <% if (@student_profile.user == current_user) || (current_user.has_role? :admin)  %>
-                  <div class="col s12 m6 l6"><br><%= link_to "Add Skill", new_skill_path(student_profile_id: @student_profile.id), class: "btn" %></div>
-                <% end %>
-              <% end %><!-- end of if user signed in? -->
-            <% end %><!-- end if counter is < 40 -->
-            <br><br>
+      <% if user_signed_in? %>
+        <% if (@student_profile.user == current_user) || (current_user.has_role? :admin)  %>
+        <div class="bottom_margin_40px">
+          <%= link_to "Edit | ", edit_employment_path(employment) %>
+          <%= link_to "Delete", employment_path(employment), method: :delete, data: { confirm: 'Are you sure?'} %>
+        </div>
+      <% end %>
+    <% end %><!-- end of if user signed in? -->
+  <% end %><!-- end of loop -->
+  <% if user_signed_in? %>
+    <% if (@student_profile.user == current_user) || (current_user.has_role? :admin)  %>
+      <div class="bottom_margin_40px">
+        <%= link_to "Add Employment", new_employment_path(student_profile_id: @student_profile.id), class: "btn" %>
       </div>
-    </div><!-- end of row -->
+    <% end %>
+  <% end %><!-- end of if user signed in? -->
+
+  <!-------------------------------------------------------------->
+  <div class="border-top"></div>
+    <h5>Skills: </h5>(max. list of 40 skills)
+    <% count = 0 %>
+    <% @student_profile.skills.each do |skill| %>
+      <p class="word-wrap">
+      <% if skill.skill.present? %>
+        <span class="bold"><%= count += 1 %>. <%= skill.skill %></span>
+        <% if user_signed_in? %>
+          <% if (@student_profile.user == current_user) || (current_user.has_role? :admin)  %>
+            <div class="bottom_margin_40px">
+              <%= link_to "  Edit | ", edit_skill_path(skill) %>
+              <%= link_to "Delete", skill_path(skill), method: :delete, data: { confirm: 'Are you sure?'} %>
+            </div>
+          <% end %>
+        <% end %><!-- end of if user signed in? -->
+      <% else %><!-- else if no value is entered but the user still press the 'Add' button -->
+        <span class="bold"><%= count += 1 %>. </span>
+        <% if user_signed_in? %>
+          <% if (@student_profile.user == current_user) || (current_user.has_role? :admin)  %>
+            <div class="bottom_margin_40px">
+              <%= link_to "  Edit | ", edit_skill_path(skill) %>
+              <%= link_to "Delete", skill_path(skill), method: :delete, data: { confirm: 'Are you sure?'} %>
+            </div>
+          <% end %>
+        <% end %><!-- end of if user signed in? -->
+      <% end %>
+      </p>
+    <% end %><!-- end of loop -->
+
+    <% if count < 40 %><!-- max 40 skills -->
+      <% if user_signed_in? %>
+        <% if (@student_profile.user == current_user) || (current_user.has_role? :admin)  %>
+          <div class="bottom_margin_40px">
+            <%= link_to "Add Skill", new_skill_path(student_profile_id: @student_profile.id), class: "btn" %>
+          </div>
+        <% end %>
+      <% end %><!-- end of if user signed in? -->
+    <% end %><!-- end if counter is < 40 -->
+
+  </div><!-- col s12 m8 offset-m2 l8 offset-l2 -->
+</div><!-- end of row -->

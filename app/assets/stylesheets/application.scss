@@ -116,8 +116,14 @@ header, main, footer {
 .top-margin-20px{
   margin-top: 20px;
 }
+.top-margin-40px{
+  margin-top: 40px;
+}
 .top_margin_none{
   margin-top: 0px;
+}
+.bottom_margin_5px{
+  margin-bottom: 5px;
 }
 .bottom_margin_20px{
   margin-bottom: 20px;
@@ -162,27 +168,9 @@ header, main, footer {
   height: 550px;
 }
 
-
-.main-pattern{
-  background-image: url("https://res.cloudinary.com/blacademics-limited/image/upload/v1443507323/indigenous_pattern1_tiglvr.jpg");
-  background-size: cover;
-  background-size: 100%;
-  min-height: 100%;
-
-  // min-width: 100%;
-  // min-height: 100%;
-  // background-position: center;
-  // background-size: cover;
-
-
-}
-
 .container .row{
   margin-left: 0px;
   margin-right: 0px;
-}
-.container {
-// min-height: 800px;
 }
 
 .palette1{
@@ -333,5 +321,17 @@ header, main, footer {
   margin-bottom: 0px;
   margin-left: 0px;
   margin-right: 0px;
+}
 
+.word-wrap {
+   word-wrap: break-word;
+}
+
+ol.info {list-style: lower-latin;}
+
+ol.lower-roman { list-style: lower-roman; }
+
+.text-decoration-underline {
+  text-decoration: underline;
+  color: blue;
 }

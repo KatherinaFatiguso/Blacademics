@@ -36,8 +36,8 @@ Rails.application.routes.draw do
   get 'pages/news'
   get 'pages/guides'
   get 'pages/about'
-
-
+  get 'pages/privacy_policy'
+  get 'pages/terms_conditions'
 
   devise_for :users
 

@@ -166,12 +166,15 @@ class PagesController < ApplicationController
   end
 
   def guides
-
   end
 
 
   def about
-
   end
 
+  def privacy_policy
+  end
+
+  def terms_conditions
+  end
 end

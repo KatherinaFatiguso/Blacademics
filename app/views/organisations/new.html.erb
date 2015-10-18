@@ -1,7 +1,16 @@
-<div class="row">
-  <div class="col s12 m8 offset-m2 l8 offset-l2">
-    <h4>New Organisation</h4>
-    <%= render 'form' %>
-    <%= link_to 'Back', organisations_path %>
-  </div>
-</div>
+<% if user_signed_in? %>
+  <% if current_user.has_role? :organisation %>
+    <div class="row">
+      <div class="col s12 m8 offset-m2 l8 offset-l2">
+        <h4>New Organisation</h4>
+        <%= render 'form' %>
+      </div>
+    </div>
+  <% else %>
+    <div class="row">
+      <div class="col s12 m8 offset-m2 l8 offset-l2">
+        <div class="errormsg"><h5>Only organisation is allowed to create organisation profile.</h5></div>
+      </div><!-- end of col s12 -->
+    </div><!-- end of row -->
+  <% end %>
+<% end %>
